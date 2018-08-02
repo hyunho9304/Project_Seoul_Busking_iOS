@@ -9,27 +9,58 @@
 import UIKit
 
 class SelectTypeViewController: UIViewController {
-
+    
+    @IBOutlet weak var signUpBackBtn: UIButton!
+    @IBOutlet weak var selectBuskerBtn: ToggleBtn!
+    @IBOutlet weak var selectAudienceBtn: ToggleBtn!
+    @IBOutlet weak var signUpNextBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        settingTarget()
+        settingToggleBtn()
+        confirmWrite()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func settingTarget() {
+        
+        signUpBackBtn.addTarget(self, action: #selector(self.pressedSignUpBackBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc func pressedSignUpBackBtn( _ sender : UIButton ) {
+        
+        self.dismiss(animated: true, completion: nil )
     }
-    */
+    
+    func settingToggleBtn() {
+        
+        selectBuskerBtn.otherBtn = self.selectAudienceBtn
+        selectAudienceBtn.otherBtn = self.selectBuskerBtn
+    }
+    
+    func confirmWrite() {
+        
+        signUpNextBtn.isEnabled = false  //  default setting
+        
+        selectBuskerBtn.addTarget(self, action: #selector(isValid), for: .touchUpInside)       //  Button
+        selectAudienceBtn.addTarget(self, action: #selector(isValid), for: .touchUpInside)
+    }
+    
+    @objc func isValid() {
+        
+        //  모두 입력 완료
+        if( (selectBuskerBtn.checked)! || (selectAudienceBtn.checked)! ) {
+            
+            signUpNextBtn.isEnabled = true
+            signUpNextBtn.setImage( #imageLiteral(resourceName: "login.png") , for: .normal)
+            
+        } else {
+            
+            signUpNextBtn.isEnabled = false
+            signUpNextBtn.setImage(#imageLiteral(resourceName: "login.png") , for: .normal )
+        }
+    }
+
 
 }

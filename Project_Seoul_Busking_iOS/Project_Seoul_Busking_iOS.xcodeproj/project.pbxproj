@@ -25,6 +25,7 @@
 		BEEA4D63211328BA00FD71C4 /* APIservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA4D62211328BA00FD71C4 /* APIservice.swift */; };
 		BEEA4D65211328C500FD71C4 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA4D64211328C500FD71C4 /* Server.swift */; };
 		BEEA4D6721132AAE00FD71C4 /* SelectTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA4D6621132AAE00FD71C4 /* SelectTypeViewController.swift */; };
+		BEEA4D692113312700FD71C4 /* ToggleBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA4D682113312700FD71C4 /* ToggleBtn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		BEEA4D62211328BA00FD71C4 /* APIservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIservice.swift; sourceTree = "<group>"; };
 		BEEA4D64211328C500FD71C4 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		BEEA4D6621132AAE00FD71C4 /* SelectTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTypeViewController.swift; sourceTree = "<group>"; };
+		BEEA4D682113312700FD71C4 /* ToggleBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleBtn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 		BEEA4D4921130ABD00FD71C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BEEA4D682113312700FD71C4 /* ToggleBtn.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,8 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				BEEA4D4E21130FD300FD71C4 /* SignInViewController.swift */,
-				BEEA4D602113283200FD71C4 /* SignUpViewController.swift */,
 				BEEA4D6621132AAE00FD71C4 /* SelectTypeViewController.swift */,
+				BEEA4D602113283200FD71C4 /* SignUpViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEEA4D692113312700FD71C4 /* ToggleBtn.swift in Sources */,
 				BEEA4D63211328BA00FD71C4 /* APIservice.swift in Sources */,
 				BEEA4D6721132AAE00FD71C4 /* SelectTypeViewController.swift in Sources */,
 				BEEA4D5F2113276300FD71C4 /* Extension.swift in Sources */,
