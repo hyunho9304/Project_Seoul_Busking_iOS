@@ -26,11 +26,8 @@ class SelectTypeViewController: UIViewController {
     func settingTarget() {
         
         signUpBackBtn.addTarget(self, action: #selector(self.pressedSignUpBackBtn(_:)), for: UIControlEvents.touchUpInside)
-    }
-    
-    @objc func pressedSignUpBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: true, completion: nil )
+        signUpNextBtn.addTarget(self, action: #selector(self.pressedSignUpNextBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     func settingToggleBtn() {
@@ -47,18 +44,36 @@ class SelectTypeViewController: UIViewController {
         selectAudienceBtn.addTarget(self, action: #selector(isValid), for: .touchUpInside)
     }
     
+    @objc func pressedSignUpBackBtn( _ sender : UIButton ) {
+        
+        self.dismiss(animated: true, completion: nil )
+    }
+    
+    @objc func pressedSignUpNextBtn( _ sender : UIButton ) {
+        
+        guard let signUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
+        
+        if selectBuskerBtn.checked == true {
+            signUpVC.memberType = 1
+        } else {
+            signUpVC.memberType = 0
+        }
+        
+        self.present( signUpVC , animated: true , completion: nil )
+    }
+    
     @objc func isValid() {
         
         //  모두 입력 완료
         if( (selectBuskerBtn.checked)! || (selectAudienceBtn.checked)! ) {
             
             signUpNextBtn.isEnabled = true
-            signUpNextBtn.setImage( #imageLiteral(resourceName: "login.png") , for: .normal)
+            signUpNextBtn.setImage( #imageLiteral(resourceName: "next_1.png") , for: .normal)
             
         } else {
             
             signUpNextBtn.isEnabled = false
-            signUpNextBtn.setImage(#imageLiteral(resourceName: "login.png") , for: .normal )
+            signUpNextBtn.setImage( #imageLiteral(resourceName: "next.png") , for: .normal )
         }
     }
 

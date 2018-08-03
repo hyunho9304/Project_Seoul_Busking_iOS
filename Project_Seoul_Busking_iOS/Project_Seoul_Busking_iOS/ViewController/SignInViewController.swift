@@ -21,6 +21,7 @@ class SignInViewController: UIViewController {
 
         settingTarget()
         hideKeyboardWhenTappedAround()
+        
     }
     
     func settingTarget() {
@@ -32,14 +33,66 @@ class SignInViewController: UIViewController {
     @objc func pressedSignInBtn( _ sender : UIButton ) {
         
         //  로그인
+        /*
+        if( !(emailTextField.text?.isEmpty)! && !( (passwordTextField.text?.isEmpty)!) ) {
+            
+            userdefault.set(gsno(emailTextField.text), forKey: "member_email")
+            
+            Server.reqSignIn(email: emailTextField.text! , password: passwordTextField.text!) { (rescode , flag ) in
+                
+                if rescode == 201 {
+                    
+                    let myHomeVCtap = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "myHomeVCtap")
+                    
+                    self.present( myHomeVCtap , animated: true , completion: nil )
+                    
+                } else if rescode == 401 {
+                    
+                    if flag == 1 {
+                        
+                        
+                        let alert = UIAlertController(title: "로그인 실패", message: "이메일이 없습니다", preferredStyle: .alert )
+                        let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                        alert.addAction( ok )
+                        self.present(alert , animated: true , completion: nil)
+                        
+                    }
+                    else if flag == 2 {
+                        
+                        let alert = UIAlertController(title: "로그인 실패", message: "비밀번호 틀렸는데요..?", preferredStyle: .alert )
+                        let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                        alert.addAction( ok )
+                        self.present(alert , animated: true , completion: nil)
+                        
+                        
+                    }
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
+            }
+        } else {
+            
+            let alert = UIAlertController(title: "로그인", message: "이메일과 비밀번호를 입력해주세요!!", preferredStyle: .alert )
+            let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+            
+            alert.addAction( ok )
+            
+            present( alert , animated: true , completion: nil )
+        }
+        */
     }
     
     @objc func pressedSignUpBtn( _ sender : UIButton ) {
         
-        guard let signUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectTypeViewController") as? SelectTypeViewController else { return }
+        guard let selectTypeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectTypeViewController") as? SelectTypeViewController else { return }
         
-        self.present( signUpVC , animated: true , completion: nil )
+        self.present( selectTypeVC , animated: true , completion: nil )
     }
+    
     
 }
 

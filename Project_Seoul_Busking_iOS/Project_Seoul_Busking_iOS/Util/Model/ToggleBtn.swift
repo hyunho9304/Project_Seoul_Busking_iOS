@@ -34,14 +34,14 @@ class ToggleBtn : UIButton {
     //  클릭시 일어나는것 여기서 정의
     @objc func touchBtn( _ sender : ToggleBtn ) {
         
-        if( sender.tag == 0 ) {     //  여자이고
-//
-//            sender.setImage(#imageLiteral(resourceName: "woman_1"), for: .normal )
-//            sender.otherBtn?.setImage(#imageLiteral(resourceName: "man_2") , for: .normal )
+        if( sender.tag == 0 ) {     // 버스커
+
+            sender.setImage(  #imageLiteral(resourceName: "busker_1.png") , for: .normal )
+            sender.otherBtn?.setImage( #imageLiteral(resourceName: "audience.png") , for: .normal )
         } else {
             
-//            sender.setImage(#imageLiteral(resourceName: "man_1"), for: .normal )
-//            sender.otherBtn?.setImage(#imageLiteral(resourceName: "woman_2") , for: .normal )
+            sender.setImage( #imageLiteral(resourceName: "audience_1.png") , for: .normal )
+            sender.otherBtn?.setImage( #imageLiteral(resourceName: "busker.png")  , for: .normal )
         }
         
         sender.checked = true
