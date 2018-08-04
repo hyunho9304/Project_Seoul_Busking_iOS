@@ -251,7 +251,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmR-Yk-4KK">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmR-Yk-4KK">
                                 <rect key="frame" x="28" y="382" width="317" height="216"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="버스킹 분야" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDe-7B-iOp">
@@ -285,25 +285,25 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="88" height="53"/>
                                                             <color key="backgroundColor" red="0.44705882349999998" green="0.31372549020000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="노래" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZQ-9l-jmP">
-                                                            <rect key="frame" x="31" y="15.5" width="26" height="21"/>
-                                                            <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="14"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="노래" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlO-pT-2u2">
+                                                            <rect key="frame" x="31" y="16" width="26" height="21"/>
+                                                            <fontDescription key="fontDescription" name="NotoSansCJKkr-Bold" family="Noto Sans CJK KR" pointSize="14"/>
                                                             <color key="textColor" red="0.44705882349999998" green="0.31372549020000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstItem="SXb-9m-pZG" firstAttribute="leading" secondItem="H2J-ch-xhn" secondAttribute="leading" id="41J-Iq-iQd"/>
-                                                    <constraint firstItem="SXb-9m-pZG" firstAttribute="top" secondItem="H2J-ch-xhn" secondAttribute="top" id="LGc-yd-L87"/>
-                                                    <constraint firstAttribute="bottom" secondItem="SXb-9m-pZG" secondAttribute="bottom" id="MJp-Ea-wde"/>
-                                                    <constraint firstItem="yZQ-9l-jmP" firstAttribute="centerX" secondItem="SXb-9m-pZG" secondAttribute="centerX" id="NBO-jE-odH"/>
-                                                    <constraint firstAttribute="trailing" secondItem="SXb-9m-pZG" secondAttribute="trailing" id="cBl-c2-PsG"/>
-                                                    <constraint firstItem="yZQ-9l-jmP" firstAttribute="centerY" secondItem="SXb-9m-pZG" secondAttribute="centerY" id="csR-q6-I2C"/>
+                                                    <constraint firstAttribute="trailing" secondItem="SXb-9m-pZG" secondAttribute="trailing" id="140-Bm-0op"/>
+                                                    <constraint firstItem="SXb-9m-pZG" firstAttribute="top" secondItem="H2J-ch-xhn" secondAttribute="top" id="3wF-hm-d5A"/>
+                                                    <constraint firstItem="SXb-9m-pZG" firstAttribute="leading" secondItem="H2J-ch-xhn" secondAttribute="leading" id="U4G-vb-GXt"/>
+                                                    <constraint firstItem="IlO-pT-2u2" firstAttribute="centerX" secondItem="SXb-9m-pZG" secondAttribute="centerX" id="eUX-d4-fmp"/>
+                                                    <constraint firstItem="IlO-pT-2u2" firstAttribute="centerY" secondItem="SXb-9m-pZG" secondAttribute="centerY" id="hWc-he-wzP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="SXb-9m-pZG" secondAttribute="bottom" id="lxD-9p-iuW"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="categoryBackImage" destination="SXb-9m-pZG" id="OqK-tU-rFG"/>
-                                                    <outlet property="categoryLabel" destination="yZQ-9l-jmP" id="D1U-kY-VgE"/>
+                                                    <outlet property="categoryLabel" destination="IlO-pT-2u2" id="dn8-z2-BLv"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>

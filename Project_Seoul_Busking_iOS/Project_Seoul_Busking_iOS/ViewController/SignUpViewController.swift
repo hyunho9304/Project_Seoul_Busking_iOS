@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
+class SignUpViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout  {
     
     @IBOutlet weak var signUpBackBtn: UIButton!
     @IBOutlet weak var signUpIDTextField: UITextField!
@@ -20,8 +20,10 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     
     @IBOutlet weak var selectCategoryCollectionView: UICollectionView!
     
+    
     var memberType : Int?           //  버스커 or 관람객
-    var selectedIndex:IndexPath?    //  버스커 카테고리 선택
+    var categoryArr : [String] = [ "노래" , "댄스" , "연주" , "마술" , "캐리커쳐" , "기타" ]
+    var selectedIndex : IndexPath?    //  버스커 카테고리 선택
     var selectedCategory : String?  //  버스커 선택한 카테고리
 
     override func viewDidLoad() {
@@ -29,7 +31,6 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
         
         set()
         setTarget()
-        categoryInit()
     }
     
     func set() {
@@ -48,13 +49,7 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     func setTarget() {
         
         signUpBackBtn.addTarget(self, action: #selector(self.pressedSignUpBackBtn(_:)), for: UIControlEvents.touchUpInside)
-        
         signUpCompletionBtn.addTarget(self, action: #selector(self.pressedSignUpCompletionBtn(_:)), for: UIControlEvents.touchUpInside)
-    }
-    
-    func categoryInit() {
-        
-        //  카테고리 가져오기 서버 진행
     }
 
     @objc func pressedSignUpBackBtn( _ sender : UIButton ) {
@@ -71,26 +66,56 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     
     //  cell 의 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        
+
+        return categoryArr.count
     }
     
     //  cell 의 내용
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectCategoryCollectionViewCell", for: indexPath ) as! selectCategoryCollectionViewCell
+        
+        cell.categoryLabel.text = categoryArr[ indexPath.row ]
+
+        if indexPath == selectedIndex {
+            
+            cell.categoryLabel.textColor = UIColor.white
+            cell.categoryBackImage.isHidden = false
+            
+            self.selectedCategory = cell.categoryLabel.text
+        }
+        else {
+
+            cell.categoryLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+            cell.categoryBackImage.isHidden = true
+        }
+        
+        return cell
     }
-    
+
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
         selectedIndex = indexPath
         collectionView.reloadData()
     }
     
-    //  cell 간 가로 간격 ( horizental 이라서 가로를 사용해야 한다 )
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    //  cell 크기 비율
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return 0
+        return CGSize(width: 88 * self.view.frame.width/375 , height: 53 * self.view.frame.height/667 )
+    }
+
+    //  cell 간 세로 간격 ( vertical 이라서 세로 사용해야 한다 )
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+
+        return 18
+    }
+    
+    //  cell 간 가로 간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 19
     }
 
 }
