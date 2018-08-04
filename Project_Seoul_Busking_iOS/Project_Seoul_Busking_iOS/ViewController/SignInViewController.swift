@@ -19,12 +19,12 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        settingTarget()
+        setTarget()
         hideKeyboardWhenTappedAround()
         
     }
     
-    func settingTarget() {
+    func setTarget() {
         
         signInBtn.addTarget(self, action: #selector(self.pressedSignInBtn(_:)), for: UIControlEvents.touchUpInside)
         signUpBtn.addTarget(self, action: #selector(self.pressedSignUpBtn(_:)), for: UIControlEvents.touchUpInside)
