@@ -22,6 +22,17 @@ class SelectTypeViewController: UIViewController {
         setToggleBtn()
         confirmWrite()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        set()
+    }
+    
+    func set() {
+        
+        selectBuskerBtn.setImage( #imageLiteral(resourceName: "2_3_1") , for: .normal)
+        selectAudienceBtn.setImage( #imageLiteral(resourceName: "2_4_1") , for: .normal)
+    }
 
     func setTarget() {
         
@@ -54,9 +65,9 @@ class SelectTypeViewController: UIViewController {
         guard let signUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
         
         if selectBuskerBtn.checked == true {
-            signUpVC.memberType = 1
+            signUpVC.memberType = "1"
         } else {
-            signUpVC.memberType = 0
+            signUpVC.memberType = "0"
         }
         
         self.present( signUpVC , animated: true , completion: nil )

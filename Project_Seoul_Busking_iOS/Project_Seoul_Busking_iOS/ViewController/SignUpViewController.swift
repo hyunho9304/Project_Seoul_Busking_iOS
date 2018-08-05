@@ -10,6 +10,7 @@ import UIKit
 
 class SignUpViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout  {
     
+    
     @IBOutlet weak var signUpBackBtn: UIButton!
     @IBOutlet weak var signUpIDTextField: UITextField!
     @IBOutlet weak var signUpOverlapIDCheckBtn: UIButton!
@@ -24,23 +25,26 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     
     @IBOutlet weak var selectCategoryCollectionView: UICollectionView!
     
-    
-    var memberType : Int?           //  버스커 or 관람객
+    let userdefault = UserDefaults.standard     //  기본회원정보
+    var memberType : String?                    //  버스커 or 관람객
     var categoryArr : [String] = [ "노래" , "댄스" , "연주" , "마술" , "캐리커쳐" , "기타" ]
-    var selectedIndex : IndexPath?    //  버스커 카테고리 선택
-    var selectedCategory : String?  //  버스커 선택한 카테고리
+    var selectedIndex : IndexPath?              //  버스커 카테고리 선택
+    var selectedCategory : String?           //  버스커 선택한 카테고리
+    var checkOverlapID : Bool? = false                 //  아이디 중복 bool 값
+    var checkOverlapNickname : Bool? = false           //  닉네임 중복 bool 값
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         set()
         setTarget()
+        confirmWrite()
         hideKeyboardWhenTappedAround()
     }
     
     func set() {
 
-        if memberType == 1 {
+        if memberType == "1" {
             signUpBuskerView.isHidden = false
         } else {
             signUpAudienceView.isHidden = false
@@ -49,9 +53,10 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
         selectCategoryCollectionView.delegate = self
         selectCategoryCollectionView.dataSource = self
         
-        //  아마도 -> viewWillApear 로 옮겨야할듯
         signUpOverlapIDInfoLabel.isHidden = true
         signUpOverlapNicknameInfoLabel.isHidden = true
+        
+        
         
     }
     
@@ -64,6 +69,43 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
         signUpOverlapNicknameCheckBtn.addTarget(self, action: #selector(self.pressedSignUpOverlapNicknameCheckBtn(_:)), for: UIControlEvents.touchUpInside)
         
     }
+    
+    func confirmWrite() {
+        
+        signUpCompletionBtn.isEnabled = false  //  default setting
+        
+        signUpIDTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField
+        signUpPWTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField
+        signUpNicknameTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField
+        
+    }
+    
+    @objc func isValid() {
+        
+        if( !(signUpIDTextField.text?.isEmpty)! && !(signUpPWTextField.text?.isEmpty)! && !(signUpNicknameTextField.text?.isEmpty)! ) {
+            
+            if memberType == "1" {
+                
+                if selectedCategory != nil {   //  버스커 성공
+                    
+                    signUpCompletionBtn.isEnabled = true
+                    signUpCompletionBtn.setImage( #imageLiteral(resourceName: "3_5_2") , for: .normal)
+                    
+                }
+                
+            } else {
+                
+                signUpCompletionBtn.isEnabled = true
+                signUpCompletionBtn.setImage( #imageLiteral(resourceName: "3_5_2") , for: .normal)
+                
+            }
+            
+        } else {
+            
+            signUpCompletionBtn.isEnabled = false
+            signUpCompletionBtn.setImage( #imageLiteral(resourceName: "3_5_1") , for: .normal)
+        }
+    }
 
     @objc func pressedSignUpBackBtn( _ sender : UIButton ) {
         
@@ -72,7 +114,13 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     
     @objc func pressedSignUpCompletionBtn( _ sender : UIButton ) {
     
-        //  회원가입 서버 진행
+        if ( !(checkOverlapID)! ) {
+            print( "아이디중복확인" )
+        } else if( !(checkOverlapNickname)! ) {
+            print( "닉네임중복확인" )
+        } else {
+            print( "진행")
+        }
     }
     
     @objc func pressedSignUpOverlapIDCheckBtn( _ sender : UIButton ) {
@@ -84,16 +132,20 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
                 if rescode == 201 {
                     
                     self.signUpOverlapIDCheckBtn.setImage( #imageLiteral(resourceName: "3_2_2") , for: .normal )
+                    self.checkOverlapID = true
                     self.signUpOverlapIDInfoLabel.isHidden = true
+                    
                     
                 } else if rescode == 401 {
                     
                     self.signUpOverlapIDCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
+                    self.checkOverlapID = false
                     self.signUpOverlapIDInfoLabel.isHidden = false
                 
                 } else {
                     
                     self.signUpOverlapIDCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
+                    self.checkOverlapID = false
                     self.signUpOverlapIDInfoLabel.isHidden = true
                     
                     let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -106,6 +158,7 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
         } else {
             
             self.signUpOverlapIDCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
+            self.checkOverlapID = false
             self.signUpOverlapIDInfoLabel.isHidden = true
             
             let alert = UIAlertController(title: "중복확인", message: "아이디를 입력해주세요", preferredStyle: .alert )
@@ -125,16 +178,19 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
                 if rescode == 201 {
                     
                     self.signUpOverlapNicknameCheckBtn.setImage( #imageLiteral(resourceName: "3_2_2") , for: .normal )
+                    self.checkOverlapNickname = true
                     self.signUpOverlapNicknameInfoLabel.isHidden = true
                     
                 } else if rescode == 401 {
                     
                     self.signUpOverlapNicknameCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
+                    self.checkOverlapNickname = false
                     self.signUpOverlapNicknameInfoLabel.isHidden = false
                     
                 } else {
                     
                     self.signUpOverlapNicknameCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
+                    self.checkOverlapNickname = false
                     self.signUpOverlapNicknameInfoLabel.isHidden = true
                     
                     let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -147,6 +203,7 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
         } else {
             
             self.signUpOverlapNicknameCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
+            self.checkOverlapNickname = false
             self.signUpOverlapNicknameInfoLabel.isHidden = true
             
             let alert = UIAlertController(title: "중복확인", message: "닉네임을 입력해주세요", preferredStyle: .alert )
@@ -177,7 +234,8 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
             cell.categoryLabel.textColor = UIColor.white
             cell.categoryBackImage.isHidden = false
             
-            self.selectedCategory = cell.categoryLabel.text
+            self.selectedCategory = categoryArr[ indexPath.row ]
+            isValid()
         }
         else {
 
