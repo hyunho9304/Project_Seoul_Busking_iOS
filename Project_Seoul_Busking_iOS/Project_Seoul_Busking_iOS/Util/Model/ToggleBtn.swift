@@ -36,12 +36,12 @@ class ToggleBtn : UIButton {
         
         if( sender.tag == 0 ) {     // 버스커
 
-            sender.setImage(  #imageLiteral(resourceName: "busker_1.png") , for: .normal )
-            sender.otherBtn?.setImage( #imageLiteral(resourceName: "audience.png") , for: .normal )
+            sender.setImage(  #imageLiteral(resourceName: "2_3_2") , for: .normal )
+            sender.otherBtn?.setImage( #imageLiteral(resourceName: "2_4_1") , for: .normal )
         } else {
             
-            sender.setImage( #imageLiteral(resourceName: "audience_1.png") , for: .normal )
-            sender.otherBtn?.setImage( #imageLiteral(resourceName: "busker.png")  , for: .normal )
+            sender.setImage( #imageLiteral(resourceName: "2_4_2") , for: .normal )
+            sender.otherBtn?.setImage( #imageLiteral(resourceName: "2_3_1")  , for: .normal )
         }
         
         sender.checked = true

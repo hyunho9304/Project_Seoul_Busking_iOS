@@ -31,6 +31,7 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
         
         set()
         setTarget()
+        hideKeyboardWhenTappedAround()
     }
     
     func set() {
@@ -105,17 +106,23 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
         
         return CGSize(width: 88 * self.view.frame.width/375 , height: 53 * self.view.frame.height/667 )
     }
+    
+    //  cell 섹션 내부 여백( default 는 0 보다 크다 )
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
 
     //  cell 간 세로 간격 ( vertical 이라서 세로 사용해야 한다 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 
-        return 18
+        return 19
     }
     
     //  cell 간 가로 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 19
+        return 18
     }
 
 }

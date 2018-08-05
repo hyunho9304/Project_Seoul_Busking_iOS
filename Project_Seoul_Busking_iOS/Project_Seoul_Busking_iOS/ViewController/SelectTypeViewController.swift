@@ -26,8 +26,8 @@ class SelectTypeViewController: UIViewController {
     func setTarget() {
         
         selectBackBtn.addTarget(self, action: #selector(self.pressedSelectBackBtn(_:)), for: UIControlEvents.touchUpInside)
-        
         selectNextBtn.addTarget(self, action: #selector(self.pressedSelectNextBtn(_:)), for: UIControlEvents.touchUpInside)
+        
     }
     
     func setToggleBtn() {
@@ -68,12 +68,12 @@ class SelectTypeViewController: UIViewController {
         if( (selectBuskerBtn.checked)! || (selectAudienceBtn.checked)! ) {
             
             selectNextBtn.isEnabled = true
-            selectNextBtn.setImage( #imageLiteral(resourceName: "next_1.png") , for: .normal)
+            selectNextBtn.setImage( #imageLiteral(resourceName: "2_5_2") , for: .normal)
             
         } else {
             
             selectNextBtn.isEnabled = false
-            selectNextBtn.setImage( #imageLiteral(resourceName: "next.png") , for: .normal )
+            selectNextBtn.setImage( #imageLiteral(resourceName: "2_5_1") , for: .normal )
         }
     }
 
