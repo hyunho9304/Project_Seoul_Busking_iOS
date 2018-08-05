@@ -414,13 +414,13 @@
                                 </constraints>
                                 <state key="normal" image="3_2_1"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이미 사용준인 아이디입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48R-S6-c9U">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이미 사용준인 아이디입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48R-S6-c9U">
                                 <rect key="frame" x="28" y="170" width="143" height="18"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="이미 사용준인 닉네임입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smj-Oe-SCd">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="이미 사용준인 닉네임입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smj-Oe-SCd">
                                 <rect key="frame" x="28" y="348" width="146" height="18"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -488,6 +488,10 @@
                         <outlet property="signUpCompletionBtn" destination="lrT-eG-v4U" id="8f4-WG-45h"/>
                         <outlet property="signUpIDTextField" destination="vY9-9J-tmP" id="TUp-Lm-BMg"/>
                         <outlet property="signUpNicknameTextField" destination="FCP-Sw-Y6W" id="vRZ-z9-cGd"/>
+                        <outlet property="signUpOverlapIDCheckBtn" destination="Hys-S7-Gah" id="bPk-Dt-2Lm"/>
+                        <outlet property="signUpOverlapIDInfoLabel" destination="48R-S6-c9U" id="9mN-KC-qE7"/>
+                        <outlet property="signUpOverlapNicknameCheckBtn" destination="U3V-JW-BKY" id="EYY-bm-zvL"/>
+                        <outlet property="signUpOverlapNicknameInfoLabel" destination="Smj-Oe-SCd" id="HOb-Zf-6W7"/>
                         <outlet property="signUpPWTextField" destination="WOZ-qB-4tq" id="3Hx-tl-UIN"/>
                     </connections>
                 </viewController>
