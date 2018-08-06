@@ -159,17 +159,13 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
             self.present(alert , animated: true , completion: nil)
             
         } else {
-            
-            userdefault.set( gsno( memberType ) , forKey: "member_Type")
-            userdefault.set( gsno( signUpIDTextField.text ) , forKey: "member_ID" )
-            userdefault.set( gsno( signUpNicknameTextField.text ), forKey: "member_nickname" )
-
     
+            userdefault.set( gsno( self.memberType ) , forKey: "member_Type")
+            userdefault.set( gsno( signUpIDTextField.text ) , forKey: "member_ID" )
+            
             Server.reqSignUp(member_type: memberType! , member_category: selectedCategory! , member_ID: signUpIDTextField.text! , member_PW: signUpPWTextField.text! , member_nickname: signUpNicknameTextField.text!) { ( rescode ) in
                 
                 if rescode == 201 {
-                    
-                    print(1)
                     
                     guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
                     
