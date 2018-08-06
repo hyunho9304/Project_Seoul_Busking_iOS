@@ -10,26 +10,28 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    //  홈들어왔을때 member_Type 저장해야함 어떤식으로 할지 생각해바야함
+    //  현재 회원가입시 -> member_type , member_ID 저장
+    //  현재 로그인시 -> member_ID 저장
+    //  다른 서버 연동하면서 member 에 대한 기본정보를 가져올것인지 생각해바야함
+    
+    @IBOutlet weak var goFirstBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        setTarget()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setTarget() {
+        
+        goFirstBtn.addTarget(self, action: #selector(self.pressedGoFirstBtn(_:)), for: UIControlEvents.touchUpInside)
     }
-    */
+    
+    @objc func pressedGoFirstBtn( _ sender : UIButton ) {
+        
+        self.performSegue(withIdentifier: "signin", sender: self)
+    }
 
+    
 }

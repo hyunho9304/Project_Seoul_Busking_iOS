@@ -15,8 +15,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
     
-    let userdefault = UserDefaults.standard     //  기본회원정보
-    
+    let userdefault = UserDefaults.standard             //  기본회원정보
+    @IBAction func goFirst(segue: UIStoryboardSegue){}  //  로그인화면으로
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,12 @@ class SignInViewController: UIViewController {
         confirmWrite()
         hideKeyboardWhenTappedAround()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        signInIDTextField.text = ""
+        signInPWTextField.text = ""
     }
     
     func setTarget() {
