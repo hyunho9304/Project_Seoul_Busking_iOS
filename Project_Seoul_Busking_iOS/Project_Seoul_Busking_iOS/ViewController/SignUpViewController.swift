@@ -29,17 +29,21 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     var memberType : String?                    //  버스커 or 관람객
     var categoryArr : [String] = [ "노래" , "댄스" , "연주" , "마술" , "캐리커쳐" , "기타" ]
     var selectedIndex : IndexPath?              //  버스커 카테고리 선택
-    var selectedCategory : String?           //  버스커 선택한 카테고리
-    var checkOverlapID : Bool? = false                 //  아이디 중복 bool 값
-    var checkOverlapNickname : Bool? = false           //  닉네임 중복 bool 값
+    var selectedCategory : String?              //  버스커 선택한 카테고리
+    var checkOverlapID : Bool?                  //  아이디 중복 bool 값
+    var checkOverlapNickname : Bool?            //  닉네임 중복 bool 값
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        set()
         setTarget()
         confirmWrite()
         hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        set()
     }
     
     func set() {
@@ -56,6 +60,10 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
         signUpOverlapIDInfoLabel.isHidden = true
         signUpOverlapNicknameInfoLabel.isHidden = true
         
+        checkOverlapID = false
+        checkOverlapNickname = false
+        
+        selectedCategory = ""
         
         
     }
@@ -78,6 +86,9 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
         signUpPWTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField
         signUpNicknameTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField
         
+        signUpIDTextField.addTarget(self, action: #selector(setOverlapID), for: .editingChanged)   //  textField
+        signUpNicknameTextField.addTarget(self, action: #selector(setOverlapNickname), for: .editingChanged)   //  textField
+        
     }
     
     @objc func isValid() {
@@ -86,7 +97,7 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
             
             if memberType == "1" {
                 
-                if selectedCategory != nil {   //  버스커 성공
+                if selectedCategory != "" {   //  버스커 성공
                     
                     signUpCompletionBtn.isEnabled = true
                     signUpCompletionBtn.setImage( #imageLiteral(resourceName: "3_5_2") , for: .normal)
@@ -106,6 +117,21 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
             signUpCompletionBtn.setImage( #imageLiteral(resourceName: "3_5_1") , for: .normal)
         }
     }
+    
+    @objc func setOverlapID() {
+        
+        self.signUpOverlapIDCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
+        self.checkOverlapID = false
+        self.signUpOverlapIDInfoLabel.isHidden = true
+        
+    }
+    
+    @objc func setOverlapNickname() {
+        
+        self.signUpOverlapNicknameCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
+        self.checkOverlapNickname = false
+        self.signUpOverlapNicknameInfoLabel.isHidden = true
+    }
 
     @objc func pressedSignUpBackBtn( _ sender : UIButton ) {
         
@@ -115,11 +141,44 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     @objc func pressedSignUpCompletionBtn( _ sender : UIButton ) {
     
         if ( !(checkOverlapID)! ) {
-            print( "아이디중복확인" )
+            
+            let alert = UIAlertController(title: "중복확인", message: "아이디중복 확인해주세요", preferredStyle: .alert )
+            let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+            alert.addAction( ok )
+            self.present(alert , animated: true , completion: nil)
+            
         } else if( !(checkOverlapNickname)! ) {
-            print( "닉네임중복확인" )
+            
+            let alert = UIAlertController(title: "중복확인", message: "닉네임중복 확인해주세요", preferredStyle: .alert )
+            let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+            alert.addAction( ok )
+            self.present(alert , animated: true , completion: nil)
+            
         } else {
-            print( "진행")
+            
+            userdefault.set( gsno( memberType ) , forKey: "member_Type")
+            userdefault.set( gsno( signUpIDTextField.text ) , forKey: "member_ID" )
+            userdefault.set( gsno( signUpNicknameTextField.text ), forKey: "member_nickname" )
+
+    
+            Server.reqSignUp(member_type: memberType! , member_category: selectedCategory! , member_ID: signUpIDTextField.text! , member_PW: signUpPWTextField.text! , member_nickname: signUpNicknameTextField.text!) { ( rescode ) in
+                
+                if rescode == 201 {
+                    
+                    print(1)
+                    
+                    guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+                    
+                    self.present( homeVC , animated: false , completion: nil )
+                    
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
+            }
         }
     }
     
