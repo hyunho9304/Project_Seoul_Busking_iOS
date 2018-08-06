@@ -10,8 +10,8 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
-    @IBOutlet weak var signInID: UITextField!
-    @IBOutlet weak var signInPassword: UITextField!
+    @IBOutlet weak var signInIDTextField: UITextField!
+    @IBOutlet weak var signInPWTextField: UITextField!
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
     
@@ -20,6 +20,7 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
 
         setTarget()
+        confirmWrite()
         hideKeyboardWhenTappedAround()
         
     }
@@ -30,14 +31,34 @@ class SignInViewController: UIViewController {
         signUpBtn.addTarget(self, action: #selector(self.pressedSignUpBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
+    func confirmWrite() {
+        
+        signInBtn.isEnabled = false  //  default setting
+        
+        signInIDTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField
+        signInPWTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField
+    }
+    
+    @objc func isValid() {
+        
+        if( !(signInIDTextField.text?.isEmpty)! && !(signInPWTextField.text?.isEmpty)! ) {
+            
+            signInBtn.isEnabled = true
+            
+        } else {
+            
+            signInBtn.isEnabled = false
+        }
+    }
+    
     @objc func pressedSignInBtn( _ sender : UIButton ) {
         
         //  로그인
         /*
         if( !(emailTextField.text?.isEmpty)! && !( (passwordTextField.text?.isEmpty)!) ) {
-            
+         
             userdefault.set(gsno(emailTextField.text), forKey: "member_email")
-            
+         
             Server.reqSignIn(email: emailTextField.text! , password: passwordTextField.text!) { (rescode , flag ) in
                 
                 if rescode == 201 {
@@ -47,7 +68,7 @@ class SignInViewController: UIViewController {
                     self.present( myHomeVCtap , animated: true , completion: nil )
                     
                 } else if rescode == 401 {
-                    
+         
                     if flag == 1 {
                         
                         
@@ -63,11 +84,11 @@ class SignInViewController: UIViewController {
                         let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
                         alert.addAction( ok )
                         self.present(alert , animated: true , completion: nil)
-                        
-                        
+         
+         
                     }
                 } else {
-                    
+         
                     let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
                     let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
                     alert.addAction( ok )
@@ -75,12 +96,12 @@ class SignInViewController: UIViewController {
                 }
             }
         } else {
-            
+         
             let alert = UIAlertController(title: "로그인", message: "이메일과 비밀번호를 입력해주세요!!", preferredStyle: .alert )
             let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-            
+         
             alert.addAction( ok )
-            
+         
             present( alert , animated: true , completion: nil )
         }
         */

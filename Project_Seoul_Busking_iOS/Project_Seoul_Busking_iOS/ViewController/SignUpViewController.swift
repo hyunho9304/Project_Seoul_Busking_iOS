@@ -142,12 +142,16 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     
         if ( !(checkOverlapID)! ) {
             
+            //  수정 -> custom 알림창
+            
             let alert = UIAlertController(title: "중복확인", message: "아이디중복 확인해주세요", preferredStyle: .alert )
             let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
             alert.addAction( ok )
             self.present(alert , animated: true , completion: nil)
             
         } else if( !(checkOverlapNickname)! ) {
+            
+            //  수정 -> custom 알림창
             
             let alert = UIAlertController(title: "중복확인", message: "닉네임중복 확인해주세요", preferredStyle: .alert )
             let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
@@ -192,13 +196,19 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
                     
                     self.signUpOverlapIDCheckBtn.setImage( #imageLiteral(resourceName: "3_2_2") , for: .normal )
                     self.checkOverlapID = true
-                    self.signUpOverlapIDInfoLabel.isHidden = true
+                    
+                    self.signUpOverlapIDInfoLabel.text = "사용 가능한 아이디입니다."
+                    self.signUpOverlapIDInfoLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+                    self.signUpOverlapIDInfoLabel.isHidden = false
                     
                     
                 } else if rescode == 401 {
                     
                     self.signUpOverlapIDCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
                     self.checkOverlapID = false
+                    
+                    self.signUpOverlapIDInfoLabel.text = "이미 사용중인 아이디입니다."
+                    self.signUpOverlapIDInfoLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
                     self.signUpOverlapIDInfoLabel.isHidden = false
                 
                 } else {
@@ -218,13 +228,10 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
             
             self.signUpOverlapIDCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
             self.checkOverlapID = false
-            self.signUpOverlapIDInfoLabel.isHidden = true
             
-            let alert = UIAlertController(title: "중복확인", message: "아이디를 입력해주세요", preferredStyle: .alert )
-            let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-            alert.addAction( ok )
-            self.present(alert , animated: true , completion: nil)
-            
+            self.signUpOverlapIDInfoLabel.text = "아이디를 입력해 주세요."
+            self.signUpOverlapIDInfoLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+            self.signUpOverlapIDInfoLabel.isHidden = false
         }
     }
     
@@ -238,12 +245,18 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
                     
                     self.signUpOverlapNicknameCheckBtn.setImage( #imageLiteral(resourceName: "3_2_2") , for: .normal )
                     self.checkOverlapNickname = true
-                    self.signUpOverlapNicknameInfoLabel.isHidden = true
+                    
+                    self.signUpOverlapNicknameInfoLabel.text = "사용 가능한 아이디입니다."
+                    self.signUpOverlapNicknameInfoLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+                    self.signUpOverlapNicknameInfoLabel.isHidden = false
                     
                 } else if rescode == 401 {
                     
                     self.signUpOverlapNicknameCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
                     self.checkOverlapNickname = false
+                    
+                    self.signUpOverlapNicknameInfoLabel.text = "이미 사용중인 아이디입니다."
+                    self.signUpOverlapNicknameInfoLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
                     self.signUpOverlapNicknameInfoLabel.isHidden = false
                     
                 } else {
@@ -263,12 +276,10 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
             
             self.signUpOverlapNicknameCheckBtn.setImage( #imageLiteral(resourceName: "3_2_1") , for: .normal )
             self.checkOverlapNickname = false
-            self.signUpOverlapNicknameInfoLabel.isHidden = true
             
-            let alert = UIAlertController(title: "중복확인", message: "닉네임을 입력해주세요", preferredStyle: .alert )
-            let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-            alert.addAction( ok )
-            self.present(alert , animated: true , completion: nil)
+            self.signUpOverlapNicknameInfoLabel.text = "아이디를 입력해 주세요."
+            self.signUpOverlapNicknameInfoLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+            self.signUpOverlapNicknameInfoLabel.isHidden = false
             
         }
     }

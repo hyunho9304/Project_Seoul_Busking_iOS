@@ -112,6 +112,40 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  로그인
+    static func reqSignIn( member_ID : String , member_PW : String , completion : @escaping (_ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/signin" )
+        
+        let body: [String: Any] = [
+            "member_ID" : member_ID ,
+            "member_PW" : member_PW
+        ]
+        
+        Alamofire.request(URL, method: .post, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if( res.response?.statusCode == 201 ){
+                    completion( 201 )
+                }
+                else if( res.response?.statusCode == 401 ) {
+                    completion( 401 )
+                }
+                else {
+                    completion( 500 )
+                }
+                break
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
 
     
 }
