@@ -48,6 +48,8 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     
     func set() {
 
+        signUpCompletionBtn.isEnabled = false  //  default setting
+        
         if memberType == "1" {
             signUpBuskerView.isHidden = false
         } else {
@@ -79,8 +81,6 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     }
     
     func confirmWrite() {
-        
-        signUpCompletionBtn.isEnabled = false  //  default setting
         
         signUpIDTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField
         signUpPWTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField

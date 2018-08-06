@@ -30,6 +30,7 @@ class SelectTypeViewController: UIViewController {
     
     func set() {
         
+        selectNextBtn.isEnabled = false  //  default setting
         selectBuskerBtn.setImage( #imageLiteral(resourceName: "2_3_1") , for: .normal)
         selectAudienceBtn.setImage( #imageLiteral(resourceName: "2_4_1") , for: .normal)
     }
@@ -48,8 +49,6 @@ class SelectTypeViewController: UIViewController {
     }
     
     func confirmWrite() {
-        
-        selectNextBtn.isEnabled = false  //  default setting
         
         selectBuskerBtn.addTarget(self, action: #selector(isValid), for: .touchUpInside)       //  Button
         selectAudienceBtn.addTarget(self, action: #selector(isValid), for: .touchUpInside)

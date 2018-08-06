@@ -29,6 +29,7 @@ class SignInViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        signInBtn.isEnabled = false
         signInIDTextField.text = ""
         signInPWTextField.text = ""
     }
@@ -40,8 +41,6 @@ class SignInViewController: UIViewController {
     }
     
     func confirmWrite() {
-        
-        signInBtn.isEnabled = false  //  default setting
         
         signInIDTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField
         signInPWTextField.addTarget(self, action: #selector(isValid), for: .editingChanged)   //  textField
