@@ -17,6 +17,7 @@
 		BEBD52AE2116F1F0009A63A4 /* NotoSansCJKkr-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = BEBD52A72116F1EF009A63A4 /* NotoSansCJKkr-Light.otf */; };
 		BEBD52AF2116F1F0009A63A4 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = BEBD52A82116F1F0009A63A4 /* NotoSansCJKkr-Medium.otf */; };
 		BEBD52B12117206E009A63A4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD52B02117206E009A63A4 /* HomeViewController.swift */; };
+		BEBD52B32118AD6E009A63A4 /* DefaultPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD52B22118AD6E009A63A4 /* DefaultPopUpViewController.swift */; };
 		BEEA4D352113097E00FD71C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA4D342113097E00FD71C4 /* AppDelegate.swift */; };
 		BEEA4D3A2113097E00FD71C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEEA4D382113097E00FD71C4 /* Main.storyboard */; };
 		BEEA4D3C2113098000FD71C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEEA4D3B2113098000FD71C4 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		BEBD52A72116F1EF009A63A4 /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansCJKkr-Light.otf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; };
 		BEBD52A82116F1F0009A63A4 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansCJKkr-Medium.otf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
 		BEBD52B02117206E009A63A4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BEBD52B22118AD6E009A63A4 /* DefaultPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPopUpViewController.swift; sourceTree = "<group>"; };
 		BEEA4D312113097E00FD71C4 /* Project_Seoul_Busking_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_Seoul_Busking_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEEA4D342113097E00FD71C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEEA4D392113097E00FD71C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				BEEA4D6621132AAE00FD71C4 /* SelectTypeViewController.swift */,
 				BEEA4D602113283200FD71C4 /* SignUpViewController.swift */,
 				BEBD52B02117206E009A63A4 /* HomeViewController.swift */,
+				BEBD52B22118AD6E009A63A4 /* DefaultPopUpViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				BEEA4D63211328BA00FD71C4 /* APIservice.swift in Sources */,
 				BEBD52A12115F033009A63A4 /* selectCategoryCollectionViewCell.swift in Sources */,
 				BEEA4D6721132AAE00FD71C4 /* SelectTypeViewController.swift in Sources */,
+				BEBD52B32118AD6E009A63A4 /* DefaultPopUpViewController.swift in Sources */,
 				BEEA4D5F2113276300FD71C4 /* Extension.swift in Sources */,
 				BEBD52B12117206E009A63A4 /* HomeViewController.swift in Sources */,
 				BEEA4D4F21130FD300FD71C4 /* SignInViewController.swift in Sources */,

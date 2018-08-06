@@ -68,11 +68,14 @@ class SignInViewController: UIViewController {
                 
             } else if rescode == 401 {
                 
-                //  수정 -> custom 알림창
-                let alert = UIAlertController(title: "로그인 실패", message: "틀렸습니다.", preferredStyle: .alert )
-                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-                alert.addAction( ok )
-                self.present(alert , animated: true , completion: nil)
+                guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                
+                defaultPopUpVC.content = "아이디 또는 비밀번호를 확인해주세요."
+                
+                self.addChildViewController( defaultPopUpVC )
+                defaultPopUpVC.view.frame = self.view.frame
+                self.view.addSubview( defaultPopUpVC.view )
+                defaultPopUpVC.didMove(toParentViewController: self )
                 
             } else {
                 

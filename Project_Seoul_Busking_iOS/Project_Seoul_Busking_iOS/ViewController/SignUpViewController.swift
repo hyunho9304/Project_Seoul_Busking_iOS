@@ -144,19 +144,25 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
             
             //  수정 -> custom 알림창
             
-            let alert = UIAlertController(title: "중복확인", message: "아이디중복 확인해주세요", preferredStyle: .alert )
-            let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-            alert.addAction( ok )
-            self.present(alert , animated: true , completion: nil)
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+            
+            defaultPopUpVC.content = "아이디 중복확인을 해주세요."
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
             
         } else if( !(checkOverlapNickname)! ) {
             
-            //  수정 -> custom 알림창
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
             
-            let alert = UIAlertController(title: "중복확인", message: "닉네임중복 확인해주세요", preferredStyle: .alert )
-            let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-            alert.addAction( ok )
-            self.present(alert , animated: true , completion: nil)
+            defaultPopUpVC.content = "닉네임 중복확인을 해주세요."
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
             
         } else {
     
