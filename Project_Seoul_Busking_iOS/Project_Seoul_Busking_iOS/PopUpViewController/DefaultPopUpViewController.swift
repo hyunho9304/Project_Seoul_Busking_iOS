@@ -29,15 +29,16 @@ class DefaultPopUpViewController: UIViewController {
         popUpContent.text = content
         self.view.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
         
-        popUpView.layer.cornerRadius = 5
-        popUpView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
-        popUpView.layer.shadowColor = UIColor.black.cgColor
-        popUpView.layer.shadowOpacity = 0.15
-        popUpView.layer.shadowOffset = CGSize(width: 0 , height: 3 )
-        popUpView.layer.shadowRadius = 5
-        //  그림자의 블러는 5 정도 이다
+        popUpView.layer.cornerRadius = 5    //  둥근정도
+        popUpView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         
-        //        okBtn.clipsToBounds = true    잘린다
+        popUpView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+        popUpView.layer.shadowOpacity = 0.15                            //  그림자 투명도
+        popUpView.layer.shadowOffset = CGSize(width: 0 , height: 3 )    //  그림자 x y
+        popUpView.layer.shadowRadius = 5                                //  그림자 둥근정도
+                                                                        //  그림자의 블러는 5 정도 이다
+        
+        //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
         okBtn.layer.cornerRadius = 5
         okBtn.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner ]
     }
