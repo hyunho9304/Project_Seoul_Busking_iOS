@@ -19,14 +19,6 @@ class DefaultPopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        popUpView.layer.cornerRadius = 4
-        popUpView.layer.shadowColor = UIColor.black.cgColor
-        popUpView.layer.shadowOpacity = 1
-        popUpView.layer.shadowOffset = CGSize.zero
-        popUpView.layer.shadowRadius = 10
-        
-        okBtn.layer.cornerRadius = 4
-        
         set()
         setTarget()
         showAnimate()
@@ -35,8 +27,21 @@ class DefaultPopUpViewController: UIViewController {
     func set() {
         
         popUpContent.text = content
-        self.view.backgroundColor = UIColor.black.withAlphaComponent( 0.8 )
+        self.view.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
+        
+        popUpView.layer.cornerRadius = 5
+        popUpView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
+        popUpView.layer.shadowColor = UIColor.black.cgColor
+        popUpView.layer.shadowOpacity = 0.15
+        popUpView.layer.shadowOffset = CGSize(width: 0 , height: 3 )
+        popUpView.layer.shadowRadius = 5
+        //  그림자의 블러는 5 정도 이다
+        
+        //        okBtn.clipsToBounds = true    잘린다
+        okBtn.layer.cornerRadius = 5
+        okBtn.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner ]
     }
+    
     
     func setTarget() {
         
@@ -45,31 +50,32 @@ class DefaultPopUpViewController: UIViewController {
     
     @objc func pressedOkBtn( _ sender : UIButton ) {
 
-        removeAnimate()
+        self.view.removeFromSuperview()
+        //removeAnimate()
     }
     
     func showAnimate() {
         
         self.view.transform = CGAffineTransform( scaleX: 1.3 , y: 1.3 )
         self.view.alpha = 0.0
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: 0.18) {
             self.view.alpha = 1.0
             self.view.transform = CGAffineTransform( scaleX: 1.0 , y: 1.0 )
         }
     }
 
-    func removeAnimate() {
-        
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.transform = CGAffineTransform( scaleX: 1.3 , y: 1.3 )
-            self.view.alpha = 0.0
-        }) { ( finished ) in
-            
-            if( finished ) {
-                self.view.removeFromSuperview()
-            }
-        }
-    }
+//    func removeAnimate() {
+//
+//        UIView.animate(withDuration: 0.18, animations: {
+//            self.view.transform = CGAffineTransform( scaleX: 1.3 , y: 1.3 )
+//            self.view.alpha = 0.0
+//        }) { ( finished ) in
+//
+//            if( finished ) {
+//                self.view.removeFromSuperview()
+//            }
+//        }
+//    }
 }
 
 
