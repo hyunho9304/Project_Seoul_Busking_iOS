@@ -5,6 +5,9 @@
 //  Created by 박현호 on 2018. 8. 2..
 //  Copyright © 2018년 박현호. All rights reserved.
 //
+/*
+ Description : 로그인 화면으로 시작하면 뜨는 화면이다.
+*/
 
 import UIKit
 
