@@ -5,7 +5,9 @@
 //  Created by 박현호 on 2018. 8. 2..
 //  Copyright © 2018년 박현호. All rights reserved.
 //
-
+/*
+ Description : 회원가입시 회원과 관련된 정보를 입력받는 화면이다.
+ */
 import UIKit
 
 class SignUpViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout  {
