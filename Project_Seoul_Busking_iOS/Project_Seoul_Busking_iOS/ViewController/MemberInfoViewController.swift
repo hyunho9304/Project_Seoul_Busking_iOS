@@ -63,9 +63,9 @@ class MemberInfoViewController: UIViewController {
         
         guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         
-        memberInfoVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        homeVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
         
-        self.present( memberInfoVC , animated: false , completion: nil )
+        self.present( homeVC , animated: false , completion: nil )
     }
     
 }

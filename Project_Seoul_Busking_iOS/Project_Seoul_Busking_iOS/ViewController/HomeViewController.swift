@@ -33,7 +33,10 @@ class HomeViewController: UIViewController {
     
     func set() {
         
-        tapbarUIView.frame.origin.x = uiviewX!
+        if uiviewX != nil {
+            
+            tapbarUIView.frame.origin.x = uiviewX!
+        }
     }
     
     func setTarget() {
@@ -46,6 +49,18 @@ class HomeViewController: UIViewController {
         
         //  개인정보 버튼
         tapbarMemberInfoBtn.addTarget(self, action: #selector(self.pressedTapbarMemberInfoBtn(_:)), for: UIControlEvents.touchUpInside)
+    }
+    
+    func setTapbarAnimation() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01 , execute: {
+            
+            UIView.animate(withDuration: 0.75 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+                
+                self.tapbarUIView.frame.origin.x = self.tapbarHomeBtn.frame.origin.x
+                
+            }, completion: nil )
+        })
     }
     
     //  로그아웃 버튼 액션
