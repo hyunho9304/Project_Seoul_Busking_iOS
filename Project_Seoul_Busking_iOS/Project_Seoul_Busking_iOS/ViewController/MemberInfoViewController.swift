@@ -27,7 +27,10 @@ class MemberInfoViewController: UIViewController {
     
     func set() {
 
-        tapbarUIView.frame.origin.x = uiviewX!
+        if uiviewX != nil {
+            
+            tapbarUIView.frame.origin.x = uiviewX!
+        }
     }
     
     func setTarget() {
@@ -55,7 +58,11 @@ class MemberInfoViewController: UIViewController {
     //  검색 버튼 액션
     @objc func pressedTapbarSearchBtn( _ sender : UIButton ) {
         
+        guard let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
         
+        searchVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
+        
+        self.present( searchVC , animated: false , completion: nil )
     }
     
     //  홈 버튼 액션
