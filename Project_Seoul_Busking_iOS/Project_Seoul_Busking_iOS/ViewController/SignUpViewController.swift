@@ -27,7 +27,6 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     
     @IBOutlet weak var selectCategoryCollectionView: UICollectionView!
     
-    let userdefault = UserDefaults.standard     //  기본회원정보
     var memberType : String?                    //  버스커 or 관람객
     var categoryArr : [String] = [ "노래" , "댄스" , "연주" , "마술" , "캐리커쳐" , "기타" ]
     var selectedIndex : IndexPath?              //  버스커 카테고리 선택
@@ -167,15 +166,14 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
             defaultPopUpVC.didMove(toParentViewController: self )
             
         } else {
-    
-            userdefault.set( gsno( self.memberType ) , forKey: "member_Type")
-            userdefault.set( gsno( signUpIDTextField.text ) , forKey: "member_ID" )
             
-            Server.reqSignUp(member_type: memberType! , member_category: selectedCategory! , member_ID: signUpIDTextField.text! , member_PW: signUpPWTextField.text! , member_nickname: signUpNicknameTextField.text!) { ( rescode ) in
+            Server.reqSignUp(member_type: memberType! , member_category: selectedCategory! , member_ID: signUpIDTextField.text! , member_PW: signUpPWTextField.text! , member_nickname: signUpNicknameTextField.text!) { ( memberData , rescode ) in
                 
                 if rescode == 201 {
                     
                     guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+                    
+                    homeVC.memberInfo = memberData
                     
                     self.present( homeVC , animated: false , completion: nil )
                     

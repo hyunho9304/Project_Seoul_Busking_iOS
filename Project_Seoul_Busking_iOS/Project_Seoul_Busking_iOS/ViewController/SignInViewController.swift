@@ -17,8 +17,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var signInPWTextField: UITextField!
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
+
     
-    let userdefault = UserDefaults.standard             //  기본회원정보
     @IBAction func goFirst(segue: UIStoryboardSegue){}  //  로그인화면으로
     
     override func viewDidLoad() {
@@ -63,13 +63,13 @@ class SignInViewController: UIViewController {
     
     @objc func pressedSignInBtn( _ sender : UIButton ) {
         
-        userdefault.set( gsno( signInIDTextField.text ) , forKey: "member_ID" )
-        
-        Server.reqSignIn(member_ID: signInIDTextField.text! , member_PW: signInPWTextField.text!) { ( rescode ) in
+        Server.reqSignIn(member_ID: signInIDTextField.text! , member_PW: signInPWTextField.text!) { ( memberData , rescode ) in
             
             if rescode == 201 {
                 
                 guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+                
+                homeVC.memberInfo = memberData
                 
                 self.present( homeVC , animated: true , completion: nil )
                 

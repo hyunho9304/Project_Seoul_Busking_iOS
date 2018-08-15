@@ -10,6 +10,7 @@
 		5449144EED3FD78D4DB34AF7 /* Pods_Project_Seoul_Busking_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */; };
 		BEB560F621243E7D00760903 /* HomeCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */; };
 		BEB560F8212441F800760903 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F7212441F800760903 /* Calendar.swift */; };
+		BEB560FC212467EF00760903 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FB212467EF00760903 /* Member.swift */; };
 		BEBD52A12115F033009A63A4 /* selectCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD52A02115F032009A63A4 /* selectCategoryCollectionViewCell.swift */; };
 		BEBD52A92116F1F0009A63A4 /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = BEBD52A22116F1EC009A63A4 /* NotoSansCJKkr-DemiLight.otf */; };
 		BEBD52AA2116F1F0009A63A4 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BEBD52A32116F1ED009A63A4 /* NotoSansCJKkr-Regular.otf */; };
@@ -41,6 +42,7 @@
 		BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_Seoul_Busking_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEB560F7212441F800760903 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		BEB560FB212467EF00760903 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		BEBD52A02115F032009A63A4 /* selectCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEBD52A22116F1EC009A63A4 /* NotoSansCJKkr-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansCJKkr-DemiLight.otf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSansCJKkr-DemiLight.otf"; sourceTree = "<group>"; };
 		BEBD52A32116F1ED009A63A4 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansCJKkr-Regular.otf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				BEEA4D682113312700FD71C4 /* ToggleBtn.swift */,
 				BEB560F7212441F800760903 /* Calendar.swift */,
+				BEB560FB212467EF00760903 /* Member.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				BEEA4D65211328C500FD71C4 /* Server.swift in Sources */,
 				BEEA4D352113097E00FD71C4 /* AppDelegate.swift in Sources */,
 				BEB560F621243E7D00760903 /* HomeCalendarCollectionViewCell.swift in Sources */,
+				BEB560FC212467EF00760903 /* Member.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

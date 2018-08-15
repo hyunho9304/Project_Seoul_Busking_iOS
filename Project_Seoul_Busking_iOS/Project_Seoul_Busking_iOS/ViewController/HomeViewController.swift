@@ -12,6 +12,11 @@ import UIKit
 
 class HomeViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     
+    var memberInfo : Member?        //  회원정보
+    
+    @IBOutlet weak var homeBuskingReservationBtn: UIButton!     //  버스킹예약버튼
+    
+    
     //  달력
     @IBOutlet weak var homeCalendarCollectionView: UICollectionView!
     var calendar : Calendar?        //  서버 달력 데이터
@@ -31,7 +36,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     var uiviewX : CGFloat?                              //  텝바 선택 애니메이션 위한 x 좌표
     
     
-    @IBOutlet weak var goFirstBtn: UIButton!
+    @IBOutlet weak var goFirstBtn: UIButton!        //  로그아웃버튼
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +50,11 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     }
     
     func set() {
+        
+        if( memberInfo?.member_type == "0" ) {
+            
+            homeBuskingReservationBtn.isHidden = true
+        }
         
         homeCalendarCollectionView.delegate = self
         homeCalendarCollectionView.dataSource = self

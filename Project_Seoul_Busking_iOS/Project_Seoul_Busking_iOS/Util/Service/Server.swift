@@ -80,7 +80,7 @@ struct Server : APIService {
     }
     
     //  회원가입
-    static func reqSignUp( member_type : String , member_category : String , member_ID : String , member_PW : String , member_nickname : String , completion : @escaping (_ status : Int ) -> Void ) {
+    static func reqSignUp( member_type : String , member_category : String , member_ID : String , member_PW : String , member_nickname : String , completion : @escaping ( Member , _ status : Int ) -> Void ) {
         
         let URL = url( "/member/signup" )
         
@@ -98,13 +98,27 @@ struct Server : APIService {
                 
             case .success:
                 
-                if( res.response?.statusCode == 201 ){
-                    completion( 201 )
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let memberData = try decoder.decode(MemberData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
+                            
+                            completion( memberData.data! , 201 )
+                        }
+                        else{
+                            
+                            completion( memberData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
                 }
-                else {
-                    completion( 500 )
-                }
-                break
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -114,7 +128,7 @@ struct Server : APIService {
     }
     
     //  로그인
-    static func reqSignIn( member_ID : String , member_PW : String , completion : @escaping (_ status : Int ) -> Void ) {
+    static func reqSignIn( member_ID : String , member_PW : String , completion : @escaping ( Member , _ status : Int ) -> Void ) {
         
         let URL = url( "/member/signin" )
         
@@ -129,16 +143,27 @@ struct Server : APIService {
                 
             case .success:
                 
-                if( res.response?.statusCode == 201 ){
-                    completion( 201 )
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let memberData = try decoder.decode(MemberData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
+                            
+                            completion( memberData.data! , 201 )
+                        }
+                        else{
+                            
+                            completion( memberData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
                 }
-                else if( res.response?.statusCode == 401 ) {
-                    completion( 401 )
-                }
-                else {
-                    completion( 500 )
-                }
-                break
                 
             case .failure(let err):
                 print(err.localizedDescription)
