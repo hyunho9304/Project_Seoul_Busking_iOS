@@ -147,5 +147,73 @@ struct Server : APIService {
         }
     }
 
+    //  달력 가져오기
+    static func reqCalendar( completion : @escaping ( Calendar , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/calendar/date")
+        
+        Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let calendarData = try decoder.decode(CalendarData.self , from: value)
+                        
+                        if( res.response?.statusCode == 200 ){
+                            
+                            completion( calendarData.data! , 200 )
+                        }
+                        else{
+                            
+                            completion( calendarData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,6 +10,7 @@ import UIKit
 
 class MemberInfoViewController: UIViewController {
 
+    @IBOutlet weak var tapbarMenuUIView: UIView!
     @IBOutlet weak var tapbarSearchBtn: UIButton!
     @IBOutlet weak var tapbarHomeBtn: UIButton!
     @IBOutlet weak var tapbarMemberInfoBtn: UIButton!
@@ -31,6 +32,11 @@ class MemberInfoViewController: UIViewController {
             
             tapbarUIView.frame.origin.x = uiviewX!
         }
+        
+        tapbarMenuUIView.layer.shadowColor = #colorLiteral(red: 0.4941176471, green: 0.5921568627, blue: 0.6588235294, alpha: 1)             //  그림자 색
+        tapbarMenuUIView.layer.shadowOpacity = 0.24                            //  그림자 투명도
+        tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
+        //  그림자의 블러는 5 정도 이다
     }
     
     func setTarget() {
