@@ -11,6 +11,8 @@
 		BEB560F621243E7D00760903 /* HomeCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */; };
 		BEB560F8212441F800760903 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F7212441F800760903 /* Calendar.swift */; };
 		BEB560FC212467EF00760903 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FB212467EF00760903 /* Member.swift */; };
+		BEB560FE21248DF900760903 /* BuskingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FD21248DF900760903 /* BuskingZone.swift */; };
+		BEB56100212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FF212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift */; };
 		BEBD52A12115F033009A63A4 /* selectCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD52A02115F032009A63A4 /* selectCategoryCollectionViewCell.swift */; };
 		BEBD52A92116F1F0009A63A4 /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = BEBD52A22116F1EC009A63A4 /* NotoSansCJKkr-DemiLight.otf */; };
 		BEBD52AA2116F1F0009A63A4 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BEBD52A32116F1ED009A63A4 /* NotoSansCJKkr-Regular.otf */; };
@@ -43,6 +45,8 @@
 		BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEB560F7212441F800760903 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		BEB560FB212467EF00760903 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		BEB560FD21248DF900760903 /* BuskingZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuskingZone.swift; sourceTree = "<group>"; };
+		BEB560FF212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEBD52A02115F032009A63A4 /* selectCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEBD52A22116F1EC009A63A4 /* NotoSansCJKkr-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansCJKkr-DemiLight.otf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSansCJKkr-DemiLight.otf"; sourceTree = "<group>"; };
 		BEBD52A32116F1ED009A63A4 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansCJKkr-Regular.otf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 			children = (
 				BEBD52A02115F032009A63A4 /* selectCategoryCollectionViewCell.swift */,
 				BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */,
+				BEB560FF212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				BEEA4D682113312700FD71C4 /* ToggleBtn.swift */,
 				BEB560F7212441F800760903 /* Calendar.swift */,
 				BEB560FB212467EF00760903 /* Member.swift */,
+				BEB560FD21248DF900760903 /* BuskingZone.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -364,8 +370,10 @@
 				BEEA4D6721132AAE00FD71C4 /* SelectTypeViewController.swift in Sources */,
 				BEBD52B32118AD6E009A63A4 /* DefaultPopUpViewController.swift in Sources */,
 				BEEA4D5F2113276300FD71C4 /* Extension.swift in Sources */,
+				BEB560FE21248DF900760903 /* BuskingZone.swift in Sources */,
 				BEBD52B12117206E009A63A4 /* HomeViewController.swift in Sources */,
 				BEBD52B82123371D009A63A4 /* SearchViewController.swift in Sources */,
+				BEB56100212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift in Sources */,
 				BEEA4D4F21130FD300FD71C4 /* SignInViewController.swift in Sources */,
 				BEEA4D612113283200FD71C4 /* SignUpViewController.swift in Sources */,
 				BEEA4D65211328C500FD71C4 /* Server.swift in Sources */,

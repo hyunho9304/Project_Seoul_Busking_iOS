@@ -10,8 +10,8 @@ import Foundation
 
 struct Member : Codable {
     
-    var member_type : String?
-    var member_nickname : String?
+    let member_type : String?
+    let member_nickname : String?
 }
 
 

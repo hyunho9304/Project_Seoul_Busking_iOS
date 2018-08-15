@@ -175,7 +175,7 @@ struct Server : APIService {
     //  달력 가져오기
     static func reqCalendar( completion : @escaping ( Calendar , _ status : Int ) -> Void ) {
         
-        let URL = url( "/calendar/date")
+        let URL = url( "/collection/calendarList")
         
         Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
             
@@ -198,6 +198,47 @@ struct Server : APIService {
                         else{
                             
                             completion( calendarData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+    
+    //  해당되는 자치구의 버스킹존 리스트 가져오기
+    static func reqBuskingZoneList( sb_id : Int , completion : @escaping ([BuskingZone] , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/collection/buskingZoneList?sb_id=\(sb_id)" )
+        
+        Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        
+                        let buskingZoneListData = try decoder.decode(BuskingZoneData.self , from: value)
+                        
+                        if( res.response?.statusCode == 200 ){
+                            
+                            completion( buskingZoneListData.data! , 200 )
+                        }
+                        else{
+                            
+                            completion( buskingZoneListData.data! , 500 )
                         }
                         
                     } catch {

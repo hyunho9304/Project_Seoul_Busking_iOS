@@ -6,9 +6,8 @@
 //  Copyright © 2018년 박현호. All rights reserved.
 //
 
-//  현재 회원가입시 -> member_type , member_nickname 저장
-//  현재 로그인시 -> member_ID 저장
 import UIKit
+import Kingfisher
 
 class HomeViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     
@@ -16,16 +15,22 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     
     @IBOutlet weak var homeBuskingReservationBtn: UIButton!     //  버스킹예약버튼
     
-    
     //  달력
     @IBOutlet weak var homeCalendarCollectionView: UICollectionView!
     var calendar : Calendar?        //  서버 달력 데이터
-    var selectedIndex:IndexPath?    //  선택고려
+    var calendarSelectedIndex:IndexPath?    //  선택고려
     var selectYear : String?        //  선택한 년도
     var selectMonth : String?       //  선택한 월
     var selectDate : String?        //  선택한 일
     var selectDay : String?         //  선택한 요일
     var selectDateTime : String?    //  선택한년월일 ex ) 2018815
+    
+    //  버스킹 존
+    @IBOutlet weak var homeBuskingZoneCollectionView: UICollectionView!
+    var buskingZoneList : [ BuskingZone ] = [ BuskingZone ]()  //  서버 버스킹 존 데이터
+    var busingZoneSelectedIndex:IndexPath?                     //  선택고려
+    var selectZoneIndex : Int?                                 //  선택한 버스킹 존 인덱스
+    @IBOutlet weak var nothingZone: UILabel!
     
     //  tap bar
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -47,17 +52,35 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
 
         dateTimeInit()
         selectedFirstInform()
+        
+        // 임시 -> 원래 구 설정 하고 선택해서 index 변경되면 접근해야함
+        Server.reqBuskingZoneList(sb_id: 13) { ( buskingZoneListData , rescode ) in
+            
+            if rescode == 200 {
+
+                self.buskingZoneList = buskingZoneListData
+                self.homeBuskingZoneCollectionView.reloadData()
+                
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
+        
+        print( buskingZoneList )
     }
     
     func set() {
-        
+
         if( memberInfo?.member_type == "0" ) {
             
             homeBuskingReservationBtn.isHidden = true
         }
         
-        homeCalendarCollectionView.delegate = self
-        homeCalendarCollectionView.dataSource = self
+        setDelegate()
         
         if uiviewX != nil {
             
@@ -68,6 +91,15 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         tapbarMenuUIView.layer.shadowOpacity = 0.24                            //  그림자 투명도
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
+    }
+    
+    func setDelegate() {
+        
+        homeCalendarCollectionView.delegate = self
+        homeCalendarCollectionView.dataSource = self
+        
+        homeBuskingZoneCollectionView.delegate = self
+        homeBuskingZoneCollectionView.dataSource = self
     }
     
     func setTarget() {
@@ -161,63 +193,114 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     //  cell 의 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 14   //  2주표현
+        if collectionView == homeCalendarCollectionView {
+            
+            return 14
+        } else {
+            
+            if( buskingZoneList.count == 0 ) {
+                nothingZone.isHidden = false
+            } else {
+                nothingZone.isHidden = true
+            }
+            
+            return buskingZoneList.count
+        }
     }
     
     //  cell 의 내용
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCalendarCollectionViewCell", for: indexPath ) as! HomeCalendarCollectionViewCell
-        
-        cell.calendarDayLabel.text = calendar?.twoWeeksDay![ indexPath.row ]
-        cell.calendarDateLabel.text = calendar?.twoWeeksDate![ indexPath.row ]
-        
-        if indexPath == selectedIndex {
+        if collectionView == homeCalendarCollectionView {
             
-            cell.calendarDayLabel.textColor = UIColor( red: 255, green: 0, blue: 0, alpha: 1.0 )
-            cell.calendarDateLabel.textColor = UIColor( red: 255 , green: 255 , blue: 255 , alpha: 1.0 )
-            cell.calendarCircleImageView.isHidden = false
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCalendarCollectionViewCell", for: indexPath ) as! HomeCalendarCollectionViewCell
             
-            self.selectYear = self.calendar?.twoWeeksYear![ indexPath.row ]
-            self.selectMonth = self.calendar?.twoWeeksMonth![ indexPath.row ]
-            self.selectDate = self.calendar?.twoWeeksDate![ indexPath.row ]
-            self.selectDay = self.calendar?.twoWeeksDay![ indexPath.row ]
+            cell.calendarDayLabel.text = calendar?.twoWeeksDay![ indexPath.row ]
+            cell.calendarDateLabel.text = calendar?.twoWeeksDate![ indexPath.row ]
             
-            self.selectDateTime = gsno( selectYear ) + gsno( selectMonth ) + gsno( selectDate )
+            if indexPath == calendarSelectedIndex {
+                
+                cell.calendarDayLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+                cell.calendarDateLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.calendarCircleImageView.isHidden = false
+                
+                self.selectYear = self.calendar?.twoWeeksYear![ indexPath.row ]
+                self.selectMonth = self.calendar?.twoWeeksMonth![ indexPath.row ]
+                self.selectDate = self.calendar?.twoWeeksDate![ indexPath.row ]
+                self.selectDay = self.calendar?.twoWeeksDay![ indexPath.row ]
+                
+                self.selectDateTime = gsno( selectYear ) + gsno( selectMonth ) + gsno( selectDate )
+                
+            } else if ( cell.calendarDayLabel.text == "일" ) {
+                
+                cell.calendarDayLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+                cell.calendarDateLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+                cell.calendarCircleImageView.isHidden = true
+                
+            } else {
+                
+                cell.calendarDayLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.calendarDateLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.calendarCircleImageView.isHidden = true
+            }
             
-        } else if ( cell.calendarDayLabel.text == "일" ) {
-            
-            cell.calendarDayLabel.textColor = UIColor( red: 255, green: 0, blue: 0, alpha: 1.0 )
-            cell.calendarDateLabel.textColor = UIColor( red: 255, green: 0, blue: 0, alpha: 1.0)
-            cell.calendarCircleImageView.isHidden = true
+            return cell
             
         } else {
             
-            cell.calendarDayLabel.textColor = UIColor( red: 0, green: 0, blue: 0, alpha: 1.0 )
-            cell.calendarDateLabel.textColor = UIColor( red: 0 , green: 0 , blue: 0 , alpha: 1.0 )
-            cell.calendarCircleImageView.isHidden = true
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeBuskingZoneCollectionViewCell", for: indexPath ) as! HomeBuskingZoneCollectionViewCell
+            
+            cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
+            cell.buskingZoneImageView.layer.cornerRadius = cell.buskingZoneImageView.layer.frame.width/2
+            cell.buskingZoneImageView.clipsToBounds = true
+            
+            cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
+            
+            if indexPath == busingZoneSelectedIndex {
+                
+                cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+                self.selectZoneIndex = self.buskingZoneList[ indexPath.row ].sbz_id
+                
+                cell.buskingZoneImageView.layer.borderColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+                cell.buskingZoneImageView.layer.borderWidth = 2
+                
+            } else {
+                
+                cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.buskingZoneImageView.layer.borderWidth = 0
+            }
+            
+            return cell
         }
-        
-        return cell
-        
     }
 
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        selectedIndex = indexPath
-        collectionView.reloadData()
+        if collectionView == homeCalendarCollectionView {
+            
+            calendarSelectedIndex = indexPath
+        } else {
+            
+            busingZoneSelectedIndex = indexPath
+        }
         
+        collectionView.reloadData()
     }
     
     //  cell 간 가로 간격 ( horizental 이라서 가로를 사용해야 한다 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        if collectionView == homeCalendarCollectionView {
+            
+            return 0
+            
+        } else {
+            
+            return 20
+        }
     }
-    
-    
 }
 
 
