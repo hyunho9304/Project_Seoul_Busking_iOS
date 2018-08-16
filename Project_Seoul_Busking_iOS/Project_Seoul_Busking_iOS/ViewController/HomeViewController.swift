@@ -11,11 +11,18 @@ import Kingfisher
 
 class HomeViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     
-    var memberInfo : Member?        //  회원정보
+    //  유저 info
+    var memberInfo : Member?                //  회원정보
+    var memberRepresentativeBorough : Int?  //  멤버 대표 자치구
     
-    @IBOutlet weak var homeBuskingReservationBtn: UIButton!     //  버스킹예약버튼
+    
+    //  네비게이션 바
+    @IBOutlet weak var homeRepresentativeBorough: UILabel!      //  멤버 대표 자치구
+    @IBOutlet weak var homeBoroughBtn: UIButton!                //  자치구 선택 버튼
+    @IBOutlet weak var homeBuskingReservationBtn: UIButton!     //  버스킹예약 버튼
     
     //  달력
+    @IBOutlet weak var homeCalendarUIView: UIView!
     @IBOutlet weak var homeCalendarCollectionView: UICollectionView!
     var calendar : Calendar?        //  서버 달력 데이터
     var calendarSelectedIndex:IndexPath?    //  선택고려
@@ -45,8 +52,9 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         set()
+        setDelegate()
         setTarget()
         setTapbarAnimation()
 
@@ -69,8 +77,6 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 self.present(alert , animated: true , completion: nil)
             }
         }
-        
-        print( buskingZoneList )
     }
     
     func set() {
@@ -80,13 +86,25 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             homeBuskingReservationBtn.isHidden = true
         }
         
-        setDelegate()
+        setShadow()
+        
+        //  그림자의 블러는 5 정도 이다
         
         if uiviewX != nil {
             
             tapbarUIView.frame.origin.x = uiviewX!
         }
         
+    }
+    
+    func setShadow() {
+        
+        //  달력 뷰
+        homeCalendarUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+        homeCalendarUIView.layer.shadowOpacity = 0.08                            //  그림자 투명도
+        homeCalendarUIView.layer.shadowOffset = CGSize(width: 0 , height: 1 )    //  그림자 x y
+        
+        //  탭바 뷰
         tapbarMenuUIView.layer.shadowColor = #colorLiteral(red: 0.4941176471, green: 0.5921568627, blue: 0.6588235294, alpha: 1)             //  그림자 색
         tapbarMenuUIView.layer.shadowOpacity = 0.24                            //  그림자 투명도
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
@@ -260,14 +278,16 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             if indexPath == busingZoneSelectedIndex {
                 
                 cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+                cell.buskingZoneNameLabel.font = UIFont(name:"NotoSansCJKkr-Bold", size: 12.0)
                 self.selectZoneIndex = self.buskingZoneList[ indexPath.row ].sbz_id
                 
                 cell.buskingZoneImageView.layer.borderColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
-                cell.buskingZoneImageView.layer.borderWidth = 2
+                cell.buskingZoneImageView.layer.borderWidth = 3
                 
             } else {
                 
                 cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.buskingZoneNameLabel.font = UIFont(name:"NotoSansCJKkr-Regular", size: 12.0)
                 cell.buskingZoneImageView.layer.borderWidth = 0
             }
             
@@ -289,6 +309,17 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         collectionView.reloadData()
     }
     
+    //  cell 크기 비율
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if collectionView == homeCalendarCollectionView {
+            return CGSize(width: 56 * self.view.frame.width/375 , height: 70 * self.view.frame.height/667 )
+        }
+        else {
+            return CGSize(width: 105 * self.view.frame.width/375 , height: 125 * self.view.frame.height/667 )
+        }
+    }
+    
     //  cell 간 가로 간격 ( horizental 이라서 가로를 사용해야 한다 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
@@ -298,7 +329,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
         } else {
             
-            return 20
+            return 0
         }
     }
 }

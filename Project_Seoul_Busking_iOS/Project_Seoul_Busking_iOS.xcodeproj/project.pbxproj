@@ -13,6 +13,7 @@
 		BEB560FC212467EF00760903 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FB212467EF00760903 /* Member.swift */; };
 		BEB560FE21248DF900760903 /* BuskingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FD21248DF900760903 /* BuskingZone.swift */; };
 		BEB56100212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FF212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift */; };
+		BEB561082125665200760903 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB561072125665000760903 /* NotoSans-Regular.ttf */; };
 		BEBD52A12115F033009A63A4 /* selectCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD52A02115F032009A63A4 /* selectCategoryCollectionViewCell.swift */; };
 		BEBD52A92116F1F0009A63A4 /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = BEBD52A22116F1EC009A63A4 /* NotoSansCJKkr-DemiLight.otf */; };
 		BEBD52AA2116F1F0009A63A4 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BEBD52A32116F1ED009A63A4 /* NotoSansCJKkr-Regular.otf */; };
@@ -47,6 +48,7 @@
 		BEB560FB212467EF00760903 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		BEB560FD21248DF900760903 /* BuskingZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuskingZone.swift; sourceTree = "<group>"; };
 		BEB560FF212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		BEB561072125665000760903 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Regular.ttf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSans-Regular.ttf"; sourceTree = "<group>"; };
 		BEBD52A02115F032009A63A4 /* selectCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEBD52A22116F1EC009A63A4 /* NotoSansCJKkr-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansCJKkr-DemiLight.otf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSansCJKkr-DemiLight.otf"; sourceTree = "<group>"; };
 		BEBD52A32116F1ED009A63A4 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansCJKkr-Regular.otf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		BEEA4D4B21130ADD00FD71C4 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				BEB561072125665000760903 /* NotoSans-Regular.ttf */,
 				BEBD52A52116F1EE009A63A4 /* NotoSansCJKkr-Black.otf */,
 				BEBD52A62116F1EF009A63A4 /* NotoSansCJKkr-Bold.otf */,
 				BEBD52A22116F1EC009A63A4 /* NotoSansCJKkr-DemiLight.otf */,
@@ -300,6 +303,7 @@
 				BEBD52AA2116F1F0009A63A4 /* NotoSansCJKkr-Regular.otf in Resources */,
 				BEBD52A92116F1F0009A63A4 /* NotoSansCJKkr-DemiLight.otf in Resources */,
 				BEEA4D3F2113098000FD71C4 /* LaunchScreen.storyboard in Resources */,
+				BEB561082125665200760903 /* NotoSans-Regular.ttf in Resources */,
 				BEBD52AB2116F1F0009A63A4 /* NotoSansCJKkr-Thin.otf in Resources */,
 				BEEA4D3C2113098000FD71C4 /* Assets.xcassets in Resources */,
 				BEBD52AD2116F1F0009A63A4 /* NotoSansCJKkr-Bold.otf in Resources */,
@@ -315,7 +319,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		8075E1CB6858EBC94DB62387 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (

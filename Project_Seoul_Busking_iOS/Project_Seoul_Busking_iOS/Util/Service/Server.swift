@@ -154,6 +154,10 @@ struct Server : APIService {
                         if( res.response?.statusCode == 201 ){
                             
                             completion( memberData.data! , 201 )
+                            
+                        } else if( res.response?.statusCode == 401 ) {
+                            
+                            completion( memberData.data! , 401 )
                         }
                         else{
                             
