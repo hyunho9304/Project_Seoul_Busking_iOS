@@ -457,7 +457,7 @@
                         <outlet property="homeBuskingZoneCollectionView" destination="Aas-E2-NaE" id="MYs-FP-6GO"/>
                         <outlet property="homeCalendarCollectionView" destination="3Sv-Ub-Ib0" id="Kab-fz-itY"/>
                         <outlet property="homeCalendarUIView" destination="Awu-nq-gTu" id="O0I-DI-mS3"/>
-                        <outlet property="homeRepresentativeBorough" destination="6om-H2-h1q" id="EvG-xi-BmN"/>
+                        <outlet property="homeRepresentativeBoroughLabel" destination="6om-H2-h1q" id="ZPt-Oy-RbN"/>
                         <outlet property="nothingZone" destination="6RH-Th-SZn" id="daD-RZ-cCg"/>
                         <outlet property="tapbarHomeBtn" destination="0iD-MW-xPE" id="sXC-Rb-EsE"/>
                         <outlet property="tapbarMemberInfoBtn" destination="5Kr-Ms-Sam" id="RzE-GV-hMt"/>

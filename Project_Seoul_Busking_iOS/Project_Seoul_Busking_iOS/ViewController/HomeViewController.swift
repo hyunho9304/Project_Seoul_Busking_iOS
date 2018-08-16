@@ -12,12 +12,12 @@ import Kingfisher
 class HomeViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     
     //  유저 info
-    var memberInfo : Member?                //  회원정보
-    var memberRepresentativeBorough : Int?  //  멤버 대표 자치구
+    var memberInfo : Member?                                        //  회원정보
+    var memberRepresentativeBorough : MemberRepresentativeBorough?  //  회원 대표 자치구 index & name
     
     
     //  네비게이션 바
-    @IBOutlet weak var homeRepresentativeBorough: UILabel!      //  멤버 대표 자치구
+    @IBOutlet weak var homeRepresentativeBoroughLabel: UILabel!      //  멤버 대표 자치구
     @IBOutlet weak var homeBoroughBtn: UIButton!                //  자치구 선택 버튼
     @IBOutlet weak var homeBuskingReservationBtn: UIButton!     //  버스킹예약 버튼
     
@@ -61,13 +61,38 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         dateTimeInit()
         selectedFirstInform()
         
-        // 임시 -> 원래 구 설정 하고 선택해서 index 변경되면 접근해야함
-        Server.reqBuskingZoneList(sb_id: 13) { ( buskingZoneListData , rescode ) in
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        getMemberRepresentativeBoroughData()
+    }
+    
+    func getMemberRepresentativeBoroughData() {
+        
+        Server.reqMemberRepresentativeBorough(member_nickname: (memberInfo?.member_nickname)!) { ( memberRepresentativeBoroughData , rescode ) in
             
-            if rescode == 200 {
-
-                self.buskingZoneList = buskingZoneListData
-                self.homeBuskingZoneCollectionView.reloadData()
+            if( rescode == 201 ) {
+                
+                self.memberRepresentativeBorough = memberRepresentativeBoroughData
+                
+                self.homeRepresentativeBoroughLabel.text = self.memberRepresentativeBorough?.sb_name
+                
+                Server.reqBuskingZoneList(sb_id: (self.memberRepresentativeBorough?.sb_id)! ) { ( buskingZoneListData , rescode ) in
+                    
+                    if rescode == 200 {
+                        
+                        self.buskingZoneList = buskingZoneListData
+                        self.homeBuskingZoneCollectionView.reloadData()
+                        
+                    } else {
+                        
+                        let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                        let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                        alert.addAction( ok )
+                        self.present(alert , animated: true , completion: nil)
+                    }
+                }
                 
             } else {
                 

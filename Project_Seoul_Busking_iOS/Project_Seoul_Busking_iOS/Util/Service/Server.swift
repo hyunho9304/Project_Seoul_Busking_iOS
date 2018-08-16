@@ -216,6 +216,50 @@ struct Server : APIService {
         }
     }
     
+    //  멤버의 대표 자치구 가져오기
+    static func reqMemberRepresentativeBorough( member_nickname : String , completion : @escaping ( MemberRepresentativeBorough , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/representativeBorough" )
+        
+        let body: [String: Any] = [
+            "member_nickname" : member_nickname
+        ]
+        
+        Alamofire.request(URL, method: .post, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let memberRepresentativeBoroughData = try decoder.decode(MemberRepresentativeBoroughData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
+                            
+                            completion( memberRepresentativeBoroughData.data! , 201 )
+                            
+                        } else {
+                            
+                            completion( memberRepresentativeBoroughData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+    
     //  해당되는 자치구의 버스킹존 리스트 가져오기
     static func reqBuskingZoneList( sb_id : Int , completion : @escaping ([BuskingZone] , _ status : Int ) -> Void ) {
         
