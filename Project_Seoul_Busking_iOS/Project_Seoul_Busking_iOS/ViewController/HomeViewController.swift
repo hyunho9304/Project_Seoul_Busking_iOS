@@ -59,16 +59,16 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         setTapbarAnimation()
 
         dateTimeInit()
-        selectedFirstInform()
-        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         getMemberRepresentativeBoroughData()
     }
     
     func getMemberRepresentativeBoroughData() {
+        
+        print( memberInfo )
         
         Server.reqMemberRepresentativeBorough(member_nickname: (memberInfo?.member_nickname)!) { ( memberRepresentativeBoroughData , rescode ) in
             
@@ -85,6 +85,12 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                         self.buskingZoneList = buskingZoneListData
                         self.homeBuskingZoneCollectionView.reloadData()
                         
+                        if( self.buskingZoneList.count != 0 ) {
+                            print(111111)
+                            let indexPathForFirstRow = IndexPath(row: 0, section: 0)
+                            
+                            self.collectionView( self.homeBuskingZoneCollectionView, didSelectItemAt: indexPathForFirstRow )
+                        }
                     } else {
                         
                         let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -170,15 +176,20 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         })
     }
     
-    //  디폴트 정보 첫번째 선택
-    func selectedFirstInform() {
-        
-        //auto selected 1st item
-        let indexPathForFirstRow = IndexPath(row: 0, section: 0)
-        
-        collectionView(homeCalendarCollectionView, didSelectItemAt: indexPathForFirstRow)
-    }
-    
+//    //  디폴트 정보 첫번째 선택
+//    func selectedFirstInform() {
+//
+//        //auto selected 1st item
+//        let indexPathForFirstRow = IndexPath(row: 0, section: 0)
+//
+//        collectionView( homeCalendarCollectionView, didSelectItemAt: indexPathForFirstRow )
+//
+//        if( buskingZoneList.count != 0 ) {
+//
+//            collectionView( homeBuskingZoneCollectionView, didSelectItemAt: indexPathForFirstRow )
+//        }
+//    }
+//
     //  로그아웃 버튼 액션
     @objc func pressedGoFirstBtn( _ sender : UIButton ) {
         
@@ -191,6 +202,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         guard let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
         
         searchVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        searchVC.memberInfo = self.memberInfo
         
         self.present( searchVC , animated: false , completion: nil )
     }
@@ -201,6 +213,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
         
         memberInfoVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        memberInfoVC.memberInfo = self.memberInfo
         
         self.present( memberInfoVC , animated: false , completion: nil )
         
@@ -215,6 +228,10 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 
                 self.calendar = calendarData
                 self.homeCalendarCollectionView.reloadData()
+                
+                let indexPathForFirstRow = IndexPath(row: 0, section: 0)
+                
+                self.collectionView( self.homeCalendarCollectionView, didSelectItemAt: indexPathForFirstRow )
                 
             } else {
                 
@@ -326,6 +343,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         if collectionView == homeCalendarCollectionView {
             
             calendarSelectedIndex = indexPath
+            
         } else {
             
             busingZoneSelectedIndex = indexPath

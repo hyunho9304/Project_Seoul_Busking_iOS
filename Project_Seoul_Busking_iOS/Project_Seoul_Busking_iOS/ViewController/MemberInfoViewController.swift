@@ -10,6 +10,8 @@ import UIKit
 
 class MemberInfoViewController: UIViewController {
 
+    var memberInfo : Member?
+    
     @IBOutlet weak var tapbarMenuUIView: UIView!
     @IBOutlet weak var tapbarSearchBtn: UIButton!
     @IBOutlet weak var tapbarHomeBtn: UIButton!
@@ -67,6 +69,7 @@ class MemberInfoViewController: UIViewController {
         guard let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
         
         searchVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
+        searchVC.memberInfo = self.memberInfo
         
         self.present( searchVC , animated: false , completion: nil )
     }
@@ -77,6 +80,7 @@ class MemberInfoViewController: UIViewController {
         guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         
         homeVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
+        homeVC.memberInfo = self.memberInfo
         
         self.present( homeVC , animated: false , completion: nil )
     }
