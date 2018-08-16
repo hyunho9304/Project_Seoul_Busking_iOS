@@ -57,18 +57,15 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         setDelegate()
         setTarget()
         setTapbarAnimation()
-
-        dateTimeInit()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
+        dateTimeInit()
         getMemberRepresentativeBoroughData()
     }
     
     func getMemberRepresentativeBoroughData() {
-        
-        print( memberInfo )
         
         Server.reqMemberRepresentativeBorough(member_nickname: (memberInfo?.member_nickname)!) { ( memberRepresentativeBoroughData , rescode ) in
             
@@ -85,12 +82,19 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                         self.buskingZoneList = buskingZoneListData
                         self.homeBuskingZoneCollectionView.reloadData()
                         
-                        if( self.buskingZoneList.count != 0 ) {
-                            print(111111)
-                            let indexPathForFirstRow = IndexPath(row: 0, section: 0)
+                        if( self.buskingZoneList.count == 0 ) {
                             
+                            self.nothingZone.isHidden = false
+                            
+                        } else {
+                            
+                            self.nothingZone.isHidden = true
+                            
+                            let indexPathForFirstRow = IndexPath(row: 0, section: 0)
                             self.collectionView( self.homeBuskingZoneCollectionView, didSelectItemAt: indexPathForFirstRow )
+                            
                         }
+                        
                     } else {
                         
                         let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -161,6 +165,9 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
         //  개인정보 버튼
         tapbarMemberInfoBtn.addTarget(self, action: #selector(self.pressedTapbarMemberInfoBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  자치구 선택 버튼
+        homeBoroughBtn.addTarget(self, action: #selector(self.pressedHomeBoroughBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     //  텝바 움직임 애니메이션
@@ -175,21 +182,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             }, completion: nil )
         })
     }
-    
-//    //  디폴트 정보 첫번째 선택
-//    func selectedFirstInform() {
-//
-//        //auto selected 1st item
-//        let indexPathForFirstRow = IndexPath(row: 0, section: 0)
-//
-//        collectionView( homeCalendarCollectionView, didSelectItemAt: indexPathForFirstRow )
-//
-//        if( buskingZoneList.count != 0 ) {
-//
-//            collectionView( homeBuskingZoneCollectionView, didSelectItemAt: indexPathForFirstRow )
-//        }
-//    }
-//
+
     //  로그아웃 버튼 액션
     @objc func pressedGoFirstBtn( _ sender : UIButton ) {
         
@@ -219,6 +212,17 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
     }
     
+    //  자치구 선택 버튼 액션
+    @objc func pressedHomeBoroughBtn( _ sender : UIButton ) {
+        
+        guard let selectBorouthVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "selectBoroughViewController") as? selectBoroughViewController else { return }
+        
+        selectBorouthVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        selectBorouthVC.memberInfo = self.memberInfo
+        
+        self.present( selectBorouthVC , animated: true , completion: nil )
+    }
+    
     //  달력 데이터 서버연동
     func dateTimeInit() {
         
@@ -230,7 +234,6 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 self.homeCalendarCollectionView.reloadData()
                 
                 let indexPathForFirstRow = IndexPath(row: 0, section: 0)
-                
                 self.collectionView( self.homeCalendarCollectionView, didSelectItemAt: indexPathForFirstRow )
                 
             } else {
@@ -257,12 +260,6 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
             return 14
         } else {
-            
-            if( buskingZoneList.count == 0 ) {
-                nothingZone.isHidden = false
-            } else {
-                nothingZone.isHidden = true
-            }
             
             return buskingZoneList.count
         }
@@ -319,12 +316,16 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
             if indexPath == busingZoneSelectedIndex {
                 
+                
                 cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
                 cell.buskingZoneNameLabel.font = UIFont(name:"NotoSansCJKkr-Bold", size: 12.0)
                 self.selectZoneIndex = self.buskingZoneList[ indexPath.row ].sbz_id
                 
                 cell.buskingZoneImageView.layer.borderColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
                 cell.buskingZoneImageView.layer.borderWidth = 3
+                
+                print( selectDateTime )
+                print( selectZoneIndex )
                 
             } else {
                 
@@ -350,6 +351,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         }
         
         collectionView.reloadData()
+        
     }
     
     //  cell 크기 비율

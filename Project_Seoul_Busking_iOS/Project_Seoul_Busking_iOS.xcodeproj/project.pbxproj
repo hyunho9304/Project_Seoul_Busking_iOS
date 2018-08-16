@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5449144EED3FD78D4DB34AF7 /* Pods_Project_Seoul_Busking_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */; };
 		BEB0C1D321259321004D3F22 /* MemberRepresentativeBorough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */; };
+		BEB0C1D52125A783004D3F22 /* selectBoroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */; };
 		BEB560F621243E7D00760903 /* HomeCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */; };
 		BEB560F8212441F800760903 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F7212441F800760903 /* Calendar.swift */; };
 		BEB560FC212467EF00760903 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FB212467EF00760903 /* Member.swift */; };
@@ -45,6 +46,7 @@
 		972BF92BCFF29E9380936597 /* Pods-Project_Seoul_Busking_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_Seoul_Busking_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project_Seoul_Busking_iOS/Pods-Project_Seoul_Busking_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_Seoul_Busking_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepresentativeBorough.swift; sourceTree = "<group>"; };
+		BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectBoroughViewController.swift; sourceTree = "<group>"; };
 		BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEB560F7212441F800760903 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		BEB560FB212467EF00760903 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				BEBD52B72123371D009A63A4 /* SearchViewController.swift */,
 				BEBD52B02117206E009A63A4 /* HomeViewController.swift */,
 				BEBD52B521232BA6009A63A4 /* MemberInfoViewController.swift */,
+				BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				BEBD52B621232BA6009A63A4 /* MemberInfoViewController.swift in Sources */,
 				BEEA4D692113312700FD71C4 /* ToggleBtn.swift in Sources */,
 				BEEA4D63211328BA00FD71C4 /* APIservice.swift in Sources */,
+				BEB0C1D52125A783004D3F22 /* selectBoroughViewController.swift in Sources */,
 				BEBD52A12115F033009A63A4 /* selectCategoryCollectionViewCell.swift in Sources */,
 				BEB560F8212441F800760903 /* Calendar.swift in Sources */,
 				BEEA4D6721132AAE00FD71C4 /* SelectTypeViewController.swift in Sources */,
