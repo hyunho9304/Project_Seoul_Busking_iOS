@@ -215,12 +215,13 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     //  자치구 선택 버튼 액션
     @objc func pressedHomeBoroughBtn( _ sender : UIButton ) {
         
-        guard let selectBorouthVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "selectBoroughViewController") as? selectBoroughViewController else { return }
+        guard let selectBoroughVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "selectBoroughViewController") as? selectBoroughViewController else { return }
         
-        selectBorouthVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
-        selectBorouthVC.memberInfo = self.memberInfo
+        selectBoroughVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        selectBoroughVC.memberInfo = self.memberInfo
+        selectBoroughVC.memberRepresentativeBoroughIndex = memberRepresentativeBorough?.sb_id
         
-        self.present( selectBorouthVC , animated: true , completion: nil )
+        self.present( selectBoroughVC , animated: true , completion: nil )
     }
     
     //  달력 데이터 서버연동

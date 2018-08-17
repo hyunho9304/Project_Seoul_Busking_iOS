@@ -8,13 +8,18 @@
 
 import UIKit
 
-class selectBoroughViewController: UIViewController {
+class selectBoroughViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
 
     var memberInfo : Member?
     
     //  네비게이션 바
     @IBOutlet weak var selectBoroughBackBtn: UIButton!
     
+    //  내용
+    @IBOutlet weak var boroughCollectionView: UICollectionView!
+    var memberRepresentativeBoroughIndex : Int?
+    var boroughList : [ Borough ] = [ Borough ]()  //  서버 자치구 리스트
+    var boroughSelectedIndexPath :IndexPath?    //  선택고려
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -29,8 +34,14 @@ class selectBoroughViewController: UIViewController {
         super.viewDidLoad()
         
         set()
+        setDelegate()
         setTarget()
         setTapbarAnimation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        boroughInit()
     }
     
     func set() {
@@ -44,6 +55,12 @@ class selectBoroughViewController: UIViewController {
         tapbarMenuUIView.layer.shadowOpacity = 0.24                            //  그림자 투명도
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
+    }
+    
+    func setDelegate() {
+        
+        boroughCollectionView.delegate = self
+        boroughCollectionView.dataSource = self
     }
     
     func setTarget() {
@@ -111,6 +128,89 @@ class selectBoroughViewController: UIViewController {
     @objc func pressedSelectBoroughBackBtn( _ sender : UIButton ) {
         
         self.dismiss(animated: true , completion: nil )
+    }
+    
+    func boroughInit() {
+        
+        Server.reqBoroughList { (boroughData , rescode ) in
+            
+            if( rescode == 200 ) {
+                
+                self.boroughList = boroughData
+                self.boroughCollectionView.reloadData()
+                
+                print("aaaaaaaaaaaa\n")
+                print( self.memberRepresentativeBoroughIndex! - 1 )
+                
+                let indexPathForFirstRow = IndexPath(row: self.memberRepresentativeBoroughIndex! - 1 , section: 0)
+                self.collectionView( self.boroughCollectionView , didSelectItemAt: indexPathForFirstRow )
+                
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
+    }
+    
+    
+    
+//  Mark -> delegate
+    
+    //  cell 의 개수
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return boroughList.count
+    }
+    
+    //  cell 의 내용
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectBoroughCollectionViewCell", for: indexPath ) as! SelectBoroughCollectionViewCell
+        
+        cell.boroughLabel.text = boroughList[ indexPath.row ].sb_name
+        
+        if( indexPath == boroughSelectedIndexPath ) {
+            
+            cell.boroughBackView.layer.cornerRadius = 25
+            cell.boroughBackView.isHidden = false
+            cell.boroughLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        } else {
+            
+            cell.boroughBackView.isHidden = true
+            cell.boroughLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+            
+        }
+        
+        return cell
+    }
+    
+    //  cell 선택 했을 때
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        boroughSelectedIndexPath = indexPath
+        collectionView.reloadData()
+        
+    }
+    
+    //  cell 크기 비율
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 72 * self.view.frame.width/375 , height: 39 * self.view.frame.height/667 )
+    }
+    
+    //  cell 간 세로 간격 ( vertical 이라서 세로를 사용해야 한다 )
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 
 }

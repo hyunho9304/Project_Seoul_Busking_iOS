@@ -510,7 +510,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ISJ-EX-HPM">
                                 <rect key="frame" x="28" y="130" width="330" height="351"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aGb-NC-qyO">
                                     <size key="itemSize" width="72" height="39"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -518,13 +518,37 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="K92-gT-EqC">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SelectBoroughCollectionViewCell" reuseIdentifier="SelectBoroughCollectionViewCell" id="K92-gT-EqC" customClass="SelectBoroughCollectionViewCell" customModule="Project_Seoul_Busking_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="72" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Has-zZ-msN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="39"/>
+                                                    <color key="backgroundColor" red="0.44705882349999998" green="0.31372549020000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="강남구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEY-Ia-LSA">
+                                                    <rect key="frame" x="17" y="9" width="39" height="21"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="14"/>
+                                                    <color key="textColor" red="0.44705882349999998" green="0.31372549020000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="YEY-Ia-LSA" firstAttribute="centerY" secondItem="K92-gT-EqC" secondAttribute="centerY" id="3Xr-Hg-zuy"/>
+                                            <constraint firstItem="YEY-Ia-LSA" firstAttribute="centerX" secondItem="K92-gT-EqC" secondAttribute="centerX" id="5k7-as-1bX"/>
+                                            <constraint firstItem="Has-zZ-msN" firstAttribute="leading" secondItem="K92-gT-EqC" secondAttribute="leading" id="Ljs-jM-mA8"/>
+                                            <constraint firstAttribute="trailing" secondItem="Has-zZ-msN" secondAttribute="trailing" id="YZr-qe-Cbj"/>
+                                            <constraint firstItem="Has-zZ-msN" firstAttribute="top" secondItem="K92-gT-EqC" secondAttribute="top" id="dgf-AZ-XcQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="Has-zZ-msN" secondAttribute="bottom" id="fG0-zf-MJI"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="boroughBackView" destination="Has-zZ-msN" id="7S0-EH-3YM"/>
+                                            <outlet property="boroughLabel" destination="YEY-Ia-LSA" id="fqy-5y-4IC"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -575,6 +599,7 @@
                         <viewLayoutGuide key="safeArea" id="KOf-PR-qWI"/>
                     </view>
                     <connections>
+                        <outlet property="boroughCollectionView" destination="ISJ-EX-HPM" id="phm-gi-mFZ"/>
                         <outlet property="selectBoroughBackBtn" destination="kaU-hP-5dn" id="lex-m3-3c6"/>
                         <outlet property="tapbarHomeBtn" destination="Exs-ra-dyr" id="WPu-vY-s2K"/>
                         <outlet property="tapbarMemberInfoBtn" destination="Wg5-4I-Sik" id="aSW-86-uIY"/>

@@ -301,6 +301,47 @@ struct Server : APIService {
         }
     }
     
+    //  자치구 리스트 가져오기
+    static func reqBoroughList( completion : @escaping ( [Borough] , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/collection/boroughList" )
+        
+        Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        
+                        let boroughListData = try decoder.decode(BoroughData.self , from: value)
+                        
+                        if( res.response?.statusCode == 200 ){
+                            
+                            completion( boroughListData.data! , 200 )
+                        }
+                        else{
+                            
+                            completion( boroughListData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+    
 }
 
 

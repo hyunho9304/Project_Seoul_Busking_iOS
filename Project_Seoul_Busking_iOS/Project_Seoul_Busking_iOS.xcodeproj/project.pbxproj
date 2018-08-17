@@ -10,6 +10,8 @@
 		5449144EED3FD78D4DB34AF7 /* Pods_Project_Seoul_Busking_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */; };
 		BEB0C1D321259321004D3F22 /* MemberRepresentativeBorough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */; };
 		BEB0C1D52125A783004D3F22 /* selectBoroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */; };
+		BEB0C1D72126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D62126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift */; };
+		BEB0C1D92126F4B8004D3F22 /* Borough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D82126F4B8004D3F22 /* Borough.swift */; };
 		BEB560F621243E7D00760903 /* HomeCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */; };
 		BEB560F8212441F800760903 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F7212441F800760903 /* Calendar.swift */; };
 		BEB560FC212467EF00760903 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FB212467EF00760903 /* Member.swift */; };
@@ -47,6 +49,8 @@
 		BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_Seoul_Busking_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepresentativeBorough.swift; sourceTree = "<group>"; };
 		BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectBoroughViewController.swift; sourceTree = "<group>"; };
+		BEB0C1D62126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBoroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		BEB0C1D82126F4B8004D3F22 /* Borough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Borough.swift; sourceTree = "<group>"; };
 		BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEB560F7212441F800760903 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		BEB560FB212467EF00760903 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 				BEBD52A02115F032009A63A4 /* selectCategoryCollectionViewCell.swift */,
 				BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */,
 				BEB560FF212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift */,
+				BEB0C1D62126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 				BEB560FB212467EF00760903 /* Member.swift */,
 				BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */,
 				BEB560FD21248DF900760903 /* BuskingZone.swift */,
+				BEB0C1D82126F4B8004D3F22 /* Borough.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -384,8 +390,10 @@
 				BEB560FE21248DF900760903 /* BuskingZone.swift in Sources */,
 				BEB0C1D321259321004D3F22 /* MemberRepresentativeBorough.swift in Sources */,
 				BEBD52B12117206E009A63A4 /* HomeViewController.swift in Sources */,
+				BEB0C1D92126F4B8004D3F22 /* Borough.swift in Sources */,
 				BEBD52B82123371D009A63A4 /* SearchViewController.swift in Sources */,
 				BEB56100212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift in Sources */,
+				BEB0C1D72126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift in Sources */,
 				BEEA4D4F21130FD300FD71C4 /* SignInViewController.swift in Sources */,
 				BEEA4D612113283200FD71C4 /* SignUpViewController.swift in Sources */,
 				BEEA4D65211328C500FD71C4 /* Server.swift in Sources */,
