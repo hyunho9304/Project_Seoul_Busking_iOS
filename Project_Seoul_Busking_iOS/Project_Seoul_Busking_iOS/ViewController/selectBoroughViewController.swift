@@ -21,6 +21,12 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     var boroughList : [ Borough ] = [ Borough ]()  //  서버 자치구 리스트
     var boroughSelectedIndexPath :IndexPath?    //  선택고려
     
+    var selectIndex : Int?      //  선택한 index
+    var selectName : String?    //  선택한 name
+    
+    //  선택완료 버튼
+    @IBOutlet weak var selectCommitBtn: UIButton!
+    
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
     @IBOutlet weak var tapbarSearchBtn: UIButton!
@@ -33,6 +39,9 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.frame = CGRect(x: 0, y: 667, width: 375, height: 667)
+        
+        showAnimate()
         set()
         setDelegate()
         setTarget()
@@ -42,6 +51,30 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     override func viewDidAppear(_ animated: Bool) {
         
         boroughInit()
+    }
+    
+    func showAnimate() {
+        
+        
+        UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+            
+            self.view.frame.origin.y = 0
+            
+        }, completion: nil )
+    }
+    
+    func removeAnimate() {
+        
+        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            
+            self.view.frame.origin.y = 667
+            
+        }) { (finished ) in
+            
+            if( finished ) {
+                self.view.removeFromSuperview()
+            }
+        }
     }
     
     func set() {
@@ -55,6 +88,8 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
         tapbarMenuUIView.layer.shadowOpacity = 0.24                            //  그림자 투명도
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
+        
+        selectCommitBtn.layer.cornerRadius = 25
     }
     
     func setDelegate() {
@@ -76,6 +111,9 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
         
         //  홈 백 버튼
         selectBoroughBackBtn.addTarget(self, action: #selector(self.pressedSelectBoroughBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  선택완료 버튼
+        selectCommitBtn.addTarget(self, action: #selector(self.pressedSelectCommitBtn(_:)), for: UIControlEvents.touchUpInside)
         
     }
     
@@ -127,7 +165,12 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     //  백 홈 버튼 액션
     @objc func pressedSelectBoroughBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: true , completion: nil )
+    }
+    
+    //  선택완료 버튼 액션
+    @objc func pressedSelectCommitBtn( _ sender : UIButton ) {
+        
+        
     }
     
     func boroughInit() {
@@ -138,10 +181,7 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
                 
                 self.boroughList = boroughData
                 self.boroughCollectionView.reloadData()
-                
-                print("aaaaaaaaaaaa\n")
-                print( self.memberRepresentativeBoroughIndex! - 1 )
-                
+  
                 let indexPathForFirstRow = IndexPath(row: self.memberRepresentativeBoroughIndex! - 1 , section: 0)
                 self.collectionView( self.boroughCollectionView , didSelectItemAt: indexPathForFirstRow )
                 
@@ -175,9 +215,13 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
         
         if( indexPath == boroughSelectedIndexPath ) {
             
-            cell.boroughBackView.layer.cornerRadius = 25
+            cell.boroughBackView.layer.cornerRadius = 20
             cell.boroughBackView.isHidden = false
             cell.boroughLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            
+            self.selectIndex = boroughList[ indexPath.row ].sb_id
+            self.selectName = boroughList[ indexPath.row ].sb_name
+            
         } else {
             
             cell.boroughBackView.isHidden = true
@@ -205,12 +249,13 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     //  cell 간 세로 간격 ( vertical 이라서 세로를 사용해야 한다 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        return 13
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        
+        return 14
     }
 
 }
