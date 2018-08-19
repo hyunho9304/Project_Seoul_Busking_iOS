@@ -165,6 +165,7 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     //  백 홈 버튼 액션
     @objc func pressedSelectBoroughBackBtn( _ sender : UIButton ) {
         
+        removeAnimate()
     }
     
     //  선택완료 버튼 액션
