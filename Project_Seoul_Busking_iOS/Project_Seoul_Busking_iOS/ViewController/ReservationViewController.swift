@@ -18,12 +18,27 @@ class ReservationViewController: UIViewController {
     
     //  뷰1
     @IBOutlet weak var reservationAreaView: UIView!
+    @IBOutlet weak var reservationBoroughLabel: UILabel!
+    @IBOutlet weak var reservationBoroughBtn: UIButton!
+    
+    @IBOutlet weak var reservationZoneLabel: UILabel!
+    @IBOutlet weak var reservationZoneBtn: UIButton!
     
     //  뷰2
-    @IBOutlet weak var reservationZoneImageView: UIView!
+    @IBOutlet weak var reservationZoneUIView: UIView!
+    @IBOutlet weak var reservationZoneImageView: UIImageView!
     
     //  뷰3
     @IBOutlet weak var reservationDateTimeView: UIView!
+    @IBOutlet weak var reservationDateLabel: UILabel!
+    @IBOutlet weak var reservationDateBtn: UIButton!
+    
+    @IBOutlet weak var reservationTimeLabel: UILabel!
+    @IBOutlet weak var reservationTimeBtn: UIButton!
+    
+    //  신청하기
+    @IBOutlet weak var reservationCommitBtn: UIButton!
+    
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
