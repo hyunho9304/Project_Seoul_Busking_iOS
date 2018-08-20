@@ -99,6 +99,8 @@ class ReservationViewController: UIViewController {
         tapbarMenuUIView.layer.shadowOpacity = 0.24                            //  그림자 투명도
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
+        
+        reservationCommitBtn.layer.cornerRadius = 25
     }
     
     func setTarget() {
@@ -114,6 +116,10 @@ class ReservationViewController: UIViewController {
         
         //  뒤로가기 버튼
         reservationBackBtn.addTarget(self, action: #selector(self.pressedReservationBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  지역선택 버튼
+        reservationBoroughBtn.addTarget(self, action: #selector(self.pressedReservationBoroughBtn(_:)), for: UIControlEvents.touchUpInside)
+        
     }
     
     func setTapbarAnimation() {
@@ -165,6 +171,18 @@ class ReservationViewController: UIViewController {
     @objc func pressedReservationBackBtn( _ sender : UIButton ) {
         
         removeAnimate()
+    }
+    
+    //  자치구 선택 버튼 액션
+    @objc func pressedReservationBoroughBtn( _ sender : UIButton ) {
+        
+        guard let boroughListPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoroughListPopUpViewController") as? BoroughListPopUpViewController else { return }
+
+        self.addChildViewController( boroughListPopUpVC )
+        boroughListPopUpVC.view.frame = self.view.frame
+        self.view.addSubview( boroughListPopUpVC.view )
+        boroughListPopUpVC.didMove(toParentViewController: self )
+        
     }
 
 

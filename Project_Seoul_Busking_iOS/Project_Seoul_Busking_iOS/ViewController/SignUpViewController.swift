@@ -143,8 +143,6 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     
         if ( !(checkOverlapID)! ) {
             
-            //  수정 -> custom 알림창
-            
             guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
             
             defaultPopUpVC.content = "아이디 중복확인을 해주세요."

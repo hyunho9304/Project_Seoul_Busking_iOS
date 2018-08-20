@@ -13,6 +13,7 @@
 		BEB0C1D72126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D62126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift */; };
 		BEB0C1D92126F4B8004D3F22 /* Borough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D82126F4B8004D3F22 /* Borough.swift */; };
 		BEB0C1DB212AB9DA004D3F22 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1DA212AB9DA004D3F22 /* ReservationViewController.swift */; };
+		BEB0C1DD212AEB4B004D3F22 /* BoroughListPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1DC212AEB4B004D3F22 /* BoroughListPopUpViewController.swift */; };
 		BEB560F621243E7D00760903 /* HomeCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */; };
 		BEB560F8212441F800760903 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F7212441F800760903 /* Calendar.swift */; };
 		BEB560FC212467EF00760903 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FB212467EF00760903 /* Member.swift */; };
@@ -53,6 +54,7 @@
 		BEB0C1D62126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBoroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEB0C1D82126F4B8004D3F22 /* Borough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Borough.swift; sourceTree = "<group>"; };
 		BEB0C1DA212AB9DA004D3F22 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
+		BEB0C1DC212AEB4B004D3F22 /* BoroughListPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoroughListPopUpViewController.swift; sourceTree = "<group>"; };
 		BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEB560F7212441F800760903 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		BEB560FB212467EF00760903 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				BEBD52B22118AD6E009A63A4 /* DefaultPopUpViewController.swift */,
+				BEB0C1DC212AEB4B004D3F22 /* BoroughListPopUpViewController.swift */,
 			);
 			path = PopUpViewController;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				BEEA4D4F21130FD300FD71C4 /* SignInViewController.swift in Sources */,
 				BEEA4D612113283200FD71C4 /* SignUpViewController.swift in Sources */,
 				BEEA4D65211328C500FD71C4 /* Server.swift in Sources */,
+				BEB0C1DD212AEB4B004D3F22 /* BoroughListPopUpViewController.swift in Sources */,
 				BEEA4D352113097E00FD71C4 /* AppDelegate.swift in Sources */,
 				BEB560F621243E7D00760903 /* HomeCalendarCollectionViewCell.swift in Sources */,
 				BEB560FC212467EF00760903 /* Member.swift in Sources */,

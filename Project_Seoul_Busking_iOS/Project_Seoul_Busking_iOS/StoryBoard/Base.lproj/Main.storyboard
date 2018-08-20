@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Sd-Lk-pjP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ksM-Hq-YVw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1012,6 +1012,78 @@
             </objects>
             <point key="canvasLocation" x="3200.8000000000002" y="1240.9295352323838"/>
         </scene>
+        <!--Borough List Pop Up View Controller-->
+        <scene sceneID="cek-pZ-cS1">
+            <objects>
+                <viewController storyboardIdentifier="BoroughListPopUpViewController" id="dbc-oP-6Ad" customClass="BoroughListPopUpViewController" customModule="Project_Seoul_Busking_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YEG-E5-dLP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eL9-TA-JQN">
+                                <rect key="frame" x="22.5" y="168" width="330" height="351"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eL9-TA-JQN" secondAttribute="height" multiplier="110:117" id="g8u-UW-orz"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uyS-yw-Kma">
+                                    <size key="itemSize" width="72" height="39"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SelectBoroughCollectionViewCell" reuseIdentifier="SelectBoroughCollectionViewCell" id="wP2-cZ-32F" customClass="SelectBoroughCollectionViewCell" customModule="Project_Seoul_Busking_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="72" height="39"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-dG-6Cx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="39"/>
+                                                    <color key="backgroundColor" red="0.44705882349999998" green="0.31372549020000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="강남구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z84-m0-DGo">
+                                                    <rect key="frame" x="17" y="9" width="39" height="21"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="14"/>
+                                                    <color key="textColor" red="0.44705882349999998" green="0.31372549020000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="5eI-dG-6Cx" secondAttribute="bottom" id="BEc-nF-9dP"/>
+                                            <constraint firstItem="5eI-dG-6Cx" firstAttribute="top" secondItem="wP2-cZ-32F" secondAttribute="top" id="b23-6M-9kO"/>
+                                            <constraint firstItem="Z84-m0-DGo" firstAttribute="centerY" secondItem="wP2-cZ-32F" secondAttribute="centerY" id="bmA-BD-Qsm"/>
+                                            <constraint firstAttribute="trailing" secondItem="5eI-dG-6Cx" secondAttribute="trailing" id="lTG-Cg-ldV"/>
+                                            <constraint firstItem="5eI-dG-6Cx" firstAttribute="leading" secondItem="wP2-cZ-32F" secondAttribute="leading" id="uf0-7F-GxR"/>
+                                            <constraint firstItem="Z84-m0-DGo" firstAttribute="centerX" secondItem="wP2-cZ-32F" secondAttribute="centerX" id="zmw-mY-xHp"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="boroughBackView" destination="5eI-dG-6Cx" id="TxO-2D-4Kl"/>
+                                            <outlet property="boroughLabel" destination="Z84-m0-DGo" id="1HB-0E-I2G"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eL9-TA-JQN" firstAttribute="width" secondItem="YEG-E5-dLP" secondAttribute="width" multiplier="330:375" id="QOb-bw-d9a"/>
+                            <constraint firstItem="eL9-TA-JQN" firstAttribute="centerY" secondItem="kfT-rk-Ned" secondAttribute="centerY" id="WGq-Dn-mM0"/>
+                            <constraint firstItem="eL9-TA-JQN" firstAttribute="centerX" secondItem="kfT-rk-Ned" secondAttribute="centerX" id="gBH-da-Ege"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kfT-rk-Ned"/>
+                    </view>
+                    <connections>
+                        <outlet property="boroughListCollectionView" destination="eL9-TA-JQN" id="lRi-iY-xga"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f5T-Kw-KDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3953" y="1241"/>
+        </scene>
         <!--Member Info View Controller-->
         <scene sceneID="U3c-T8-Wrx">
             <objects>
@@ -1068,7 +1140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tTL-Y3-S8E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4647" y="1241"/>
+            <point key="canvasLocation" x="5409" y="1233"/>
         </scene>
         <!--Select Type View Controller-->
         <scene sceneID="bJN-hg-Ml5">
