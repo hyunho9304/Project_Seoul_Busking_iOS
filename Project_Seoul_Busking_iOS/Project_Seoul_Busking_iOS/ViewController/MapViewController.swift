@@ -20,7 +20,6 @@ class MapViewController: UIViewController {
     
     var uiviewX : CGFloat?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

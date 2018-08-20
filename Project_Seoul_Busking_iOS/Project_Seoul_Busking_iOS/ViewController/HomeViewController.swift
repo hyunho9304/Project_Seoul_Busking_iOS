@@ -206,14 +206,20 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     //  텝바 움직임 애니메이션
     func setTapbarAnimation() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01 , execute: {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01 , execute: {
+//            
+//            UIView.animate(withDuration: 0.75 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+//                
+//                self.tapbarUIView.frame.origin.x = self.tapbarHomeBtn.frame.origin.x
+//                
+//            }, completion: nil )
+//        })
+        
+        UIView.animate(withDuration: 0.75 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
             
-            UIView.animate(withDuration: 0.75 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
-                
-                self.tapbarUIView.frame.origin.x = self.tapbarHomeBtn.frame.origin.x
-                
-            }, completion: nil )
-        })
+            self.tapbarUIView.frame.origin.x = self.tapbarHomeBtn.frame.origin.x
+            
+        }, completion: nil )
     }
 
     //  로그아웃 버튼 액션

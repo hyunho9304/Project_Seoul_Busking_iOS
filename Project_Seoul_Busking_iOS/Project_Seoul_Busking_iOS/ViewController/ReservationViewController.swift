@@ -14,6 +14,7 @@ class ReservationViewController: UIViewController {
     var memberInfo : Member?
     
     //  네비게이션 바
+    @IBOutlet weak var reservationNaviUIView: UIView!
     @IBOutlet weak var reservationBackBtn: UIButton!
     
     //  뷰1
@@ -55,7 +56,7 @@ class ReservationViewController: UIViewController {
     //  자치구 calloutView
     @IBOutlet var boroughListCalloutView: UIView!
     @IBOutlet weak var BoroughListCollectionView: UICollectionView!
-    
+    var boroughList : [ Borough ] = [ Borough ]()  //  서버 자치구 리스트
     
     
     override func viewDidLoad() {
@@ -64,10 +65,6 @@ class ReservationViewController: UIViewController {
         set()
         setTarget()
         setTapbarAnimation()
-        
-        //self.view.addSubview(boroughListCalloutView)
-//        boroughListCalloutView.frame = CGRect(x: 22.5 , y: 168 , width: 330, height: 351 )
-     //   self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
     }
 
@@ -174,7 +171,7 @@ class ReservationViewController: UIViewController {
             
         }) { (finished ) in
             
-            self.dismiss(animated: false , completion: nil )
+            self.present( homeVC , animated: false , completion:  nil)
         }
     }
     
@@ -189,6 +186,24 @@ class ReservationViewController: UIViewController {
         boroughListPopUpVC.view.frame = self.view.frame
         self.view.addSubview( boroughListPopUpVC.view )
         boroughListPopUpVC.didMove(toParentViewController: self )
+        
+
+//        print( self.reservationZoneUIView.backgroundColor )
+//        self.reservationNaviUIView.layer.opacity = 0.6
+//        self.reservationAreaView.layer.opacity = 0.6
+//        self.reservationZoneUIView.layer.opacity = 0.6
+//        self.reservationDateTimeView.layer.opacity = 0.6
+//        self.reservationCommitBtn.layer.opacity = 0.6
+//
+//        self.view.addSubview(boroughListCalloutView)
+//        boroughListCalloutView.frame = CGRect(x: 22.5 , y: 168 , width: 330, height: 351 )
+//        boroughListCalloutView.layer.opacity = 1
+        
+        
+        
+        
+        
+        
         
     }
 

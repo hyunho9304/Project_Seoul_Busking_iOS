@@ -91,7 +91,6 @@ class BoroughListPopUpViewController: UIViewController , UICollectionViewDelegat
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        
         guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
 
         reservationVC.selectBoroughIndex = self.boroughList[ indexPath.row ].sb_id
