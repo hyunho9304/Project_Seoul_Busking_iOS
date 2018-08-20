@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ksM-Hq-YVw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Sd-Lk-pjP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -146,10 +146,10 @@
             </objects>
             <point key="canvasLocation" x="902" y="161"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="Wbd-wW-eYo">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" id="hpK-h4-v5Z" customClass="SearchViewController" customModule="Project_Seoul_Busking_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="hpK-h4-v5Z" customClass="MapViewController" customModule="Project_Seoul_Busking_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="occ-cq-TwV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,10 +252,10 @@
                                             <segue destination="zwd-BW-wLx" kind="unwind" identifier="signin" unwindAction="goFirstWithSegue:" id="6tw-of-Bae"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Tm-qw-dV8">
-                                        <rect key="frame" x="14" y="29" width="46" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Tm-qw-dV8">
+                                        <rect key="frame" x="14" y="28" width="35" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" image="notify"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.44705882352941173" green="0.31372549019607843" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -336,7 +336,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="8Nk-Zw-KBn" secondAttribute="height" multiplier="37:27" id="5z2-eu-QPN"/>
                                         </constraints>
-                                        <state key="normal" image="notify"/>
+                                        <state key="normal" image="map"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iD-MW-xPE">
                                         <rect key="frame" x="151" y="0.0" width="74" height="54"/>
@@ -481,6 +481,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b8B-DC-rbC"/>
                     </view>
+                    <navigationItem key="navigationItem" id="wIn-g0-QGd"/>
                     <connections>
                         <outlet property="goFirstBtn" destination="CWW-Lc-9AJ" id="6oN-62-Fgh"/>
                         <outlet property="homeBoroughBtn" destination="vwb-Ks-nKX" id="FNg-JW-C7i"/>
@@ -501,7 +502,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1cG-3x-uaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zwd-BW-wLx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="1241"/>
+            <point key="canvasLocation" x="2592.8000000000002" y="1240.9295352323838"/>
         </scene>
         <!--Select Borough View Controller-->
         <scene sceneID="iAK-EQ-OzV">
@@ -589,7 +590,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="xS0-yz-5TO" secondAttribute="height" multiplier="37:27" id="Pih-Qd-LK2"/>
                                         </constraints>
-                                        <state key="normal" image="notify"/>
+                                        <state key="normal" image="map"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Exs-ra-dyr">
                                         <rect key="frame" x="151" y="0.0" width="74" height="54"/>
@@ -679,7 +680,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AC0-4B-TOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2440.8000000000002" y="1240.9295352323838"/>
+            <point key="canvasLocation" x="3380" y="1240.9295352323838"/>
         </scene>
         <!--Reservation View Controller-->
         <scene sceneID="4qb-ak-M8a">
@@ -719,7 +720,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ZNn-G4-Hgw" secondAttribute="height" multiplier="37:27" id="iyl-dM-RdY"/>
                                         </constraints>
-                                        <state key="normal" image="notify"/>
+                                        <state key="normal" image="map"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khN-qC-5Vv">
                                         <rect key="frame" x="151" y="0.0" width="74" height="54"/>
@@ -986,7 +987,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0c4-rK-adD"/>
                     </view>
+                    <navigationItem key="navigationItem" id="IUM-4F-X6a"/>
                     <connections>
+                        <outlet property="BoroughListCollectionView" destination="jyK-w7-nfJ" id="gMC-TK-RSh"/>
+                        <outlet property="boroughListCalloutView" destination="kg4-Oe-pLO" id="had-bq-4kx"/>
                         <outlet property="reservationAreaView" destination="5th-le-UoU" id="mLb-QZ-Ahi"/>
                         <outlet property="reservationBackBtn" destination="6rQ-AX-LCy" id="qFX-SY-wR9"/>
                         <outlet property="reservationBoroughBtn" destination="mZ8-Dg-aEn" id="Zvt-7s-Hke"/>
@@ -1009,8 +1013,66 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8sL-9v-rmy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="kg4-Oe-pLO">
+                    <rect key="frame" x="0.0" y="0.0" width="330" height="351"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jyK-w7-nfJ">
+                            <rect key="frame" x="0.0" y="0.0" width="330" height="351"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Iqi-gT-ans">
+                                <size key="itemSize" width="72" height="39"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <cells>
+                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SelectBoroughCollectionViewCell" reuseIdentifier="SelectBoroughCollectionViewCell" id="wBR-p0-QhD" customClass="SelectBoroughCollectionViewCell" customModule="Project_Seoul_Busking_iOS" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="72" height="39"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="39"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <subviews>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jup-3W-PE3">
+                                                <rect key="frame" x="0.0" y="0.0" width="72" height="39"/>
+                                                <color key="backgroundColor" red="0.44705882349999998" green="0.31372549020000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="강남구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5p-Ge-dAI">
+                                                <rect key="frame" x="17" y="9" width="39" height="21"/>
+                                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="14"/>
+                                                <color key="textColor" red="0.44705882349999998" green="0.31372549020000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </view>
+                                    <constraints>
+                                        <constraint firstItem="E5p-Ge-dAI" firstAttribute="centerY" secondItem="wBR-p0-QhD" secondAttribute="centerY" id="14s-rb-CxT"/>
+                                        <constraint firstAttribute="bottom" secondItem="jup-3W-PE3" secondAttribute="bottom" id="6q3-t6-6Rr"/>
+                                        <constraint firstItem="jup-3W-PE3" firstAttribute="leading" secondItem="wBR-p0-QhD" secondAttribute="leading" id="Pbz-jG-7iF"/>
+                                        <constraint firstItem="jup-3W-PE3" firstAttribute="top" secondItem="wBR-p0-QhD" secondAttribute="top" id="SFi-N2-dma"/>
+                                        <constraint firstAttribute="trailing" secondItem="jup-3W-PE3" secondAttribute="trailing" id="dv1-ul-xbs"/>
+                                        <constraint firstItem="E5p-Ge-dAI" firstAttribute="centerX" secondItem="wBR-p0-QhD" secondAttribute="centerX" id="rRs-F4-hcd"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="boroughBackView" destination="jup-3W-PE3" id="8ZE-e3-bki"/>
+                                        <outlet property="boroughLabel" destination="E5p-Ge-dAI" id="0tg-jw-ixM"/>
+                                    </connections>
+                                </collectionViewCell>
+                            </cells>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="jyK-w7-nfJ" secondAttribute="trailing" id="IYT-0b-dMm"/>
+                        <constraint firstItem="jyK-w7-nfJ" firstAttribute="leading" secondItem="LZY-ze-Yfr" secondAttribute="leading" id="f60-5j-I6r"/>
+                        <constraint firstItem="jyK-w7-nfJ" firstAttribute="top" secondItem="LZY-ze-Yfr" secondAttribute="top" id="gIc-bB-lIM"/>
+                        <constraint firstAttribute="bottom" secondItem="jyK-w7-nfJ" secondAttribute="bottom" id="iJ8-0n-vCS"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="LZY-ze-Yfr"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="3200.8000000000002" y="1240.9295352323838"/>
+            <point key="canvasLocation" x="4140" y="1240.9295352323838"/>
         </scene>
         <!--Borough List Pop Up View Controller-->
         <scene sceneID="cek-pZ-cS1">
@@ -1082,7 +1144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5T-Kw-KDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3953" y="1241"/>
+            <point key="canvasLocation" x="4892" y="1240.9295352323838"/>
         </scene>
         <!--Member Info View Controller-->
         <scene sceneID="U3c-T8-Wrx">
@@ -1099,7 +1161,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXf-60-GcE">
                                         <rect key="frame" x="40" y="0.0" width="74" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="notify"/>
+                                        <state key="normal" image="map"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5W-VJ-Pkk">
                                         <rect key="frame" x="151" y="0.0" width="74" height="54"/>
@@ -1140,7 +1202,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tTL-Y3-S8E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5409" y="1233"/>
+            <point key="canvasLocation" x="6348" y="1232.8335832083958"/>
         </scene>
         <!--Select Type View Controller-->
         <scene sceneID="bJN-hg-Ml5">
@@ -1572,6 +1634,7 @@
         <image name="3_5_1" width="39" height="19"/>
         <image name="homeCopy" width="16" height="16"/>
         <image name="likeCopy2" width="19" height="18"/>
+        <image name="map" width="18" height="16"/>
         <image name="moreCopy" width="12" height="7"/>
         <image name="notify" width="18" height="18"/>
         <image name="oval2" width="36" height="36"/>

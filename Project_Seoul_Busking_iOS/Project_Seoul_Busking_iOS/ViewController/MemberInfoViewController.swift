@@ -66,12 +66,12 @@ class MemberInfoViewController: UIViewController {
     //  검색 버튼 액션
     @objc func pressedTapbarSearchBtn( _ sender : UIButton ) {
         
-        guard let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
+        guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         
-        searchVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
-        searchVC.memberInfo = self.memberInfo
+        mapVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
+        mapVC.memberInfo = self.memberInfo
         
-        self.present( searchVC , animated: false , completion: nil )
+        self.present( mapVC , animated: false , completion: nil )
     }
     
     //  홈 버튼 액션

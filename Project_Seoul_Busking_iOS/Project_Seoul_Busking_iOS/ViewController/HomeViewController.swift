@@ -225,12 +225,12 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     //  검색 버튼 액션
     @objc func pressedTapbarSearchBtn( _ sender : UIButton ) {
         
-        guard let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
+        guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         
-        searchVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
-        searchVC.memberInfo = self.memberInfo
+        mapVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        mapVC.memberInfo = self.memberInfo
         
-        self.present( searchVC , animated: false , completion: nil )
+        self.present( mapVC , animated: false , completion: nil )
     }
     
     //  개인정보 버튼 액션
@@ -273,16 +273,25 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     //  버스킹 예약 버튼 액션
     @objc func pressedHomeBuskingReservationBtn( _ sender : UIButton ) {
         
-        guard let ReservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+        guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
         
-        ReservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
-        ReservationVC.memberInfo = self.memberInfo
+        let containerView = self.view.superview
         
-        self.addChildViewController( ReservationVC )
-        ReservationVC.view.frame = self.view.frame
-        self.view.addSubview( ReservationVC.view )
-        ReservationVC.didMove(toParentViewController: self )
+        reservationVC.view.frame = CGRect(x: 375, y: 0, width: 375, height: 667 )
+        reservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        reservationVC.memberInfo = self.memberInfo
         
+        containerView?.addSubview(reservationVC.view )
+        
+        
+        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            
+            reservationVC.view.frame.origin.x = 0
+            
+        }) { (finished ) in
+            
+            self.present( reservationVC , animated: false , completion: nil )
+        }
     }
     
     //  달력 데이터 서버연동

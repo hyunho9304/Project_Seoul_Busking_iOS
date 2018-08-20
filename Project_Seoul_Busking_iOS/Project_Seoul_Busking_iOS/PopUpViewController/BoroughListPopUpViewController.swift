@@ -5,21 +5,15 @@
 //  Created by 박현호 on 2018. 8. 20..
 //  Copyright © 2018년 박현호. All rights reserved.
 //
-
-
-
-
-//  self.view.removeFromSuperview() 사라질때
 import UIKit
 
 class BoroughListPopUpViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
 
+    //  유저 정보
+    var memberInfo : Member?
+    
     @IBOutlet weak var boroughListCollectionView: UICollectionView!
     var boroughList : [ Borough ] = [ Borough ]()  //  서버 자치구 리스트
-    var boroughSelectedIndexPath :IndexPath?    //  선택고려
-    
-    var selectBoroughIndex : Int?      //  선택한 자치구 index
-    var selectBoroughName : String?    //  선택한 자치구 name
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,57 +82,26 @@ class BoroughListPopUpViewController: UIViewController , UICollectionViewDelegat
         
         cell.boroughLabel.text = boroughList[ indexPath.row ].sb_name
         
-        if( indexPath == boroughSelectedIndexPath ) {
-            
-            cell.boroughBackView.layer.cornerRadius = 20
-            cell.boroughBackView.isHidden = false
-            cell.boroughLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            
-        } else {
-            
-            cell.boroughBackView.isHidden = true
-            cell.boroughLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
-            
-        }
+        cell.boroughBackView.isHidden = true
+        cell.boroughLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
         
         return cell
     }
     
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        boroughSelectedIndexPath = indexPath
-        collectionView.reloadData()
-        
-//        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
-//
-//            self.view.frame.origin.y = 667
-//
-//        }) { (finished ) in
-//
-//            if( finished ) {
-//
-//                guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
-//
-//                homeVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
-//                homeVC.memberInfo = self.memberInfo
-//                homeVC.homeSelectBoroughIndex = self.selectIndex
-//                homeVC.homeSelectBoroughName = self.selectName
-//
-//                self.present( homeVC , animated: false , completion: nil )
-//
-//                self.view.removeFromSuperview()
-//            }
-//        }
 
         
+        guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+
+        reservationVC.selectBoroughIndex = self.boroughList[ indexPath.row ].sb_id
+        reservationVC.selectBoroughName = self.boroughList[ indexPath.row ].sb_name
+        reservationVC.memberInfo = self.memberInfo
         
         
-        
-        
-        
-        self.selectBoroughIndex = boroughList[ indexPath.row ].sb_id
-        self.selectBoroughName = boroughList[ indexPath.row ].sb_name
+        self.present( reservationVC , animated: false , completion: nil )
+
+        self.view.removeFromSuperview()
         
     }
     

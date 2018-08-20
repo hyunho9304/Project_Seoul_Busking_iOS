@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  MapViewController.swift
 //  Project_Seoul_Busking_iOS
 //
 //  Created by 박현호 on 2018. 8. 15..
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class MapViewController: UIViewController {
 
     var memberInfo : Member?
     

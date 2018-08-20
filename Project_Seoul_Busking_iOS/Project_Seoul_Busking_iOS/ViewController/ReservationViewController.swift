@@ -20,6 +20,8 @@ class ReservationViewController: UIViewController {
     @IBOutlet weak var reservationAreaView: UIView!
     @IBOutlet weak var reservationBoroughLabel: UILabel!
     @IBOutlet weak var reservationBoroughBtn: UIButton!
+    var selectBoroughIndex : Int?
+    var selectBoroughName : String?
     
     @IBOutlet weak var reservationZoneLabel: UILabel!
     @IBOutlet weak var reservationZoneBtn: UIButton!
@@ -50,43 +52,25 @@ class ReservationViewController: UIViewController {
     var uiviewX : CGFloat?
     
     
+    //  자치구 calloutView
+    @IBOutlet var boroughListCalloutView: UIView!
+    @IBOutlet weak var BoroughListCollectionView: UICollectionView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showAnimate()
         set()
         setTarget()
         setTapbarAnimation()
         
-    }
-    
-    //  등장 애니메이션
-    func showAnimate() {
+        //self.view.addSubview(boroughListCalloutView)
+//        boroughListCalloutView.frame = CGRect(x: 22.5 , y: 168 , width: 330, height: 351 )
+     //   self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
-        self.view.frame = CGRect(x: 375 , y: 0 , width: 375, height: 667)
-        
-        UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
-            
-            self.view.frame.origin.x = 0
-            
-        }, completion: nil )
     }
-    
-    //  사라짐 애니메이션
-    func removeAnimate() {
-        
-        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
-            
-            self.view.frame.origin.x = 375
-            
-        }) { (finished ) in
-            
-            if( finished ) {
-                self.view.removeFromSuperview()
-            }
-        }
-    }
+
     
     func set() {
         
@@ -101,6 +85,10 @@ class ReservationViewController: UIViewController {
         //  그림자의 블러는 5 정도 이다
         
         reservationCommitBtn.layer.cornerRadius = 25
+        
+        if( selectBoroughName != nil ) {
+            reservationBoroughLabel.text = selectBoroughName
+        }
     }
     
     func setTarget() {
@@ -137,12 +125,12 @@ class ReservationViewController: UIViewController {
     //  검색 버튼 액션
     @objc func pressedTapbarSearchBtn( _ sender : UIButton ) {
         
-        guard let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
+        guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         
-        searchVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
-        searchVC.memberInfo = self.memberInfo
+        mapVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        mapVC.memberInfo = self.memberInfo
         
-        self.present( searchVC , animated: false , completion: nil )
+        self.present( mapVC , animated: false , completion: nil )
     }
     
     //  홈 버튼 액션
@@ -170,13 +158,32 @@ class ReservationViewController: UIViewController {
     //  뒤로가기 버튼 액션
     @objc func pressedReservationBackBtn( _ sender : UIButton ) {
         
-        removeAnimate()
+        guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+        
+        let containerView = self.view.superview
+        
+        containerView?.addSubview(homeVC.view )
+        containerView?.sendSubview(toBack: homeVC.view)
+        
+        homeVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        homeVC.memberInfo = self.memberInfo
+        
+        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            
+            self.view.frame.origin.x = 375
+            
+        }) { (finished ) in
+            
+            self.dismiss(animated: false , completion: nil )
+        }
     }
     
     //  자치구 선택 버튼 액션
     @objc func pressedReservationBoroughBtn( _ sender : UIButton ) {
         
         guard let boroughListPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoroughListPopUpViewController") as? BoroughListPopUpViewController else { return }
+
+        boroughListPopUpVC.memberInfo = self.memberInfo
 
         self.addChildViewController( boroughListPopUpVC )
         boroughListPopUpVC.view.frame = self.view.frame
