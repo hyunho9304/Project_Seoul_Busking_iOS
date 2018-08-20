@@ -18,6 +18,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     
     
     //  네비게이션 바
+    
+    @IBOutlet weak var homeStarImageView: UIImageView!
     @IBOutlet weak var homeRepresentativeBoroughLabel: UILabel!      //  현재 띄우고 있는 자치구
     @IBOutlet weak var homeBoroughBtn: UIButton!                //  자치구 선택 버튼
     @IBOutlet weak var homeBuskingReservationBtn: UIButton!     //  버스킹예약 버튼
@@ -68,95 +70,77 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         getMemberRepresentativeBoroughData()
     }
     
+    
     func getMemberRepresentativeBoroughData() {
         
-        //  처음에 실행되었을때 디폴트로 자신의 대표 자치구 띄우기
-        if( homeSelectBoroughIndex == nil ) {
-
-            Server.reqMemberRepresentativeBorough(member_nickname: (memberInfo?.member_nickname)!) { ( memberRepresentativeBoroughData , rescode ) in
+        Server.reqMemberRepresentativeBorough(member_nickname: (memberInfo?.member_nickname)!) { ( memberRepresentativeBoroughData , rescode ) in
+            
+            if( rescode == 201 ) {
                 
-                if( rescode == 201 ) {
+                self.memberRepresentativeBorough = memberRepresentativeBoroughData
+                
+                var tmp : Int?
+                if( self.homeSelectBoroughIndex == nil ) {
                     
-                    self.memberRepresentativeBorough = memberRepresentativeBoroughData
+                    tmp = self.memberRepresentativeBorough?.sb_id
                     
                     self.homeRepresentativeBoroughLabel.text = self.memberRepresentativeBorough?.sb_name
                     self.homeSelectBoroughIndex = self.memberRepresentativeBorough?.sb_id
                     self.homeSelectBoroughName = self.memberRepresentativeBorough?.sb_name
                     
-                    Server.reqBuskingZoneList(sb_id: (self.memberRepresentativeBorough?.sb_id)! ) { ( buskingZoneListData , rescode ) in
+                } else {
+                    
+                    tmp = self.homeSelectBoroughIndex
+                    
+                    self.homeRepresentativeBoroughLabel.text = self.homeSelectBoroughName
+                    
+                }
+                
+                if( self.memberRepresentativeBorough?.sb_id == self.homeSelectBoroughIndex ) {
+                    
+                    self.homeStarImageView.image = #imageLiteral(resourceName: "likeCopy.png")
+                } else {
+                    
+                    self.homeStarImageView.image = #imageLiteral(resourceName: "likeCopy2")
+                }
+                
+                Server.reqBuskingZoneList(sb_id: ( tmp )! ) { ( buskingZoneListData , rescode ) in
+                    
+                    if rescode == 200 {
                         
-                        if rescode == 200 {
+                        self.buskingZoneList = buskingZoneListData
+                        self.homeBuskingZoneCollectionView.reloadData()
+                        
+                        if( self.buskingZoneList.count == 0 ) {
                             
-                            self.buskingZoneList = buskingZoneListData
-                            self.homeBuskingZoneCollectionView.reloadData()
-                            
-                            if( self.buskingZoneList.count == 0 ) {
-                                
-                                self.nothingZone.isHidden = false
-                                
-                            } else {
-                                
-                                self.nothingZone.isHidden = true
-                                
-                                let indexPathForFirstRow = IndexPath(row: 0, section: 0)
-                                self.collectionView( self.homeBuskingZoneCollectionView, didSelectItemAt: indexPathForFirstRow )
-                                
-                            }
+                            self.nothingZone.isHidden = false
                             
                         } else {
                             
-                            let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
-                            let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-                            alert.addAction( ok )
-                            self.present(alert , animated: true , completion: nil)
+                            self.nothingZone.isHidden = true
+                            
+                            let indexPathForFirstRow = IndexPath(row: 0, section: 0)
+                            self.collectionView( self.homeBuskingZoneCollectionView, didSelectItemAt: indexPathForFirstRow )
+                            
                         }
-                    }
-                    
-                } else {
-                    
-                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
-                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-                    alert.addAction( ok )
-                    self.present(alert , animated: true , completion: nil)
-                }
-            }
-            
-            //  자치구 선택화면 전환된 후 선택된 자치구가 있을 경우
-        } else {
-            
-            self.homeRepresentativeBoroughLabel.text = self.homeSelectBoroughName
-            
-            Server.reqBuskingZoneList(sb_id: homeSelectBoroughIndex! ) { ( buskingZoneListData , rescode ) in
-                
-                if rescode == 200 {
-                    
-                    self.buskingZoneList = buskingZoneListData
-                    self.homeBuskingZoneCollectionView.reloadData()
-                    
-                    if( self.buskingZoneList.count == 0 ) {
-                        
-                        self.nothingZone.isHidden = false
                         
                     } else {
                         
-                        self.nothingZone.isHidden = true
-                        
-                        let indexPathForFirstRow = IndexPath(row: 0, section: 0)
-                        self.collectionView( self.homeBuskingZoneCollectionView, didSelectItemAt: indexPathForFirstRow )
-                        
+                        let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                        let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                        alert.addAction( ok )
+                        self.present(alert , animated: true , completion: nil)
                     }
-                    
-                } else {
-                    
-                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
-                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-                    alert.addAction( ok )
-                    self.present(alert , animated: true , completion: nil)
-                    
                 }
+                
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
             }
         }
-
     }
     
     func set() {
@@ -168,13 +152,14 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
         setShadow()
         
-        //  그림자의 블러는 5 정도 이다
-        
         if uiviewX != nil {
             
             tapbarUIView.frame.origin.x = uiviewX!
         }
         
+        let tap = UITapGestureRecognizer(target: self , action: #selector( HomeViewController.pressedHomeBoroughBtn(_:) ))
+        homeRepresentativeBoroughLabel.isUserInteractionEnabled = true
+        homeRepresentativeBoroughLabel.addGestureRecognizer(tap)
     }
     
     func setShadow() {
@@ -213,6 +198,9 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
         //  자치구 선택 버튼
         homeBoroughBtn.addTarget(self, action: #selector(self.pressedHomeBoroughBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  버스킹 예약 버튼
+        homeBuskingReservationBtn.addTarget(self, action: #selector(self.pressedHomeBuskingReservationBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     //  텝바 움직임 애니메이션
@@ -282,6 +270,21 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
     }
     
+    //  버스킹 예약 버튼 액션
+    @objc func pressedHomeBuskingReservationBtn( _ sender : UIButton ) {
+        
+        guard let ReservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+        
+        ReservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        ReservationVC.memberInfo = self.memberInfo
+        
+        self.addChildViewController( ReservationVC )
+        ReservationVC.view.frame = self.view.frame
+        self.view.addSubview( ReservationVC.view )
+        ReservationVC.didMove(toParentViewController: self )
+        
+    }
+    
     //  달력 데이터 서버연동
     func dateTimeInit() {
         
@@ -316,10 +319,10 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
         //   도두다 nil 아닐경우만 접근
         
-        print( homeSelectBoroughIndex )
-        print( selectDateTime )
-        print( selectZoneIndex )
-        print()
+//        print( homeSelectBoroughIndex )
+//        print( selectDateTime )
+//        print( selectZoneIndex )
+//        print()
     }
     
 //  Mark -> delegate

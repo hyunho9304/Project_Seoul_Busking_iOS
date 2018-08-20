@@ -15,7 +15,7 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     //  네비게이션 바
     @IBOutlet weak var selectBoroughBackBtn: UIButton!
     
-    //  내용
+    //  내용B
     @IBOutlet weak var boroughCollectionView: UICollectionView!
     var memberRepresentativeBoroughIndex : Int?
     var boroughList : [ Borough ] = [ Borough ]()  //  서버 자치구 리스트
@@ -39,8 +39,6 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.frame = CGRect(x: 0, y: 667, width: 375, height: 667)
-        
         showAnimate()
         set()
         setDelegate()
@@ -55,6 +53,7 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     
     func showAnimate() {
         
+        self.view.frame = CGRect(x: 0, y: 667, width: 375, height: 667)
         
         UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
             
@@ -170,8 +169,6 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     
     //  선택완료 버튼 액션
     @objc func pressedSelectCommitBtn( _ sender : UIButton ) {
-        
-        guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         
         UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
