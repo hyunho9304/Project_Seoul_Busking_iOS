@@ -15,8 +15,12 @@
 		BEB0C1DB212AB9DA004D3F22 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1DA212AB9DA004D3F22 /* ReservationViewController.swift */; };
 		BEB0C1DD212AEB4B004D3F22 /* BoroughListPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1DC212AEB4B004D3F22 /* BoroughListPopUpViewController.swift */; };
 		BEB0C1DF212B40AB004D3F22 /* NextSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1DE212B40AB004D3F22 /* NextSegue.swift */; };
+		BEB0C1E1212C1F00004D3F22 /* ZoneListPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1E0212C1F00004D3F22 /* ZoneListPopUpViewController.swift */; };
+		BEB0C1E3212C7161004D3F22 /* CalendarPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1E2212C7161004D3F22 /* CalendarPopUpViewController.swift */; };
+		BEB0C1E5212C71DE004D3F22 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1E4212C71DE004D3F22 /* CalendarCollectionViewCell.swift */; };
+		BEB0C1E7212C72DA004D3F22 /* CalendarVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1E6212C72DA004D3F22 /* CalendarVars.swift */; };
 		BEB560F621243E7D00760903 /* HomeCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */; };
-		BEB560F8212441F800760903 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F7212441F800760903 /* Calendar.swift */; };
+		BEB560F8212441F800760903 /* CustomCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560F7212441F800760903 /* CustomCalendar.swift */; };
 		BEB560FC212467EF00760903 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FB212467EF00760903 /* Member.swift */; };
 		BEB560FE21248DF900760903 /* BuskingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FD21248DF900760903 /* BuskingZone.swift */; };
 		BEB56100212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB560FF212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift */; };
@@ -57,8 +61,12 @@
 		BEB0C1DA212AB9DA004D3F22 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
 		BEB0C1DC212AEB4B004D3F22 /* BoroughListPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoroughListPopUpViewController.swift; sourceTree = "<group>"; };
 		BEB0C1DE212B40AB004D3F22 /* NextSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextSegue.swift; sourceTree = "<group>"; };
+		BEB0C1E0212C1F00004D3F22 /* ZoneListPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneListPopUpViewController.swift; sourceTree = "<group>"; };
+		BEB0C1E2212C7161004D3F22 /* CalendarPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPopUpViewController.swift; sourceTree = "<group>"; };
+		BEB0C1E4212C71DE004D3F22 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		BEB0C1E6212C72DA004D3F22 /* CalendarVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVars.swift; sourceTree = "<group>"; };
 		BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
-		BEB560F7212441F800760903 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		BEB560F7212441F800760903 /* CustomCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendar.swift; sourceTree = "<group>"; };
 		BEB560FB212467EF00760903 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		BEB560FD21248DF900760903 /* BuskingZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuskingZone.swift; sourceTree = "<group>"; };
 		BEB560FF212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -126,6 +134,7 @@
 				BEB560F521243E7D00760903 /* HomeCalendarCollectionViewCell.swift */,
 				BEB560FF212493CB00760903 /* HomeBuskingZoneCollectionViewCell.swift */,
 				BEB0C1D62126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift */,
+				BEB0C1E4212C71DE004D3F22 /* CalendarCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -135,6 +144,8 @@
 			children = (
 				BEBD52B22118AD6E009A63A4 /* DefaultPopUpViewController.swift */,
 				BEB0C1DC212AEB4B004D3F22 /* BoroughListPopUpViewController.swift */,
+				BEB0C1E0212C1F00004D3F22 /* ZoneListPopUpViewController.swift */,
+				BEB0C1E2212C7161004D3F22 /* CalendarPopUpViewController.swift */,
 			);
 			path = PopUpViewController;
 			sourceTree = "<group>";
@@ -195,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				BEEA4D5E2113276300FD71C4 /* Extension.swift */,
+				BEB0C1E6212C72DA004D3F22 /* CalendarVars.swift */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -203,7 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				BEEA4D682113312700FD71C4 /* ToggleBtn.swift */,
-				BEB560F7212441F800760903 /* Calendar.swift */,
+				BEB560F7212441F800760903 /* CustomCalendar.swift */,
 				BEB560FB212467EF00760903 /* Member.swift */,
 				BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */,
 				BEB560FD21248DF900760903 /* BuskingZone.swift */,
@@ -392,11 +404,15 @@
 				BEEA4D63211328BA00FD71C4 /* APIservice.swift in Sources */,
 				BEB0C1D52125A783004D3F22 /* selectBoroughViewController.swift in Sources */,
 				BEBD52A12115F033009A63A4 /* selectCategoryCollectionViewCell.swift in Sources */,
-				BEB560F8212441F800760903 /* Calendar.swift in Sources */,
+				BEB560F8212441F800760903 /* CustomCalendar.swift in Sources */,
 				BEEA4D6721132AAE00FD71C4 /* SelectTypeViewController.swift in Sources */,
+				BEB0C1E3212C7161004D3F22 /* CalendarPopUpViewController.swift in Sources */,
+				BEB0C1E5212C71DE004D3F22 /* CalendarCollectionViewCell.swift in Sources */,
+				BEB0C1E1212C1F00004D3F22 /* ZoneListPopUpViewController.swift in Sources */,
 				BEBD52B32118AD6E009A63A4 /* DefaultPopUpViewController.swift in Sources */,
 				BEEA4D5F2113276300FD71C4 /* Extension.swift in Sources */,
 				BEB560FE21248DF900760903 /* BuskingZone.swift in Sources */,
+				BEB0C1E7212C72DA004D3F22 /* CalendarVars.swift in Sources */,
 				BEB0C1D321259321004D3F22 /* MemberRepresentativeBorough.swift in Sources */,
 				BEBD52B12117206E009A63A4 /* HomeViewController.swift in Sources */,
 				BEB0C1DF212B40AB004D3F22 /* NextSegue.swift in Sources */,

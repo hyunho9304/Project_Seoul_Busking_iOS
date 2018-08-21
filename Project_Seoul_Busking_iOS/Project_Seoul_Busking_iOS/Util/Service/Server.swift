@@ -177,7 +177,7 @@ struct Server : APIService {
     }
 
     //  달력 가져오기
-    static func reqCalendar( completion : @escaping ( Calendar , _ status : Int ) -> Void ) {
+    static func reqCalendar( completion : @escaping ( CustomCalendar , _ status : Int ) -> Void ) {
         
         let URL = url( "/collection/calendarList")
         

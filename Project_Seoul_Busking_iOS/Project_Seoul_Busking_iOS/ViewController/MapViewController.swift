@@ -58,6 +58,7 @@ class MapViewController: UIViewController {
             UIView.animate(withDuration: 0.75 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
                 
                 self.tapbarUIView.frame.origin.x = self.tapbarSearchBtn.frame.origin.x
+
                 
             }, completion: nil )
         })

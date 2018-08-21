@@ -24,6 +24,7 @@ class ReservationViewController: UIViewController {
     var selectBoroughIndex : Int?
     var selectBoroughName : String?
     
+    
     @IBOutlet weak var reservationZoneLabel: UILabel!
     @IBOutlet weak var reservationZoneBtn: UIButton!
     
@@ -86,6 +87,8 @@ class ReservationViewController: UIViewController {
         if( selectBoroughName != nil ) {
             reservationBoroughLabel.text = selectBoroughName
         }
+        
+        
     }
     
     func setTarget() {
@@ -105,6 +108,8 @@ class ReservationViewController: UIViewController {
         //  지역선택 버튼
         reservationBoroughBtn.addTarget(self, action: #selector(self.pressedReservationBoroughBtn(_:)), for: UIControlEvents.touchUpInside)
         
+        //  위치선택 버튼
+        reservationZoneBtn.addTarget(self, action: #selector(self.pressedReservationZoneBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     func setTapbarAnimation() {
@@ -186,25 +191,27 @@ class ReservationViewController: UIViewController {
         boroughListPopUpVC.view.frame = self.view.frame
         self.view.addSubview( boroughListPopUpVC.view )
         boroughListPopUpVC.didMove(toParentViewController: self )
-        
-
-//        print( self.reservationZoneUIView.backgroundColor )
-//        self.reservationNaviUIView.layer.opacity = 0.6
-//        self.reservationAreaView.layer.opacity = 0.6
-//        self.reservationZoneUIView.layer.opacity = 0.6
-//        self.reservationDateTimeView.layer.opacity = 0.6
-//        self.reservationCommitBtn.layer.opacity = 0.6
-//
-//        self.view.addSubview(boroughListCalloutView)
-//        boroughListCalloutView.frame = CGRect(x: 22.5 , y: 168 , width: 330, height: 351 )
-//        boroughListCalloutView.layer.opacity = 1
+    }
+    
+    //  위치 선택 버튼 액션
+    @objc func pressedReservationZoneBtn( _ sender : UIButton ) {
         
         
-        
-        
-        
-        
-        
+        if( reservationBoroughLabel.text == "지역 선택" ) {
+            
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+            
+            defaultPopUpVC.content = "지역을 선택해 주세요."
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
+            
+        } else {
+            
+            //  zone 연결
+        }
     }
 
 

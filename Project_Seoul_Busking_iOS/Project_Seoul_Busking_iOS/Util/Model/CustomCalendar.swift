@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Calendar : Codable {
+struct CustomCalendar : Codable {
     
     let twoWeeksYear : [ String ]?
     let twoWeeksMonth : [ String ]?
@@ -20,6 +20,6 @@ struct Calendar : Codable {
 struct CalendarData : Codable {
     
     let status : String
-    let data : Calendar?
+    let data : CustomCalendar?
     let message : String
 }

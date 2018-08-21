@@ -29,7 +29,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     //  달력
     @IBOutlet weak var homeCalendarUIView: UIView!
     @IBOutlet weak var homeCalendarCollectionView: UICollectionView!
-    var calendar : Calendar?        //  서버 달력 데이터
+    var calendar : CustomCalendar?        //  서버 달력 데이터
     var calendarSelectedIndex:IndexPath?    //  선택고려
     var selectYear : String?        //  선택한 년도
     var selectMonth : String?       //  선택한 월
@@ -207,11 +207,11 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     func setTapbarAnimation() {
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01 , execute: {
-//            
+//
 //            UIView.animate(withDuration: 0.75 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
-//                
+//
 //                self.tapbarUIView.frame.origin.x = self.tapbarHomeBtn.frame.origin.x
-//                
+//
 //            }, completion: nil )
 //        })
         

@@ -11,7 +11,7 @@ import UIKit
 class selectBoroughViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
 
     var memberInfo : Member?
-    
+
     //  네비게이션 바
     @IBOutlet weak var selectBoroughBackBtn: UIButton!
     
