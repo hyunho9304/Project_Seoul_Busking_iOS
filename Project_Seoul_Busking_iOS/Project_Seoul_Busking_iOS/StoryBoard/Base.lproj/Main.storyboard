@@ -1086,6 +1086,12 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle_today" translatesAutoresizingMaskIntoConstraints="NO" id="kiY-FD-Spy">
+                                                            <rect key="frame" x="2" y="2" width="36" height="36"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="kiY-FD-Spy" secondAttribute="height" multiplier="1:1" id="wFE-vp-Zhw"/>
+                                                            </constraints>
+                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikh-f7-Mpk">
                                                             <rect key="frame" x="15" y="8" width="10" height="24"/>
                                                             <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="17"/>
@@ -1095,10 +1101,14 @@
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstItem="Ikh-f7-Mpk" firstAttribute="centerX" secondItem="gbS-Wz-U6j" secondAttribute="centerX" id="Rc6-sj-gA4"/>
-                                                    <constraint firstItem="Ikh-f7-Mpk" firstAttribute="centerY" secondItem="gbS-Wz-U6j" secondAttribute="centerY" id="gLh-7z-du3"/>
+                                                    <constraint firstItem="kiY-FD-Spy" firstAttribute="centerY" secondItem="gbS-Wz-U6j" secondAttribute="centerY" id="0G7-HD-a2f"/>
+                                                    <constraint firstItem="kiY-FD-Spy" firstAttribute="width" secondItem="gbS-Wz-U6j" secondAttribute="width" multiplier="36:40" id="5qB-Im-an2"/>
+                                                    <constraint firstItem="Ikh-f7-Mpk" firstAttribute="centerX" secondItem="kiY-FD-Spy" secondAttribute="centerX" id="95s-Ii-0HS"/>
+                                                    <constraint firstItem="kiY-FD-Spy" firstAttribute="centerX" secondItem="gbS-Wz-U6j" secondAttribute="centerX" id="UrO-8g-n3r"/>
+                                                    <constraint firstItem="Ikh-f7-Mpk" firstAttribute="centerY" secondItem="kiY-FD-Spy" secondAttribute="centerY" id="uGJ-35-OtJ"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="circleToday" destination="kiY-FD-Spy" id="DYd-Pl-D7c"/>
                                                     <outlet property="dateLabel" destination="Ikh-f7-Mpk" id="cfQ-mi-DUN"/>
                                                 </connections>
                                             </collectionViewCell>
@@ -1774,6 +1784,7 @@
         <image name="3_3" width="231" height="121"/>
         <image name="3_4" width="88" height="53"/>
         <image name="3_5_1" width="39" height="19"/>
+        <image name="circle_today" width="384" height="384"/>
         <image name="homeCopy" width="16" height="16"/>
         <image name="likeCopy2" width="19" height="18"/>
         <image name="map" width="18" height="16"/>

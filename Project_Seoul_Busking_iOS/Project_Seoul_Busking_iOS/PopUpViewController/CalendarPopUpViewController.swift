@@ -243,19 +243,21 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         }
         
         //  오늘 날짜 색칠
-        if currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && indexPath.row + 1 == day {
-            cell.backgroundColor = UIColor.blue
+        if currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && ( indexPath.row + 1 - NumberOfEmptyBox ) == day {
+            cell.circleToday.isHidden = false
+        } else {
+            cell.circleToday.isHidden = true
         }
         
-        //  전 날짜 색칠
-        if( currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && indexPath.row + 1 < day) {
-            
-            //cell.dateLabel.textColor = UIColor.yellow
-        }
+//        //  전 날짜 색칠
+//        if( currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && indexPath.row + 1 < day) {
+//
+//            //cell.dateLabel.textColor = UIColor.yellow
+//        }
         
         
         //  이번달 예약가능 날짜 표시 21일가능
-        if( currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && ( indexPath.row + 1 >= day ) && ( indexPath.row + 1 ) < (day+21 ) ) {
+        if( currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && ( ( indexPath.row + 1 - NumberOfEmptyBox ) >= day ) && ( indexPath.row + 1 - NumberOfEmptyBox ) < (day+21 ) ) {
             
             if( calendarSelectedIndex == IndexPath(row: -1, section: -1)  ) {       //  선택시 viewReload 될때 반복되서 카운트 하지 않도록 디폴트경우만 카운트 선택없을경우
              

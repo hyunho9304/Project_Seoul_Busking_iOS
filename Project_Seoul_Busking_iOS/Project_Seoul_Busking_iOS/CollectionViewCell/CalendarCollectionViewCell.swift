@@ -11,4 +11,5 @@ import UIKit
 class CalendarCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var circleToday: UIImageView!
 }
