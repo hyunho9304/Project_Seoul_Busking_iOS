@@ -211,6 +211,12 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         }
     }
     
+    //  뷰 닫기 버튼 액션
+    @objc func pressedPopUpViewBackBtn( _ sender : UIButton ) {
+        
+        self.view.removeFromSuperview()
+    }
+    
     func GetStartDateDayPosition() {
         
         //  윤년
