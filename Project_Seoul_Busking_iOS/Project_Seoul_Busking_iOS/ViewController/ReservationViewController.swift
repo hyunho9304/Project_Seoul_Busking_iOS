@@ -36,6 +36,8 @@ class ReservationViewController: UIViewController {
     @IBOutlet weak var reservationDateTimeView: UIView!
     @IBOutlet weak var reservationDateLabel: UILabel!
     @IBOutlet weak var reservationDateBtn: UIButton!
+    var selectTmpDate : String?
+    var selectDate : String?
     
     @IBOutlet weak var reservationTimeLabel: UILabel!
     @IBOutlet weak var reservationTimeBtn: UIButton!
@@ -85,7 +87,11 @@ class ReservationViewController: UIViewController {
         reservationCommitBtn.layer.cornerRadius = 25
         
         if( selectBoroughName != nil ) {
-            reservationBoroughLabel.text = selectBoroughName
+            reservationBoroughLabel.text = self.selectBoroughName
+        }
+        
+        if( selectTmpDate != nil ) {
+            reservationDateLabel.text = self.selectTmpDate
         }
         
         
@@ -110,6 +116,9 @@ class ReservationViewController: UIViewController {
         
         //  위치선택 버튼
         reservationZoneBtn.addTarget(self, action: #selector(self.pressedReservationZoneBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  날짜선택 버튼
+        reservationDateBtn.addTarget(self, action: #selector(self.pressedReservationDateBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     func setTapbarAnimation() {
@@ -212,6 +221,19 @@ class ReservationViewController: UIViewController {
             
             //  zone 연결
         }
+    }
+    
+    //  날짜 선택 버튼 액션
+    @objc func pressedReservationDateBtn( _ sender : UIButton ) {
+        
+        guard let calendarPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CalendarPopUpViewController") as? CalendarPopUpViewController else { return }
+        
+        calendarPopUpVC.memberInfo = self.memberInfo
+        
+        self.addChildViewController( calendarPopUpVC )
+        calendarPopUpVC.view.frame = self.view.frame
+        self.view.addSubview( calendarPopUpVC.view )
+        calendarPopUpVC.didMove(toParentViewController: self )
     }
 
 
