@@ -12,6 +12,9 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
 
     @IBOutlet weak var MonthLabel: UILabel!
     @IBOutlet weak var calendarCollectionView: UICollectionView!
+    @IBOutlet weak var calendarBackBtn: UIButton!
+    @IBOutlet weak var calendarNextBtn: UIButton!
+    
     
     let Months = [ "01" , "02" , "03" , "04" , "05" , "06" , "07" , "08" , "09" , "10" , "11" , "12" ]
     let daysOfMonth = [ "월" , "화" , "수" , "목" , "금" , "토" , "일" ]
@@ -36,6 +39,15 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        set()
+        setDelegate()
+        setTarget()
+    }
+    
+    func set() {
+        
+        calendarBackBtn.isHidden = true
+        
         //  윤년
         if( year % 4 == 0 && year % 100 != 0 || year % 400 == 0 ) {
             daysInMonths[1] = 29
@@ -45,14 +57,97 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         currentMonth = Months[month]
         MonthLabel.text = "\(year). \(currentMonth)"
         
-        calendarCollectionView.delegate = self
-        calendarCollectionView.dataSource = self
-        
         NumberOfEmptyBox = (weekday - 1 )               //  이번달 빈공간
         PositionIndex = ( weekday - 1 )                 //  이번달 빈공간
         
         calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
     }
+    
+    func setDelegate() {
+        
+        calendarCollectionView.delegate = self
+        calendarCollectionView.dataSource = self
+    }
+    
+    func setTarget() {
+        
+        //  달력 전달 버튼
+        calendarBackBtn.addTarget(self, action: #selector(self.pressedCalendarBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  달력 다음달 버튼
+        calendarNextBtn.addTarget(self, action: #selector(self.pressedCalendarNextBtn(_:)), for: UIControlEvents.touchUpInside)
+    }
+    
+    //  달력 전달 버튼 액션
+    @objc func pressedCalendarBackBtn( _ sender : UIButton ) {
+        
+        calendarBackBtn.isHidden = true
+        calendarNextBtn.isHidden = false
+        
+        
+        switch currentMonth {
+        case "01" :
+            month = 11
+            year -= 1
+            Direction = -1
+            nextMonthIndex = 21
+            GetStartDateDayPosition()
+            
+            calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
+            
+            currentMonth = Months[month]
+            MonthLabel.text = "\(year). \(currentMonth)"
+            calendarCollectionView.reloadData()
+            
+        default :
+            month -= 1
+            Direction = -1
+            nextMonthIndex = 21
+            GetStartDateDayPosition()
+            
+            calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
+            
+            currentMonth = Months[month]
+            MonthLabel.text = "\(year). \(currentMonth)"
+            calendarCollectionView.reloadData()
+        }
+    }
+    
+    //  달력 다음달 버튼 액션
+    @objc func pressedCalendarNextBtn( _ sender : UIButton ) {
+        
+        calendarBackBtn.isHidden = false
+        calendarNextBtn.isHidden = true
+        
+        switch currentMonth {
+        case "12" :
+            month = 0
+            year += 1
+            Direction = 1
+            
+            GetStartDateDayPosition()
+            
+            calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
+            
+            currentMonth = Months[month]
+            MonthLabel.text = "\(year). \(currentMonth)"
+            calendarCollectionView.reloadData()
+            
+        default :
+            Direction = 1
+            
+            GetStartDateDayPosition()
+            
+            calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
+            
+            month += 1
+            
+            currentMonth = Months[month]
+            MonthLabel.text = "\(year). \(currentMonth)"
+            calendarCollectionView.reloadData()
+        }
+    }
+    
     
     func GetStartDateDayPosition() {
         
@@ -96,70 +191,7 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             fatalError()
         }
     }
-    
-    
-    
-    @IBAction func back(_ sender: Any) {
-        
-        switch currentMonth {
-        case "01" :
-            month = 11
-            year -= 1
-            Direction = -1
-            nextMonthIndex = 21
-            GetStartDateDayPosition()
-            
-            calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
-            
-            currentMonth = Months[month]
-            MonthLabel.text = "\(year). \(currentMonth)"
-            calendarCollectionView.reloadData()
-            
-        default :
-            month -= 1
-            Direction = -1
-            nextMonthIndex = 21
-            GetStartDateDayPosition()
-            
-            calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
-            
-            currentMonth = Months[month]
-            MonthLabel.text = "\(year). \(currentMonth)"
-            calendarCollectionView.reloadData()
-        }
-    }
-    
-    @IBAction func next(_ sender: Any) {
-    
-        switch currentMonth {
-        case "12" :
-            month = 0
-            year += 1
-            Direction = 1
-            
-            GetStartDateDayPosition()
-            
-            calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
-            
-            currentMonth = Months[month]
-            MonthLabel.text = "\(year). \(currentMonth)"
-            calendarCollectionView.reloadData()
-         
-        default :
-            Direction = 1
-            
-            GetStartDateDayPosition()
-            
-            calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
-            
-            month += 1
-            
-            currentMonth = Months[month]
-            MonthLabel.text = "\(year). \(currentMonth)"
-            calendarCollectionView.reloadData()
-        }
-    }
-    
+
     
     
 //  Mark -> delegate
@@ -188,7 +220,7 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCollectionViewCell", for: indexPath ) as! CalendarCollectionViewCell
         
         cell.backgroundColor = UIColor.clear
-        cell.dateLabel.textColor = UIColor.black
+        cell.dateLabel.textColor = #colorLiteral(red: 0.6712639928, green: 0.6712799668, blue: 0.6712713838, alpha: 1)
         cell.isUserInteractionEnabled = false
         
         if( cell.isHidden ) {
@@ -210,16 +242,6 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             cell.isHidden = true
         }
         
-        //  주말날짜 색칠
-        switch indexPath.row {
-        case 0,7,14,21,28,35 :
-            if Int( cell.dateLabel.text!)! > 0 {
-                cell.dateLabel.textColor = UIColor.red
-            }
-        default:
-            break
-        }
-        
         //  오늘 날짜 색칠
         if currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && indexPath.row + 1 == day {
             cell.backgroundColor = UIColor.blue
@@ -228,7 +250,7 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         //  전 날짜 색칠
         if( currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && indexPath.row + 1 < day) {
             
-            cell.dateLabel.textColor = UIColor.yellow
+            //cell.dateLabel.textColor = UIColor.yellow
         }
         
         
@@ -249,6 +271,16 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             
             cell.isUserInteractionEnabled = true
             cell.dateLabel.textColor = UIColor.purple
+        }
+        
+        //  주말날짜 색칠
+        switch indexPath.row {
+        case 0,7,14,21,28,35 :
+            if Int( cell.dateLabel.text!)! > 0 {
+                cell.dateLabel.textColor = UIColor.red
+            }
+        default:
+            break
         }
         
         
