@@ -192,14 +192,15 @@ class ReservationViewController: UIViewController {
     //  자치구 선택 버튼 액션
     @objc func pressedReservationBoroughBtn( _ sender : UIButton ) {
         
-        guard let boroughListPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoroughListPopUpViewController") as? BoroughListPopUpViewController else { return }
-
-        boroughListPopUpVC.memberInfo = self.memberInfo
-
-        self.addChildViewController( boroughListPopUpVC )
-        boroughListPopUpVC.view.frame = self.view.frame
-        self.view.addSubview( boroughListPopUpVC.view )
-        boroughListPopUpVC.didMove(toParentViewController: self )
+        guard let boroughListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoroughListViewController") as? BoroughListViewController else { return }
+        
+        boroughListVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        boroughListVC.memberInfo = self.memberInfo
+        
+        self.addChildViewController( boroughListVC )
+        boroughListVC.view.frame = self.view.frame
+        self.view.addSubview( boroughListVC.view )
+        boroughListVC.didMove(toParentViewController: self )
     }
     
     //  위치 선택 버튼 액션
@@ -219,21 +220,45 @@ class ReservationViewController: UIViewController {
             
         } else {
             
-            //  zone 연결
+            guard let buskingZoneListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BuskingZoneListViewController") as? BuskingZoneListViewController else { return }
+            
+            buskingZoneListVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+            buskingZoneListVC.memberInfo = self.memberInfo
+            
+            self.addChildViewController( buskingZoneListVC )
+            buskingZoneListVC.view.frame = self.view.frame
+            self.view.addSubview( buskingZoneListVC.view )
+            buskingZoneListVC.didMove(toParentViewController: self )
+            
         }
     }
     
     //  날짜 선택 버튼 액션
     @objc func pressedReservationDateBtn( _ sender : UIButton ) {
         
-        guard let calendarPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CalendarPopUpViewController") as? CalendarPopUpViewController else { return }
-        
-        calendarPopUpVC.memberInfo = self.memberInfo
-        
-        self.addChildViewController( calendarPopUpVC )
-        calendarPopUpVC.view.frame = self.view.frame
-        self.view.addSubview( calendarPopUpVC.view )
-        calendarPopUpVC.didMove(toParentViewController: self )
+        if( reservationZoneLabel.text == "위치 선택" ) {
+            
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+            
+            defaultPopUpVC.content = "위치를 선택해 주세요."
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
+            
+        } else {
+            
+            guard let calendarPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CalendarPopUpViewController") as? CalendarPopUpViewController else { return }
+            
+            calendarPopUpVC.memberInfo = self.memberInfo
+            
+            self.addChildViewController( calendarPopUpVC )
+            calendarPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( calendarPopUpVC.view )
+            calendarPopUpVC.didMove(toParentViewController: self )
+            
+        }
     }
 
 
