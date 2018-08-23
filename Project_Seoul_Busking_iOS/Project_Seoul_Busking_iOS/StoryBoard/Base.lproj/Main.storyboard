@@ -1474,11 +1474,11 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="서울시 마포구 어울마당로 109 앞 서울시 마포구 어울마당로 109 앞" translatesAutoresizingMaskIntoConstraints="NO" id="jMh-Rt-ouL">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="서울시 마포구 어울마당로 109 앞 서울시 마포구 어울마당로 109 앞" translatesAutoresizingMaskIntoConstraints="NO" id="jMh-Rt-ouL">
                                                             <rect key="frame" x="12" y="343" width="274" height="59"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="jMh-Rt-ouL" secondAttribute="height" multiplier="274:59" id="YwV-vA-Rza"/>
+                                                                <constraint firstAttribute="width" secondItem="jMh-Rt-ouL" secondAttribute="height" multiplier="274:59" id="ZGQ-Ua-mG1"/>
                                                             </constraints>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
@@ -1494,21 +1494,21 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="jMh-Rt-ouL" firstAttribute="top" secondItem="Hor-Fl-DzK" secondAttribute="bottom" constant="-2" id="330-N9-LkK"/>
                                                         <constraint firstItem="Hor-Fl-DzK" firstAttribute="top" secondItem="w9d-oe-hTp" secondAttribute="bottom" constant="16" id="4IZ-XF-IXi"/>
                                                         <constraint firstAttribute="width" secondItem="aSb-Kn-5IU" secondAttribute="height" multiplier="151:206" id="65Q-GS-C4L"/>
-                                                        <constraint firstItem="jMh-Rt-ouL" firstAttribute="leading" secondItem="aSb-Kn-5IU" secondAttribute="leading" constant="12" id="9zf-WD-e5Y"/>
-                                                        <constraint firstAttribute="trailing" secondItem="jMh-Rt-ouL" secondAttribute="trailing" constant="16" id="BHR-eb-auR"/>
+                                                        <constraint firstAttribute="trailing" secondItem="jMh-Rt-ouL" secondAttribute="trailing" constant="16" id="ANh-kL-ed4"/>
+                                                        <constraint firstItem="jMh-Rt-ouL" firstAttribute="width" secondItem="aSb-Kn-5IU" secondAttribute="width" multiplier="274:302" id="IBx-5T-88I"/>
                                                         <constraint firstAttribute="trailing" secondItem="NsH-nn-MbA" secondAttribute="trailing" constant="5" id="Wgr-aQ-qCZ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="jMh-Rt-ouL" secondAttribute="bottom" constant="10" id="Zcp-Q7-3FV"/>
+                                                        <constraint firstItem="jMh-Rt-ouL" firstAttribute="top" secondItem="Hor-Fl-DzK" secondAttribute="bottom" constant="-2" id="g8v-uz-bz5"/>
                                                         <constraint firstAttribute="trailing" secondItem="w9d-oe-hTp" secondAttribute="trailing" id="gAh-zz-1D9"/>
                                                         <constraint firstItem="w9d-oe-hTp" firstAttribute="width" secondItem="aSb-Kn-5IU" secondAttribute="width" multiplier="302:302" id="koe-cc-U4n"/>
+                                                        <constraint firstItem="jMh-Rt-ouL" firstAttribute="leading" secondItem="aSb-Kn-5IU" secondAttribute="leading" constant="12" id="mOH-Kk-byN"/>
                                                         <constraint firstItem="w9d-oe-hTp" firstAttribute="leading" secondItem="aSb-Kn-5IU" secondAttribute="leading" id="nhj-RP-VGH"/>
-                                                        <constraint firstAttribute="bottom" secondItem="jMh-Rt-ouL" secondAttribute="bottom" constant="10" id="pRa-Bj-OtP"/>
                                                         <constraint firstAttribute="bottom" secondItem="NsH-nn-MbA" secondAttribute="bottom" constant="115" id="rtG-AK-85A"/>
                                                         <constraint firstItem="NsH-nn-MbA" firstAttribute="width" secondItem="aSb-Kn-5IU" secondAttribute="width" multiplier="40:302" id="udt-Te-tp0"/>
                                                         <constraint firstItem="w9d-oe-hTp" firstAttribute="top" secondItem="aSb-Kn-5IU" secondAttribute="top" id="vev-kE-y2v"/>
                                                         <constraint firstItem="Hor-Fl-DzK" firstAttribute="leading" secondItem="aSb-Kn-5IU" secondAttribute="leading" constant="17" id="xEX-bg-JvR"/>
-                                                        <constraint firstItem="jMh-Rt-ouL" firstAttribute="width" secondItem="aSb-Kn-5IU" secondAttribute="width" multiplier="274:302" id="zHJ-bO-IZl"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
