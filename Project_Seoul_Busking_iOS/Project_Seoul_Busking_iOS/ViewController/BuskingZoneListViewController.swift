@@ -114,6 +114,9 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         
         //  뒤로가기 버튼
         reservationBackBtn.addTarget(self, action: #selector(self.pressedReservationBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  지도 버튼
+        buskingZoneMapBtn.addTarget(self, action: #selector(self.pressedBuskingZoneMapBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     func setTapbarAnimation() {
@@ -165,6 +168,15 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     @objc func pressedReservationBackBtn( _ sender : UIButton ) {
         
         removeAnimate()
+    }
+    
+    //  지도 버튼 액션
+    @objc func pressedBuskingZoneMapBtn( _ sender : UIButton ) {
+        
+        print( memberShowZoneIndex )
+        print( memberShowZoneName )
+        print( memberShowZoneLongitude )
+        print( memberShowZoneLatitude )
     }
     
     //  서버에서 해당하는 존 리스트 가져오기
@@ -227,6 +239,11 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
         cell.buskingZoneAddress.text = buskingZoneList[ indexPath.row ].sbz_address
         
+        self.memberShowZoneIndex = buskingZoneList[ 0 ].sbz_id
+        self.memberShowZoneName = buskingZoneList[ 0 ].sbz_name
+        self.memberShowZoneLongitude = buskingZoneList[ 0 ].sbz_longitude
+        self.memberShowZoneLatitude = buskingZoneList[ 0 ].sbz_latitude
+        
         //cell.buskingZoneMapBtn.isEnabled = false
         
         return cell
@@ -282,7 +299,8 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         
         buskingZoneMapBtn.isHidden = true
     }
-
+    
+    
 }
 
 
