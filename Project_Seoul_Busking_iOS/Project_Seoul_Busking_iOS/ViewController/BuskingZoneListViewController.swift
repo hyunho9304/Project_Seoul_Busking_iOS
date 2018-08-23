@@ -235,6 +235,8 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         
         cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
         cell.buskingZoneImageView.layer.cornerRadius = 5
+        cell.buskingZoneImageView.layer.maskedCorners = [ .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+        
         cell.buskingZoneImageView.clipsToBounds = true
         cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
         cell.buskingZoneAddress.text = buskingZoneList[ indexPath.row ].sbz_address
