@@ -1562,6 +1562,7 @@
                     </view>
                     <connections>
                         <outlet property="buskingZoneCollectionView" destination="5b7-6n-Ult" id="k5e-RC-kFI"/>
+                        <outlet property="buskingZoneMapBtn" destination="A0g-UZ-Ufa" id="FFq-fd-DIX"/>
                         <outlet property="reservationBackBtn" destination="rY4-md-LKD" id="Iun-kf-CsX"/>
                         <outlet property="tapbarHomeBtn" destination="5vr-e0-3Ie" id="Zz8-Nh-dHJ"/>
                         <outlet property="tapbarMemberInfoBtn" destination="Mgz-LF-OUi" id="bOl-7h-sjM"/>

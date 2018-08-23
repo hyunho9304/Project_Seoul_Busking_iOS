@@ -24,11 +24,13 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     
     @IBOutlet weak var buskingZoneCollectionView: UICollectionView!
     var buskingZoneList : [ BuskingZone ] = [ BuskingZone ]()  //  서버 버스킹 존 데이터
+    var busingZoneSelectedIndex:IndexPath?                     //  이동고려
     var memberShowZoneIndex : Int?      //  멤버가 현재 보고 있는 존 index
     var memberShowZoneName : String?    //  멤버가 현재 보고 있는 존 name
     var memberShowZoneLongitude : Double?   //  멤버가 현재 보고 있는 존 경도 x
     var memberShowZoneLatitude : Double?    //  멤버가 현재 보고 있는 존 위도 y
     
+    @IBOutlet weak var buskingZoneMapBtn: UIButton!
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -225,6 +227,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
         cell.buskingZoneAddress.text = buskingZoneList[ indexPath.row ].sbz_address
         
+        //cell.buskingZoneMapBtn.isEnabled = false
         
         return cell
     }
@@ -254,6 +257,31 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         return 0
     }
 
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+
+        var visibleRect = CGRect()
+        
+        visibleRect.origin = buskingZoneCollectionView.contentOffset
+        visibleRect.size = buskingZoneCollectionView.bounds.size
+        
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        
+        guard let indexPath = buskingZoneCollectionView.indexPathForItem(at: visiblePoint) else { return }
+        
+        memberShowZoneIndex = buskingZoneList[ indexPath.row ].sbz_id
+        memberShowZoneName = buskingZoneList[ indexPath.row ].sbz_name
+        memberShowZoneLongitude = buskingZoneList[ indexPath.row ].sbz_longitude
+        memberShowZoneLatitude = buskingZoneList[ indexPath.row ].sbz_latitude
+        
+        buskingZoneMapBtn.isHidden = false
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        buskingZoneMapBtn.isHidden = true
+    }
 
 }
 
