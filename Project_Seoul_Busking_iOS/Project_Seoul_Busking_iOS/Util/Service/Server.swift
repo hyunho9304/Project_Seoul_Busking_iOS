@@ -277,7 +277,6 @@ struct Server : APIService {
                     
                     do {
                         
-                        
                         let buskingZoneListData = try decoder.decode(BuskingZoneData.self , from: value)
                         
                         if( res.response?.statusCode == 200 ){

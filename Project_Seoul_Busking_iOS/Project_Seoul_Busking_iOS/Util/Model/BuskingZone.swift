@@ -13,6 +13,9 @@ struct BuskingZone: Codable {
     let sbz_id : Int?
     let sbz_name : String?
     let sbz_photo : String?
+    let sbz_address : String?
+    let sbz_longitude : Double?
+    let sbz_latitude : Double?
 }
 
 struct BuskingZoneData: Codable {

@@ -7,14 +7,27 @@
 //
 
 import UIKit
+import Kingfisher
 
-class BuskingZoneListViewController: UIViewController {
+class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
 
-    //  유저 정보
-    var memberInfo : Member?
+    //  넘어온 정보
+    var memberInfo : Member?    //  유저 정보
+    var selectBoroughIndex : Int?   //  선택한 자치구 index
+    var selectBoroughName : String? //  선택한 자치구 name
+    
     
     //  네비게이션 바
     @IBOutlet weak var reservationBackBtn: UIButton!
+    
+    //  내용
+    
+    @IBOutlet weak var buskingZoneCollectionView: UICollectionView!
+    var buskingZoneList : [ BuskingZone ] = [ BuskingZone ]()  //  서버 버스킹 존 데이터
+    var memberShowZoneIndex : Int?      //  멤버가 현재 보고 있는 존 index
+    var memberShowZoneName : String?    //  멤버가 현재 보고 있는 존 name
+    var memberShowZoneLongitude : Double?   //  멤버가 현재 보고 있는 존 경도 x
+    var memberShowZoneLatitude : Double?    //  멤버가 현재 보고 있는 존 위도 y
     
     
     //  텝바
@@ -33,9 +46,11 @@ class BuskingZoneListViewController: UIViewController {
         
         showAnimate()
         set()
+        setDelegate()
         setTarget()
         setTapbarAnimation()
         
+        buskingZoneInit()
     }
     
     //  등장 애니메이션
@@ -76,6 +91,12 @@ class BuskingZoneListViewController: UIViewController {
         tapbarMenuUIView.layer.shadowOpacity = 0.24                            //  그림자 투명도
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
+    }
+    
+    func setDelegate() {
+        
+        buskingZoneCollectionView.delegate = self
+        buskingZoneCollectionView.dataSource = self
     }
     
     func setTarget() {
@@ -143,5 +164,101 @@ class BuskingZoneListViewController: UIViewController {
         
         removeAnimate()
     }
+    
+    //  서버에서 해당하는 존 리스트 가져오기
+    func buskingZoneInit() {
+        
+        Server.reqBuskingZoneList(sb_id: selectBoroughIndex! ) { ( buskingZoneListData , rescode ) in
+            
+            if rescode == 200 {
+                
+                self.buskingZoneList = buskingZoneListData
+                self.buskingZoneCollectionView.reloadData()
+                
+//                if( self.buskingZoneList.count == 0 ) {
+//
+//                    self.nothingZone.isHidden = false
+//
+//                } else {
+//
+//                    self.nothingZone.isHidden = true
+//
+//                }
+                
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
+    }
+    
+    
+//  Mark -> delegate
+    
+    //  cell 의 개수
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        print( buskingZoneList.count)
+        return buskingZoneList.count
+    }
+    
+    //  cell 의 내용
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectBuskingZoneCollectionViewCell", for: indexPath ) as! SelectBuskingZoneCollectionViewCell
+        
+        cell.buskingZoneUIView.layer.cornerRadius = 5       //  둥근정도
+        
+        cell.buskingZoneUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+        cell.buskingZoneUIView.layer.shadowOpacity = 0.31                            //  그림자 투명도
+        cell.buskingZoneUIView.layer.shadowOffset = CGSize(width: 0 , height: 5 )    //  그림자 x y
+        cell.buskingZoneUIView.layer.shadowRadius = 5                                //  그림자 둥근정도
+        //  그림자의 블러는 5 정도 이다
+        
+        cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
+        cell.buskingZoneImageView.layer.cornerRadius = 5
+        cell.buskingZoneImageView.clipsToBounds = true
+        cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
+        cell.buskingZoneAddress.text = buskingZoneList[ indexPath.row ].sbz_address
+        
+        
+        return cell
+    }
+    
+    //  cell 선택 했을 때
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        //  reservation으로 데이터 전달
+        
+    }
+    
+    //  cell 크기 비율
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: self.view.frame.width , height: 425 * self.view.frame.height/667 )
+    }
+    
+    //  cell 간 세로 간격 ( vertical 이라서 세로를 사용해야 한다 )
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
+    }
+
 
 }
+
+
+
+
+
+

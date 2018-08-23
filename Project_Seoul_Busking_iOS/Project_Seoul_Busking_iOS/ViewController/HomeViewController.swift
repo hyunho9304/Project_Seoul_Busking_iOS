@@ -397,7 +397,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
         } else {
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeBuskingZoneCollectionViewCell", for: indexPath ) as! HomeBuskingZoneCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BuskingZoneCollectionViewCell", for: indexPath ) as! BuskingZoneCollectionViewCell
             
             cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
             cell.buskingZoneImageView.layer.cornerRadius = cell.buskingZoneImageView.layer.frame.width/2

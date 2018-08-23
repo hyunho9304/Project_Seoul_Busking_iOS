@@ -1,5 +1,5 @@
 //
-//  HomeBuskingZoneCollectionViewCell.swift
+//  BuskingZoneCollectionViewCell.swift
 //  Project_Seoul_Busking_iOS
 //
 //  Created by 박현호 on 2018. 8. 16..
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeBuskingZoneCollectionViewCell: UICollectionViewCell {
+class BuskingZoneCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var buskingZoneImageView: UIImageView!
     @IBOutlet weak var buskingZoneNameLabel: UILabel!
