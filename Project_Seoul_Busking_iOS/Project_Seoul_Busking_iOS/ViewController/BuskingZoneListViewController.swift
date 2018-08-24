@@ -267,7 +267,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectBuskingZoneCntCollectionViewCell", for: indexPath ) as! SelectBuskingZoneCntCollectionViewCell
             
-            cell.buskingZoneCntImageView.layer.cornerRadius = 10
+            cell.buskingZoneCntUIView.layer.cornerRadius = cell.buskingZoneCntUIView.layer.frame.width/2
             
             return cell
             
@@ -292,7 +292,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             
         } else {
             
-            return CGSize(width: 50 * self.view.frame.width/375 , height: 50 * self.view.frame.height/667 )
+            return CGSize(width: 8 * self.view.frame.width/375 , height: 8 * self.view.frame.height/667 )
         }
     }
     
@@ -304,7 +304,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             return 0
             
         } else {
-            return 0
+            return 10
         }
     }
     
@@ -314,7 +314,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         if( collectionView == buskingZoneCollectionView ) {
             return 0
         } else {
-            return 0
+            return 10
         }
     }
 
@@ -344,6 +344,23 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         buskingZoneMapBtn.isHidden = true
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        if(collectionView == buskingZoneCollectionView ) {
+            
+            return UIEdgeInsetsMake(0, 0, 0, 0)
+        } else {
+         
+            let totalCellWidth = 8 * buskingZoneList.count
+            let totalSpacingWidth = 8 * ( buskingZoneList.count - 1)
+            
+            let leftInset = ( 260 - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+            let rightInset = leftInset
+            
+            return UIEdgeInsetsMake(0, leftInset, 0, rightInset)
+            
+        }
+    }
     
 }
 

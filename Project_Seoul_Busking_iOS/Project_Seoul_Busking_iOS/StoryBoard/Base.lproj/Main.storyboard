@@ -1536,10 +1536,12 @@
                                 </constraints>
                                 <state key="normal" image="oval2"/>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YzE-ty-BTI">
-                                <rect key="frame" x="57" y="539" width="260" height="8"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YzE-ty-BTI">
+                                <rect key="frame" x="57" y="535" width="260" height="8"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YzE-ty-BTI" secondAttribute="height" multiplier="65:2" id="P65-Cs-v0w"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="64d-1L-boL">
                                     <size key="itemSize" width="8" height="8"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1553,14 +1555,32 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="8" height="8"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ae-Xv-ome">
+                                                    <rect key="frame" x="0.0" y="0.0" width="8" height="8"/>
+                                                    <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="3ae-Xv-ome" secondAttribute="trailing" id="5Yz-nO-zBi"/>
+                                            <constraint firstItem="3ae-Xv-ome" firstAttribute="leading" secondItem="PLn-rd-vPB" secondAttribute="leading" id="Bp7-Nh-rUL"/>
+                                            <constraint firstAttribute="bottom" secondItem="3ae-Xv-ome" secondAttribute="bottom" id="dog-rb-RlB"/>
+                                            <constraint firstItem="3ae-Xv-ome" firstAttribute="top" secondItem="PLn-rd-vPB" secondAttribute="top" id="oDn-FE-gee"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="buskingZoneCntUIView" destination="3ae-Xv-ome" id="iUx-NY-q9x"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="YzE-ty-BTI" firstAttribute="width" secondItem="odh-US-WRi" secondAttribute="width" multiplier="260:375" id="10j-Nt-VPW"/>
                             <constraint firstItem="qHi-r4-3aG" firstAttribute="trailing" secondItem="MIC-Ov-75y" secondAttribute="trailing" id="2Ob-OS-QjE"/>
+                            <constraint firstItem="PhC-ba-gC4" firstAttribute="top" secondItem="YzE-ty-BTI" secondAttribute="bottom" constant="70" id="9VA-tg-cNf"/>
+                            <constraint firstItem="YzE-ty-BTI" firstAttribute="centerX" secondItem="MIC-Ov-75y" secondAttribute="centerX" id="AXE-8k-7bA"/>
                             <constraint firstItem="MIC-Ov-75y" firstAttribute="bottom" secondItem="A0g-UZ-Ufa" secondAttribute="bottom" constant="264" id="IiS-Ty-D3z"/>
                             <constraint firstItem="PhC-ba-gC4" firstAttribute="width" secondItem="odh-US-WRi" secondAttribute="width" multiplier="375:375" id="IwO-QT-HWn"/>
                             <constraint firstItem="qHi-r4-3aG" firstAttribute="top" secondItem="odh-US-WRi" secondAttribute="top" id="L2B-zT-mjY"/>

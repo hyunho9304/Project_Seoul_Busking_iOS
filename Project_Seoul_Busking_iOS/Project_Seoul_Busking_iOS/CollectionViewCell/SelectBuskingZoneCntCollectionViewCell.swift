@@ -10,6 +10,6 @@ import UIKit
 
 class SelectBuskingZoneCntCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var buskingZoneCntUIView: UIView!
     
-    @IBOutlet weak var buskingZoneCntImageView: UIImageView!
 }
