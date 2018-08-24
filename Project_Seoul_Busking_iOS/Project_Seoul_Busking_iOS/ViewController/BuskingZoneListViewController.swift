@@ -32,6 +32,9 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     
     @IBOutlet weak var buskingZoneMapBtn: UIButton!
     
+    //  내용2( cnt )
+    @IBOutlet weak var buskingZoneCntCollectionView: UICollectionView!
+    
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
     @IBOutlet weak var tapbarSearchBtn: UIButton!
@@ -46,11 +49,16 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         showAnimate()
         set()
         setDelegate()
         setTarget()
         setTapbarAnimation()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
         buskingZoneInit()
     }
@@ -99,6 +107,9 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         
         buskingZoneCollectionView.delegate = self
         buskingZoneCollectionView.dataSource = self
+        
+        buskingZoneCntCollectionView.delegate = self
+        buskingZoneCntCollectionView.dataSource = self
     }
     
     func setTarget() {
@@ -188,6 +199,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
                 
                 self.buskingZoneList = buskingZoneListData
                 self.buskingZoneCollectionView.reloadData()
+                self.buskingZoneCntCollectionView.reloadData()
                 
 //                if( self.buskingZoneList.count == 0 ) {
 //
@@ -215,40 +227,53 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     //  cell 의 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        print( buskingZoneList.count)
         return buskingZoneList.count
     }
     
     //  cell 의 내용
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        if( collectionView == buskingZoneCollectionView ) {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectBuskingZoneCollectionViewCell", for: indexPath ) as! SelectBuskingZoneCollectionViewCell
+            
+            cell.buskingZoneUIView.layer.cornerRadius = 5       //  둥근정도
+            
+            cell.buskingZoneUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+            cell.buskingZoneUIView.layer.shadowOpacity = 0.31                            //  그림자 투명도
+            cell.buskingZoneUIView.layer.shadowOffset = CGSize(width: 0 , height: 5 )    //  그림자 x y
+            cell.buskingZoneUIView.layer.shadowRadius = 5                                //  그림자 둥근정도
+            //  그림자의 블러는 5 정도 이다
+            
+            cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
+            cell.buskingZoneImageView.layer.cornerRadius = 5
+            cell.buskingZoneImageView.layer.maskedCorners = [ .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+            
+            cell.buskingZoneImageView.clipsToBounds = true
+            cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
+            cell.buskingZoneAddress.text = buskingZoneList[ indexPath.row ].sbz_address
+            
+            self.memberShowZoneIndex = buskingZoneList[ 0 ].sbz_id
+            self.memberShowZoneName = buskingZoneList[ 0 ].sbz_name
+            self.memberShowZoneLongitude = buskingZoneList[ 0 ].sbz_longitude
+            self.memberShowZoneLatitude = buskingZoneList[ 0 ].sbz_latitude
+            
+            //cell.buskingZoneMapBtn.isEnabled = false
+            
+            return cell
+
+        } else {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectBuskingZoneCntCollectionViewCell", for: indexPath ) as! SelectBuskingZoneCntCollectionViewCell
+            
+            cell.buskingZoneCntImageView.layer.cornerRadius = 10
+            
+            return cell
+            
+        }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectBuskingZoneCollectionViewCell", for: indexPath ) as! SelectBuskingZoneCollectionViewCell
         
-        cell.buskingZoneUIView.layer.cornerRadius = 5       //  둥근정도
-        
-        cell.buskingZoneUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
-        cell.buskingZoneUIView.layer.shadowOpacity = 0.31                            //  그림자 투명도
-        cell.buskingZoneUIView.layer.shadowOffset = CGSize(width: 0 , height: 5 )    //  그림자 x y
-        cell.buskingZoneUIView.layer.shadowRadius = 5                                //  그림자 둥근정도
-        //  그림자의 블러는 5 정도 이다
-        
-        cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
-        cell.buskingZoneImageView.layer.cornerRadius = 5
-        cell.buskingZoneImageView.layer.maskedCorners = [ .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
-        
-        cell.buskingZoneImageView.clipsToBounds = true
-        cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
-        cell.buskingZoneAddress.text = buskingZoneList[ indexPath.row ].sbz_address
-        
-        self.memberShowZoneIndex = buskingZoneList[ 0 ].sbz_id
-        self.memberShowZoneName = buskingZoneList[ 0 ].sbz_name
-        self.memberShowZoneLongitude = buskingZoneList[ 0 ].sbz_longitude
-        self.memberShowZoneLatitude = buskingZoneList[ 0 ].sbz_latitude
-        
-        //cell.buskingZoneMapBtn.isEnabled = false
-        
-        return cell
     }
     
     //  cell 선택 했을 때
@@ -261,19 +286,36 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     //  cell 크기 비율
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: self.view.frame.width , height: 425 * self.view.frame.height/667 )
+        if( collectionView == buskingZoneCollectionView ) {
+         
+            return CGSize(width: self.view.frame.width , height: 425 * self.view.frame.height/667 )
+            
+        } else {
+            
+            return CGSize(width: 50 * self.view.frame.width/375 , height: 50 * self.view.frame.height/667 )
+        }
     }
     
     //  cell 간 세로 간격 ( vertical 이라서 세로를 사용해야 한다 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        if( collectionView == buskingZoneCollectionView ) {
+         
+            return 0
+            
+        } else {
+            return 0
+        }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        if( collectionView == buskingZoneCollectionView ) {
+            return 0
+        } else {
+            return 0
+        }
     }
 
     

@@ -1536,37 +1536,24 @@
                                 </constraints>
                                 <state key="normal" image="oval2"/>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZh-Kn-UAs">
-                                <rect key="frame" x="64.5" y="553" width="246" height="20"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YzE-ty-BTI">
+                                <rect key="frame" x="57" y="539" width="260" height="8"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="nZh-Kn-UAs" secondAttribute="height" multiplier="123:10" id="m9k-B5-TOo"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="5" id="cnD-AM-rIm">
-                                    <size key="itemSize" width="20" height="20"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="64d-1L-boL">
+                                    <size key="itemSize" width="8" height="8"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RYf-y2-s87">
-                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SelectBuskingZoneCntCollectionViewCell" reuseIdentifier="SelectBuskingZoneCntCollectionViewCell" id="PLn-rd-vPB" customClass="SelectBuskingZoneCntCollectionViewCell" customModule="Project_Seoul_Busking_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="8" height="8"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="8" height="8"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oval2" translatesAutoresizingMaskIntoConstraints="NO" id="tvu-36-FDs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                </imageView>
-                                            </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="tvu-36-FDs" firstAttribute="leading" secondItem="RYf-y2-s87" secondAttribute="leading" id="Tlb-4C-uBG"/>
-                                            <constraint firstAttribute="trailing" secondItem="tvu-36-FDs" secondAttribute="trailing" id="fED-0A-hY1"/>
-                                            <constraint firstAttribute="bottom" secondItem="tvu-36-FDs" secondAttribute="bottom" id="hYY-Xe-oQM"/>
-                                            <constraint firstItem="tvu-36-FDs" firstAttribute="top" secondItem="RYf-y2-s87" secondAttribute="top" id="wrM-ZG-TgI"/>
-                                        </constraints>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -1574,9 +1561,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qHi-r4-3aG" firstAttribute="trailing" secondItem="MIC-Ov-75y" secondAttribute="trailing" id="2Ob-OS-QjE"/>
-                            <constraint firstItem="nZh-Kn-UAs" firstAttribute="width" secondItem="odh-US-WRi" secondAttribute="width" multiplier="246:375" id="5G7-zQ-AsO"/>
                             <constraint firstItem="MIC-Ov-75y" firstAttribute="bottom" secondItem="A0g-UZ-Ufa" secondAttribute="bottom" constant="264" id="IiS-Ty-D3z"/>
-                            <constraint firstItem="nZh-Kn-UAs" firstAttribute="centerX" secondItem="MIC-Ov-75y" secondAttribute="centerX" id="ImF-tm-9Zq"/>
                             <constraint firstItem="PhC-ba-gC4" firstAttribute="width" secondItem="odh-US-WRi" secondAttribute="width" multiplier="375:375" id="IwO-QT-HWn"/>
                             <constraint firstItem="qHi-r4-3aG" firstAttribute="top" secondItem="odh-US-WRi" secondAttribute="top" id="L2B-zT-mjY"/>
                             <constraint firstItem="PhC-ba-gC4" firstAttribute="leading" secondItem="MIC-Ov-75y" secondAttribute="leading" id="LHY-Ko-vjp"/>
@@ -1589,13 +1574,13 @@
                             <constraint firstItem="qHi-r4-3aG" firstAttribute="leading" secondItem="MIC-Ov-75y" secondAttribute="leading" id="dBi-Hn-8py"/>
                             <constraint firstItem="PhC-ba-gC4" firstAttribute="trailing" secondItem="MIC-Ov-75y" secondAttribute="trailing" id="ex1-t0-zP6"/>
                             <constraint firstItem="PhC-ba-gC4" firstAttribute="top" secondItem="5b7-6n-Ult" secondAttribute="bottom" constant="82" id="nqr-A6-FZK"/>
-                            <constraint firstItem="PhC-ba-gC4" firstAttribute="top" secondItem="nZh-Kn-UAs" secondAttribute="bottom" constant="40" id="qMm-LT-6NA"/>
                             <constraint firstItem="MIC-Ov-75y" firstAttribute="trailing" secondItem="A0g-UZ-Ufa" secondAttribute="trailing" constant="41" id="rNT-il-dfK"/>
                             <constraint firstItem="5b7-6n-Ult" firstAttribute="top" secondItem="qHi-r4-3aG" secondAttribute="bottom" constant="36" id="yPW-0V-hf6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MIC-Ov-75y"/>
                     </view>
                     <connections>
+                        <outlet property="buskingZoneCntCollectionView" destination="YzE-ty-BTI" id="je2-2U-1Se"/>
                         <outlet property="buskingZoneCollectionView" destination="5b7-6n-Ult" id="k5e-RC-kFI"/>
                         <outlet property="buskingZoneMapBtn" destination="A0g-UZ-Ufa" id="FFq-fd-DIX"/>
                         <outlet property="reservationBackBtn" destination="rY4-md-LKD" id="Iun-kf-CsX"/>

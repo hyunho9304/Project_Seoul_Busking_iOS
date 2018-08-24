@@ -10,6 +10,7 @@
 		5449144EED3FD78D4DB34AF7 /* Pods_Project_Seoul_Busking_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */; };
 		BE5CF378212DBBBF0081AD64 /* BuskingZoneListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5CF377212DBBBF0081AD64 /* BuskingZoneListViewController.swift */; };
 		BE5CF37C212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5CF37B212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift */; };
+		BE5CF3822130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5CF3812130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift */; };
 		BEB0C1D321259321004D3F22 /* MemberRepresentativeBorough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */; };
 		BEB0C1D52125A783004D3F22 /* selectBoroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */; };
 		BEB0C1D72126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D62126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift */; };
@@ -56,6 +57,7 @@
 		972BF92BCFF29E9380936597 /* Pods-Project_Seoul_Busking_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_Seoul_Busking_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project_Seoul_Busking_iOS/Pods-Project_Seoul_Busking_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		BE5CF377212DBBBF0081AD64 /* BuskingZoneListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuskingZoneListViewController.swift; sourceTree = "<group>"; };
 		BE5CF37B212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE5CF3812130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBuskingZoneCntCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_Seoul_Busking_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepresentativeBorough.swift; sourceTree = "<group>"; };
 		BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectBoroughViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				BEB0C1D62126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift */,
 				BEB0C1E4212C71DE004D3F22 /* CalendarCollectionViewCell.swift */,
 				BE5CF37B212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift */,
+				BE5CF3812130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				BE5CF378212DBBBF0081AD64 /* BuskingZoneListViewController.swift in Sources */,
 				BEB0C1E3212C7161004D3F22 /* CalendarPopUpViewController.swift in Sources */,
 				BEB0C1E5212C71DE004D3F22 /* CalendarCollectionViewCell.swift in Sources */,
+				BE5CF3822130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */,
 				BEBD52B32118AD6E009A63A4 /* DefaultPopUpViewController.swift in Sources */,
 				BEEA4D5F2113276300FD71C4 /* Extension.swift in Sources */,
 				BEB560FE21248DF900760903 /* BuskingZone.swift in Sources */,
