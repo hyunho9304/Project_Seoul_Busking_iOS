@@ -34,6 +34,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     
     //  내용2( cnt )
     @IBOutlet weak var buskingZoneCntCollectionView: UICollectionView!
+    var busingZoneCntShowIndexPath:IndexPath? = IndexPath(row: 0, section: 0)  //  이동고려
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -269,6 +270,15 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             
             cell.buskingZoneCntUIView.layer.cornerRadius = cell.buskingZoneCntUIView.layer.frame.width/2
             
+            if( indexPath == busingZoneCntShowIndexPath ) {
+                
+                cell.buskingZoneCntUIView.backgroundColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+                
+            } else {
+                
+                cell.buskingZoneCntUIView.backgroundColor = #colorLiteral(red: 0.8745098039, green: 0.8745098039, blue: 0.8745098039, alpha: 1)
+            }
+            
             return cell
             
         }
@@ -279,7 +289,11 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        //  reservation으로 데이터 전달
+        if( collectionView == buskingZoneCollectionView ) {
+            
+            //  reservation으로 데이터 전달
+            
+        }
         
     }
     
@@ -318,7 +332,13 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         }
     }
 
+    //  스크롤 할 때마다 호출
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        buskingZoneMapBtn.isHidden = true
+    }
     
+    //  스크롤 끝났을 때
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 
         var visibleRect = CGRect()
@@ -337,13 +357,12 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         
         buskingZoneMapBtn.isHidden = false
         
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        busingZoneCntShowIndexPath = indexPath
+        buskingZoneCntCollectionView.reloadData()
         
-        buskingZoneMapBtn.isHidden = true
     }
     
+    //  가로세로 여백
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         if(collectionView == buskingZoneCollectionView ) {
