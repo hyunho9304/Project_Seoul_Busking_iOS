@@ -93,6 +93,8 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         PositionIndex = ( weekday - 1 )                 //  이번달 빈공간
         
         calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
+        
+        calendarSelectCommitBtn.layer.cornerRadius = 20
     }
     
     func setDelegate() {

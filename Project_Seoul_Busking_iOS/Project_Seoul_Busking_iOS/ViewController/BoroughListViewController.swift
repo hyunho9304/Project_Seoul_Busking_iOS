@@ -82,6 +82,8 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
         tapbarMenuUIView.layer.shadowOpacity = 0.24                            //  그림자 투명도
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
+        
+        selectBoroughCommitBtn.layer.cornerRadius = 25
     }
     
     func setTarget() {

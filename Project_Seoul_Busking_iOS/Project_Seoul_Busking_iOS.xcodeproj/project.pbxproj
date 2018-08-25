@@ -11,6 +11,7 @@
 		BE5CF378212DBBBF0081AD64 /* BuskingZoneListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5CF377212DBBBF0081AD64 /* BuskingZoneListViewController.swift */; };
 		BE5CF37C212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5CF37B212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift */; };
 		BE5CF3822130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5CF3812130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift */; };
+		BE9B5A802130F318007C3C74 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE9B5A7F2130F315007C3C74 /* NotoSans-Bold.ttf */; };
 		BEB0C1D321259321004D3F22 /* MemberRepresentativeBorough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */; };
 		BEB0C1D52125A783004D3F22 /* selectBoroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */; };
 		BEB0C1D72126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D62126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift */; };
@@ -58,6 +59,7 @@
 		BE5CF377212DBBBF0081AD64 /* BuskingZoneListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuskingZoneListViewController.swift; sourceTree = "<group>"; };
 		BE5CF37B212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE5CF3812130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBuskingZoneCntCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE9B5A7F2130F315007C3C74 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Bold.ttf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSans-Bold.ttf"; sourceTree = "<group>"; };
 		BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_Seoul_Busking_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepresentativeBorough.swift; sourceTree = "<group>"; };
 		BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectBoroughViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				BEB561072125665000760903 /* NotoSans-Regular.ttf */,
+				BE9B5A7F2130F315007C3C74 /* NotoSans-Bold.ttf */,
 				BEBD52A52116F1EE009A63A4 /* NotoSansCJKkr-Black.otf */,
 				BEBD52A62116F1EF009A63A4 /* NotoSansCJKkr-Bold.otf */,
 				BEBD52A22116F1EC009A63A4 /* NotoSansCJKkr-DemiLight.otf */,
@@ -339,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE9B5A802130F318007C3C74 /* NotoSans-Bold.ttf in Resources */,
 				BEBD52AA2116F1F0009A63A4 /* NotoSansCJKkr-Regular.otf in Resources */,
 				BEBD52A92116F1F0009A63A4 /* NotoSansCJKkr-DemiLight.otf in Resources */,
 				BEEA4D3F2113098000FD71C4 /* LaunchScreen.storyboard in Resources */,

@@ -11,8 +11,6 @@ import Kingfisher
 
 class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
 
-    var parentVC : ParentViewControllerDelegate?
-    
     //  넘어온 정보
     var memberInfo : Member?    //  유저 정보
     var selectedBoroughIndex : Int?   //  선택한 자치구 index
@@ -89,7 +87,6 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         }) { (finished ) in
             
             if( finished ) {
-                self.parentVC?.didUpdate()
                 self.view.removeFromSuperview()
             }
         }
@@ -317,7 +314,6 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
                     
                     self.present( reservationVC , animated: false , completion: nil )
                     
-                    self.parentVC?.didUpdate()
                     self.view.removeFromSuperview()
                 }
             }

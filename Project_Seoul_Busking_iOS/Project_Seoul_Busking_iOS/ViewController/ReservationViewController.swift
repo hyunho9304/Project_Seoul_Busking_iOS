@@ -9,13 +9,7 @@
 import UIKit
 import Kingfisher
 
-//  부모 뷰 컨트롤러( remove 할때 viewdidload 같은거 호출안되서 강제 호출방법 )
-protocol ParentViewControllerDelegate {
-
-    func didUpdate()
-}
-
-class ReservationViewController: UIViewController , ParentViewControllerDelegate {
+class ReservationViewController: UIViewController {
 
     //  유저 정보
     var memberInfo : Member?
@@ -109,12 +103,6 @@ class ReservationViewController: UIViewController , ParentViewControllerDelegate
         
     }
     
-    func didUpdate() {
-        
-        print( 11111)
-    }
-    
-    
     func set() {
         
         if uiviewX != nil {
@@ -162,14 +150,25 @@ class ReservationViewController: UIViewController , ParentViewControllerDelegate
         //  지역선택 버튼
         reservationBoroughBtn.addTarget(self, action: #selector(self.pressedReservationBoroughBtn(_:)), for: UIControlEvents.touchUpInside)
         
+        let boroughTap = UITapGestureRecognizer(target: self , action: #selector( self.pressedReservationBoroughBtn(_:) ))
+        reservationBoroughLabel.isUserInteractionEnabled = true
+        reservationBoroughLabel.addGestureRecognizer(boroughTap)
+        
         //  위치선택 버튼
         reservationZoneBtn.addTarget(self, action: #selector(self.pressedReservationZoneBtn(_:)), for: UIControlEvents.touchUpInside)
+        let zonTap = UITapGestureRecognizer(target: self , action: #selector(self.pressedReservationZoneBtn(_:) ))
+        reservationZoneLabel.isUserInteractionEnabled = true
+        reservationZoneLabel.addGestureRecognizer(zonTap)
         
         //  날짜선택 버튼
         reservationDateBtn.addTarget(self, action: #selector(self.pressedReservationDateBtn(_:)), for: UIControlEvents.touchUpInside)
+        let dateTap = UITapGestureRecognizer(target: self , action: #selector(self.pressedReservationDateBtn(_:) ))
+        reservationDateLabel.isUserInteractionEnabled = true
+        reservationDateLabel.addGestureRecognizer(dateTap)
         
         //  신청하기 버튼
         reservationCommitBtn.addTarget(self, action: #selector(self.pressedReservationCommitBtn(_:)), for: UIControlEvents.touchUpInside)
+        
     }
     
     func setTapbarAnimation() {
@@ -280,7 +279,6 @@ class ReservationViewController: UIViewController , ParentViewControllerDelegate
             buskingZoneListVC.memberInfo = self.memberInfo
             buskingZoneListVC.selectedBoroughIndex = self.selectedBoroughIndex
             buskingZoneListVC.selectedBoroughName = self.selectedBoroughName
-            buskingZoneListVC.parentVC = self
             
             self.addChildViewController( buskingZoneListVC )
             buskingZoneListVC.view.frame = self.view.frame

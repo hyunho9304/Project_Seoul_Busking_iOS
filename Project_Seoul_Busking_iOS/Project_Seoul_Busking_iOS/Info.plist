@@ -23,6 +23,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSans-Regular</string>
+		<string>NotoSans-Bold</string>
 		<string>NotoSansCHKkr-Black</string>
 		<string>NotoSansCJKkr-Bold</string>
 		<string>NotoSansCJKkr-Light</string>
