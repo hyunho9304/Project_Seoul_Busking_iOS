@@ -130,7 +130,6 @@ class ReservationViewController: UIViewController {
             reservationZoneLabel.text = self.selectedZoneName
             reservationZoneImageView.kf.setImage( with: URL( string:gsno( selectedZoneImage ) ) )
         }
-        
     }
     
     func setTarget() {
@@ -165,6 +164,13 @@ class ReservationViewController: UIViewController {
         let dateTap = UITapGestureRecognizer(target: self , action: #selector(self.pressedReservationDateBtn(_:) ))
         reservationDateLabel.isUserInteractionEnabled = true
         reservationDateLabel.addGestureRecognizer(dateTap)
+        
+        //  시간선택 버튼
+        reservationTimeBtn.addTarget(self, action: #selector(self.pressedReservationTimeBtn(_:)), for: UIControlEvents.touchUpInside)
+        let timeTap = UITapGestureRecognizer(target: self , action: #selector(self.pressedReservationTimeBtn(_:) ))
+        reservationTimeLabel.isUserInteractionEnabled = true
+        reservationTimeLabel.addGestureRecognizer(timeTap)
+        
         
         //  신청하기 버튼
         reservationCommitBtn.addTarget(self, action: #selector(self.pressedReservationCommitBtn(_:)), for: UIControlEvents.touchUpInside)
@@ -321,6 +327,43 @@ class ReservationViewController: UIViewController {
             self.view.addSubview( calendarPopUpVC.view )
             calendarPopUpVC.didMove(toParentViewController: self )
 
+        }
+    }
+    
+    //  시간 선택 버튼 액션
+    @objc func pressedReservationTimeBtn( _ sender : UIButton ) {
+        
+        self.reservationZoneUIView.isHidden = true
+        
+        if( reservationDateLabel.text == "공연 날짜 선택" ) {
+            
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+            
+            defaultPopUpVC.content = "날짜를 선택해 주세요."
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
+            
+        } else {
+            
+            guard let timeTableVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TimeTableViewController") as? TimeTableViewController else { return }
+            
+            timeTableVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+            timeTableVC.memberInfo = self.memberInfo
+            timeTableVC.selectedBoroughIndex = self.selectedBoroughIndex
+            timeTableVC.selectedBoroughName = self.selectedBoroughName
+            timeTableVC.selectedZoneIndex = self.selectedZoneIndex
+            timeTableVC.selectedZoneName = self.selectedZoneName
+            timeTableVC.selectedZoneImage = self.selectedZoneImage
+            timeTableVC.selectedTmpDate = self.selectedTmpDate
+            timeTableVC.selectedDate = self.selectedDate
+            
+            self.addChildViewController( timeTableVC )
+            timeTableVC.view.frame = self.view.frame
+            self.view.addSubview( timeTableVC.view )
+            timeTableVC.didMove(toParentViewController: self )
         }
     }
 
