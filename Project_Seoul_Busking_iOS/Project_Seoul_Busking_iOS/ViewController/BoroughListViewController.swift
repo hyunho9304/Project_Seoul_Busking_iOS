@@ -19,8 +19,8 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
     @IBOutlet weak var boroughListCollectionView: UICollectionView!
     var boroughList : [ Borough ] = [ Borough ]()  //  서버 자치구 리스트
     var boroughSelectedIndexPath :IndexPath?    //  선택고려
-    var selectIndex : Int?      //  선택한 index
-    var selectName : String?    //  선택한 name
+    var selectedIndex : Int?      //  선택한 index
+    var selectedName : String?    //  선택한 name
     
     @IBOutlet weak var selectBoroughCommitBtn: UIButton!        //  선택완료버튼
     
@@ -193,10 +193,13 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
                 if( finished ) {
                     
                     guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
-                    
-                    reservationVC.selectBoroughIndex = self.selectIndex
-                    reservationVC.selectBoroughName = self.selectName
+
                     reservationVC.memberInfo = self.memberInfo
+                    reservationVC.uiviewX = self.uiviewX
+                    
+                    reservationVC.selectedBoroughIndex = self.selectedIndex
+                    reservationVC.selectedBoroughName = self.selectedName
+
                     
                     self.present( reservationVC , animated: false , completion: nil )
                     
@@ -242,8 +245,8 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
             cell.boroughBackView.isHidden = false
             cell.boroughLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             
-            self.selectIndex = boroughList[ indexPath.row ].sb_id
-            self.selectName = boroughList[ indexPath.row ].sb_name
+            self.selectedIndex = boroughList[ indexPath.row ].sb_id
+            self.selectedName = boroughList[ indexPath.row ].sb_name
             
         } else {
             

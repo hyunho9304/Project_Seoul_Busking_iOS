@@ -11,10 +11,12 @@ import Kingfisher
 
 class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
 
+    var parentVC : ParentViewControllerDelegate?
+    
     //  넘어온 정보
     var memberInfo : Member?    //  유저 정보
-    var selectBoroughIndex : Int?   //  선택한 자치구 index
-    var selectBoroughName : String? //  선택한 자치구 name
+    var selectedBoroughIndex : Int?   //  선택한 자치구 index
+    var selectedBoroughName : String? //  선택한 자치구 name
     
     
     //  네비게이션 바
@@ -27,6 +29,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     var busingZoneSelectedIndex:IndexPath?                     //  이동고려
     var memberShowZoneIndex : Int?      //  멤버가 현재 보고 있는 존 index
     var memberShowZoneName : String?    //  멤버가 현재 보고 있는 존 name
+    var memberShowZoneImage : String?      //  멤버가 현재 보고 있는 존 imageString
     var memberShowZoneLongitude : Double?   //  멤버가 현재 보고 있는 존 경도 x
     var memberShowZoneLatitude : Double?    //  멤버가 현재 보고 있는 존 위도 y
     
@@ -56,7 +59,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         setDelegate()
         setTarget()
         setTapbarAnimation()
-        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,13 +82,14 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     //  사라짐 애니메이션
     func removeAnimate() {
         
-        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
             
             self.view.frame.origin.x = 375
             
         }) { (finished ) in
             
             if( finished ) {
+                self.parentVC?.didUpdate()
                 self.view.removeFromSuperview()
             }
         }
@@ -194,7 +198,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     //  서버에서 해당하는 존 리스트 가져오기
     func buskingZoneInit() {
         
-        Server.reqBuskingZoneList(sb_id: selectBoroughIndex! ) { ( buskingZoneListData , rescode ) in
+        Server.reqBuskingZoneList(sb_id: selectedBoroughIndex! ) { ( buskingZoneListData , rescode ) in
             
             if rescode == 200 {
                 
@@ -257,6 +261,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             
             self.memberShowZoneIndex = buskingZoneList[ 0 ].sbz_id
             self.memberShowZoneName = buskingZoneList[ 0 ].sbz_name
+            self.memberShowZoneImage = buskingZoneList[ 0 ].sbz_photo
             self.memberShowZoneLongitude = buskingZoneList[ 0 ].sbz_longitude
             self.memberShowZoneLatitude = buskingZoneList[ 0 ].sbz_latitude
             
@@ -291,7 +296,31 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         
         if( collectionView == buskingZoneCollectionView ) {
             
-            //  reservation으로 데이터 전달
+            UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+                
+                self.view.frame.origin.x = 375
+                
+            }) { (finished ) in
+                
+                if( finished ) {
+                    
+                    guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+                    
+                    reservationVC.memberInfo = self.memberInfo
+                    reservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+                    reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+                    reservationVC.selectedBoroughName = self.selectedBoroughName
+                    
+                    reservationVC.selectedZoneIndex = self.memberShowZoneIndex
+                    reservationVC.selectedZoneName = self.memberShowZoneName
+                    reservationVC.selectedZoneImage = self.memberShowZoneImage
+                    
+                    self.present( reservationVC , animated: false , completion: nil )
+                    
+                    self.parentVC?.didUpdate()
+                    self.view.removeFromSuperview()
+                }
+            }
             
         }
         
@@ -352,6 +381,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         
         memberShowZoneIndex = buskingZoneList[ indexPath.row ].sbz_id
         memberShowZoneName = buskingZoneList[ indexPath.row ].sbz_name
+        memberShowZoneImage = buskingZoneList[ indexPath.row ].sbz_photo
         memberShowZoneLongitude = buskingZoneList[ indexPath.row ].sbz_longitude
         memberShowZoneLatitude = buskingZoneList[ indexPath.row ].sbz_latitude
         

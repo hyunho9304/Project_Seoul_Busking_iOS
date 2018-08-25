@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import Kingfisher
 
-class ReservationViewController: UIViewController {
+//  부모 뷰 컨트롤러( remove 할때 viewdidload 같은거 호출안되서 강제 호출방법 )
+protocol ParentViewControllerDelegate {
+
+    func didUpdate()
+}
+
+class ReservationViewController: UIViewController , ParentViewControllerDelegate {
 
     //  유저 정보
     var memberInfo : Member?
@@ -21,8 +28,8 @@ class ReservationViewController: UIViewController {
     @IBOutlet weak var reservationAreaView: UIView!
     @IBOutlet weak var reservationBoroughLabel: UILabel!
     @IBOutlet weak var reservationBoroughBtn: UIButton!
-    var selectBoroughIndex : Int?
-    var selectBoroughName : String?
+    var selectedBoroughIndex : Int?
+    var selectedBoroughName : String?
     
     
     @IBOutlet weak var reservationZoneLabel: UILabel!
@@ -31,13 +38,16 @@ class ReservationViewController: UIViewController {
     //  뷰2
     @IBOutlet weak var reservationZoneUIView: UIView!
     @IBOutlet weak var reservationZoneImageView: UIImageView!
+    var selectedZoneIndex : Int?      //  멤버가 현재 보고 있는 존 index
+    var selectedZoneName : String?    //  멤버가 현재 보고 있는 존 name
+    var selectedZoneImage : String?      //  멤버가 현재 보고 있는 존 ImageString
     
     //  뷰3
     @IBOutlet weak var reservationDateTimeView: UIView!
     @IBOutlet weak var reservationDateLabel: UILabel!
     @IBOutlet weak var reservationDateBtn: UIButton!
-    var selectTmpDate : String?
-    var selectDate : String?
+    var selectedTmpDate : String?
+    var selectedDate : String?
     
     @IBOutlet weak var reservationTimeLabel: UILabel!
     @IBOutlet weak var reservationTimeBtn: UIButton!
@@ -70,7 +80,40 @@ class ReservationViewController: UIViewController {
         setTapbarAnimation()
         
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if( selectedZoneName != nil ) {
+            
+            UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+                
+                self.reservationDateTimeView.frame.origin.y = 391
+                
+                
+            }) { (finished ) in
+                
+                self.reservationZoneUIView.isHidden = false
+            }
+            
+        } else {
+            
+            UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+                
+                self.reservationZoneUIView.isHidden = true
+                self.reservationDateTimeView.frame.origin.y = 210
+                
+            }, completion: nil )
+        }
+        
+        self.reservationDateTimeView.layoutIfNeeded()
+        
+    }
+    
+    func didUpdate() {
+        
+        print( 11111)
+    }
+    
     
     func set() {
         
@@ -86,14 +129,19 @@ class ReservationViewController: UIViewController {
         
         reservationCommitBtn.layer.cornerRadius = 25
         
-        if( selectBoroughName != nil ) {
-            reservationBoroughLabel.text = self.selectBoroughName
+        if( selectedBoroughName != nil ) {
+            reservationBoroughLabel.text = self.selectedBoroughName
         }
         
-        if( selectTmpDate != nil ) {
-            reservationDateLabel.text = self.selectTmpDate
+        if( selectedTmpDate != nil ) {
+            reservationDateLabel.text = self.selectedTmpDate
         }
         
+        if( selectedZoneName != nil ) {
+            
+            reservationZoneLabel.text = self.selectedZoneName
+            reservationZoneImageView.kf.setImage( with: URL( string:gsno( selectedZoneImage ) ) )
+        }
         
     }
     
@@ -119,6 +167,9 @@ class ReservationViewController: UIViewController {
         
         //  날짜선택 버튼
         reservationDateBtn.addTarget(self, action: #selector(self.pressedReservationDateBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  신청하기 버튼
+        reservationCommitBtn.addTarget(self, action: #selector(self.pressedReservationCommitBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     func setTapbarAnimation() {
@@ -192,6 +243,8 @@ class ReservationViewController: UIViewController {
     //  자치구 선택 버튼 액션
     @objc func pressedReservationBoroughBtn( _ sender : UIButton ) {
         
+        self.reservationZoneUIView.isHidden = true
+        
         guard let boroughListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoroughListViewController") as? BoroughListViewController else { return }
         
         boroughListVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
@@ -206,6 +259,7 @@ class ReservationViewController: UIViewController {
     //  위치 선택 버튼 액션
     @objc func pressedReservationZoneBtn( _ sender : UIButton ) {
         
+        self.reservationZoneUIView.isHidden = true
         
         if( reservationBoroughLabel.text == "지역 선택" ) {
             
@@ -224,8 +278,9 @@ class ReservationViewController: UIViewController {
             
             buskingZoneListVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
             buskingZoneListVC.memberInfo = self.memberInfo
-            buskingZoneListVC.selectBoroughIndex = self.selectBoroughIndex
-            buskingZoneListVC.selectBoroughName = self.selectBoroughName
+            buskingZoneListVC.selectedBoroughIndex = self.selectedBoroughIndex
+            buskingZoneListVC.selectedBoroughName = self.selectedBoroughName
+            buskingZoneListVC.parentVC = self
             
             self.addChildViewController( buskingZoneListVC )
             buskingZoneListVC.view.frame = self.view.frame
@@ -237,6 +292,8 @@ class ReservationViewController: UIViewController {
     
     //  날짜 선택 버튼 액션
     @objc func pressedReservationDateBtn( _ sender : UIButton ) {
+        
+        self.reservationZoneUIView.isHidden = true
         
         if( reservationZoneLabel.text == "위치 선택" ) {
 
@@ -252,8 +309,14 @@ class ReservationViewController: UIViewController {
         } else {
 
             guard let calendarPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CalendarPopUpViewController") as? CalendarPopUpViewController else { return }
-
+      
+            calendarPopUpVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
             calendarPopUpVC.memberInfo = self.memberInfo
+            calendarPopUpVC.selectedBoroughIndex = self.selectedBoroughIndex
+            calendarPopUpVC.selectedBoroughName = self.selectedBoroughName
+            calendarPopUpVC.selectedZoneIndex = self.selectedZoneIndex
+            calendarPopUpVC.selectedZoneName = self.selectedZoneName
+            calendarPopUpVC.selectedZoneImage = self.selectedZoneImage
 
             self.addChildViewController( calendarPopUpVC )
             calendarPopUpVC.view.frame = self.view.frame
@@ -263,5 +326,13 @@ class ReservationViewController: UIViewController {
         }
     }
 
+    //  신청하기 버튼 액션
+    @objc func pressedReservationCommitBtn( _ sender : UIButton ) {
+        
+        print( selectedBoroughIndex )
+        print( selectedZoneIndex )
+        print( selectedDate )
+        print("\n")
+    }
 
 }

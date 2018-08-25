@@ -897,7 +897,7 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNf-n5-pJf">
                                 <rect key="frame" x="0.0" y="210" width="375" height="181"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeCopy" translatesAutoresizingMaskIntoConstraints="NO" id="HgQ-t9-FG8">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeCopy" translatesAutoresizingMaskIntoConstraints="NO" id="HgQ-t9-FG8">
                                         <rect key="frame" x="94" y="0.0" width="227" height="181"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="HgQ-t9-FG8" secondAttribute="height" multiplier="227:181" id="3b3-lr-iby"/>

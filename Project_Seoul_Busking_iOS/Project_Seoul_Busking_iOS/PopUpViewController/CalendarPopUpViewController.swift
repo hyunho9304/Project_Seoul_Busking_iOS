@@ -11,8 +11,13 @@ import UIKit
 
 class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout  {
 
-    //  유저 정보
-    var memberInfo : Member?
+    //  넘어온 정보
+    var memberInfo : Member?    //  유저 정보
+    var selectedBoroughIndex : Int?   //  선택한 자치구 index
+    var selectedBoroughName : String? //  선택한 자치구 name
+    var selectedZoneIndex : Int?      //  멤버가 현재 보고 있는 존 index
+    var selectedZoneName : String?    //  멤버가 현재 보고 있는 존 name
+    var selectedZoneImage : String?      //  멤버가 현재 보고 있는 존 ImageString
     
     @IBOutlet weak var calendarPopUpUIView: UIView!
     @IBOutlet weak var popUpViewBackBtn: UIButton!
@@ -47,6 +52,9 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
     var selectDateTime : String?    //  선택한년월일 ex ) 2018815
     
     var nextMonthIndex = 21
+    
+    
+    var uiviewX : CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -190,8 +198,15 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             let tmpString = " \(gsno( selectYear )) . \(gsno( selectMonth )) . \(gsno( selectDate ))"
             
             reservationVC.memberInfo = self.memberInfo
-            reservationVC.selectDate = self.selectDateTime
-            reservationVC.selectTmpDate = tmpString
+            reservationVC.uiviewX = self.uiviewX
+            reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+            reservationVC.selectedBoroughName = self.selectedBoroughName
+            reservationVC.selectedZoneIndex = self.selectedZoneIndex
+            reservationVC.selectedZoneName = self.selectedZoneName
+            reservationVC.selectedZoneImage = self.selectedZoneImage
+            
+            reservationVC.selectedDate = self.selectDateTime
+            reservationVC.selectedTmpDate = tmpString
             
             self.present( reservationVC , animated: false , completion: nil )
             
