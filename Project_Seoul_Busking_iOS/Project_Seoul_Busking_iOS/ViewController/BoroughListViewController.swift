@@ -57,7 +57,7 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
         
         self.view.frame = CGRect(x: 375, y: 0, width: 375, height: 667)
         
-        UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn , animations: {
+        UIView.animate(withDuration: 0.3 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn , animations: {
             
             self.view.frame.origin.x = 0
             
@@ -171,27 +171,32 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
     //  뒤로가기 버튼 액션
     @objc func pressedReservationBackBtn( _ sender : UIButton ) {
         
-        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
             
             self.view.frame.origin.x = 375
           
-            guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+        }) { ( finished ) in
             
-            reservationVC.memberInfo = self.memberInfo
-            reservationVC.uiviewX = self.uiviewX
-            
-            reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
-            reservationVC.selectedBoroughName = self.selectedBoroughName
-            reservationVC.selectedZoneIndex = self.selectedZoneIndex
-            reservationVC.selectedZoneName = self.selectedZoneName
-            reservationVC.selectedZoneImage = self.selectedZoneImage
-            reservationVC.selectedTmpDate = self.selectedTmpDate
-            reservationVC.selectedDate = self.selectedDate
-            
-            self.present( reservationVC , animated: false , completion: nil )
-            
-            self.view.removeFromSuperview()
-        })
+            if( finished ) {
+                
+                guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+                
+                reservationVC.memberInfo = self.memberInfo
+                reservationVC.uiviewX = self.uiviewX
+                
+                reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+                reservationVC.selectedBoroughName = self.selectedBoroughName
+                reservationVC.selectedZoneIndex = self.selectedZoneIndex
+                reservationVC.selectedZoneName = self.selectedZoneName
+                reservationVC.selectedZoneImage = self.selectedZoneImage
+                reservationVC.selectedTmpDate = self.selectedTmpDate
+                reservationVC.selectedDate = self.selectedDate
+                
+                self.present( reservationVC , animated: false , completion: nil )
+                
+                self.view.removeFromSuperview()
+            }
+        }
     }
     
     //  선택완료 버튼 액션
@@ -200,23 +205,28 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
         //  선택 했을경우
         if( boroughSelectedIndexPath != nil  ) {
             
-            UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
                 
                 self.view.frame.origin.x = 375
-              
-                guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
                 
-                reservationVC.memberInfo = self.memberInfo
-                reservationVC.uiviewX = self.uiviewX
+            }) { ( finished ) in
                 
-                reservationVC.selectedBoroughIndex = self.selectedIndex
-                reservationVC.selectedBoroughName = self.selectedName
-                
-                
-                self.present( reservationVC , animated: false , completion: nil )
-                
-                self.view.removeFromSuperview()
-            })
+                if( finished ) {
+                    
+                    guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+                    
+                    reservationVC.memberInfo = self.memberInfo
+                    reservationVC.uiviewX = self.uiviewX
+                    
+                    reservationVC.selectedBoroughIndex = self.selectedIndex
+                    reservationVC.selectedBoroughName = self.selectedName
+                    
+                    
+                    self.present( reservationVC , animated: false , completion: nil )
+                    
+                    self.view.removeFromSuperview()
+                }
+            }
 
             
         } else {    //  선택 안했을 경우

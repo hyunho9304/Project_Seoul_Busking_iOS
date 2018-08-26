@@ -79,7 +79,7 @@ class ReservationViewController: UIViewController {
         
         if( selectedZoneName != nil ) {
             
-            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.reservationDateTimeView.frame.origin.y = 391
                 
@@ -91,7 +91,7 @@ class ReservationViewController: UIViewController {
             
         } else {
             
-            UIView.animate(withDuration: 0.3 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.15 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
                 
                 self.reservationZoneUIView.isHidden = true
                 self.reservationDateTimeView.frame.origin.y = 210
@@ -235,7 +235,7 @@ class ReservationViewController: UIViewController {
         homeVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
         homeVC.memberInfo = self.memberInfo
         
-        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
             self.view.frame.origin.x = 375
             

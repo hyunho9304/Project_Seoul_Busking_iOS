@@ -85,7 +85,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         
         self.view.frame = CGRect(x: 375 , y: 0 , width: 375, height: 667)
         
-        UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+        UIView.animate(withDuration: 0.3 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
             
             self.view.frame.origin.x = 0
             
@@ -95,7 +95,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     //  사라짐 애니메이션
     func removeAnimate() {
         
-        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
             self.view.frame.origin.x = 375
             

@@ -170,21 +170,26 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     //  선택완료 버튼 액션
     @objc func pressedSelectCommitBtn( _ sender : UIButton ) {
         
-        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
             
             self.view.frame.origin.y = 667
-          
-            guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
             
-            homeVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
-            homeVC.memberInfo = self.memberInfo
-            homeVC.homeSelectBoroughIndex = self.selectIndex
-            homeVC.homeSelectBoroughName = self.selectName
+        })  { ( finished ) in
             
-            self.present( homeVC , animated: false , completion: nil )
-            
-            self.view.removeFromSuperview()
-        })
+            if( finished ) {
+                
+                guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+                
+                homeVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+                homeVC.memberInfo = self.memberInfo
+                homeVC.homeSelectBoroughIndex = self.selectIndex
+                homeVC.homeSelectBoroughName = self.selectName
+                
+                self.present( homeVC , animated: false , completion: nil )
+                
+                self.view.removeFromSuperview()
+            }
+        }
         
     }
     

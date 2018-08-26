@@ -290,7 +290,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         containerView?.addSubview(reservationVC.view )
         
         
-        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
             reservationVC.view.frame.origin.x = 0
             
