@@ -79,7 +79,7 @@ class ReservationViewController: UIViewController {
         
         if( selectedZoneName != nil ) {
             
-            UIView.animate(withDuration: 0 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.reservationDateTimeView.frame.origin.y = 391
                 
@@ -91,7 +91,7 @@ class ReservationViewController: UIViewController {
             
         } else {
             
-            UIView.animate(withDuration: 0 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.3 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
                 
                 self.reservationZoneUIView.isHidden = true
                 self.reservationDateTimeView.frame.origin.y = 210
@@ -252,8 +252,16 @@ class ReservationViewController: UIViewController {
         
         guard let boroughListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoroughListViewController") as? BoroughListViewController else { return }
         
+        
         boroughListVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
         boroughListVC.memberInfo = self.memberInfo
+        boroughListVC.selectedBoroughIndex = self.selectedBoroughIndex
+        boroughListVC.selectedBoroughName = self.selectedBoroughName
+        boroughListVC.selectedZoneIndex = self.selectedZoneIndex
+        boroughListVC.selectedZoneName = self.selectedZoneName
+        boroughListVC.selectedZoneImage = self.selectedZoneImage
+        boroughListVC.selectedTmpDate = self.selectedTmpDate
+        boroughListVC.selectedDate = self.selectedDate
         
         self.addChildViewController( boroughListVC )
         boroughListVC.view.frame = self.view.frame
@@ -285,6 +293,11 @@ class ReservationViewController: UIViewController {
             buskingZoneListVC.memberInfo = self.memberInfo
             buskingZoneListVC.selectedBoroughIndex = self.selectedBoroughIndex
             buskingZoneListVC.selectedBoroughName = self.selectedBoroughName
+            buskingZoneListVC.selectedZoneIndex = self.selectedZoneIndex
+            buskingZoneListVC.selectedZoneName = self.selectedZoneName
+            buskingZoneListVC.selectedZoneImage = self.selectedZoneImage
+            buskingZoneListVC.selectedTmpDate = self.selectedTmpDate
+            buskingZoneListVC.selectedDate = self.selectedDate
             
             self.addChildViewController( buskingZoneListVC )
             buskingZoneListVC.view.frame = self.view.frame
@@ -313,7 +326,7 @@ class ReservationViewController: UIViewController {
         } else {
 
             guard let calendarPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CalendarPopUpViewController") as? CalendarPopUpViewController else { return }
-      
+            
             calendarPopUpVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
             calendarPopUpVC.memberInfo = self.memberInfo
             calendarPopUpVC.selectedBoroughIndex = self.selectedBoroughIndex
@@ -321,7 +334,9 @@ class ReservationViewController: UIViewController {
             calendarPopUpVC.selectedZoneIndex = self.selectedZoneIndex
             calendarPopUpVC.selectedZoneName = self.selectedZoneName
             calendarPopUpVC.selectedZoneImage = self.selectedZoneImage
-
+            calendarPopUpVC.selectedTmpDate = self.selectedTmpDate
+            calendarPopUpVC.selectedDate = self.selectedDate
+            
             self.addChildViewController( calendarPopUpVC )
             calendarPopUpVC.view.frame = self.view.frame
             self.view.addSubview( calendarPopUpVC.view )

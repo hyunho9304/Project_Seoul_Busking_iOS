@@ -55,7 +55,7 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
         
         self.view.frame = CGRect(x: 0, y: 667, width: 375, height: 667)
         
-        UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn , animations: {
+        UIView.animate(withDuration: 0.3 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn , animations: {
             
             self.view.frame.origin.y = 0
             
@@ -64,7 +64,7 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     
     func removeAnimate() {
         
-        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
             
             self.view.frame.origin.y = 667
             
@@ -173,23 +173,18 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
         UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
             
             self.view.frame.origin.y = 667
+          
+            guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
             
-        }) { (finished ) in
+            homeVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+            homeVC.memberInfo = self.memberInfo
+            homeVC.homeSelectBoroughIndex = self.selectIndex
+            homeVC.homeSelectBoroughName = self.selectName
             
-            if( finished ) {
-                
-                guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
-                
-                homeVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
-                homeVC.memberInfo = self.memberInfo
-                homeVC.homeSelectBoroughIndex = self.selectIndex
-                homeVC.homeSelectBoroughName = self.selectName
-                
-                self.present( homeVC , animated: false , completion: nil )
-                
-                self.view.removeFromSuperview()
-            }
-        }
+            self.present( homeVC , animated: false , completion: nil )
+            
+            self.view.removeFromSuperview()
+        })
         
     }
     

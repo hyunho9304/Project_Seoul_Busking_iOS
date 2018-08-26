@@ -10,6 +10,7 @@ import UIKit
 
 class TimeTableViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
 
+    //  넘어온 정보
     var memberInfo : Member?            //  유저 정보
     var selectedBoroughIndex : Int?     //  선택한 자치구 index
     var selectedBoroughName : String?   //  선택한 자치구 name

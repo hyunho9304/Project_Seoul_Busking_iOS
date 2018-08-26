@@ -12,9 +12,14 @@ import Kingfisher
 class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
 
     //  넘어온 정보
-    var memberInfo : Member?    //  유저 정보
-    var selectedBoroughIndex : Int?   //  선택한 자치구 index
-    var selectedBoroughName : String? //  선택한 자치구 name
+    var memberInfo : Member?            //  유저 정보
+    var selectedBoroughIndex : Int?     //  선택한 자치구 index
+    var selectedBoroughName : String?   //  선택한 자치구 name
+    var selectedZoneIndex : Int?        //  멤버가 선택한 존 index
+    var selectedZoneName : String?      //  멤버가 선택한 존 name
+    var selectedZoneImage : String?     //  멤버가 선택한 존 ImageString
+    var selectedTmpDate : String?       //  멤버가 선택한 날짜.
+    var selectedDate : String?          //  멤버가 선택한 날짜
     
     
     //  네비게이션 바
@@ -75,21 +80,6 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             self.view.frame.origin.x = 0
             
         }, completion: nil )
-    }
-    
-    //  사라짐 애니메이션
-    func removeAnimate() {
-        
-        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
-            
-            self.view.frame.origin.x = 375
-            
-        }) { (finished ) in
-            
-            if( finished ) {
-                self.view.removeFromSuperview()
-            }
-        }
     }
     
     func set() {
@@ -180,7 +170,28 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     //  뒤로가기 버튼 액션
     @objc func pressedReservationBackBtn( _ sender : UIButton ) {
         
-        removeAnimate()
+        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+            
+            self.view.frame.origin.x = 375
+            
+            guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+            
+            reservationVC.memberInfo = self.memberInfo
+            reservationVC.uiviewX = self.uiviewX
+            
+            reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+            reservationVC.selectedBoroughName = self.selectedBoroughName
+            reservationVC.selectedZoneIndex = self.selectedZoneIndex
+            reservationVC.selectedZoneName = self.selectedZoneName
+            reservationVC.selectedZoneImage = self.selectedZoneImage
+            reservationVC.selectedTmpDate = self.selectedTmpDate
+            reservationVC.selectedDate = self.selectedDate
+            
+            self.present( reservationVC , animated: false , completion: nil )
+            
+            self.view.removeFromSuperview()
+            
+        })
     }
     
     //  지도 버튼 액션
@@ -297,26 +308,22 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
                 
                 self.view.frame.origin.x = 375
                 
-            }) { (finished ) in
+                guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
                 
-                if( finished ) {
-                    
-                    guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
-                    
-                    reservationVC.memberInfo = self.memberInfo
-                    reservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
-                    reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
-                    reservationVC.selectedBoroughName = self.selectedBoroughName
-                    
-                    reservationVC.selectedZoneIndex = self.memberShowZoneIndex
-                    reservationVC.selectedZoneName = self.memberShowZoneName
-                    reservationVC.selectedZoneImage = self.memberShowZoneImage
-                    
-                    self.present( reservationVC , animated: false , completion: nil )
-                    
-                    self.view.removeFromSuperview()
-                }
-            }
+                reservationVC.memberInfo = self.memberInfo
+                reservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+                reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+                reservationVC.selectedBoroughName = self.selectedBoroughName
+                
+                reservationVC.selectedZoneIndex = self.memberShowZoneIndex
+                reservationVC.selectedZoneName = self.memberShowZoneName
+                reservationVC.selectedZoneImage = self.memberShowZoneImage
+                
+                self.present( reservationVC , animated: false , completion: nil )
+                
+                self.view.removeFromSuperview()
+                
+            })
             
         }
         

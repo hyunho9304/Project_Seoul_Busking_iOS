@@ -12,12 +12,14 @@ import UIKit
 class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout  {
 
     //  넘어온 정보
-    var memberInfo : Member?    //  유저 정보
-    var selectedBoroughIndex : Int?   //  선택한 자치구 index
-    var selectedBoroughName : String? //  선택한 자치구 name
-    var selectedZoneIndex : Int?      //  멤버가 현재 보고 있는 존 index
-    var selectedZoneName : String?    //  멤버가 현재 보고 있는 존 name
-    var selectedZoneImage : String?      //  멤버가 현재 보고 있는 존 ImageString
+    var memberInfo : Member?            //  유저 정보
+    var selectedBoroughIndex : Int?     //  선택한 자치구 index
+    var selectedBoroughName : String?   //  선택한 자치구 name
+    var selectedZoneIndex : Int?        //  멤버가 선택한 존 index
+    var selectedZoneName : String?      //  멤버가 선택한 존 name
+    var selectedZoneImage : String?     //  멤버가 선택한 존 ImageString
+    var selectedTmpDate : String?       //  멤버가 선택한 날짜.
+    var selectedDate : String?          //  멤버가 선택한 날짜
     
     @IBOutlet weak var calendarPopUpUIView: UIView!
     @IBOutlet weak var popUpViewBackBtn: UIButton!
@@ -215,6 +217,22 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             self.view.removeFromSuperview()
             
         } else {    //  선택 안했을 경우
+            
+            guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+            
+            reservationVC.memberInfo = self.memberInfo
+            reservationVC.uiviewX = self.uiviewX
+            
+            reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+            reservationVC.selectedBoroughName = self.selectedBoroughName
+            reservationVC.selectedZoneIndex = self.selectedZoneIndex
+            reservationVC.selectedZoneName = self.selectedZoneName
+            reservationVC.selectedZoneImage = self.selectedZoneImage
+            reservationVC.selectedTmpDate = self.selectedTmpDate
+            reservationVC.selectedDate = self.selectedDate
+            
+            self.present( reservationVC , animated: false , completion: nil )
+            
             self.view.removeFromSuperview()
         }
     }
@@ -222,7 +240,24 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
     //  뷰 닫기 버튼 액션
     @objc func pressedPopUpViewBackBtn( _ sender : UIButton ) {
         
+        guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+        
+        reservationVC.memberInfo = self.memberInfo
+        reservationVC.uiviewX = self.uiviewX
+        
+        reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+        reservationVC.selectedBoroughName = self.selectedBoroughName
+        reservationVC.selectedZoneIndex = self.selectedZoneIndex
+        reservationVC.selectedZoneName = self.selectedZoneName
+        reservationVC.selectedZoneImage = self.selectedZoneImage
+        reservationVC.selectedTmpDate = self.selectedTmpDate
+        reservationVC.selectedDate = self.selectedDate
+        
+        self.present( reservationVC , animated: false , completion: nil )
+        
         self.view.removeFromSuperview()
+        
+        
     }
     
     func GetStartDateDayPosition() {
