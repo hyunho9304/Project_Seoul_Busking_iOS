@@ -28,7 +28,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     
     //  내용
     @IBOutlet weak var timeTableCollectionView: UICollectionView!
-    
+    var reservationPossibility : ReservationPossibility?  //  서버 버스킹 존 데이터
     
     //  선택 완료
     @IBOutlet weak var selectTimeCommitBtn: UIButton!
@@ -58,7 +58,25 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     
     override func viewDidAppear(_ animated: Bool) {
         
-        //timeTableCollectionView.reloadData()
+        getReservationPossibilityInit()
+    }
+    
+    func getReservationPossibilityInit() {
+        
+        Server.reqReservationPossibility(r_date: selectedDate! , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex!) { ( reservationPossibilityData , rescode ) in
+            
+            if( rescode == 200 ) {
+                
+                self.reservationPossibility = reservationPossibilityData
+                self.timeTableCollectionView.reloadData()
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
     }
     
     //  등장 애니메이션
@@ -258,12 +276,21 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         cell.timeTableContentsLabel.text = "\(indexPath.row + 17) : 00 - \(indexPath.row + 18) : 00"
         
 //        if(  indexPath.row >= 1 && indexPath.row <= 3 ) {
-//            
+//
 //            cell.isUserInteractionEnabled = true
-//            
+//
 //            cell.timeTableCircleImageView.image = #imageLiteral(resourceName: "checkO")
 //            cell.timeTableReservInfoImageView.image = #imageLiteral(resourceName: "reser.png")
 //        }
+        
+        if( reservationPossibility?.possibility[ indexPath.row ] == 1 ) {
+         
+            cell.isUserInteractionEnabled = true
+            
+            cell.timeTableCircleImageView.image = #imageLiteral(resourceName: "checkO")
+            cell.timeTableReservInfoImageView.image = #imageLiteral(resourceName: "reser.png")
+        }
+        
         
         return cell
     }

@@ -69,6 +69,7 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
                 self.view.removeFromSuperview()
             }
         }
+        
     }
     
     func set() {

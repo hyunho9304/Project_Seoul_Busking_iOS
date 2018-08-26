@@ -14,6 +14,7 @@
 		BE9B5A802130F318007C3C74 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE9B5A7F2130F315007C3C74 /* NotoSans-Bold.ttf */; };
 		BE9B5A822131A8E2007C3C74 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B5A812131A8E2007C3C74 /* TimeTableViewController.swift */; };
 		BE9B5A842131B427007C3C74 /* TimeTableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B5A832131B427007C3C74 /* TimeTableCollectionViewCell.swift */; };
+		BE9B5A8621331083007C3C74 /* ReservationPossibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B5A8521331082007C3C74 /* ReservationPossibility.swift */; };
 		BEB0C1D321259321004D3F22 /* MemberRepresentativeBorough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */; };
 		BEB0C1D52125A783004D3F22 /* selectBoroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */; };
 		BEB0C1D72126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0C1D62126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift */; };
@@ -64,6 +65,7 @@
 		BE9B5A7F2130F315007C3C74 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Bold.ttf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSans-Bold.ttf"; sourceTree = "<group>"; };
 		BE9B5A812131A8E2007C3C74 /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
 		BE9B5A832131B427007C3C74 /* TimeTableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE9B5A8521331082007C3C74 /* ReservationPossibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationPossibility.swift; sourceTree = "<group>"; };
 		BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_Seoul_Busking_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepresentativeBorough.swift; sourceTree = "<group>"; };
 		BEB0C1D42125A783004D3F22 /* selectBoroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectBoroughViewController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */,
 				BEB560FD21248DF900760903 /* BuskingZone.swift */,
 				BEB0C1D82126F4B8004D3F22 /* Borough.swift */,
+				BE9B5A8521331082007C3C74 /* ReservationPossibility.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				BEEA4D65211328C500FD71C4 /* Server.swift in Sources */,
 				BEB0C1DD212AEB4B004D3F22 /* BoroughListViewController.swift in Sources */,
 				BE5CF37C212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift in Sources */,
+				BE9B5A8621331083007C3C74 /* ReservationPossibility.swift in Sources */,
 				BEEA4D352113097E00FD71C4 /* AppDelegate.swift in Sources */,
 				BEB560F621243E7D00760903 /* HomeCalendarCollectionViewCell.swift in Sources */,
 				BEB560FC212467EF00760903 /* Member.swift in Sources */,

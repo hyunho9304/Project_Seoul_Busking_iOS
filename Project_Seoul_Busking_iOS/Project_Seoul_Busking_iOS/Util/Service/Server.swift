@@ -341,6 +341,48 @@ struct Server : APIService {
         }
     }
     
+    
+    //  예약가능한 시간 가져오기
+    static func reqReservationPossibility( r_date : String , sb_id : Int , sbz_id : Int , completion : @escaping ( ReservationPossibility , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/reservation/possibility?r_date=\(r_date)&sb_id=\(sb_id)&sbz_id=\(sbz_id)" )
+        
+        Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let reservationPossibilityData = try decoder.decode(ReservationPossibilityData.self , from: value)
+                        
+                        if( res.response?.statusCode == 200 ){
+                            
+                            completion( reservationPossibilityData.data! , 200 )
+                        }
+                        else{
+                            
+                            completion( reservationPossibilityData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
+    
 }
 
 
