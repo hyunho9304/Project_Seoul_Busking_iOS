@@ -91,8 +91,11 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         currentMonth = Months[month]
         MonthLabel.text = "\(year). \(currentMonth)"
         
-        NumberOfEmptyBox = (weekday - 1 )               //  이번달 빈공간
-        PositionIndex = ( weekday - 1 )                 //  이번달 빈공간
+//        NumberOfEmptyBox = (weekday - 1 )               //  이번달 빈공간
+//        PositionIndex = ( weekday - 1 )                 //  이번달 빈공간
+        
+        NumberOfEmptyBox = (weekday )               //  이번달 빈공간
+        PositionIndex = ( weekday )                 //  이번달 빈공간
         
         calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
         
@@ -353,63 +356,66 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             cell.isHidden = true
         }
         
-        //  오늘 날짜 색칠
-        if currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && ( indexPath.row + 1 - NumberOfEmptyBox ) == day {
-            cell.circleToday.isHidden = false
-        } else {
-            cell.circleToday.isHidden = true
-        }
         
+
 //        //  전 날짜 색칠
 //        if( currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && indexPath.row + 1 < day) {
 //
 //            //cell.dateLabel.textColor = UIColor.yellow
 //        }
-        
+
+        //  오늘 날짜 색칠
+        if currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && ( indexPath.row + 1 - NumberOfEmptyBox ) == day {
+            cell.dateLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+        } else {
+            cell.dateLabel.textColor = #colorLiteral(red: 0.6712639928, green: 0.6712799668, blue: 0.6712713838, alpha: 1)
+        }
         
         //  이번달 예약가능 날짜 표시 21일가능
         if( currentMonth == Months[ calendar.component(.month, from: date) - 1 ] && year == calendar.component(.year, from: date) && ( ( indexPath.row + 1 - NumberOfEmptyBox ) >= day ) && ( indexPath.row + 1 - NumberOfEmptyBox ) < (day+21 ) ) {
             
             if( calendarSelectedIndex == IndexPath(row: -1, section: -1)  ) {       //  선택시 viewReload 될때 반복되서 카운트 하지 않도록 디폴트경우만 카운트 선택없을경우
-             
+                
                 nextMonthIndex -= 1
             }
             
+            cell.dateLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             cell.isUserInteractionEnabled = true
-            cell.dateLabel.textColor = #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1)
+            if( ( indexPath.row + 1 - NumberOfEmptyBox ) == day ) {
+                cell.dateLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)      //  이번달 예약가능 날짜 에서 오늘 포함되니 오늘은 보라색
+            }
         }
-        
+
         //  다음달 예약가능 날짜 표시 21일가능
         if( currentMonth == Months[ calendar.component(.month, from: date) ] && year == calendar.component(.year, from: date) && (( indexPath.row - NextNumberOfEmptyBox ) < nextMonthIndex ) ) {
-            
+
             cell.isUserInteractionEnabled = true
-            cell.dateLabel.textColor = #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1)
+            cell.dateLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
-        
-        //  주말날짜 색칠
-        switch indexPath.row {
-        case 0,7,14,21,28,35 :
-            if Int( cell.dateLabel.text!)! > 0 {
-                cell.dateLabel.textColor = UIColor.red
-            }
-        default:
-            break
-        }
-        
-        
+
+//        //  주말날짜 색칠
+//        switch indexPath.row {
+//        case 0,7,14,21,28,35 :
+//            if Int( cell.dateLabel.text!)! > 0 {
+//                cell.dateLabel.textColor = UIColor.red
+//            }
+//        default:
+//            break
+//        }
+
         if indexPath == calendarSelectedIndex {
-            
+
             cell.dateLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.circleSelect.isHidden = false
-            
+
             self.selectYear = String( year )
             self.selectMonth = String( month + 1 )
             self.selectDate = cell.dateLabel.text
-            
+
             self.selectDateTime = gsno( selectYear ) + gsno( selectMonth ) + gsno( selectDate )
-            
+
         } else {
-            
+
             cell.circleSelect.isHidden = true
         }
         

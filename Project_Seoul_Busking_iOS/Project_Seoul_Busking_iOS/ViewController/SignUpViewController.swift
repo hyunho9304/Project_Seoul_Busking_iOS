@@ -173,7 +173,7 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
                     
                     homeVC.memberInfo = memberData
                     
-                    self.present( homeVC , animated: false , completion: nil )
+                    self.present( homeVC , animated: true , completion: nil )
                     
                 } else {
                     

@@ -129,6 +129,8 @@ class ReservationViewController: UIViewController {
             
             reservationZoneLabel.text = self.selectedZoneName
             reservationZoneImageView.kf.setImage( with: URL( string:gsno( selectedZoneImage ) ) )
+            reservationZoneImageView.layer.cornerRadius = 5
+            reservationZoneImageView.clipsToBounds = true
         }
     }
     

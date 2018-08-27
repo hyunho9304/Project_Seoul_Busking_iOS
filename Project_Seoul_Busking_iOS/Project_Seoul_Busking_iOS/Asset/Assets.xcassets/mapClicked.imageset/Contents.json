@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "notify.png",
+      "filename" : "mapCopy.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "notify@2x.png",
+      "filename" : "mapCopy@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "notify@3x.png",
+      "filename" : "mapCopy@3x.png",
       "scale" : "3x"
     }
   ],
