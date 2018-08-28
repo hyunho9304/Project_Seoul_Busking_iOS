@@ -17,7 +17,7 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
     var selectedZoneName : String?      //  멤버가 선택한 존 name
     var selectedZoneImage : String?     //  멤버가 선택한 존 ImageString
     var selectedTmpDate : String?       //  멤버가 선택한 날짜.
-    var selectedDate : String?          //  멤버가 선택한 날짜
+    var selectedDate : Int?          //  멤버가 선택한 날짜
     var selectedTmpTime : String?                   //  멤버가 선택한 시간 글
     var selectedTimeCnt : Int?                      //  멤버가 선택한 시간 개수
     var selectedStartTime : [Int] = [ -1 , -1 ]     //  멤버가 선택한 시간 시작 시간

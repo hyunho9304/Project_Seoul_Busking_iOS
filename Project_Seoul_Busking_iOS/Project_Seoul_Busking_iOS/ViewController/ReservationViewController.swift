@@ -41,7 +41,7 @@ class ReservationViewController: UIViewController {
     @IBOutlet weak var reservationDateLabel: UILabel!
     @IBOutlet weak var reservationDateBtn: UIButton!
     var selectedTmpDate : String?
-    var selectedDate : String?
+    var selectedDate : Int?
     
     @IBOutlet weak var reservationTimeLabel: UILabel!
     @IBOutlet weak var reservationTimeBtn: UIButton!
@@ -73,8 +73,6 @@ class ReservationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print( selectedStartTime )
         
         set()
         setTarget()
@@ -414,13 +412,84 @@ class ReservationViewController: UIViewController {
     //  신청하기 버튼 액션
     @objc func pressedReservationCommitBtn( _ sender : UIButton ) {
         
-        print( selectedDate )
-        print( selectedTimeCnt )
-        print( selectedStartTime )
-        print( selectedEndTime )
-        print( selectedBoroughIndex )
-        print( selectedZoneIndex )
-        print("\n")
+        var flag : Int = 0
+        
+        //  한번의 서버 연동
+        if( selectedTimeCnt == 1 ) {
+            
+            Server.reqReservationAttempt(r_date: selectedDate! , r_startTime: selectedStartTime[0] , r_endTime: selectedEndTime[0] , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex! , member_nickname: (memberInfo?.member_nickname)!) { ( rescode ) in
+                
+                if( rescode == 201 ) {
+                    flag += 1
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
+                    
+                    if( flag == 1 ) {
+                        
+                        guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                        
+                        defaultPopUpVC.memberInfo = self.memberInfo
+                        defaultPopUpVC.uiviewX = self.uiviewX
+                        defaultPopUpVC.content = "예약이 접수 되었습니다.\n ( 홈으로 이동합니다. )"
+                        
+                        self.addChildViewController( defaultPopUpVC )
+                        defaultPopUpVC.view.frame = self.view.frame
+                        self.view.addSubview( defaultPopUpVC.view )
+                        defaultPopUpVC.didMove(toParentViewController: self )
+                    } else {
+                        
+                        let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                        let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                        alert.addAction( ok )
+                        self.present(alert , animated: true , completion: nil)
+                    }
+                })
+            }
+            
+        } else {    //  두번의 서버 연동
+            
+            for i in 0 ..< 2 {
+                
+                Server.reqReservationAttempt(r_date: selectedDate! , r_startTime: selectedStartTime[i] , r_endTime: selectedEndTime[i] , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex! , member_nickname: (memberInfo?.member_nickname)!) { ( rescode ) in
+                    
+                    if( rescode == 201 ) {
+                        flag += 1
+                    } else {
+                        flag -= 1
+                    }
+                }
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
+              
+                if( flag == 2 ) {
+                    
+                    guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                    
+                    defaultPopUpVC.memberInfo = self.memberInfo
+                    defaultPopUpVC.uiviewX = self.uiviewX
+                    defaultPopUpVC.content = "예약이 접수 되었습니다.\n ( 홈으로 이동합니다. )"
+                    
+                    self.addChildViewController( defaultPopUpVC )
+                    defaultPopUpVC.view.frame = self.view.frame
+                    self.view.addSubview( defaultPopUpVC.view )
+                    defaultPopUpVC.didMove(toParentViewController: self )
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
+            })
+        }
     }
 
 }

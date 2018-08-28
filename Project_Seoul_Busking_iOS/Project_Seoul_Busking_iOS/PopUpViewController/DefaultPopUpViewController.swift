@@ -10,6 +10,11 @@ import UIKit
 
 class DefaultPopUpViewController: UIViewController {
 
+    //  넘어온 정보 -> 예약 할때 넘어온다
+    var memberInfo : Member?
+    var uiviewX : CGFloat?
+    
+    
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var popUpContent: UILabel!
     @IBOutlet weak var okBtn: UIButton!
@@ -51,8 +56,22 @@ class DefaultPopUpViewController: UIViewController {
     
     @objc func pressedOkBtn( _ sender : UIButton ) {
 
-        self.view.removeFromSuperview()
-        //removeAnimate()
+        if( memberInfo == nil ) {
+            
+            self.view.removeFromSuperview()
+            
+        } else {
+            
+            guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+   
+            homeVC.memberInfo = self.memberInfo
+            homeVC.uiviewX = self.uiviewX
+            
+            self.present( homeVC , animated: false , completion: nil )
+            
+            self.view.removeFromSuperview()
+        }
+        
     }
     
     func showAnimate() {

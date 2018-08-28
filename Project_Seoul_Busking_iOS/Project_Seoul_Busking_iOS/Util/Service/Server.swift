@@ -343,7 +343,7 @@ struct Server : APIService {
     
     
     //  예약가능한 시간 가져오기
-    static func reqReservationPossibility( r_date : String , sb_id : Int , sbz_id : Int , completion : @escaping ( ReservationPossibility , _ status : Int ) -> Void ) {
+    static func reqReservationPossibility( r_date : Int , sb_id : Int , sbz_id : Int , completion : @escaping ( ReservationPossibility , _ status : Int ) -> Void ) {
         
         let URL = url( "/reservation/possibility?r_date=\(r_date)&sb_id=\(sb_id)&sbz_id=\(sbz_id)" )
         
@@ -381,6 +381,42 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  예약 시도
+    static func reqReservationAttempt( r_date : Int , r_startTime : Int , r_endTime : Int , sb_id : Int , sbz_id : Int , member_nickname : String , completion : @escaping (_ status : Int ) -> Void ) {
+
+        let URL = url( "/reservation/attempt" )
+
+        let body: [String: Any] = [
+            "r_date" : r_date ,
+            "r_startTime" : r_startTime ,
+            "r_endTime" : r_endTime ,
+            "sb_id" : sb_id ,
+            "sbz_id" : sbz_id ,
+            "member_nickname" : member_nickname
+        ]
+
+        Alamofire.request(URL, method: .post, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+
+            switch res.result {
+
+            case .success:
+
+                if( res.response?.statusCode == 201 ){
+                    completion( 201 )
+                }
+                else {
+                    completion( 500 )
+                }
+                break
+
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
 
     
 }
