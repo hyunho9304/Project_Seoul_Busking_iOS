@@ -44,6 +44,11 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     var selectZoneIndex : Int?                                 //  선택한 버스킹 존 인덱스
     @IBOutlet weak var nothingZone: UILabel!
     
+    
+    //  예약 공연 목록
+    @IBOutlet weak var homeReservationCollectionView: UICollectionView!
+    
+    
     //  tap bar
     @IBOutlet weak var tapbarMenuUIView: UIView!
     @IBOutlet weak var tapbarSearchBtn: UIButton!
