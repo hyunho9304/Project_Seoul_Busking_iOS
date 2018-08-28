@@ -45,6 +45,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     //  내용2( cnt )
     @IBOutlet weak var buskingZoneCntCollectionView: UICollectionView!
     var busingZoneCntShowIndexPath:IndexPath? = IndexPath(row: 0, section: 0)  //  이동고려
+    @IBOutlet weak var nothingZone: UILabel!
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -226,15 +227,13 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
                 self.buskingZoneCollectionView.reloadData()
                 self.buskingZoneCntCollectionView.reloadData()
                 
-//                if( self.buskingZoneList.count == 0 ) {
-//
-//                    self.nothingZone.isHidden = false
-//
-//                } else {
-//
-//                    self.nothingZone.isHidden = true
-//
-//                }
+                if( self.buskingZoneList.count != 0 ) {
+                    self.nothingZone.isHidden = true
+                } else {
+                    self.nothingZone.isHidden = false
+                    self.buskingZoneMapBtn.isHidden = true
+
+                }
                 
             } else {
                 

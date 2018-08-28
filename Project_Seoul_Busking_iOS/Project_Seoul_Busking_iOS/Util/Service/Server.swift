@@ -416,6 +416,48 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  예약 리스트 가져오기
+    static func reqReservationList( r_date : Int , sb_id : Int , sbz_id : Int , completion : @escaping ( [ Reservation ] , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/reservation/list?r_date=\(r_date)&sb_id=\(sb_id)&sbz_id=\(sbz_id)" )
+        
+        Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        print( JSON(value) )
+                        
+                        let reservationData = try decoder.decode(ReservationData.self , from: value)
+                        
+                        if( res.response?.statusCode == 200 ){
+                            
+                            completion( reservationData.data! , 200 )
+                        }
+                        else{
+                            
+                            completion( reservationData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
 
 
     

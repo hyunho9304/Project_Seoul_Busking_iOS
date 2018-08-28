@@ -360,7 +360,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         cell.timeTableUIView.layer.shadowColor = #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 1)             //  그림자 색
         cell.timeTableUIView.layer.shadowOpacity = 0.5                            //  그림자 투명도
         cell.timeTableUIView.layer.shadowOffset = CGSize(width: 0 , height: 5 )    //  그림자 x y
-        cell.timeTableUIView.layer.shadowRadius = 5
+        cell.timeTableUIView.layer.shadowRadius = 6
         
         cell.timeTableContentsLabel.text = "\(indexPath.row + 17) : 00 - \(indexPath.row + 18) : 00"
         
