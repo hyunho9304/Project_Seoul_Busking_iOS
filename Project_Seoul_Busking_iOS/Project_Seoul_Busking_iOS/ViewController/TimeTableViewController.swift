@@ -19,6 +19,10 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     var selectedZoneImage : String?     //  멤버가 선택한 존 ImageString
     var selectedTmpDate : String?       //  멤버가 선택한 날짜.
     var selectedDate : String?          //  멤버가 선택한 날짜
+    var selectedTmpTime : String?                   //  멤버가 선택한 시간 글
+    var selectedTimeCnt : Int?                      //  멤버가 선택한 시간 개수
+    var selectedStartTime : [Int] = [ -1 , -1 ]     //  멤버가 선택한 시간 시작 시간
+    var selectedEndTime : [Int] = [ -1 , -1 ]       //  멤버가 선택한 시간 끝나는 시간
     
     var selectStartTimeArr : [Int] = [ -1 , -1 ]    //  멤버가 선택한 시작 시간
     var selectCnt : Int = 0                         //  멤버가 선택한 시간 수
@@ -90,21 +94,6 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
             self.view.frame.origin.x = 0
             
         }, completion: nil )
-    }
-    
-    //  사라짐 애니메이션
-    func removeAnimate() {
-        
-        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
-            
-            self.view.frame.origin.x = 375
-            
-        }) { (finished ) in
-            
-            if( finished ) {
-                self.view.removeFromSuperview()
-            }
-        }
     }
     
     func set() {
@@ -195,7 +184,37 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     //  뒤로가기 버튼 액션
     @objc func pressedReservationBackBtn( _ sender : UIButton ) {
         
-        removeAnimate()
+        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+            
+            self.view.frame.origin.x = 375
+            
+        }) { ( finished ) in
+            
+            if( finished ) {
+                
+                guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+                
+                reservationVC.memberInfo = self.memberInfo
+                reservationVC.uiviewX = self.uiviewX
+                
+                reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+                reservationVC.selectedBoroughName = self.selectedBoroughName
+                reservationVC.selectedZoneIndex = self.selectedZoneIndex
+                reservationVC.selectedZoneName = self.selectedZoneName
+                reservationVC.selectedZoneImage = self.selectedZoneImage
+                reservationVC.selectedTmpDate = self.selectedTmpDate
+                reservationVC.selectedDate = self.selectedDate
+                reservationVC.selectedTmpTime = self.selectedTmpTime
+                reservationVC.selectedTimeCnt = self.selectedTimeCnt
+                reservationVC.selectedStartTime = self.selectedStartTime
+                reservationVC.selectedEndTime = self.selectedEndTime
+                
+                self.present( reservationVC , animated: false , completion: nil )
+                
+                self.view.removeFromSuperview()
+            }
+        }
+        
     }
     
     //  선택완료 버튼 액션
@@ -204,33 +223,102 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         //  선택 했을경우
         if( selectCnt == 1  ) {
             
-//            UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
-//
-//                self.view.frame.origin.x = 375
-//
-//            }) { (finished ) in
-//
-//                if( finished ) {
-//
-//                    guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
-//
-//                    reservationVC.memberInfo = self.memberInfo
-//                    reservationVC.uiviewX = self.uiviewX
-//
-//                    reservationVC.selectedBoroughIndex = self.selectedIndex
-//                    reservationVC.selectedBoroughName = self.selectedName
-//
-//
-//                    self.present( reservationVC , animated: false , completion: nil )
-//
-//                    self.view.removeFromSuperview()
-//                }
-//            }
-            
-            
+            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+                
+                self.view.frame.origin.x = 375
+                
+            }) { ( finished ) in
+                
+                if( finished ) {
+                    
+                    guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+                    
+                    reservationVC.memberInfo = self.memberInfo
+                    reservationVC.uiviewX = self.uiviewX
+                    
+                    reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+                    reservationVC.selectedBoroughName = self.selectedBoroughName
+                    reservationVC.selectedZoneIndex = self.selectedZoneIndex
+                    reservationVC.selectedZoneName = self.selectedZoneName
+                    reservationVC.selectedZoneImage = self.selectedZoneImage
+                    reservationVC.selectedTmpDate = self.selectedTmpDate
+                    reservationVC.selectedDate = self.selectedDate
+                    
+                    var tmpStartTime : Int = -1
+                    
+                    for i in 0 ..< 2 {
+                        if( self.selectStartTimeArr[i] != -1 ) {
+                            tmpStartTime = self.selectStartTimeArr[i]
+                            break
+                        }
+                    }
+                    
+                    reservationVC.selectedTmpTime = "\(tmpStartTime) : 00 - \(tmpStartTime + 1) : 00"
+                    reservationVC.selectedTimeCnt = 1
+                    reservationVC.selectedStartTime[0] = tmpStartTime
+                    reservationVC.selectedEndTime[0] = tmpStartTime + 1
+                    
+                    self.present( reservationVC , animated: false , completion: nil )
+                    
+                    self.view.removeFromSuperview()
+                }
+            }
         } else if( selectCnt == 2 ) {       //  2개 선택했을 경우
             
-            
+            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+                
+                self.view.frame.origin.x = 375
+                
+            }) { ( finished ) in
+                
+                if( finished ) {
+                    
+                    guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+                    
+                    reservationVC.memberInfo = self.memberInfo
+                    reservationVC.uiviewX = self.uiviewX
+                    
+                    reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+                    reservationVC.selectedBoroughName = self.selectedBoroughName
+                    reservationVC.selectedZoneIndex = self.selectedZoneIndex
+                    reservationVC.selectedZoneName = self.selectedZoneName
+                    reservationVC.selectedZoneImage = self.selectedZoneImage
+                    reservationVC.selectedTmpDate = self.selectedTmpDate
+                    reservationVC.selectedDate = self.selectedDate
+                    
+                    //  작은시간이 앞으로 오도록 변환
+                    if( self.selectStartTimeArr[0] > self.selectStartTimeArr[1] ) {
+                        let tmpTime = self.selectStartTimeArr[0]
+                        self.selectStartTimeArr[0] = self.selectStartTimeArr[1]
+                        self.selectStartTimeArr[1] = tmpTime
+                    }
+                    
+                    let tmpStartTime1 = self.selectStartTimeArr[0]
+                    let tmpStartTIme2 = self.selectStartTimeArr[1]
+                    
+                    //  연속 2시간 경우
+                    if( ( tmpStartTime1 + 1 ) == tmpStartTIme2 ) {
+                        
+                        reservationVC.selectedTmpTime = "\(tmpStartTime1) : 00 - \(tmpStartTIme2 + 1) : 00"
+                        reservationVC.selectedTimeCnt = 1
+                        reservationVC.selectedStartTime[0] = tmpStartTime1
+                        reservationVC.selectedEndTime[0] = tmpStartTIme2 + 1
+                        
+                    } else {    //  연속 아닌 2시간 경우
+                        
+                        reservationVC.selectedTmpTime = "\(tmpStartTime1) : 00 - \(tmpStartTime1 + 1) : 00  //  \(tmpStartTIme2) : 00 - \(tmpStartTIme2 + 1) : 00"
+                        reservationVC.selectedTimeCnt = 2
+                        reservationVC.selectedStartTime[0] = tmpStartTime1
+                        reservationVC.selectedStartTime[1] = tmpStartTIme2
+                        reservationVC.selectedEndTime[0] = tmpStartTime1 + 1
+                        reservationVC.selectedEndTime[1] = tmpStartTIme2 + 1
+                    }
+                    
+                    self.present( reservationVC , animated: false , completion: nil )
+                    
+                    self.view.removeFromSuperview()
+                }
+            }
         } else {    //  선택 안했을 경우
             
             guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
@@ -275,14 +363,6 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         cell.timeTableUIView.layer.shadowRadius = 5
         
         cell.timeTableContentsLabel.text = "\(indexPath.row + 17) : 00 - \(indexPath.row + 18) : 00"
-        
-//        if(  indexPath.row >= 1 && indexPath.row <= 3 ) {
-//
-//            cell.isUserInteractionEnabled = true
-//
-//            cell.timeTableCircleImageView.image = #imageLiteral(resourceName: "checkO")
-//            cell.timeTableReservInfoImageView.image = #imageLiteral(resourceName: "reser.png")
-//        }
         
         if( reservationPossibility?.possibility[ indexPath.row ] == 1 ) {
          

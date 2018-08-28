@@ -310,6 +310,11 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 self.calendar = calendarData
                 self.homeCalendarCollectionView.reloadData()
                 
+                self.selectYear = self.calendar?.twoWeeksYear![ 0 ]
+                self.selectMonth = self.calendar?.twoWeeksMonth![ 0 ]
+                self.selectDate = self.calendar?.twoWeeksDate![ 0 ]
+                self.selectDay = self.calendar?.twoWeeksDay![ 0 ]
+                
                 let indexPathForFirstRow = IndexPath(row: 0, section: 0)
                 self.collectionView( self.homeCalendarCollectionView, didSelectItemAt: indexPathForFirstRow )
                 
@@ -321,11 +326,6 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 self.present(alert , animated: true , completion: nil)
             }
         }
-        
-        self.selectYear = self.calendar?.twoWeeksYear![ 0 ]
-        self.selectMonth = self.calendar?.twoWeeksMonth![ 0 ]
-        self.selectDate = self.calendar?.twoWeeksDate![ 0 ]
-        self.selectDay = self.calendar?.twoWeeksDay![ 0 ]
     }
     
     

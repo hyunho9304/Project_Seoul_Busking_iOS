@@ -45,6 +45,11 @@ class ReservationViewController: UIViewController {
     
     @IBOutlet weak var reservationTimeLabel: UILabel!
     @IBOutlet weak var reservationTimeBtn: UIButton!
+    var selectedTmpTime : String?
+    var selectedTimeCnt : Int?
+    var selectedStartTime : [Int] = [ -1 , -1 ]
+    var selectedEndTime : [Int] = [ -1 , -1 ]
+    
     
     //  신청하기
     @IBOutlet weak var reservationCommitBtn: UIButton!
@@ -68,6 +73,8 @@ class ReservationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print( selectedStartTime )
         
         set()
         setTarget()
@@ -131,6 +138,10 @@ class ReservationViewController: UIViewController {
             reservationZoneImageView.kf.setImage( with: URL( string:gsno( selectedZoneImage ) ) )
             reservationZoneImageView.layer.cornerRadius = 5
             reservationZoneImageView.clipsToBounds = true
+        }
+        
+        if( selectedTmpTime != nil ) {
+            reservationTimeLabel.text = self.selectedTmpTime
         }
     }
     
@@ -264,6 +275,10 @@ class ReservationViewController: UIViewController {
         boroughListVC.selectedZoneImage = self.selectedZoneImage
         boroughListVC.selectedTmpDate = self.selectedTmpDate
         boroughListVC.selectedDate = self.selectedDate
+        boroughListVC.selectedTmpTime = self.selectedTmpTime
+        boroughListVC.selectedTimeCnt = self.selectedTimeCnt
+        boroughListVC.selectedStartTime = self.selectedStartTime
+        boroughListVC.selectedEndTime = self.selectedEndTime
         
         self.addChildViewController( boroughListVC )
         boroughListVC.view.frame = self.view.frame
@@ -300,6 +315,10 @@ class ReservationViewController: UIViewController {
             buskingZoneListVC.selectedZoneImage = self.selectedZoneImage
             buskingZoneListVC.selectedTmpDate = self.selectedTmpDate
             buskingZoneListVC.selectedDate = self.selectedDate
+            buskingZoneListVC.selectedTmpTime = self.selectedTmpTime
+            buskingZoneListVC.selectedTimeCnt = self.selectedTimeCnt
+            buskingZoneListVC.selectedStartTime = self.selectedStartTime
+            buskingZoneListVC.selectedEndTime = self.selectedEndTime
             
             self.addChildViewController( buskingZoneListVC )
             buskingZoneListVC.view.frame = self.view.frame
@@ -338,6 +357,10 @@ class ReservationViewController: UIViewController {
             calendarPopUpVC.selectedZoneImage = self.selectedZoneImage
             calendarPopUpVC.selectedTmpDate = self.selectedTmpDate
             calendarPopUpVC.selectedDate = self.selectedDate
+            calendarPopUpVC.selectedTmpTime = self.selectedTmpTime
+            calendarPopUpVC.selectedTimeCnt = self.selectedTimeCnt
+            calendarPopUpVC.selectedStartTime = self.selectedStartTime
+            calendarPopUpVC.selectedEndTime = self.selectedEndTime
             
             self.addChildViewController( calendarPopUpVC )
             calendarPopUpVC.view.frame = self.view.frame
@@ -376,6 +399,10 @@ class ReservationViewController: UIViewController {
             timeTableVC.selectedZoneImage = self.selectedZoneImage
             timeTableVC.selectedTmpDate = self.selectedTmpDate
             timeTableVC.selectedDate = self.selectedDate
+            timeTableVC.selectedTmpTime = self.selectedTmpTime
+            timeTableVC.selectedTimeCnt = self.selectedTimeCnt
+            timeTableVC.selectedStartTime = self.selectedStartTime
+            timeTableVC.selectedEndTime = self.selectedEndTime
             
             self.addChildViewController( timeTableVC )
             timeTableVC.view.frame = self.view.frame
@@ -387,9 +414,12 @@ class ReservationViewController: UIViewController {
     //  신청하기 버튼 액션
     @objc func pressedReservationCommitBtn( _ sender : UIButton ) {
         
+        print( selectedDate )
+        print( selectedTimeCnt )
+        print( selectedStartTime )
+        print( selectedEndTime )
         print( selectedBoroughIndex )
         print( selectedZoneIndex )
-        print( selectedDate )
         print("\n")
     }
 

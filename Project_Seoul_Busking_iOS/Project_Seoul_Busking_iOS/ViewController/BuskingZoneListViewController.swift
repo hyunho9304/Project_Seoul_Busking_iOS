@@ -20,6 +20,10 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     var selectedZoneImage : String?     //  멤버가 선택한 존 ImageString
     var selectedTmpDate : String?       //  멤버가 선택한 날짜.
     var selectedDate : String?          //  멤버가 선택한 날짜
+    var selectedTmpTime : String?                   //  멤버가 선택한 시간 글
+    var selectedTimeCnt : Int?                      //  멤버가 선택한 시간 개수
+    var selectedStartTime : [Int] = [ -1 , -1 ]     //  멤버가 선택한 시간 시작 시간
+    var selectedEndTime : [Int] = [ -1 , -1 ]       //  멤버가 선택한 시간 끝나는 시간
     
     
     //  네비게이션 바
@@ -190,6 +194,10 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
                 reservationVC.selectedZoneImage = self.selectedZoneImage
                 reservationVC.selectedTmpDate = self.selectedTmpDate
                 reservationVC.selectedDate = self.selectedDate
+                reservationVC.selectedTmpTime = self.selectedTmpTime
+                reservationVC.selectedTimeCnt = self.selectedTimeCnt
+                reservationVC.selectedStartTime = self.selectedStartTime
+                reservationVC.selectedEndTime = self.selectedEndTime
                 
                 self.present( reservationVC , animated: false , completion: nil )
                 
