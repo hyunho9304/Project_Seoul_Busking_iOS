@@ -310,7 +310,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
         let containerView = self.view.superview
         
-        reservationVC.view.frame = CGRect(x: 375, y: 0, width: 375, height: 667 )
+        reservationVC.view.frame = CGRect(x: self.view.frame.width , y: 0 , width: self.view.frame.width , height: self.view.frame.height )
         reservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
         reservationVC.memberInfo = self.memberInfo
         

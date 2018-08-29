@@ -38,11 +38,13 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
     let daysOfMonth = [ "월" , "화" , "수" , "목" , "금" , "토" , "일" ]
     var daysInMonths = [ 31 , 28 , 31 , 30 , 31 , 30 , 31 , 31 , 30 , 31 , 30 , 31 ]
     
+
+    
     var year = calendar.component(.year, from: date)
     var month = calendar.component(.month, from: date) - 1
     let weekday = calendar.component(.weekday, from: date)
     let day = calendar.component(.day, from: date)
-    
+
     var currentMonth = String()
     
     var NumberOfEmptyBox = Int()            //  현재 보여주는 달의 1일전 빈 공간 개수
@@ -61,7 +63,7 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
     
     
     var uiviewX : CGFloat?
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,7 +84,7 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
     }
     
     func set() {
-        
+
         self.view.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
         calendarPopUpUIView.layer.cornerRadius = 15
         calendarBackBtn.isHidden = true
@@ -95,15 +97,23 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         currentMonth = Months[month]
         MonthLabel.text = "\(year). \(currentMonth)"
         
-//        NumberOfEmptyBox = (weekday - 1 )               //  이번달 빈공간
-//        PositionIndex = ( weekday - 1 )                 //  이번달 빈공간
+        print( date )
+        print( year )
+        print( month )
+        print( day )
+        print( weekday )
+        print()
         
-        NumberOfEmptyBox = (weekday )               //  이번달 빈공간
-        PositionIndex = ( weekday )                 //  이번달 빈공간
+        NumberOfEmptyBox = (weekday - 1 )               //  이번달 빈공간
+        PositionIndex = ( weekday - 1 )                 //  이번달 빈공간
+        
+//        NumberOfEmptyBox = (weekday )               //  이번달 빈공간
+//        PositionIndex = ( weekday )                 //  이번달 빈공간
         
         calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
         
         calendarSelectCommitBtn.layer.cornerRadius = 20
+        
     }
     
     func setDelegate() {

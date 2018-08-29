@@ -52,8 +52,8 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     }
     
     func showAnimate() {
-        
-        self.view.frame = CGRect(x: 0, y: 667, width: 375, height: 667)
+
+        self.view.frame = CGRect(x: 0, y: self.view.frame.height , width: self.view.frame.width, height: self.view.frame.height)
         
         UIView.animate(withDuration: 0.3 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn , animations: {
             
@@ -66,7 +66,7 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
         
         UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
             
-            self.view.frame.origin.y = 667
+            self.view.frame.origin.y = self.view.frame.height
             
         }) { (finished ) in
             
@@ -172,7 +172,7 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
         
         UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
             
-            self.view.frame.origin.y = 667
+            self.view.frame.origin.y = self.view.frame.height
             
         })  { ( finished ) in
             

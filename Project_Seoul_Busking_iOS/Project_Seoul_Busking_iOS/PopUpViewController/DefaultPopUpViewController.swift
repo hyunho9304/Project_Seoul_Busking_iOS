@@ -21,6 +21,7 @@ class DefaultPopUpViewController: UIViewController {
     
     var content : String?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +47,7 @@ class DefaultPopUpViewController: UIViewController {
         //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
         okBtn.layer.cornerRadius = 5
         okBtn.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner ]
+        
     }
     
     

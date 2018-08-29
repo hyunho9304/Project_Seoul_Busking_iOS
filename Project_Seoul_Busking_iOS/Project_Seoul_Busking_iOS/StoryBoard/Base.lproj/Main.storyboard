@@ -210,13 +210,6 @@
                                     <constraint firstItem="TFJ-BZ-1Aa" firstAttribute="leading" secondItem="f2f-RH-bj6" secondAttribute="leading" constant="40" id="tcf-kr-a2f"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIL-eY-cGs">
-                                <rect key="frame" x="166" y="133" width="25" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -920,7 +913,7 @@
                                     <constraint firstItem="JCc-UD-Chc" firstAttribute="leading" secondItem="khN-qC-5Vv" secondAttribute="trailing" constant="37" id="zAh-0f-dHo"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81X-ZT-mrR">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81X-ZT-mrR">
                                 <rect key="frame" x="50" y="539" width="275" height="50"/>
                                 <color key="backgroundColor" red="0.44705882349999998" green="0.31372549020000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -2474,7 +2467,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adu-sa-PMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4260" y="161"/>
+            <point key="canvasLocation" x="4260" y="160.56971514242881"/>
         </scene>
     </scenes>
     <resources>

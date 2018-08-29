@@ -434,8 +434,6 @@ struct Server : APIService {
                     
                     do {
                         
-                        print( JSON(value) )
-                        
                         let reservationData = try decoder.decode(ReservationData.self , from: value)
                         
                         if( res.response?.statusCode == 200 ){

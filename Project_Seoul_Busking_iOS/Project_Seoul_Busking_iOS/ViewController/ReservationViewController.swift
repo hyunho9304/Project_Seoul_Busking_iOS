@@ -86,7 +86,7 @@ class ReservationViewController: UIViewController {
             
             UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
-                self.reservationDateTimeView.frame.origin.y = 391
+                self.reservationDateTimeView.frame.origin.y = 391 * self.view.frame.height / 667
                 
                 
             }) { (finished ) in
@@ -99,7 +99,7 @@ class ReservationViewController: UIViewController {
             UIView.animate(withDuration: 0.15 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
                 
                 self.reservationZoneUIView.isHidden = true
-                self.reservationDateTimeView.frame.origin.y = 210
+                self.reservationDateTimeView.frame.origin.y = 210 * self.view.frame.height / 667
                 
             }, completion: nil )
         }
@@ -109,6 +109,8 @@ class ReservationViewController: UIViewController {
     }
     
     func set() {
+        
+        reservationCommitBtn.isEnabled = false
         
         if uiviewX != nil {
             
@@ -140,6 +142,8 @@ class ReservationViewController: UIViewController {
         
         if( selectedTmpTime != nil ) {
             reservationTimeLabel.text = self.selectedTmpTime
+            
+            reservationCommitBtn.isEnabled = true
         }
     }
     
@@ -248,7 +252,7 @@ class ReservationViewController: UIViewController {
         
         UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
-            self.view.frame.origin.x = 375
+            self.view.frame.origin.x = self.view.frame.width
             
         }) { (finished ) in
             

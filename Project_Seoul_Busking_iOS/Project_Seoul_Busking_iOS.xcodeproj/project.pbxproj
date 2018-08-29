@@ -56,7 +56,24 @@
 		BEEA4D65211328C500FD71C4 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA4D64211328C500FD71C4 /* Server.swift */; };
 		BEEA4D6721132AAE00FD71C4 /* SelectTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA4D6621132AAE00FD71C4 /* SelectTypeViewController.swift */; };
 		BEEA4D692113312700FD71C4 /* ToggleBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA4D682113312700FD71C4 /* ToggleBtn.swift */; };
+		BEFF53692136689A00CEEE7E /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEFF53682136689A00CEEE7E /* ApiGatewayMac.framework */; };
+		BEFF536A2136689A00CEEE7E /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BEFF53682136689A00CEEE7E /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BEFF536D213668B900CEEE7E /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEFF536C213668B900CEEE7E /* NMapViewerSDK.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BEFF536B2136689B00CEEE7E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BEFF536A2136689A00CEEE7E /* ApiGatewayMac.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2440F27630A1BC20C2AF680C /* Pods-Project_Seoul_Busking_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_Seoul_Busking_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project_Seoul_Busking_iOS/Pods-Project_Seoul_Busking_iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +129,9 @@
 		BEEA4D64211328C500FD71C4 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		BEEA4D6621132AAE00FD71C4 /* SelectTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTypeViewController.swift; sourceTree = "<group>"; };
 		BEEA4D682113312700FD71C4 /* ToggleBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleBtn.swift; sourceTree = "<group>"; };
+		BEFF53682136689A00CEEE7E /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApiGatewayMac.framework; path = Frameworks/ApiGatewayMac.framework; sourceTree = "<group>"; };
+		BEFF536C213668B900CEEE7E /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMapViewerSDK.framework; path = Frameworks/NMapViewerSDK.framework; sourceTree = "<group>"; };
+		BEFF537021366B4C00CEEE7E /* NaverMap_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaverMap_Bridging_Header.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +139,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEFF536D213668B900CEEE7E /* NMapViewerSDK.framework in Frameworks */,
+				BEFF53692136689A00CEEE7E /* ApiGatewayMac.framework in Frameworks */,
 				5449144EED3FD78D4DB34AF7 /* Pods_Project_Seoul_Busking_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +160,7 @@
 		3CA26F45AC2EA114118E0442 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BEFF536C213668B900CEEE7E /* NMapViewerSDK.framework */,
 				BEAFBE9D058EB7319A1A21D0 /* Pods_Project_Seoul_Busking_iOS.framework */,
 			);
 			name = Frameworks;
@@ -171,6 +194,7 @@
 		BEEA4D282113097E00FD71C4 = {
 			isa = PBXGroup;
 			children = (
+				BEFF53682136689A00CEEE7E /* ApiGatewayMac.framework */,
 				BEEA4D332113097E00FD71C4 /* Project_Seoul_Busking_iOS */,
 				BEEA4D322113097E00FD71C4 /* Products */,
 				35F9D0F68EFC202F32E7BD9E /* Pods */,
@@ -191,6 +215,7 @@
 			children = (
 				BEEA4D402113098000FD71C4 /* Info.plist */,
 				BEEA4D342113097E00FD71C4 /* AppDelegate.swift */,
+				BEFF536F21366B2600CEEE7E /* Header */,
 				BEEA4D4D21130AFB00FD71C4 /* StoryBoard */,
 				BEBD52B42118C71B009A63A4 /* PopUpViewController */,
 				BEEA4D4C21130AED00FD71C4 /* ViewController */,
@@ -297,6 +322,14 @@
 			path = StoryBoard;
 			sourceTree = "<group>";
 		};
+		BEFF536F21366B2600CEEE7E /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				BEFF537021366B4C00CEEE7E /* NaverMap_Bridging_Header.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -309,6 +342,8 @@
 				BEEA4D2E2113097E00FD71C4 /* Frameworks */,
 				BEEA4D2F2113097E00FD71C4 /* Resources */,
 				8075E1CB6858EBC94DB62387 /* [CP] Embed Pods Frameworks */,
+				BEFF536B2136689B00CEEE7E /* Embed Frameworks */,
+				BEFF536E21366A4A00CEEE7E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -416,6 +451,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BEFF536E21366A4A00CEEE7E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh Scripts/strip-frameworks.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -606,13 +654,31 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7968857L98;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Project_Seoul_Busking_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hyunho.Project-Seoul-Busking-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/Header/NaverMap_Bridging_Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -625,6 +691,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7968857L98;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Project_Seoul_Busking_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

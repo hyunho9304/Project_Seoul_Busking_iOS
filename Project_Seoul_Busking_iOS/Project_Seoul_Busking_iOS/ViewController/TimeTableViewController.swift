@@ -87,7 +87,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     //  등장 애니메이션
     func showAnimate() {
         
-        self.view.frame = CGRect(x: 375 , y: 0 , width: 375, height: 667)
+        self.view.frame = CGRect(x: self.view.frame.width , y: 0 , width: self.view.frame.width, height: self.view.frame.height )
         
         UIView.animate(withDuration: 0.3 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
             
@@ -186,7 +186,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         
         UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
             
-            self.view.frame.origin.x = 375
+            self.view.frame.origin.x = self.view.frame.width
             
         }) { ( finished ) in
             
@@ -225,7 +225,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
             
             UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
                 
-                self.view.frame.origin.x = 375
+                self.view.frame.origin.x = self.view.frame.width
                 
             }) { ( finished ) in
                 
@@ -267,7 +267,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
             
             UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
                 
-                self.view.frame.origin.x = 375
+                self.view.frame.origin.x = self.view.frame.width
                 
             }) { ( finished ) in
                 
