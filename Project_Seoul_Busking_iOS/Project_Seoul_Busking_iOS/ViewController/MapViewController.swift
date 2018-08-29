@@ -103,26 +103,52 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                     
                 }
                 
-                if let mapView = self.navermapView {
-                    
-                    mapView.setMapCenter(NGeoPoint(longitude: (self.memberRepresentativeBorough?.sb_longitude)! , latitude: (self.memberRepresentativeBorough?.sb_latitude)! ), atLevel:12)
-                }
-                
                 Server.reqBuskingZoneList(sb_id: ( tmp )! ) { ( buskingZoneListData , rescode ) in
                     
                     if rescode == 200 {
                         
                         self.buskingZoneList = buskingZoneListData
                         
-//                        if( self.buskingZoneList.count != 0 ) {
-//                            self.nothingZone.isHidden = true
-//
-//                        } else {
-//                            self.nothingZone.isHidden = false
-//                        }
+                        if( self.buskingZoneList.count != 0 ) {
+                            //self.nothingZone.isHidden = true
+                            
+                            if let mapOverlayManager = self.navermapView?.mapOverlayManager {
+                                
+                                // create POI data overlay
+                                if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
+                                    
+                                    poiDataOverlay.initPOIdata( Int32(self.buskingZoneList.count) )
+                                    
+                                    for i in 0 ..< self.buskingZoneList.count {
+                                        
+                                        let index = self.buskingZoneList[i].sbz_id
+                                        let tmpX = self.buskingZoneList[i].sbz_longitude
+                                        let tmpY = self.buskingZoneList[i].sbz_latitude
+                                        let name = self.buskingZoneList[i].sbz_name
+                                        
+                                        poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: tmpX!, latitude: tmpY! ), title: name! , type: UserPOIflagTypeDefault, iconIndex: Int32(index!) , with: nil)
+                                    }
+                                    
+                                    poiDataOverlay.endPOIdata()
+                                    
+                                    // show all POI data
+                                    poiDataOverlay.showAllPOIdata()
+                                    
+                                    //  디폴트로 선택누르고 있는거
+                                    //poiDataOverlay.selectPOIitem(at: 2, moveToCenter: false, focusedBySelectItem: true)
+                                }
+                            }
+                        } else {
+                           // self.nothingZone.isHidden = false
+                        }
                         
-                        print( self.buskingZoneList )
                         
+                        //  지도 중심위치 대표자치구로 설정
+                        if let mapView = self.navermapView {
+                            
+                            mapView.setMapCenter(NGeoPoint(longitude: (self.memberRepresentativeBorough?.sb_longitude)! , latitude: (self.memberRepresentativeBorough?.sb_latitude)! ), atLevel:12)
+                        }
+                    
                     } else {
                         
                         let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -216,7 +242,6 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         
         navermapView?.viewDidAppear()
         getMemberRepresentativeBoroughData()
-        showMarkers()   //  maker 보이게 설정
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -376,42 +401,6 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     }
     
     // MARK : Marker
-    
-    func showMarkers() {
-        
-        if let mapOverlayManager = navermapView?.mapOverlayManager {
-            
-            // create POI data overlay
-            if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
-                
-                poiDataOverlay.initPOIdata(7)
-                
-                
-                poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: 126.922584, latitude: 37.554499), title: "버스킹존 1", type: UserPOIflagTypeDefault, iconIndex: 0, with: nil)
-                
-                poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: 126.922639, latitude: 37.554532), title: "버스킹존 2", type: UserPOIflagTypeDefault, iconIndex: 1, with: nil)
-                
-                poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: 126.922696, latitude: 37.554559), title: "버스킹존 3", type: UserPOIflagTypeDefault, iconIndex: 2, with: nil)
-                
-                poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: 126.922759, latitude: 37.554605), title: "버스킹존 4", type: UserPOIflagTypeDefault, iconIndex: 3, with: nil)
-                
-                poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: 126.922829, latitude: 37.554659), title: "버스킹존 5", type: UserPOIflagTypeDefault, iconIndex: 4, with: nil)
-                
-                poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: 126.924679, latitude: 37.556004), title: "광장무대", type: UserPOIflagTypeDefault, iconIndex: 5, with: nil)
-                
-                poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: 126.925701, latitude: 37.556344), title: "여행무대", type: UserPOIflagTypeDefault, iconIndex: 6, with: nil)
-                
-                poiDataOverlay.endPOIdata()
-                
-                // show all POI data
-                poiDataOverlay.showAllPOIdata()
-                
-                //  디폴트로 선택누르고 있는거
-                //poiDataOverlay.selectPOIitem(at: 2, moveToCenter: false, focusedBySelectItem: true)
-                
-            }
-        }
-    }
     
     func clearOverlays() {
         if let mapOverlayManager = navermapView?.mapOverlayManager {

@@ -73,6 +73,35 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         setTarget()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let touch : UITouch? = touches.first
+        
+        if touch?.view != calendarPopUpUIView {
+            
+            guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+            
+            reservationVC.memberInfo = self.memberInfo
+            reservationVC.uiviewX = self.uiviewX
+            
+            reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
+            reservationVC.selectedBoroughName = self.selectedBoroughName
+            reservationVC.selectedZoneIndex = self.selectedZoneIndex
+            reservationVC.selectedZoneName = self.selectedZoneName
+            reservationVC.selectedZoneImage = self.selectedZoneImage
+            reservationVC.selectedTmpDate = self.selectedTmpDate
+            reservationVC.selectedDate = self.selectedDate
+            reservationVC.selectedTmpTime = self.selectedTmpTime
+            reservationVC.selectedTimeCnt = self.selectedTimeCnt
+            reservationVC.selectedStartTime = self.selectedStartTime
+            reservationVC.selectedEndTime = self.selectedEndTime
+            
+            self.present( reservationVC , animated: false , completion: nil )
+            
+            self.view.removeFromSuperview()
+        }
+    }
+    
     func showAnimate() {
         
         self.view.transform = CGAffineTransform( scaleX: 1.3 , y: 1.3 )
@@ -97,19 +126,10 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         currentMonth = Months[month]
         MonthLabel.text = "\(year). \(currentMonth)"
         
-        print( date )
-        print( year )
-        print( month )
-        print( day )
-        print( weekday )
-        print()
-        
-        NumberOfEmptyBox = (weekday - 1 )               //  이번달 빈공간
-        PositionIndex = ( weekday - 1 )                 //  이번달 빈공간
-        
-//        NumberOfEmptyBox = (weekday )               //  이번달 빈공간
-//        PositionIndex = ( weekday )                 //  이번달 빈공간
-        
+        let firstWeekday = ( day - weekday ) % 7
+        NumberOfEmptyBox = (firstWeekday - 1 )               //  이번달 빈공간
+        PositionIndex = ( firstWeekday - 1 )                 //  이번달 빈공간
+
         calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
         
         calendarSelectCommitBtn.layer.cornerRadius = 20
@@ -286,7 +306,6 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
     }
     
     func GetStartDateDayPosition() {
-        
         //  윤년
         if( year % 4 == 0 && year % 100 != 0 || year % 400 == 0 ) {
             daysInMonths[1] = 29

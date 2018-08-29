@@ -51,7 +51,6 @@ class DefaultPopUpViewController: UIViewController {
                 
                 self.view.removeFromSuperview()
             }
-
         }
     }
     
