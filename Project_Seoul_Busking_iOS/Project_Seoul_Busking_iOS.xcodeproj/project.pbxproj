@@ -59,6 +59,7 @@
 		BEFF53692136689A00CEEE7E /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEFF53682136689A00CEEE7E /* ApiGatewayMac.framework */; };
 		BEFF536A2136689A00CEEE7E /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BEFF53682136689A00CEEE7E /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEFF536D213668B900CEEE7E /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEFF536C213668B900CEEE7E /* NMapViewerSDK.framework */; };
+		BEFF53722136710600CEEE7E /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF53712136710600CEEE7E /* NMapViewResources.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -132,6 +133,7 @@
 		BEFF53682136689A00CEEE7E /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApiGatewayMac.framework; path = Frameworks/ApiGatewayMac.framework; sourceTree = "<group>"; };
 		BEFF536C213668B900CEEE7E /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMapViewerSDK.framework; path = Frameworks/NMapViewerSDK.framework; sourceTree = "<group>"; };
 		BEFF537021366B4C00CEEE7E /* NaverMap_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaverMap_Bridging_Header.h; sourceTree = "<group>"; };
+		BEFF53712136710600CEEE7E /* NMapViewResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 			children = (
 				BEEA4D5E2113276300FD71C4 /* Extension.swift */,
 				BEB0C1E6212C72DA004D3F22 /* CalendarVars.swift */,
+				BEFF53712136710600CEEE7E /* NMapViewResources.swift */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -454,14 +457,14 @@
 		};
 		BEFF536E21366A4A00CEEE7E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "sh Scripts/strip-frameworks.sh";
 		};
@@ -490,6 +493,7 @@
 				BE9B5A822131A8E2007C3C74 /* TimeTableViewController.swift in Sources */,
 				BEB0C1E7212C72DA004D3F22 /* CalendarVars.swift in Sources */,
 				BEB0C1D321259321004D3F22 /* MemberRepresentativeBorough.swift in Sources */,
+				BEFF53722136710600CEEE7E /* NMapViewResources.swift in Sources */,
 				BEBD52B12117206E009A63A4 /* HomeViewController.swift in Sources */,
 				BEB0C1DF212B40AB004D3F22 /* NextSegue.swift in Sources */,
 				BEB0C1D92126F4B8004D3F22 /* Borough.swift in Sources */,

@@ -209,7 +209,6 @@ class ReservationViewController: UIViewController {
         
         guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         
-        mapVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
         mapVC.memberInfo = self.memberInfo
         
         self.present( mapVC , animated: false , completion: nil )

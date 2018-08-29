@@ -30,6 +30,31 @@ class DefaultPopUpViewController: UIViewController {
         showAnimate()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let touch : UITouch? = touches.first
+        
+        if touch?.view != popUpView {
+            
+            if( memberInfo == nil ) {
+                
+                self.view.removeFromSuperview()
+                
+            } else {
+                
+                guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+                
+                homeVC.memberInfo = self.memberInfo
+                homeVC.uiviewX = self.uiviewX
+                
+                self.present( homeVC , animated: false , completion: nil )
+                
+                self.view.removeFromSuperview()
+            }
+
+        }
+    }
+    
     func set() {
         
         popUpContent.text = content

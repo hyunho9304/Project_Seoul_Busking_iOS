@@ -64,5 +64,13 @@
     <string>NSLocationWhenInUseUsageDescription</string>
     
     
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>When in use permissions</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>always permissions</string>
+    <key>NSLocationAlwaysAndWhenInUsageDescription</key>
+    <string>Always and in usage permissions</string>
+    
+    
 </dict>
 </plist>
