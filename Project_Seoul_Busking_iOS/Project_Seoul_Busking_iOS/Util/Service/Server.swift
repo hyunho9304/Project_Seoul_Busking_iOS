@@ -300,6 +300,46 @@ struct Server : APIService {
         }
     }
     
+    //  버스킹존 리스트 전부 가져오기
+    static func reqBuskingZoneListAll( completion : @escaping ([BuskingZoneAll] , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/collection/buskingZoneListAll" )
+        
+        Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let buskingZoneAllData = try decoder.decode(BuskingZoneAllData.self , from: value)
+                        
+                        if( res.response?.statusCode == 200 ){
+                            
+                            completion( buskingZoneAllData.data! , 200 )
+                        }
+                        else{
+                            
+                            completion( buskingZoneAllData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+    
     //  자치구 리스트 가져오기
     static func reqBoroughList( completion : @escaping ( [Borough] , _ status : Int ) -> Void ) {
         

@@ -27,11 +27,13 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     //  내용( 자치구 )
     @IBOutlet weak var mapRepresentativeBoroughLabel: UILabel!
-    var mapSelectBoroughIndex : Int?                           //  현재 선택된 자치구 index        select 해야 값 있다
-    var mapSelectBoroughName : String?                        //   현재 선택된 자치구 name
+    var mapSelectedBoroughIndex : Int?                           //  현재 선택된 자치구 index        select 해야 값 있다
+    var mapSelectedBoroughName : String?                         //  현재 선택된 자치구 name
+    var mapSelectedLongitude : Double?                           //  현재 선택된 logitude
+    var mapSelectedLatitude : Double?                            //  현재 선택된 latitude
     
     //  내용( 존 )
-    var buskingZoneList : [ BuskingZone ] = [ BuskingZone ]()  //  서버 버스킹 존 데이터
+    var buskingZoneListAll : [ BuskingZoneAll ] = [ BuskingZoneAll ]()  //  서버 버스킹 존 전부 데이터
     
     //  내용( 버튼 )
     var mapSearchBtn : UIButton?        //  맵 검색 버튼
@@ -88,77 +90,33 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                 
                 self.memberRepresentativeBorough = memberRepresentativeBoroughData
                 
-                var tmp : Int?
-                if( self.mapSelectBoroughIndex == nil ) {
-                    
-                    tmp = self.memberRepresentativeBorough?.sb_id
+                var selectedLongitude : Double = 0
+                var selectedLatitude : Double = 0
+                
+                if( self.mapSelectedBoroughIndex == nil ) {
                     
                     self.mapRepresentativeBoroughLabel.text = self.memberRepresentativeBorough?.sb_name
-                    self.mapSelectBoroughIndex = self.memberRepresentativeBorough?.sb_id
-                    self.mapSelectBoroughName = self.memberRepresentativeBorough?.sb_name
+                    self.mapSelectedBoroughIndex = self.memberRepresentativeBorough?.sb_id
+                    self.mapSelectedBoroughName = self.memberRepresentativeBorough?.sb_name
+                    
+                    selectedLongitude = (self.memberRepresentativeBorough?.sb_longitude)!
+                    selectedLatitude = (self.memberRepresentativeBorough?.sb_latitude)!
                     
                 } else {
                     
-                    tmp = self.mapSelectBoroughIndex
-                    
-                    self.mapRepresentativeBoroughLabel.text = self.mapSelectBoroughName
+                    self.mapRepresentativeBoroughLabel.text = self.mapSelectedBoroughName
+                    selectedLongitude = self.mapSelectedLongitude!
+                    selectedLatitude = self.mapSelectedLatitude!
                     
                 }
                 
-                Server.reqBuskingZoneList(sb_id: ( tmp )! ) { ( buskingZoneListData , rescode ) in
+                //  지도 중심위치 대표자치구로 설정
+                if let mapView = self.navermapView {
                     
-                    if rescode == 200 {
-                        
-                        self.buskingZoneList = buskingZoneListData
-                        
-                        if( self.buskingZoneList.count != 0 ) {
-                            //self.nothingZone.isHidden = true
-                            
-                            if let mapOverlayManager = self.navermapView?.mapOverlayManager {
-                                
-                                // create POI data overlay
-                                if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
-                                    
-                                    poiDataOverlay.initPOIdata( Int32(self.buskingZoneList.count) )
-                                    
-                                    for i in 0 ..< self.buskingZoneList.count {
-                                        
-                                        let index = self.buskingZoneList[i].sbz_id
-                                        let tmpX = self.buskingZoneList[i].sbz_longitude
-                                        let tmpY = self.buskingZoneList[i].sbz_latitude
-                                        let name = self.buskingZoneList[i].sbz_name
-                                        
-                                        poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: tmpX!, latitude: tmpY! ), title: name! , type: UserPOIflagTypeDefault, iconIndex: Int32(index!) , with: nil)
-                                    }
-                                    
-                                    poiDataOverlay.endPOIdata()
-                                    
-                                    // show all POI data
-                                    poiDataOverlay.showAllPOIdata()
-                                    
-                                    //  디폴트로 선택누르고 있는거
-                                    //poiDataOverlay.selectPOIitem(at: 2, moveToCenter: false, focusedBySelectItem: true)
-                                }
-                            }
-                        } else {
-                           // self.nothingZone.isHidden = false
-                        }
-                        
-                        
-                        //  지도 중심위치 대표자치구로 설정
-                        if let mapView = self.navermapView {
-                            
-                            mapView.setMapCenter(NGeoPoint(longitude: (self.memberRepresentativeBorough?.sb_longitude)! , latitude: (self.memberRepresentativeBorough?.sb_latitude)! ), atLevel:12)
-                        }
-                    
-                    } else {
-                        
-                        let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
-                        let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-                        alert.addAction( ok )
-                        self.present(alert , animated: true , completion: nil)
-                    }
+                    mapView.setMapCenter(NGeoPoint(longitude: selectedLongitude , latitude: selectedLatitude ), atLevel:12)
                 }
+                
+                
             } else {
                 
                 let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -167,6 +125,52 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                 self.present(alert , animated: true , completion: nil)
             }
         }
+    }
+    
+    func getBuskingZoneListAll() {
+  
+        Server.reqBuskingZoneListAll { ( buskingZoneListAllData, rescode ) in
+            
+            if rescode == 200 {
+                
+                self.buskingZoneListAll = buskingZoneListAllData
+                
+                if let mapOverlayManager = self.navermapView?.mapOverlayManager {
+                    
+                    // create POI data overlay
+                    if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
+                        
+                        poiDataOverlay.initPOIdata( Int32(self.buskingZoneListAll.count) )
+                        
+                        for i in 0 ..< self.buskingZoneListAll.count {
+                            
+                            let index = self.buskingZoneListAll[i].sbz_id
+                            let tmpX = self.buskingZoneListAll[i].sbz_longitude
+                            let tmpY = self.buskingZoneListAll[i].sbz_latitude
+                            let name = self.buskingZoneListAll[i].sbz_name
+                            
+                            poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: tmpX!, latitude: tmpY! ), title: name! , type: UserPOIflagTypeDefault, iconIndex: Int32(index!) , with: nil)
+                        }
+                        
+                        poiDataOverlay.endPOIdata()
+                        
+                        // show all POI data
+                        poiDataOverlay.showAllPOIdata()
+                        
+                        //  디폴트로 선택누르고 있는거
+                        //poiDataOverlay.selectPOIitem(at: 2, moveToCenter: false, focusedBySelectItem: true)
+                    }
+                }
+                
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
+        
     }
     
     
@@ -249,6 +253,8 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         
         navermapView?.viewDidAppear()
         getMemberRepresentativeBoroughData()
+        getBuskingZoneListAll()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
