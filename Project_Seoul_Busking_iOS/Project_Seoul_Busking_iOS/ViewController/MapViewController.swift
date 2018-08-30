@@ -33,6 +33,11 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     //  내용( 존 )
     var buskingZoneList : [ BuskingZone ] = [ BuskingZone ]()  //  서버 버스킹 존 데이터
     
+    //  내용( 버튼 )
+    var mapSearchBtn : UIButton?        //  맵 검색 버튼
+    var currentLocationBtn : UIButton?  //  현재위치 버튼
+    var currentState: state = .disabled //  현재 state 값 설정
+    
     
     //  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ지도설정ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     var navermapView : NMapView?    //  네이버지도
@@ -44,9 +49,6 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         case tracking
         case trackingWithHeading
     }
-    
-    var currentLocationBtn : UIButton?  //  현재위치 버튼
-    var currentState: state = .disabled //  현재 state 값 설정
     
 //    //  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ마커ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //    @IBOutlet var calloutView: UIView!  //  마커뷰
@@ -192,13 +194,18 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         }
         
         // 현재위치 표시 버튼 생성
-        currentLocationBtn = createButton()
-        
+        currentLocationBtn = createLoactionBtn()
         if let button = currentLocationBtn {
+            self.view.addSubview(button)
+        }
+        mapSearchBtn = createMapSearchBtn()
+        if let button = mapSearchBtn {
             self.view.addSubview(button)
         }
         
         self.view.addSubview(navigationBarUIView)
+        
+        
         
     }
     
@@ -347,19 +354,31 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     // MARK: - Button Control
     
-    func createButton() -> UIButton? {
+    func createMapSearchBtn() -> UIButton? {
         
         let button = UIButton(type: .custom)
         
-        button.frame = CGRect(x: 15, y: 30, width: 36, height: 36)
-        button.setImage(#imageLiteral(resourceName: "v4_btn_navi_location_normal"), for: .normal)
+        button.frame = CGRect(x: 303 * self.view.frame.width / 375 , y: 84 * self.view.frame.height / 667 , width: 65 * self.view.frame.width / 375 , height: 65 * self.view.frame.height / 667 )
+        button.setImage(#imageLiteral(resourceName: "mapSearch"), for: .normal)
         
-        button.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(mapSearchBtnClicked(_:)), for: .touchUpInside)
         
         return button
     }
     
-    @objc func buttonClicked(_ sender: UIButton!) {
+    func createLoactionBtn() -> UIButton? {
+        
+        let button = UIButton(type: .custom)
+        
+        button.frame = CGRect(x: 303 * self.view.frame.width / 375 , y: 148.5 * self.view.frame.height / 667 , width: 65 * self.view.frame.width / 375 , height: 65 * self.view.frame.height / 667 )
+        button.setImage(#imageLiteral(resourceName: "mylocationDeActiveBtn"), for: .normal)
+        
+        button.addTarget(self, action: #selector(myLocationBtnClicked(_:)), for: .touchUpInside)
+        
+        return button
+    }
+    
+    @objc func myLocationBtnClicked(_ sender: UIButton!) {
         
         if let lm = NMapLocationManager.getSharedInstance() {
             
@@ -386,17 +405,22 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         }
     }
     
+    @objc func mapSearchBtnClicked( _ sender : UIButton! ) {
+        
+        //  다음 뷰 이동
+    }
+    
     func updateState(_ newState: state) {
         
         currentState = newState
         
         switch currentState {
         case .disabled:
-            currentLocationBtn?.setImage(#imageLiteral(resourceName: "v4_btn_navi_location_normal"), for: .normal)
+            currentLocationBtn?.setImage(#imageLiteral(resourceName: "mylocationDeActiveBtn") , for: .normal)
         case .tracking:
-            currentLocationBtn?.setImage(#imageLiteral(resourceName: "v4_btn_navi_location_selected"), for: .normal)
+            currentLocationBtn?.setImage(#imageLiteral(resourceName: "mylocationActiveBtn") , for: .normal)
         case .trackingWithHeading:
-            currentLocationBtn?.setImage(#imageLiteral(resourceName: "v4_btn_navi_location_my"), for: .normal)
+            currentLocationBtn?.setImage(#imageLiteral(resourceName: "mylocationWayActiveBtn") , for: .normal)
         }
     }
     

@@ -60,6 +60,7 @@
 		BEFF536A2136689A00CEEE7E /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BEFF53682136689A00CEEE7E /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEFF536D213668B900CEEE7E /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEFF536C213668B900CEEE7E /* NMapViewerSDK.framework */; };
 		BEFF53722136710600CEEE7E /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF53712136710600CEEE7E /* NMapViewResources.swift */; };
+		BEFF53742137D7A400CEEE7E /* CategoryPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF53732137D7A400CEEE7E /* CategoryPopUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -134,6 +135,7 @@
 		BEFF536C213668B900CEEE7E /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMapViewerSDK.framework; path = Frameworks/NMapViewerSDK.framework; sourceTree = "<group>"; };
 		BEFF537021366B4C00CEEE7E /* NaverMap_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaverMap_Bridging_Header.h; sourceTree = "<group>"; };
 		BEFF53712136710600CEEE7E /* NMapViewResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
+		BEFF53732137D7A400CEEE7E /* CategoryPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 			children = (
 				BEBD52B22118AD6E009A63A4 /* DefaultPopUpViewController.swift */,
 				BEB0C1E2212C7161004D3F22 /* CalendarPopUpViewController.swift */,
+				BEFF53732137D7A400CEEE7E /* CategoryPopUpViewController.swift */,
 			);
 			path = PopUpViewController;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				BE9B5A8621331083007C3C74 /* ReservationPossibility.swift in Sources */,
 				BEEA4D352113097E00FD71C4 /* AppDelegate.swift in Sources */,
 				BEB560F621243E7D00760903 /* HomeCalendarCollectionViewCell.swift in Sources */,
+				BEFF53742137D7A400CEEE7E /* CategoryPopUpViewController.swift in Sources */,
 				BEB560FC212467EF00760903 /* Member.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

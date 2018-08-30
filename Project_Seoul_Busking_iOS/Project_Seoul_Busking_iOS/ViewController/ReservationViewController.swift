@@ -50,6 +50,10 @@ class ReservationViewController: UIViewController {
     var selectedStartTime : [Int] = [ -1 , -1 ]
     var selectedEndTime : [Int] = [ -1 , -1 ]
     
+    @IBOutlet weak var reservationCategoryLabel: UILabel!
+    @IBOutlet weak var reservationCategoryBtn: UIButton!
+    var selectedCategory : String?
+    
     
     //  신청하기
     @IBOutlet weak var reservationCommitBtn: UIButton!
@@ -86,7 +90,7 @@ class ReservationViewController: UIViewController {
             
             UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
-                self.reservationDateTimeView.frame.origin.y = 391 * self.view.frame.height / 667
+                self.reservationDateTimeView.frame.origin.y = 323 * self.view.frame.height / 667
                 
                 
             }) { (finished ) in
@@ -111,6 +115,7 @@ class ReservationViewController: UIViewController {
     func set() {
         
         reservationCommitBtn.isEnabled = false
+        reservationCommitBtn.alpha = 0.6
         
         if uiviewX != nil {
             
@@ -142,8 +147,12 @@ class ReservationViewController: UIViewController {
         
         if( selectedTmpTime != nil ) {
             reservationTimeLabel.text = self.selectedTmpTime
-            
+        }
+        
+        if( selectedCategory != nil ) {
+            reservationCategoryLabel.text = self.selectedCategory
             reservationCommitBtn.isEnabled = true
+            reservationCommitBtn.alpha = 1
         }
     }
     
@@ -185,6 +194,12 @@ class ReservationViewController: UIViewController {
         let timeTap = UITapGestureRecognizer(target: self , action: #selector(self.pressedReservationTimeBtn(_:) ))
         reservationTimeLabel.isUserInteractionEnabled = true
         reservationTimeLabel.addGestureRecognizer(timeTap)
+        
+        //  카테고리 선택 버튼
+        reservationCategoryBtn.addTarget(self, action: #selector(self.pressedReservationCategoryBtn(_:)), for: UIControlEvents.touchUpInside)
+        let categoryTap = UITapGestureRecognizer(target: self , action: #selector(self.pressedReservationCategoryBtn(_:) ))
+        reservationCategoryLabel.isUserInteractionEnabled = true
+        reservationCategoryLabel.addGestureRecognizer(categoryTap)
         
         
         //  신청하기 버튼
@@ -280,6 +295,7 @@ class ReservationViewController: UIViewController {
         boroughListVC.selectedTimeCnt = self.selectedTimeCnt
         boroughListVC.selectedStartTime = self.selectedStartTime
         boroughListVC.selectedEndTime = self.selectedEndTime
+        boroughListVC.selectedCategory = self.selectedCategory
         
         self.addChildViewController( boroughListVC )
         boroughListVC.view.frame = self.view.frame
@@ -320,6 +336,7 @@ class ReservationViewController: UIViewController {
             buskingZoneListVC.selectedTimeCnt = self.selectedTimeCnt
             buskingZoneListVC.selectedStartTime = self.selectedStartTime
             buskingZoneListVC.selectedEndTime = self.selectedEndTime
+            buskingZoneListVC.selectedCategory = self.selectedCategory
             
             self.addChildViewController( buskingZoneListVC )
             buskingZoneListVC.view.frame = self.view.frame
@@ -362,6 +379,7 @@ class ReservationViewController: UIViewController {
             calendarPopUpVC.selectedTimeCnt = self.selectedTimeCnt
             calendarPopUpVC.selectedStartTime = self.selectedStartTime
             calendarPopUpVC.selectedEndTime = self.selectedEndTime
+            calendarPopUpVC.selectedCategory = self.selectedCategory
             
             self.addChildViewController( calendarPopUpVC )
             calendarPopUpVC.view.frame = self.view.frame
@@ -404,6 +422,7 @@ class ReservationViewController: UIViewController {
             timeTableVC.selectedTimeCnt = self.selectedTimeCnt
             timeTableVC.selectedStartTime = self.selectedStartTime
             timeTableVC.selectedEndTime = self.selectedEndTime
+            timeTableVC.selectedCategory = self.selectedCategory
             
             self.addChildViewController( timeTableVC )
             timeTableVC.view.frame = self.view.frame
@@ -412,6 +431,49 @@ class ReservationViewController: UIViewController {
         }
     }
 
+    //  카테고리 선택 버튼 액션
+    @objc func pressedReservationCategoryBtn( _ sender : UIButton ) {
+        
+        self.reservationZoneUIView.isHidden = true
+        
+        if( reservationTimeLabel.text == "공연 시간 선택" ) {
+            
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+            
+            defaultPopUpVC.content = "시간을 선택해 주세요."
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
+            
+        } else {
+            
+            guard let categoryPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryPopUpViewController") as? CategoryPopUpViewController else { return }
+            
+            categoryPopUpVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+            categoryPopUpVC.memberInfo = self.memberInfo
+            categoryPopUpVC.selectedBoroughIndex = self.selectedBoroughIndex
+            categoryPopUpVC.selectedBoroughName = self.selectedBoroughName
+            categoryPopUpVC.selectedZoneIndex = self.selectedZoneIndex
+            categoryPopUpVC.selectedZoneName = self.selectedZoneName
+            categoryPopUpVC.selectedZoneImage = self.selectedZoneImage
+            categoryPopUpVC.selectedTmpDate = self.selectedTmpDate
+            categoryPopUpVC.selectedDate = self.selectedDate
+            categoryPopUpVC.selectedTmpTime = self.selectedTmpTime
+            categoryPopUpVC.selectedTimeCnt = self.selectedTimeCnt
+            categoryPopUpVC.selectedStartTime = self.selectedStartTime
+            categoryPopUpVC.selectedEndTime = self.selectedEndTime
+            categoryPopUpVC.selectedCategory = self.selectedCategory
+            
+            self.addChildViewController( categoryPopUpVC )
+            categoryPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( categoryPopUpVC.view )
+            categoryPopUpVC.didMove(toParentViewController: self )
+        }
+    }
+    
+    
     //  신청하기 버튼 액션
     @objc func pressedReservationCommitBtn( _ sender : UIButton ) {
         
