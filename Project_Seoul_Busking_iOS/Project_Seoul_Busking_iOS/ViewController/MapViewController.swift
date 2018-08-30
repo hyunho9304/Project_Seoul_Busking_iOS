@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 //  NMapViewDelegate                네이버 앱 키 등록
 //  NMapPOIdataOverlayDelegate      네이버 지도 설정
@@ -16,8 +17,9 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
 
     //  넘어온 정보
     var memberInfo : Member?
+    
+    //  서버 데이터
     var memberRepresentativeBorough : MemberRepresentativeBorough?  //  회원 대표 자치구 index & name
-    var todayDateTime : Int?    //  선택한년월일 ex ) 2018815
     
     
     //  네비게이션 바
@@ -35,6 +37,9 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     //  내용( 서버 존 )
     var buskingZoneListAll : [ BuskingZoneAll ] = [ BuskingZoneAll ]()  //  서버 버스킹 존 전부 데이터
     
+    //  내용( 서버 현재 예약 )
+    var currentReservationListAll : [ CurrentReservationAll ] = [ CurrentReservationAll ]() //  서버 현재 예약 데이터
+    
     //  내용( 버튼 )
     var mapSearchBtn : UIButton?        //  맵 검색 버튼
     var currentLocationBtn : UIButton?  //  현재위치 버튼
@@ -47,6 +52,13 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     @IBOutlet weak var zoneCurrentInfoProfileImageView: UIImageView!
     @IBOutlet weak var zoneCurrentInfoNickname: UILabel!
     @IBOutlet weak var zoneCurrentInfoCategory: UILabel!
+    @IBOutlet weak var zoneCurrentInfoNoReservationLabel: UILabel!
+    var year = calendar.component(.year, from: date)
+    var month = calendar.component(.month, from: date)
+    let day = calendar.component(.day, from: date)
+    let hour = calendar.component(.hour, from: date)
+    var todayDateTime : Int?    //  선택한년월일 ex ) 2018815
+    
     
     //  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ지도설정ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     var navermapView : NMapView?    //  네이버지도
@@ -71,7 +83,19 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         super.viewDidLoad()
         
         naverMapSetting()
+        set()
         setTarget()
+        
+    }
+    
+    func set() {
+        
+        let tmpDate : String = String( year ) + String( month ) + String( day )
+        todayDateTime = Int( tmpDate )
+        
+        zoneCurrentInfoCategory.layer.cornerRadius = 10
+        zoneCurrentInfoCategory.clipsToBounds = true
+        zoneCurrentInfoCategory.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
         
     }
     
@@ -79,6 +103,19 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         
         //  홈 백 버튼
         mapBackBtn.addTarget(self, action: #selector(self.pressedMapBackBtn(_:)), for: UIControlEvents.touchUpInside)
+    }
+    
+    func getItoI( _ sender : Int ) -> Int {
+        
+        let result = gino( sender )
+        return result
+        
+    }
+    
+    func getStoS( _ sender : String ) -> String {
+        
+        let result = gsno( sender )
+        return result
     }
     
     @objc func pressedMapBackBtn( _ sender : UIButton ) {
@@ -123,45 +160,92 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                         
                         self.buskingZoneListAll = buskingZoneListAllData
                         
-                        if let mapOverlayManager = self.navermapView?.mapOverlayManager {
+                        
+                        Server.reqCurrentReservationListAll(r_date: self.todayDateTime! , r_time: self.hour , completion: { ( currentReservationAllData , rescode ) in
                             
-                            // create POI data overlay
-                            if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
+                            if( rescode == 200 ) {
                                 
-                                poiDataOverlay.initPOIdata( Int32(self.buskingZoneListAll.count) )
+                                self.currentReservationListAll = currentReservationAllData
                                 
-                                var index : Int = -1
-                                
-                                for i in 0 ..< self.buskingZoneListAll.count {
+                                if let mapOverlayManager = self.navermapView?.mapOverlayManager {
                                     
-                                    let tmpX = self.buskingZoneListAll[i].sbz_longitude
-                                    let tmpY = self.buskingZoneListAll[i].sbz_latitude
-                                    let name = self.buskingZoneListAll[i].sbz_name
-                                    
-                                    poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: tmpX!, latitude: tmpY! ), title: name! , type: UserPOIflagTypeDefault, iconIndex: Int32(i) , with: nil)
-                                    
-                                    if( self.mapSelectedBoroughName == self.buskingZoneListAll[i].sb_name && index == -1 ) {
-                                        index = i
+                                    // create POI data overlay
+                                    if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
+                                        
+                                        poiDataOverlay.initPOIdata( Int32(self.buskingZoneListAll.count) )
+                                        
+                                        var index : Int = -1
+                                        
+                                        for i in 0 ..< self.buskingZoneListAll.count {
+                                            
+                                            let tmpX = self.buskingZoneListAll[i].sbz_longitude
+                                            let tmpY = self.buskingZoneListAll[i].sbz_latitude
+                                            let name = self.buskingZoneListAll[i].sbz_name
+                                            
+                                            poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: tmpX!, latitude: tmpY! ), title: name! , type: UserPOIflagTypeDefault, iconIndex: Int32(i) , with: nil)
+                                            
+                                            if( self.mapSelectedBoroughName == self.buskingZoneListAll[i].sb_name && index == -1 ) {
+                                                index = i
+                                            }
+                                        }
+                                        
+                                        poiDataOverlay.endPOIdata()
+                                        
+                                        // show all POI data
+                                        poiDataOverlay.showAllPOIdata()
+                                        
+                                        self.zoneCurrentInfoNameLebel.text = self.buskingZoneListAll[ index ].sbz_name
+                                        
+                                        if( self.buskingZoneListAll[ index ].sbz_id == self.currentReservationListAll[ index ].sbz_id ) {     //  예약 있음
+                                            
+                                            self.zoneCurrentInfoNoReservationLabel.isHidden = true
+                                            
+                                            let tmpStartTime = self.getItoI( self.currentReservationListAll[ index ].r_startTime! )
+                                            let tmpEndTime = self.getItoI( self.currentReservationListAll[ index ].r_endTime! )
+                                            let tmpCategory = self.getStoS( self.currentReservationListAll[ index ].member_category! )
+                                            
+                                            self.zoneCurrentInfoTimeLabel.text = "\(tmpStartTime) : 00 - \(tmpEndTime) : 00"
+                                            
+                                            self.zoneCurrentInfoNickname.text = self.currentReservationListAll[ index ].member_nickname
+                                            self.zoneCurrentInfoCategory.text = "# \(tmpCategory)"
+                                            
+                                            if( self.currentReservationListAll[ index ].member_profile != nil ) {
+                                                
+                                                let tmpProfile = self.getStoS( self.currentReservationListAll[ index ].member_profile! )
+                                                
+                                                self.zoneCurrentInfoProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
+                                                self.zoneCurrentInfoProfileImageView.layer.cornerRadius = self.zoneCurrentInfoProfileImageView.layer.frame.width/2
+                                                self.zoneCurrentInfoProfileImageView.clipsToBounds = true
+                                                
+                                            } else {
+                                                
+                                                self.zoneCurrentInfoProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
+                                            }
+                                        } else {    //  예약 없음
+                                            
+                                            self.zoneCurrentInfoNoReservationLabel.isHidden = false
+                                        }
+                                        
+                                        //  디폴트로 선택누르고 있는거
+                                        //poiDataOverlay.selectPOIitem(at: Int32(index) , moveToCenter: true , focusedBySelectItem: true)
                                     }
+                                    
                                 }
                                 
-                                poiDataOverlay.endPOIdata()
+                                //  지도 중심위치 선택한 자치구 위치로 설정
+                                if let mapView = self.navermapView {
+                                    mapView.setMapCenter(NGeoPoint(longitude: self.mapSelectedLongitude! , latitude: self.mapSelectedLatitude! ), atLevel: 12)
+                                }
+
+                            } else {
                                 
-                                // show all POI data
-                                poiDataOverlay.showAllPOIdata()
+                                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                                alert.addAction( ok )
+                                self.present(alert , animated: true , completion: nil)
                                 
-                                self.zoneCurrentInfoNameLebel.text = self.buskingZoneListAll[ index ].sbz_name
-                                
-                                //  디폴트로 선택누르고 있는거
-                                //poiDataOverlay.selectPOIitem(at: Int32(index) , moveToCenter: true , focusedBySelectItem: true)
                             }
-                            
-                        }
-                        
-                        //  지도 중심위치 선택한 자치구 위치로 설정
-                        if let mapView = self.navermapView {
-                            mapView.setMapCenter(NGeoPoint(longitude: self.mapSelectedLongitude! , latitude: self.mapSelectedLatitude! ), atLevel: 12)
-                        }
+                        })
                         
                     } else {
                         
@@ -511,6 +595,31 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         
         zoneCurrentInfoNameLebel.text = buskingZoneListAll[ index ].sbz_name
         
+        if( buskingZoneListAll[ index ].sbz_id == currentReservationListAll[ index ].sbz_id ) {     //  예약 있음
+
+            zoneCurrentInfoNoReservationLabel.isHidden = true
+            
+            
+            zoneCurrentInfoTimeLabel.text = "\(gino(currentReservationListAll[ index ].r_startTime )) : 00 - \(gino(currentReservationListAll[ index ].r_endTime)) : 00"
+
+            zoneCurrentInfoNickname.text = currentReservationListAll[ index ].member_nickname
+            zoneCurrentInfoCategory.text = "# \(gsno( currentReservationListAll[ index ].member_category))"
+
+            if( currentReservationListAll[ index ].member_profile != nil ) {
+
+                zoneCurrentInfoProfileImageView.kf.setImage(with: URL( string:gsno( currentReservationListAll[ index ].member_profile)) )
+                zoneCurrentInfoProfileImageView.layer.cornerRadius = zoneCurrentInfoProfileImageView.layer.frame.width/2
+                zoneCurrentInfoProfileImageView.clipsToBounds = true
+
+            } else {
+
+                zoneCurrentInfoProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
+            }
+        } else {    //  예약 없음
+
+            zoneCurrentInfoNoReservationLabel.isHidden = false
+        }
+        
         //  지도 중심위치 선택한 존 위치로 설정
         if let mapView = self.navermapView {
             mapView.animate(to: NGeoPoint(longitude: buskingZoneListAll[ index ].sbz_longitude! , latitude: buskingZoneListAll[ index ].sbz_latitude! ))
@@ -522,7 +631,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     // 마커 선택??????????????????????
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, didSelectCalloutOfPOIitemAt index: Int32, with object: Any!) -> Bool {
-        print("ababa")
+        
         //        let buskingDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BuskingDetailViewController") as? BuskingDetailViewController
         //
         //        buskingDetailVC?.tempText = String(index)

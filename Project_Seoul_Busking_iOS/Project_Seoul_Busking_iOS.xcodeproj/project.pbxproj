@@ -62,6 +62,7 @@
 		BEFF53722136710600CEEE7E /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF53712136710600CEEE7E /* NMapViewResources.swift */; };
 		BEFF53742137D7A400CEEE7E /* CategoryPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF53732137D7A400CEEE7E /* CategoryPopUpViewController.swift */; };
 		BEFF537621380C9000CEEE7E /* BuskingZoneListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF537521380C9000CEEE7E /* BuskingZoneListAll.swift */; };
+		BEFF53782138625B00CEEE7E /* CurrentReservationListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF53772138625B00CEEE7E /* CurrentReservationListAll.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -138,6 +139,7 @@
 		BEFF53712136710600CEEE7E /* NMapViewResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
 		BEFF53732137D7A400CEEE7E /* CategoryPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopUpViewController.swift; sourceTree = "<group>"; };
 		BEFF537521380C9000CEEE7E /* BuskingZoneListAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuskingZoneListAll.swift; sourceTree = "<group>"; };
+		BEFF53772138625B00CEEE7E /* CurrentReservationListAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentReservationListAll.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,7 @@
 				BEB0C1D221259321004D3F22 /* MemberRepresentativeBorough.swift */,
 				BEB560FD21248DF900760903 /* BuskingZone.swift */,
 				BEFF537521380C9000CEEE7E /* BuskingZoneListAll.swift */,
+				BEFF53772138625B00CEEE7E /* CurrentReservationListAll.swift */,
 				BEB0C1D82126F4B8004D3F22 /* Borough.swift */,
 				BE9B5A8521331082007C3C74 /* ReservationPossibility.swift */,
 				BE9B5A8921356452007C3C74 /* Reservation.swift */,
@@ -509,6 +512,7 @@
 				BEB0C1DB212AB9DA004D3F22 /* ReservationViewController.swift in Sources */,
 				BEFF537621380C9000CEEE7E /* BuskingZoneListAll.swift in Sources */,
 				BEB0C1D72126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift in Sources */,
+				BEFF53782138625B00CEEE7E /* CurrentReservationListAll.swift in Sources */,
 				BEEA4D4F21130FD300FD71C4 /* SignInViewController.swift in Sources */,
 				BEEA4D612113283200FD71C4 /* SignUpViewController.swift in Sources */,
 				BEEA4D65211328C500FD71C4 /* Server.swift in Sources */,

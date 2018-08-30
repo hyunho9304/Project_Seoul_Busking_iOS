@@ -261,7 +261,6 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         
         mapVC.memberInfo = self.memberInfo
-        mapVC.todayDateTime = self.selectDateTime
         
         self.present( mapVC , animated: false , completion: nil )
     }

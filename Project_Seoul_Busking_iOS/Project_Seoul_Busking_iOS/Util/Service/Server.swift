@@ -496,6 +496,47 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  현재 예약 전부 가져오기
+    static func reqCurrentReservationListAll( r_date : Int , r_time : Int ,  completion : @escaping ([CurrentReservationAll] , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/collection/currentList?r_date=\(r_date)&r_time=\(r_time)" )
+        
+        Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let currentReservationAllData = try decoder.decode(CurrentReservationAllData.self , from: value)
+                        
+                        if( res.response?.statusCode == 200 ){
+                            
+                            completion( currentReservationAllData.data! , 200 )
+                        }
+                        else{
+                            
+                            completion( currentReservationAllData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
 
 
     
