@@ -18,11 +18,11 @@ class NMapViewResources: NSObject {
     open static func imageWithType(_ poiFlagType: NMapPOIflagType, selected: Bool) -> UIImage? {
         switch poiFlagType {
         case NMapPOIflagTypeLocation:
-            return #imageLiteral(resourceName: "pubtrans_ic_mylocation_on")
+            return #imageLiteral(resourceName: "mylocationActive")
         case NMapPOIflagTypeLocationOff:
-            return #imageLiteral(resourceName: "pubtrans_ic_mylocation_off")
+            return #imageLiteral(resourceName: "mylocation")
         case NMapPOIflagTypeCompass:
-            return #imageLiteral(resourceName: "mylocationWay.png")
+            return #imageLiteral(resourceName: "mylocationWay")
         case UserPOIflagTypeDefault:
             return #imageLiteral(resourceName: "pin")
         case UserPOIflagTypeInvisible:
