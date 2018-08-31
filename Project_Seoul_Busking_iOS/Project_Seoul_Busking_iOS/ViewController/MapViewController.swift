@@ -90,7 +90,19 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     func set() {
         
-        let tmpDate : String = String( year ) + String( month ) + String( day )
+        let yearString : String = String(year)
+        var monthString : String = String( month )
+        var dayString : String = String( day )
+        
+        
+        if( monthString.count == 1 ) {
+            monthString.insert("0", at: monthString.startIndex )
+        }
+        if( dayString.count == 1 ) {
+            dayString.insert("0", at: dayString.startIndex )
+        }
+        
+        let tmpDate : String = yearString + monthString + dayString
         todayDateTime = Int( tmpDate )
         
         zoneCurrentInfoCategory.layer.cornerRadius = 10
@@ -146,11 +158,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                     self.mapSelectedLatitude = self.memberRepresentativeBorough?.sb_latitude
                     
                 } else {
-                    
                     self.mapRepresentativeBoroughLabel.text = self.mapSelectedBoroughName
-                    
-                    self.mapSelectedLongitude = self.memberRepresentativeBorough?.sb_longitude
-                    self.mapSelectedLatitude = self.memberRepresentativeBorough?.sb_latitude
                     
                 }
                 

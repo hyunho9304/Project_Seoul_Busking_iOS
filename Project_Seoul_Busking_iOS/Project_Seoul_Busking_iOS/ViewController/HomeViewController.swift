@@ -25,6 +25,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     @IBOutlet weak var homeBuskingReservationBtn: UIButton!     //  버스킹예약 버튼
     var homeSelectBoroughIndex : Int?                           //  현재 선택된 자치구 index        select 해야 값 있다
     var homeSelectBoroughName : String?                        //   현재 선택된 자치구 name
+    var homeSelectedLongitude : Double?                           //  현재 선택된 logitude
+    var homeSelectedLatitude : Double?                            //  현재 선택된 latitude
     
     //  달력
     @IBOutlet weak var homeCalendarUIView: UIView!
@@ -94,6 +96,9 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                     self.homeRepresentativeBoroughLabel.text = self.memberRepresentativeBorough?.sb_name
                     self.homeSelectBoroughIndex = self.memberRepresentativeBorough?.sb_id
                     self.homeSelectBoroughName = self.memberRepresentativeBorough?.sb_name
+                    self.homeSelectedLongitude = self.memberRepresentativeBorough?.sb_longitude
+                    self.homeSelectedLatitude = self.memberRepresentativeBorough?.sb_latitude
+                    
                     
                 } else {
                     
@@ -261,6 +266,12 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         
         mapVC.memberInfo = self.memberInfo
+        mapVC.mapSelectedBoroughIndex = self.homeSelectBoroughIndex
+        mapVC.mapSelectedBoroughName = self.homeSelectBoroughName
+        mapVC.mapSelectedLongitude = self.homeSelectedLongitude
+        mapVC.mapSelectedLatitude = self.homeSelectedLatitude
+        
+
         
         self.present( mapVC , animated: false , completion: nil )
     }
@@ -336,10 +347,10 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 self.calendar = calendarData
                 self.homeCalendarCollectionView.reloadData()
                 
-                self.selectYear = self.calendar?.twoWeeksYear![ 0 ]
-                self.selectMonth = self.calendar?.twoWeeksMonth![ 0 ]
-                self.selectDate = self.calendar?.twoWeeksDate![ 0 ]
-                self.selectDay = self.calendar?.twoWeeksDay![ 0 ]
+//                self.selectYear = self.calendar?.twoWeeksYear![ 0 ]
+//                self.selectMonth = self.calendar?.twoWeeksMonth![ 0 ]
+//                self.selectDate = self.calendar?.twoWeeksDate![ 0 ]
+//                self.selectDay = self.calendar?.twoWeeksDay![ 0 ]
                 
                 let indexPathForFirstRow = IndexPath(row: 0, section: 0)
                 self.collectionView( self.homeCalendarCollectionView, didSelectItemAt: indexPathForFirstRow )
@@ -418,9 +429,18 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 cell.calendarDateLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 cell.calendarCircleImageView.isHidden = false
                 
+                var tmpMonth : String = (self.calendar?.twoWeeksMonth![ indexPath.row ])!
+                if( tmpMonth.count == 1 ) {
+                    tmpMonth.insert("0", at: tmpMonth.startIndex )
+                }
+                var tmpDay : String = (self.calendar?.twoWeeksDate![ indexPath.row ])!
+                if( tmpDay.count == 1 ) {
+                    tmpDay.insert("0", at: tmpDay.startIndex )
+                }
+                
                 self.selectYear = self.calendar?.twoWeeksYear![ indexPath.row ]
-                self.selectMonth = self.calendar?.twoWeeksMonth![ indexPath.row ]
-                self.selectDate = self.calendar?.twoWeeksDate![ indexPath.row ]
+                self.selectMonth = tmpMonth
+                self.selectDate = tmpDay
                 self.selectDay = self.calendar?.twoWeeksDay![ indexPath.row ]
                 
                 let tmpDateTime : String = gsno( selectYear ) + gsno( selectMonth ) + gsno( selectDate )

@@ -128,9 +128,8 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         currentMonth = Months[month]
         MonthLabel.text = "\(year). \(currentMonth)"
         
-        let firstWeekday = ( day - weekday ) % 7
-        NumberOfEmptyBox = (firstWeekday - 1 )               //  이번달 빈공간
-        PositionIndex = ( firstWeekday - 1 )                 //  이번달 빈공간
+        GetStartDateDayPosition()
+
 
         calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
         
@@ -454,8 +453,13 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             cell.circleSelect.isHidden = false
 
             self.selectYear = String( year )
-            self.selectMonth = String( month + 1 )
-            self.selectDate = cell.dateLabel.text
+            self.selectMonth = currentMonth
+
+            var tmpDay : String = cell.dateLabel.text!
+            if( tmpDay.count == 1 ) {
+                tmpDay.insert("0", at: tmpDay.startIndex )
+            }
+            self.selectDate = tmpDay
             
             let tmpDateTime : String = gsno( selectYear ) + gsno( selectMonth ) + gsno( selectDate )
             self.selectDateTime = Int( tmpDateTime )

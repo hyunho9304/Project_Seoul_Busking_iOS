@@ -21,8 +21,10 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     var boroughList : [ Borough ] = [ Borough ]()  //  서버 자치구 리스트
     var boroughSelectedIndexPath :IndexPath?    //  선택고려
     
-    var selectIndex : Int?      //  선택한 index
-    var selectName : String?    //  선택한 name
+    var selectIndex : Int?          //  선택한 index
+    var selectName : String?        //  선택한 name
+    var selectLongtitude : Double?  //  선택한 경도
+    var selectLatitude : Double?    //  선택한 위도
     
     //  선택완료 버튼
     @IBOutlet weak var selectCommitBtn: UIButton!
@@ -183,6 +185,12 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
                 homeVC.memberInfo = self.memberInfo
                 homeVC.homeSelectBoroughIndex = self.selectIndex
                 homeVC.homeSelectBoroughName = self.selectName
+                homeVC.homeSelectedLongitude = self.selectLongtitude
+                homeVC.homeSelectedLatitude = self.selectLatitude
+                
+                print("park")
+                print( self.selectLongtitude )
+                print( self.selectLatitude)
                 
                 self.present( homeVC , animated: false , completion: nil )
                 
@@ -240,6 +248,8 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
             
             self.selectIndex = boroughList[ indexPath.row ].sb_id
             self.selectName = boroughList[ indexPath.row ].sb_name
+            self.selectLongtitude = boroughList[ indexPath.row ].sb_longitude
+            self.selectLatitude = boroughList[ indexPath.row ].sb_latitude
             
         } else {
             
