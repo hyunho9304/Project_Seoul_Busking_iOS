@@ -295,13 +295,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="likeCopy2" translatesAutoresizingMaskIntoConstraints="NO" id="iky-Lt-oxU">
-                                        <rect key="frame" x="167.5" y="34" width="20" height="19"/>
+                                        <rect key="frame" x="167" y="34" width="20" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="iky-Lt-oxU" secondAttribute="height" multiplier="20:19" id="DR1-Lc-3wd"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6om-H2-h1q">
-                                        <rect key="frame" x="203.5" y="33" width="3.5" height="21"/>
+                                        <rect key="frame" x="203" y="33" width="4" height="16.5"/>
                                         <gestureRecognizers/>
                                         <fontDescription key="fontDescription" name="NotoSansCJKkr-Bold" family="Noto Sans CJK KR" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -407,7 +407,7 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예약 공연 목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5E4-ts-R73">
-                                <rect key="frame" x="24" y="302" width="85.5" height="21"/>
+                                <rect key="frame" x="24" y="302" width="80.5" height="21"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Bold" family="Noto Sans CJK KR" pointSize="14"/>
                                 <color key="textColor" red="0.44705882352941173" green="0.31372549019607843" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

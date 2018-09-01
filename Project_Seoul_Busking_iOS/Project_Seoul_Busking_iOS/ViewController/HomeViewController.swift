@@ -167,9 +167,10 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             tapbarUIView.frame.origin.x = uiviewX!
         }
         
-        let tap = UITapGestureRecognizer(target: self , action: #selector( HomeViewController.pressedHomeBoroughBtn(_:) ))
-        homeRepresentativeBoroughLabel.isUserInteractionEnabled = true
-        homeRepresentativeBoroughLabel.addGestureRecognizer(tap)
+        reloadTarget()
+    }
+    
+    func reloadTarget() {
         
         refresher = UIRefreshControl()
         homeReservationCollectionView.alwaysBounceVertical = true
@@ -228,8 +229,16 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         //  개인정보 버튼
         tapbarMemberInfoBtn.addTarget(self, action: #selector(self.pressedTapbarMemberInfoBtn(_:)), for: UIControlEvents.touchUpInside)
         
+        //  대표 자치구 설정 버튼
+        let tapSetRepresentativeBorough = UITapGestureRecognizer(target: self , action: #selector( HomeViewController.pressedHomeStarImageView(_:) ))
+        homeStarImageView.isUserInteractionEnabled = true
+        homeStarImageView.addGestureRecognizer(tapSetRepresentativeBorough)
+        
         //  자치구 선택 버튼
         homeBoroughBtn.addTarget(self, action: #selector(self.pressedHomeBoroughBtn(_:)), for: UIControlEvents.touchUpInside)
+        let tapBorough = UITapGestureRecognizer(target: self , action: #selector( HomeViewController.pressedHomeBoroughBtn(_:) ))
+        homeRepresentativeBoroughLabel.isUserInteractionEnabled = true
+        homeRepresentativeBoroughLabel.addGestureRecognizer(tapBorough)
         
         //  버스킹 예약 버튼
         homeBuskingReservationBtn.addTarget(self, action: #selector(self.pressedHomeBuskingReservationBtn(_:)), for: UIControlEvents.touchUpInside)
@@ -285,6 +294,41 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         memberInfoVC.memberInfo = self.memberInfo
         
         self.present( memberInfoVC , animated: false , completion: nil )
+        
+    }
+    
+    //  대표자치구 설정 액션
+    @objc func pressedHomeStarImageView( _ sender : UIImageView ) {
+
+        if( memberRepresentativeBorough?.sb_id != self.homeSelectBoroughIndex ) {   //  변경 가능
+            
+            Server.reqUpdateMemberBorough(member_nickname: (memberInfo?.member_nickname)! , sb_id: homeSelectBoroughIndex!) { (rescode) in
+                
+                let boroughName : String = self.homeSelectBoroughName!
+                
+                if( rescode == 201 ) {
+                    
+                    guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                    
+                    defaultPopUpVC.content = "대표 자치구 [\(boroughName)] 변경 완료"
+                    
+                    self.addChildViewController( defaultPopUpVC )
+                    defaultPopUpVC.view.frame = self.view.frame
+                    self.view.addSubview( defaultPopUpVC.view )
+                    defaultPopUpVC.didMove(toParentViewController: self )
+                    
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
+            }
+            
+            homeStarImageView.image = #imageLiteral(resourceName: "likeCopy")
+            
+        }
         
     }
     

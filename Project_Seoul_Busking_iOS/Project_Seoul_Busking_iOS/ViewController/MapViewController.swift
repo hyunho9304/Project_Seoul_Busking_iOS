@@ -159,7 +159,6 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                     
                 } else {
                     self.mapRepresentativeBoroughLabel.text = self.mapSelectedBoroughName
-                    
                 }
                 
                 Server.reqBuskingZoneListAll { ( buskingZoneListAllData, rescode ) in
@@ -601,6 +600,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         var index : Int = 0
         index = Int(poiItem.iconIndex )
         
+        mapRepresentativeBoroughLabel.text = buskingZoneListAll[ index ].sb_name
         zoneCurrentInfoNameLebel.text = buskingZoneListAll[ index ].sbz_name
         
         if( buskingZoneListAll[ index ].sbz_id == currentReservationListAll[ index ].sbz_id ) {     //  예약 있음

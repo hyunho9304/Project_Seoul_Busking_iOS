@@ -147,12 +147,11 @@ class ReservationViewController: UIViewController {
         
         if( selectedTmpTime != nil ) {
             reservationTimeLabel.text = self.selectedTmpTime
-            reservationCommitBtn.isEnabled = true
         }
         
         if( selectedCategory != nil ) {
             reservationCategoryLabel.text = self.selectedCategory
-            //reservationCommitBtn.isEnabled = true
+            reservationCommitBtn.isEnabled = true
             reservationCommitBtn.alpha = 1
         }
     }

@@ -536,6 +536,37 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  대표자치구 변경
+    static func reqUpdateMemberBorough( member_nickname : String , sb_id : Int , completion : @escaping (_ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/update/borough" )
+        
+        let body: [String: Any] = [
+            "member_nickname" : member_nickname ,
+            "sb_id" : sb_id
+        ]
+        
+        Alamofire.request(URL, method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if( res.response?.statusCode == 201 ){
+                    completion( 201 )
+                }
+                else {
+                    completion( 500 )
+                }
+                break
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
 
 
 
