@@ -168,7 +168,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                         self.buskingZoneListAll = buskingZoneListAllData
                         
                         
-                        Server.reqCurrentReservationListAll(r_date: self.todayDateTime! , r_time: self.hour , completion: { ( currentReservationAllData , rescode ) in
+                        Server.reqCurrentReservationListAll(r_date: self.todayDateTime! , r_time: 18 , completion: { ( currentReservationAllData , rescode ) in
                             
                             if( rescode == 200 ) {
                                 

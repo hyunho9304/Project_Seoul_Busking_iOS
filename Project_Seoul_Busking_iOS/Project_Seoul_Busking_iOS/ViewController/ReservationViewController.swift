@@ -24,6 +24,8 @@ class ReservationViewController: UIViewController {
     @IBOutlet weak var reservationBoroughBtn: UIButton!
     var selectedBoroughIndex : Int?
     var selectedBoroughName : String?
+    var selectedBoroughLongitude : Double? //  선택한 경도
+    var selectedBoroughLatitude : Double?  //  선택한 위도
     
     
     @IBOutlet weak var reservationZoneLabel: UILabel!
@@ -286,6 +288,8 @@ class ReservationViewController: UIViewController {
         boroughListVC.memberInfo = self.memberInfo
         boroughListVC.selectedBoroughIndex = self.selectedBoroughIndex
         boroughListVC.selectedBoroughName = self.selectedBoroughName
+        boroughListVC.selectedBoroughLongitude = self.selectedBoroughLongitude
+        boroughListVC.selectedBoroughLatitude = self.selectedBoroughLatitude
         boroughListVC.selectedZoneIndex = self.selectedZoneIndex
         boroughListVC.selectedZoneName = self.selectedZoneName
         boroughListVC.selectedZoneImage = self.selectedZoneImage
@@ -327,6 +331,8 @@ class ReservationViewController: UIViewController {
             buskingZoneListVC.memberInfo = self.memberInfo
             buskingZoneListVC.selectedBoroughIndex = self.selectedBoroughIndex
             buskingZoneListVC.selectedBoroughName = self.selectedBoroughName
+            buskingZoneListVC.selectedBoroughLongitude = self.selectedBoroughLongitude
+            buskingZoneListVC.selectedBoroughLatitude = self.selectedBoroughLatitude
             buskingZoneListVC.selectedZoneIndex = self.selectedZoneIndex
             buskingZoneListVC.selectedZoneName = self.selectedZoneName
             buskingZoneListVC.selectedZoneImage = self.selectedZoneImage
@@ -337,6 +343,7 @@ class ReservationViewController: UIViewController {
             buskingZoneListVC.selectedStartTime = self.selectedStartTime
             buskingZoneListVC.selectedEndTime = self.selectedEndTime
             buskingZoneListVC.selectedCategory = self.selectedCategory
+            
             
             self.addChildViewController( buskingZoneListVC )
             buskingZoneListVC.view.frame = self.view.frame
@@ -370,6 +377,8 @@ class ReservationViewController: UIViewController {
             calendarPopUpVC.memberInfo = self.memberInfo
             calendarPopUpVC.selectedBoroughIndex = self.selectedBoroughIndex
             calendarPopUpVC.selectedBoroughName = self.selectedBoroughName
+            calendarPopUpVC.selectedBoroughLongitude = self.selectedBoroughLongitude
+            calendarPopUpVC.selectedBoroughLatitude = self.selectedBoroughLatitude
             calendarPopUpVC.selectedZoneIndex = self.selectedZoneIndex
             calendarPopUpVC.selectedZoneName = self.selectedZoneName
             calendarPopUpVC.selectedZoneImage = self.selectedZoneImage
@@ -413,6 +422,8 @@ class ReservationViewController: UIViewController {
             timeTableVC.memberInfo = self.memberInfo
             timeTableVC.selectedBoroughIndex = self.selectedBoroughIndex
             timeTableVC.selectedBoroughName = self.selectedBoroughName
+            timeTableVC.selectedBoroughLongitude = self.selectedBoroughLongitude
+            timeTableVC.selectedBoroughLatitude = self.selectedBoroughLatitude
             timeTableVC.selectedZoneIndex = self.selectedZoneIndex
             timeTableVC.selectedZoneName = self.selectedZoneName
             timeTableVC.selectedZoneImage = self.selectedZoneImage
@@ -455,6 +466,8 @@ class ReservationViewController: UIViewController {
             categoryPopUpVC.memberInfo = self.memberInfo
             categoryPopUpVC.selectedBoroughIndex = self.selectedBoroughIndex
             categoryPopUpVC.selectedBoroughName = self.selectedBoroughName
+            categoryPopUpVC.selectedBoroughLongitude = self.selectedBoroughLongitude
+            categoryPopUpVC.selectedBoroughLatitude = self.selectedBoroughLatitude
             categoryPopUpVC.selectedZoneIndex = self.selectedZoneIndex
             categoryPopUpVC.selectedZoneName = self.selectedZoneName
             categoryPopUpVC.selectedZoneImage = self.selectedZoneImage

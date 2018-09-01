@@ -188,10 +188,6 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
                 homeVC.homeSelectedLongitude = self.selectLongtitude
                 homeVC.homeSelectedLatitude = self.selectLatitude
                 
-                print("park")
-                print( self.selectLongtitude )
-                print( self.selectLatitude)
-                
                 self.present( homeVC , animated: false , completion: nil )
                 
                 self.view.removeFromSuperview()

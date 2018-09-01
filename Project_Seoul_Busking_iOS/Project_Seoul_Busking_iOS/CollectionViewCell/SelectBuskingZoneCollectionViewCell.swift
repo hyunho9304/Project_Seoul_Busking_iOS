@@ -14,6 +14,5 @@ class SelectBuskingZoneCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var buskingZoneImageView: UIImageView!
     @IBOutlet weak var buskingZoneNameLabel: UILabel!
     @IBOutlet weak var buskingZoneAddress: UITextView!
-    @IBOutlet weak var buskingZoneMapBtn: UIButton!
     
 }

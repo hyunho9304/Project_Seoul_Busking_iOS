@@ -18,7 +18,6 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     
     
     //  네비게이션 바
-    
     @IBOutlet weak var homeStarImageView: UIImageView!
     @IBOutlet weak var homeRepresentativeBoroughLabel: UILabel!      //  현재 띄우고 있는 자치구
     @IBOutlet weak var homeBoroughBtn: UIButton!                //  자치구 선택 버튼
@@ -193,7 +192,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     }
     
     func setShadow() {
-        
+ 
         //  달력 뷰
         homeCalendarUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
         homeCalendarUIView.layer.shadowOpacity = 0.08                            //  그림자 투명도
@@ -308,6 +307,9 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 
                 if( rescode == 201 ) {
                     
+                    self.homeStarImageView.image = #imageLiteral(resourceName: "likeCopy")
+                    self.memberRepresentativeBorough?.sb_id = self.homeSelectBoroughIndex
+                    
                     guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
                     
                     defaultPopUpVC.content = "대표 자치구 [\(boroughName)] 변경 완료"
@@ -325,9 +327,16 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                     self.present(alert , animated: true , completion: nil)
                 }
             }
+        } else {
             
-            homeStarImageView.image = #imageLiteral(resourceName: "likeCopy")
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
             
+            defaultPopUpVC.content = "대표 자치구 입니다"
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
         }
         
     }

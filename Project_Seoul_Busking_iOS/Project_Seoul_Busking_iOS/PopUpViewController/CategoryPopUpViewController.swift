@@ -14,6 +14,8 @@ class CategoryPopUpViewController: UIViewController {
     var memberInfo : Member?            //  유저 정보
     var selectedBoroughIndex : Int?     //  선택한 자치구 index
     var selectedBoroughName : String?   //  선택한 자치구 name
+    var selectedBoroughLongitude : Double?             //  멤버가 선택한 경도
+    var selectedBoroughLatitude : Double?              //  멤버가 선택한 위도
     var selectedZoneIndex : Int?        //  멤버가 선택한 존 index
     var selectedZoneName : String?      //  멤버가 선택한 존 name
     var selectedZoneImage : String?     //  멤버가 선택한 존 ImageString
@@ -65,6 +67,8 @@ class CategoryPopUpViewController: UIViewController {
         
         reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
         reservationVC.selectedBoroughName = self.selectedBoroughName
+        reservationVC.selectedBoroughLongitude = self.selectedBoroughLongitude
+        reservationVC.selectedBoroughLatitude = self.selectedBoroughLatitude
         reservationVC.selectedZoneIndex = self.selectedZoneIndex
         reservationVC.selectedZoneName = self.selectedZoneName
         reservationVC.selectedZoneImage = self.selectedZoneImage

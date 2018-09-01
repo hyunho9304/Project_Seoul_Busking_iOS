@@ -13,6 +13,8 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
     var memberInfo : Member?            //  유저 정보
     var selectedBoroughIndex : Int?     //  선택한 자치구 index
     var selectedBoroughName : String?   //  선택한 자치구 name
+    var selectedBoroughLongitude : Double?             //  멤버가 선택한 경도
+    var selectedBoroughLatitude : Double?              //  멤버가 선택한 위도
     var selectedZoneIndex : Int?        //  멤버가 선택한 존 index
     var selectedZoneName : String?      //  멤버가 선택한 존 name
     var selectedZoneImage : String?     //  멤버가 선택한 존 ImageString
@@ -24,7 +26,6 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
     var selectedEndTime : [Int] = [ -1 , -1 ]       //  멤버가 선택한 시간 끝나는 시간
     var selectedCategory : String?              //  멤버가 선택한 장르
     
-    
     //  네비게이션 바
     @IBOutlet weak var reservationBackBtn: UIButton!
     
@@ -34,6 +35,9 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
     var boroughSelectedIndexPath :IndexPath?    //  선택고려
     var selectedIndex : Int?      //  선택한 index
     var selectedName : String?    //  선택한 name
+    var selectedLongitude : Double? //  선택한 경도
+    var selectedLatitude : Double?  //  선택한 위도
+
     
     @IBOutlet weak var selectBoroughCommitBtn: UIButton!        //  선택완료버튼
     
@@ -190,6 +194,8 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
                 
                 reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
                 reservationVC.selectedBoroughName = self.selectedBoroughName
+                reservationVC.selectedBoroughLongitude = self.selectedBoroughLongitude
+                reservationVC.selectedBoroughLatitude = self.selectedBoroughLatitude
                 reservationVC.selectedZoneIndex = self.selectedZoneIndex
                 reservationVC.selectedZoneName = self.selectedZoneName
                 reservationVC.selectedZoneImage = self.selectedZoneImage
@@ -229,6 +235,9 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
                     
                     reservationVC.selectedBoroughIndex = self.selectedIndex
                     reservationVC.selectedBoroughName = self.selectedName
+                    reservationVC.selectedBoroughLongitude = self.selectedLongitude
+                    reservationVC.selectedBoroughLatitude = self.selectedLatitude
+                    
                     
                     
                     self.present( reservationVC , animated: false , completion: nil )
@@ -277,6 +286,8 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
             
             self.selectedIndex = boroughList[ indexPath.row ].sb_id
             self.selectedName = boroughList[ indexPath.row ].sb_name
+            self.selectedLongitude = boroughList[ indexPath.row ].sb_longitude
+            self.selectedLatitude = boroughList[ indexPath.row ].sb_latitude
             
         } else {
             

@@ -15,6 +15,8 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     var memberInfo : Member?            //  유저 정보
     var selectedBoroughIndex : Int?     //  선택한 자치구 index
     var selectedBoroughName : String?   //  선택한 자치구 name
+    var selectedBoroughLongitude : Double?             //  멤버가 선택한 경도
+    var selectedBoroughLatitude : Double?              //  멤버가 선택한 위도
     var selectedZoneIndex : Int?        //  멤버가 선택한 존 index
     var selectedZoneName : String?      //  멤버가 선택한 존 name
     var selectedZoneImage : String?     //  멤버가 선택한 존 ImageString
@@ -28,6 +30,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     
     //  네비게이션 바
     @IBOutlet weak var reservationBackBtn: UIButton!
+    @IBOutlet weak var zoneSearchMapBtn: UIButton!
     
     //  내용
     
@@ -40,7 +43,6 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     var memberShowZoneLongitude : Double?   //  멤버가 현재 보고 있는 존 경도 x
     var memberShowZoneLatitude : Double?    //  멤버가 현재 보고 있는 존 위도 y
     
-    @IBOutlet weak var buskingZoneMapBtn: UIButton!
     
     //  내용2( cnt )
     @IBOutlet weak var buskingZoneCntCollectionView: UICollectionView!
@@ -124,7 +126,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         reservationBackBtn.addTarget(self, action: #selector(self.pressedReservationBackBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  지도 버튼
-        buskingZoneMapBtn.addTarget(self, action: #selector(self.pressedBuskingZoneMapBtn(_:)), for: UIControlEvents.touchUpInside)
+        zoneSearchMapBtn.addTarget(self, action: #selector(self.pressedBuskingZoneMapBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     func setTapbarAnimation() {
@@ -189,6 +191,8 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
                 
                 reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
                 reservationVC.selectedBoroughName = self.selectedBoroughName
+                reservationVC.selectedBoroughLongitude = self.selectedBoroughLongitude
+                reservationVC.selectedBoroughLatitude = self.selectedBoroughLatitude
                 reservationVC.selectedZoneIndex = self.selectedZoneIndex
                 reservationVC.selectedZoneName = self.selectedZoneName
                 reservationVC.selectedZoneImage = self.selectedZoneImage
@@ -209,11 +213,31 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     
     //  지도 버튼 액션
     @objc func pressedBuskingZoneMapBtn( _ sender : UIButton ) {
+
+        guard let buskingZoneMapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BuskingZoneMapViewController") as? BuskingZoneMapViewController else { return }
         
-        print( memberShowZoneIndex )
-        print( memberShowZoneName )
-        print( memberShowZoneLongitude )
-        print( memberShowZoneLatitude )
+        buskingZoneMapVC.buskingZoneList = self.buskingZoneList
+        buskingZoneMapVC.selectedBoroughName = self.selectedBoroughName
+        
+        buskingZoneMapVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        buskingZoneMapVC.memberInfo = self.memberInfo
+        buskingZoneMapVC.selectedBoroughIndex = self.selectedBoroughIndex
+        buskingZoneMapVC.selectedBoroughName = self.selectedBoroughName
+        buskingZoneMapVC.selectedBoroughLongitude = self.selectedBoroughLongitude
+        buskingZoneMapVC.selectedBoroughLatitude = self.selectedBoroughLatitude
+        buskingZoneMapVC.selectedZoneIndex = self.selectedZoneIndex
+        buskingZoneMapVC.selectedZoneName = self.selectedZoneName
+        buskingZoneMapVC.selectedZoneImage = self.selectedZoneImage
+        buskingZoneMapVC.selectedTmpDate = self.selectedTmpDate
+        buskingZoneMapVC.selectedDate = self.selectedDate
+        buskingZoneMapVC.selectedTmpTime = self.selectedTmpTime
+        buskingZoneMapVC.selectedTimeCnt = self.selectedTimeCnt
+        buskingZoneMapVC.selectedStartTime = self.selectedStartTime
+        buskingZoneMapVC.selectedEndTime = self.selectedEndTime
+        buskingZoneMapVC.selectedCategory = self.selectedCategory
+        
+        self.present( buskingZoneMapVC , animated: true , completion: nil )
+        
     }
     
     //  서버에서 해당하는 존 리스트 가져오기
@@ -231,7 +255,6 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
                     self.nothingZone.isHidden = true
                 } else {
                     self.nothingZone.isHidden = false
-                    self.buskingZoneMapBtn.isHidden = true
 
                 }
                 
@@ -278,11 +301,19 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
             cell.buskingZoneAddress.text = buskingZoneList[ indexPath.row ].sbz_address
             
-            self.memberShowZoneIndex = buskingZoneList[ 0 ].sbz_id
-            self.memberShowZoneName = buskingZoneList[ 0 ].sbz_name
-            self.memberShowZoneImage = buskingZoneList[ 0 ].sbz_photo
-            self.memberShowZoneLongitude = buskingZoneList[ 0 ].sbz_longitude
-            self.memberShowZoneLatitude = buskingZoneList[ 0 ].sbz_latitude
+            if( self.memberShowZoneIndex == nil ) { //  처음에 들어왔을 때만 0으로 설정
+             
+                self.memberShowZoneIndex = buskingZoneList[ 0 ].sbz_id
+                self.memberShowZoneName = buskingZoneList[ 0 ].sbz_name
+                self.memberShowZoneImage = buskingZoneList[ 0 ].sbz_photo
+                self.memberShowZoneLongitude = buskingZoneList[ 0 ].sbz_longitude
+                self.memberShowZoneLatitude = buskingZoneList[ 0 ].sbz_latitude
+            }
+            
+//            //  cell 안의 버튼 설정
+//            cell.buskingZoneMapBtn.tag = indexPath.row
+//            cell.buskingZoneMapBtn.addTarget(self, action: #selector(self.pressedBuskingZoneMapBtn(_:)), for: UIControlEvents.touchUpInside)
+            
             
             //cell.buskingZoneMapBtn.isEnabled = false
             
@@ -329,10 +360,13 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
                     reservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
                     reservationVC.selectedBoroughIndex = self.selectedBoroughIndex
                     reservationVC.selectedBoroughName = self.selectedBoroughName
+                    reservationVC.selectedBoroughLongitude = self.selectedBoroughLongitude
+                    reservationVC.selectedBoroughLatitude = self.selectedBoroughLatitude
                     
                     reservationVC.selectedZoneIndex = self.memberShowZoneIndex
                     reservationVC.selectedZoneName = self.memberShowZoneName
                     reservationVC.selectedZoneImage = self.memberShowZoneImage
+                    
                     
                     self.present( reservationVC , animated: false , completion: nil )
                     
@@ -379,35 +413,33 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         }
     }
 
-    //  스크롤 할 때마다 호출
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        buskingZoneMapBtn.isHidden = true
-    }
-    
+//    //  스크롤 할 때마다 호출
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//
+//        buskingZoneMapBtn.isHidden = true
+//    }
+//
     //  스크롤 끝났을 때
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 
         var visibleRect = CGRect()
-        
+
         visibleRect.origin = buskingZoneCollectionView.contentOffset
         visibleRect.size = buskingZoneCollectionView.bounds.size
-        
+
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        
+
         guard let indexPath = buskingZoneCollectionView.indexPathForItem(at: visiblePoint) else { return }
-        
+
         memberShowZoneIndex = buskingZoneList[ indexPath.row ].sbz_id
         memberShowZoneName = buskingZoneList[ indexPath.row ].sbz_name
         memberShowZoneImage = buskingZoneList[ indexPath.row ].sbz_photo
         memberShowZoneLongitude = buskingZoneList[ indexPath.row ].sbz_longitude
         memberShowZoneLatitude = buskingZoneList[ indexPath.row ].sbz_latitude
-        
-        buskingZoneMapBtn.isHidden = false
-        
+
         busingZoneCntShowIndexPath = indexPath
         buskingZoneCntCollectionView.reloadData()
-        
+
     }
     
     //  가로세로 여백
