@@ -168,7 +168,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                         self.buskingZoneListAll = buskingZoneListAllData
                         
                         
-                        Server.reqCurrentReservationListAll(r_date: self.todayDateTime! , r_time: 18 , completion: { ( currentReservationAllData , rescode ) in
+                        Server.reqCurrentReservationListAll(r_date: self.todayDateTime! , r_time: self.hour , completion: { ( currentReservationAllData , rescode ) in
                             
                             if( rescode == 200 ) {
                                 
@@ -209,7 +209,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                                             
                                             let tmpStartTime = self.getItoI( self.currentReservationListAll[ index ].r_startTime! )
                                             let tmpEndTime = self.getItoI( self.currentReservationListAll[ index ].r_endTime! )
-                                            let tmpCategory = self.getStoS( self.currentReservationListAll[ index ].member_category! )
+                                            let tmpCategory = self.getStoS( self.currentReservationListAll[ index ].r_category! )
                                             
                                             self.zoneCurrentInfoTimeLabel.text = "\(tmpStartTime) : 00 - \(tmpEndTime) : 00"
                                             
@@ -611,7 +611,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
             zoneCurrentInfoTimeLabel.text = "\(gino(currentReservationListAll[ index ].r_startTime )) : 00 - \(gino(currentReservationListAll[ index ].r_endTime)) : 00"
 
             zoneCurrentInfoNickname.text = currentReservationListAll[ index ].member_nickname
-            zoneCurrentInfoCategory.text = "# \(gsno( currentReservationListAll[ index ].member_category))"
+            zoneCurrentInfoCategory.text = "# \(gsno( currentReservationListAll[ index ].r_category))"
 
             if( currentReservationListAll[ index ].member_profile != nil ) {
 

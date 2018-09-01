@@ -423,7 +423,7 @@ struct Server : APIService {
     }
     
     //  예약 시도
-    static func reqReservationAttempt( r_date : Int , r_startTime : Int , r_endTime : Int , sb_id : Int , sbz_id : Int , member_nickname : String , completion : @escaping (_ status : Int ) -> Void ) {
+    static func reqReservationAttempt( r_date : Int , r_startTime : Int , r_endTime : Int , r_category : String ,sb_id : Int , sbz_id : Int , member_nickname : String , completion : @escaping (_ status : Int ) -> Void ) {
 
         let URL = url( "/reservation/attempt" )
 
@@ -431,6 +431,7 @@ struct Server : APIService {
             "r_date" : r_date ,
             "r_startTime" : r_startTime ,
             "r_endTime" : r_endTime ,
+            "r_category" : r_category ,
             "sb_id" : sb_id ,
             "sbz_id" : sbz_id ,
             "member_nickname" : member_nickname

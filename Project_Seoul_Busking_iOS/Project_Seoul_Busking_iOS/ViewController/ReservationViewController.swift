@@ -460,7 +460,7 @@ class ReservationViewController: UIViewController {
             
         } else {
             
-            guard let categoryPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryPopUpViewController") as? CategoryPopUpViewController else { return }
+            guard let categoryPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryViewController") as? CategoryViewController else { return }
             
             categoryPopUpVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
             categoryPopUpVC.memberInfo = self.memberInfo
@@ -495,7 +495,7 @@ class ReservationViewController: UIViewController {
         //  한번의 서버 연동
         if( selectedTimeCnt == 1 ) {
             
-            Server.reqReservationAttempt(r_date: selectedDate! , r_startTime: selectedStartTime[0] , r_endTime: selectedEndTime[0] , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex! , member_nickname: (memberInfo?.member_nickname)!) { ( rescode ) in
+            Server.reqReservationAttempt(r_date: selectedDate! , r_startTime: selectedStartTime[0] , r_endTime: selectedEndTime[0] , r_category: selectedCategory! , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex! , member_nickname: (memberInfo?.member_nickname)!) { ( rescode ) in
                 
                 if( rescode == 201 ) {
                     flag += 1
@@ -535,7 +535,7 @@ class ReservationViewController: UIViewController {
             
             for i in 0 ..< 2 {
                 
-                Server.reqReservationAttempt(r_date: selectedDate! , r_startTime: selectedStartTime[i] , r_endTime: selectedEndTime[i] , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex! , member_nickname: (memberInfo?.member_nickname)!) { ( rescode ) in
+                Server.reqReservationAttempt(r_date: selectedDate! , r_startTime: selectedStartTime[i] , r_endTime: selectedEndTime[i] , r_category: selectedCategory! , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex! , member_nickname: (memberInfo?.member_nickname)!) { ( rescode ) in
                     
                     if( rescode == 201 ) {
                         flag += 1

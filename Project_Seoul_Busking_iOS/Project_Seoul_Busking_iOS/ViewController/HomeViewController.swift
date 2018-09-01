@@ -585,7 +585,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             cell.reservationCategory.layer.cornerRadius = 10
             cell.reservationCategory.clipsToBounds = true
             cell.reservationCategory.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
-            cell.reservationCategory.text = "# \(gsno( reservationList[ indexPath.row ].member_category))"
+            cell.reservationCategory.text = "# \(gsno( reservationList[ indexPath.row ].r_category))"
             
             return cell
         }
