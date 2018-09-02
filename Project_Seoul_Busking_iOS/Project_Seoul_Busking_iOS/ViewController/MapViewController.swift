@@ -62,6 +62,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     //  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ지도설정ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     var navermapView : NMapView?    //  네이버지도
+    var isFirst : Bool? = true
     
     //  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ현재위치 , 헤더ㅡㅡㅡㅡㅡㅡ
     //  현재위치 눌렀는지 state 표시
@@ -71,13 +72,10 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         case trackingWithHeading
     }
     
-    var calloutView : UIView?
+    //  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ마커ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    @IBOutlet var calloutView: UIView!  //  마커뷰
+    @IBOutlet weak var calloutImageView: UIImageView!   //  마커 이미지
     
-//    //  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ마커ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-//        @IBOutlet var calloutView: UIView!  //  마커뷰
-//    var calloutIndex : String?  //  callout index 번호 저장해서 다음뷰에 넘길때 알수있도록 한다.
-//    @IBOutlet weak var calloutImageView: UIImageView!   //  마커 이미지
-//    @IBOutlet weak var calloutTitleLabel: UILabel!  //  마커 제목
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -234,7 +232,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                                         }
                                         
                                         //  디폴트로 선택누르고 있는거
-                                        //poiDataOverlay.selectPOIitem(at: Int32(index) , moveToCenter: true , focusedBySelectItem: true)
+                                        poiDataOverlay.selectPOIitem(at: Int32(index) , moveToCenter: true , focusedBySelectItem: true)
                                     }
                                     
                                 }
@@ -587,52 +585,51 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     //    //  마커 선택시 나타나는 뷰 설정
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, viewForCalloutOverlayItem poiItem: NMapPOIitem!, calloutPosition: UnsafeMutablePointer<CGPoint>!) -> UIView! {
-
-//        //  뷰 설정
-//        calloutIndex = String(poiItem.iconIndex)        //  index 설정해서 다음뷰에 넘길때 알려준다
-//        calloutTitleLabel.text = poiItem.title
-//        calloutImageView.image = #imageLiteral(resourceName: "2_1.png")
-//
-//        calloutPosition.pointee.x = round(calloutView.bounds.size.width / 2) + 1
         
-        calloutView?.isHidden = true
-        
-        var index : Int = 0
-        index = Int(poiItem.iconIndex )
-        
-        mapRepresentativeBoroughLabel.text = buskingZoneListAll[ index ].sb_name
-        zoneCurrentInfoNameLebel.text = buskingZoneListAll[ index ].sbz_name
-        
-        if( buskingZoneListAll[ index ].sbz_id == currentReservationListAll[ index ].sbz_id ) {     //  예약 있음
-
-            zoneCurrentInfoNoReservationLabel.isHidden = true
+        if( isFirst == true ) {
             
+            var index : Int = 0
+            index = Int(poiItem.iconIndex )
             
-            zoneCurrentInfoTimeLabel.text = "\(gino(currentReservationListAll[ index ].r_startTime )) : 00 - \(gino(currentReservationListAll[ index ].r_endTime)) : 00"
-
-            zoneCurrentInfoNickname.text = currentReservationListAll[ index ].member_nickname
-            zoneCurrentInfoCategory.text = "# \(gsno( currentReservationListAll[ index ].r_category))"
-
-            if( currentReservationListAll[ index ].member_profile != nil ) {
-
-                zoneCurrentInfoProfileImageView.kf.setImage(with: URL( string:gsno( currentReservationListAll[ index ].member_profile)) )
-                zoneCurrentInfoProfileImageView.layer.cornerRadius = zoneCurrentInfoProfileImageView.layer.frame.width/2
-                zoneCurrentInfoProfileImageView.clipsToBounds = true
-
-            } else {
-
-                zoneCurrentInfoProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
+            mapRepresentativeBoroughLabel.text = buskingZoneListAll[ index ].sb_name
+            zoneCurrentInfoNameLebel.text = buskingZoneListAll[ index ].sbz_name
+            
+            if( buskingZoneListAll[ index ].sbz_id == currentReservationListAll[ index ].sbz_id ) {     //  예약 있음
+                
+                zoneCurrentInfoNoReservationLabel.isHidden = true
+                
+                
+                zoneCurrentInfoTimeLabel.text = "\(gino(currentReservationListAll[ index ].r_startTime )) : 00 - \(gino(currentReservationListAll[ index ].r_endTime)) : 00"
+                
+                zoneCurrentInfoNickname.text = currentReservationListAll[ index ].member_nickname
+                zoneCurrentInfoCategory.text = "# \(gsno( currentReservationListAll[ index ].r_category))"
+                
+                if( currentReservationListAll[ index ].member_profile != nil ) {
+                    
+                    zoneCurrentInfoProfileImageView.kf.setImage(with: URL( string:gsno( currentReservationListAll[ index ].member_profile)) )
+                    zoneCurrentInfoProfileImageView.layer.cornerRadius = zoneCurrentInfoProfileImageView.layer.frame.width/2
+                    zoneCurrentInfoProfileImageView.clipsToBounds = true
+                    
+                } else {
+                    
+                    zoneCurrentInfoProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
+                }
+            } else {    //  예약 없음
+                
+                zoneCurrentInfoNoReservationLabel.isHidden = false
             }
-        } else {    //  예약 없음
-
-            zoneCurrentInfoNoReservationLabel.isHidden = false
+            
+            //  지도 중심위치 선택한 존 위치로 설정
+            if let mapView = self.navermapView {
+                mapView.animate(to: NGeoPoint(longitude: buskingZoneListAll[ index ].sbz_longitude! , latitude: buskingZoneListAll[ index ].sbz_latitude! ))
+                
+            }
         }
         
-        //  지도 중심위치 선택한 존 위치로 설정
-        if let mapView = self.navermapView {
-            mapView.animate(to: NGeoPoint(longitude: buskingZoneListAll[ index ].sbz_longitude! , latitude: buskingZoneListAll[ index ].sbz_latitude! ))
-            
-        }
+        //  pinActive 뷰 설정
+        calloutPosition.pointee.x = round(calloutView.bounds.size.width / 2) + 1.8
+        calloutPosition.pointee.y = calloutView.bounds.size.height
+        isFirst = false
         
         return calloutView
     }

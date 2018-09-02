@@ -267,6 +267,8 @@
                         <viewLayoutGuide key="safeArea" id="TNk-i0-E5b"/>
                     </view>
                     <connections>
+                        <outlet property="calloutImageView" destination="pQY-l3-VgY" id="9Wx-pf-gZk"/>
+                        <outlet property="calloutView" destination="vBh-if-NI6" id="LZL-St-CX4"/>
                         <outlet property="mapBackBtn" destination="J8v-dc-gU8" id="LYy-mZ-TaM"/>
                         <outlet property="mapRepresentativeBoroughLabel" destination="CUo-Td-rYV" id="mMV-ff-wc4"/>
                         <outlet property="navigationBarUIView" destination="tvO-dm-h6Y" id="JJv-j2-hcs"/>
@@ -280,8 +282,25 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNR-sQ-l25" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="vBh-if-NI6">
+                    <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pinActive" translatesAutoresizingMaskIntoConstraints="NO" id="pQY-l3-VgY">
+                            <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="pQY-l3-VgY" firstAttribute="top" secondItem="QI7-fQ-mAB" secondAttribute="top" id="BO3-Ns-2BJ"/>
+                        <constraint firstItem="pQY-l3-VgY" firstAttribute="leading" secondItem="QI7-fQ-mAB" secondAttribute="leading" id="C6Q-wD-rcd"/>
+                        <constraint firstItem="pQY-l3-VgY" firstAttribute="bottom" secondItem="QI7-fQ-mAB" secondAttribute="bottom" id="ePY-6T-or1"/>
+                        <constraint firstItem="pQY-l3-VgY" firstAttribute="trailing" secondItem="QI7-fQ-mAB" secondAttribute="trailing" id="jTe-GO-Z3X"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="QI7-fQ-mAB"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="901.60000000000002" y="921.58920539730138"/>
+            <point key="canvasLocation" x="902" y="976"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="HvF-Ix-p4O">
@@ -2766,6 +2785,7 @@
         <image name="more" width="35" height="35"/>
         <image name="moreCopy" width="12" height="7"/>
         <image name="oval2" width="36" height="36"/>
+        <image name="pinActive" width="12" height="12"/>
         <image name="profileRound1342" width="16" height="16"/>
         <image name="profileRound1342Copy" width="16" height="16"/>
         <image name="reserCopy" width="69" height="24"/>

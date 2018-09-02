@@ -22,7 +22,7 @@ class NMapViewResources: NSObject {
         case NMapPOIflagTypeLocationOff:
             return #imageLiteral(resourceName: "mylocation")
         case NMapPOIflagTypeCompass:
-            return #imageLiteral(resourceName: "mylocationWay")
+            return #imageLiteral(resourceName: "allowlocation")
         case UserPOIflagTypeDefault:
             return #imageLiteral(resourceName: "pin")
         case UserPOIflagTypeInvisible:
