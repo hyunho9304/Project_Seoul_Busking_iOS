@@ -36,7 +36,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     
     @IBOutlet weak var buskingZoneCollectionView: UICollectionView!
     var buskingZoneList : [ BuskingZone ] = [ BuskingZone ]()  //  서버 버스킹 존 데이터
-    var busingZoneSelectedIndex:IndexPath?                     //  이동고려
+    var buskingZoneSelectedIndex:IndexPath?                     //  이동고려
     var memberShowZoneIndex : Int?      //  멤버가 현재 보고 있는 존 index
     var memberShowZoneName : String?    //  멤버가 현재 보고 있는 존 name
     var memberShowZoneImage : String?      //  멤버가 현재 보고 있는 존 imageString
@@ -46,7 +46,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     
     //  내용2( cnt )
     @IBOutlet weak var buskingZoneCntCollectionView: UICollectionView!
-    var busingZoneCntShowIndexPath:IndexPath? = IndexPath(row: 0, section: 0)  //  이동고려
+    var buskingZoneCntShowIndexPath:IndexPath? = IndexPath(row: 0, section: 0)  //  이동고려
     @IBOutlet weak var nothingZone: UILabel!
     
     //  텝바
@@ -325,7 +325,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             
             cell.buskingZoneCntUIView.layer.cornerRadius = cell.buskingZoneCntUIView.layer.frame.width/2
             
-            if( indexPath == busingZoneCntShowIndexPath ) {
+            if( indexPath == buskingZoneCntShowIndexPath ) {
                 
                 cell.buskingZoneCntUIView.backgroundColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
                 
@@ -437,7 +437,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
         memberShowZoneLongitude = buskingZoneList[ indexPath.row ].sbz_longitude
         memberShowZoneLatitude = buskingZoneList[ indexPath.row ].sbz_latitude
 
-        busingZoneCntShowIndexPath = indexPath
+        buskingZoneCntShowIndexPath = indexPath
         buskingZoneCntCollectionView.reloadData()
 
     }

@@ -47,6 +47,9 @@
 		BEBD52B82123371D009A63A4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD52B72123371D009A63A4 /* MapViewController.swift */; };
 		BEDB78FB213A93A8004318F5 /* BuskingZoneMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB78FA213A93A8004318F5 /* BuskingZoneMapViewController.swift */; };
 		BEDB78FD213AFBC2004318F5 /* ReservationCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB78FC213AFBC2004318F5 /* ReservationCategoryCollectionViewCell.swift */; };
+		BEDB78FF213D5E24004318F5 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB78FE213D5E24004318F5 /* MapSearchViewController.swift */; };
+		BEDB7901213D615E004318F5 /* MapSearchBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB7900213D615E004318F5 /* MapSearchBoroughCollectionViewCell.swift */; };
+		BEDB7903213D6A34004318F5 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB7902213D6A34004318F5 /* MapSearchBuskingZoneCollectionViewCell.swift */; };
 		BEEA4D352113097E00FD71C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA4D342113097E00FD71C4 /* AppDelegate.swift */; };
 		BEEA4D3A2113097E00FD71C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEEA4D382113097E00FD71C4 /* Main.storyboard */; };
 		BEEA4D3C2113098000FD71C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEEA4D3B2113098000FD71C4 /* Assets.xcassets */; };
@@ -124,6 +127,9 @@
 		BEBD52B72123371D009A63A4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		BEDB78FA213A93A8004318F5 /* BuskingZoneMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuskingZoneMapViewController.swift; sourceTree = "<group>"; };
 		BEDB78FC213AFBC2004318F5 /* ReservationCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		BEDB78FE213D5E24004318F5 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
+		BEDB7900213D615E004318F5 /* MapSearchBoroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBoroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		BEDB7902213D6A34004318F5 /* MapSearchBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEEA4D312113097E00FD71C4 /* Project_Seoul_Busking_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_Seoul_Busking_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEEA4D342113097E00FD71C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEEA4D392113097E00FD71C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -191,6 +197,8 @@
 				BE9B5A832131B427007C3C74 /* TimeTableCollectionViewCell.swift */,
 				BE9B5A8721351CEF007C3C74 /* ReservationCollectionViewCell.swift */,
 				BEDB78FC213AFBC2004318F5 /* ReservationCategoryCollectionViewCell.swift */,
+				BEDB7900213D615E004318F5 /* MapSearchBoroughCollectionViewCell.swift */,
+				BEDB7902213D6A34004318F5 /* MapSearchBuskingZoneCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -316,6 +324,7 @@
 				BEEA4D4E21130FD300FD71C4 /* SignInViewController.swift */,
 				BEEA4D6621132AAE00FD71C4 /* SelectTypeViewController.swift */,
 				BEEA4D602113283200FD71C4 /* SignUpViewController.swift */,
+				BEDB78FE213D5E24004318F5 /* MapSearchViewController.swift */,
 				BEBD52B72123371D009A63A4 /* MapViewController.swift */,
 				BEBD52B02117206E009A63A4 /* HomeViewController.swift */,
 				BEBD52B521232BA6009A63A4 /* MemberInfoViewController.swift */,
@@ -492,6 +501,7 @@
 			files = (
 				BEBD52B621232BA6009A63A4 /* MemberInfoViewController.swift in Sources */,
 				BEEA4D692113312700FD71C4 /* ToggleBtn.swift in Sources */,
+				BEDB7903213D6A34004318F5 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */,
 				BEEA4D63211328BA00FD71C4 /* APIservice.swift in Sources */,
 				BEB0C1D52125A783004D3F22 /* selectBoroughViewController.swift in Sources */,
 				BEBD52A12115F033009A63A4 /* selectCategoryCollectionViewCell.swift in Sources */,
@@ -510,8 +520,10 @@
 				BEDB78FD213AFBC2004318F5 /* ReservationCategoryCollectionViewCell.swift in Sources */,
 				BEB0C1E7212C72DA004D3F22 /* CalendarVars.swift in Sources */,
 				BEB0C1D321259321004D3F22 /* MemberRepresentativeBorough.swift in Sources */,
+				BEDB7901213D615E004318F5 /* MapSearchBoroughCollectionViewCell.swift in Sources */,
 				BEFF53722136710600CEEE7E /* NMapViewResources.swift in Sources */,
 				BEBD52B12117206E009A63A4 /* HomeViewController.swift in Sources */,
+				BEDB78FF213D5E24004318F5 /* MapSearchViewController.swift in Sources */,
 				BEB0C1DF212B40AB004D3F22 /* NextSegue.swift in Sources */,
 				BEB0C1D92126F4B8004D3F22 /* Borough.swift in Sources */,
 				BEBD52B82123371D009A63A4 /* MapViewController.swift in Sources */,

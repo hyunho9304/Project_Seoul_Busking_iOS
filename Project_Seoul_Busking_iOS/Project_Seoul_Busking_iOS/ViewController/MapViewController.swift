@@ -17,6 +17,10 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
 
     //  넘어온 정보
     var memberInfo : Member?
+    var findBuskingZoneIndex : Int = -1
+    var findBuskingZoneLongitude : Double?
+    var findBuskingZoneLatitude : Double?
+    var tmpFindIndex : Int = -1
     
     //  서버 데이터
     var memberRepresentativeBorough : MemberRepresentativeBorough?  //  회원 대표 자치구 index & name
@@ -86,6 +90,9 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("hyunho")
+        print( findBuskingZoneIndex )
         
         naverMapSetting()
         set()
@@ -194,6 +201,10 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                                             if( self.mapSelectedBoroughName == self.buskingZoneListAll[i].sb_name && index == -1 ) {
                                                 index = i
                                             }
+                                            
+                                            if( self.findBuskingZoneIndex == self.buskingZoneListAll[i].sbz_id ) {
+                                                self.tmpFindIndex = i
+                                            }
                                         }
                                         
                                         poiDataOverlay.endPOIdata()
@@ -251,17 +262,34 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                                             self.zoneCurrentInfoNothingUIView.isHidden = false
                                         }
                                         
-                                        //  디폴트로 선택누르고 있는거
-                                        poiDataOverlay.selectPOIitem(at: Int32(index) , moveToCenter: false , focusedBySelectItem: false)
+                                        if( self.findBuskingZoneIndex == -1 ){
+                                        
+                                            //  디폴트로 선택누르고 있는거
+                                            poiDataOverlay.selectPOIitem(at: Int32(index) , moveToCenter: false , focusedBySelectItem: false)
+                                        } else {
+                                            
+                                            //  고른거
+                                            poiDataOverlay.selectPOIitem(at: Int32(self.tmpFindIndex) , moveToCenter: false , focusedBySelectItem: false)
+                                        }
                                         self.isFirst = false
                                     }
                                     
                                 }
                                 
-                                //  지도 중심위치 선택한 자치구 위치로 설정
-                                if let mapView = self.navermapView {
-                                    mapView.setMapCenter(NGeoPoint(longitude: self.mapSelectedLongitude! , latitude: self.mapSelectedLatitude! ), atLevel: 12)
+                                if( self.findBuskingZoneIndex == -1 ) {
+                                    
+                                    //  지도 중심위치 선택한 자치구 위치로 설정
+                                    if let mapView = self.navermapView {
+                                        mapView.setMapCenter(NGeoPoint(longitude: self.mapSelectedLongitude! , latitude: self.mapSelectedLatitude! ), atLevel: 12)
+                                    }
+                                } else {
+                                    
+                                    //  지도 중심위치 선택한 존 위치로 설정
+                                    if let mapView = self.navermapView {
+                                        mapView.setMapCenter(NGeoPoint(longitude: self.findBuskingZoneLongitude! , latitude: self.findBuskingZoneLatitude! ), atLevel: 12)
+                                    }
                                 }
+                                
 
                             } else {
                                 
@@ -543,7 +571,11 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     @objc func mapSearchBtnClicked( _ sender : UIButton! ) {
         
-        //  다음 뷰 이동
+        guard let mapSearchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapSearchViewController") as? MapSearchViewController else { return }
+        
+        mapSearchVC.memberInfo = self.memberInfo
+        
+        self.present( mapSearchVC , animated: true , completion: nil )
     }
     
     func updateState(_ newState: state) {
@@ -665,6 +697,16 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
             
             self.zoneCurrentInfoUIView.isHidden = true
             self.zoneCurrentInfoNothingUIView.isHidden = false
+        }
+        
+        if( tmpFindIndex != -1 ) {
+            
+            print("ha")
+            //  지도 중심위치 선택한 존 위치로 설정
+            if let mapView = self.navermapView {
+                mapView.animate(to: NGeoPoint(longitude: self.findBuskingZoneLongitude! , latitude: self.findBuskingZoneLatitude! ))
+                
+            }
         }
         
         if( isFirst == false ) {
