@@ -69,7 +69,8 @@ class BuskingZoneMapViewController: UIViewController , NMapViewDelegate , NMapPO
     var currentState: state = .disabled //  현재 state 값 설정
     
     //  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ마커ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    var calloutView : UIView?
+    @IBOutlet var calloutView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -437,10 +438,23 @@ class BuskingZoneMapViewController: UIViewController , NMapViewDelegate , NMapPO
         return CGPoint(x: 0.5, y: 0.0)
     }
     
+    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, didDeselectPOIitemAt index: Int32, with object: Any!) -> Bool {
+
+        self.zoneCurrentInfoUIView.isHidden = true
+        
+        return true
+    }
+    
     
     //    //  마커 선택시 나타나는 뷰 설정
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, viewForCalloutOverlayItem poiItem: NMapPOIitem!, calloutPosition: UnsafeMutablePointer<CGPoint>!) -> UIView! {
 
+        //  pinActive 뷰 설정
+        calloutPosition.pointee.x = round(calloutView.bounds.size.width / 2) + 1.8
+        calloutPosition.pointee.y = calloutView.bounds.size.height
+
+        self.zoneCurrentInfoUIView.isHidden = false
+        
         var index : Int = 0
         index = Int(poiItem.iconIndex )
         

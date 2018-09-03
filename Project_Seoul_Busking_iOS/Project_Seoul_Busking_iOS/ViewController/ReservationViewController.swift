@@ -149,6 +149,7 @@ class ReservationViewController: UIViewController {
         
         if( selectedTmpTime != nil ) {
             reservationTimeLabel.text = self.selectedTmpTime
+            reservationTimeLabel.font = UIFont(name: "NotoSans-Regular", size: 14)
         }
         
         if( selectedCategory != nil ) {

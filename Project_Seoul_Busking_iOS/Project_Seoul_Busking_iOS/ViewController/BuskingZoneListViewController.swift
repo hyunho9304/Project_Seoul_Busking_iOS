@@ -288,8 +288,8 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             cell.buskingZoneUIView.layer.cornerRadius = 5       //  둥근정도
             
             cell.buskingZoneUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
-            cell.buskingZoneUIView.layer.shadowOpacity = 0.31                            //  그림자 투명도
-            cell.buskingZoneUIView.layer.shadowOffset = CGSize(width: 0 , height: 5 )    //  그림자 x y
+            cell.buskingZoneUIView.layer.shadowOpacity = 0.3                            //  그림자 투명도
+            cell.buskingZoneUIView.layer.shadowOffset = CGSize(width: 0 , height: 2 )    //  그림자 x y
             cell.buskingZoneUIView.layer.shadowRadius = 5                                //  그림자 둥근정도
             //  그림자의 블러는 5 정도 이다
             

@@ -313,7 +313,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
                         
                     } else {    //  연속 아닌 2시간 경우
                         
-                        reservationVC.selectedTmpTime = "\(tmpStartTime1) : 00 - \(tmpStartTime1 + 1) : 00  //  \(tmpStartTIme2) : 00 - \(tmpStartTIme2 + 1) : 00"
+                        reservationVC.selectedTmpTime = "\(tmpStartTime1):00 - \(tmpStartTime1 + 1):00 / \(tmpStartTIme2):00 - \(tmpStartTIme2 + 1):00"
                         reservationVC.selectedTimeCnt = 2
                         reservationVC.selectedStartTime[0] = tmpStartTime1
                         reservationVC.selectedStartTime[1] = tmpStartTIme2

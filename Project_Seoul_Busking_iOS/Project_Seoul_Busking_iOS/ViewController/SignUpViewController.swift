@@ -28,7 +28,7 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     @IBOutlet weak var selectCategoryCollectionView: UICollectionView!
     
     var memberType : String?                    //  버스커 or 관람객
-    var categoryArr : [String] = [ "노래" , "댄스" , "연주" , "마술" , "캐리커쳐" , "기타" ]
+    var categoryArr : [String] = [ "노래" , "댄스" , "연주" , "마술" , "미술" , "기타" ]
     var selectedIndex : IndexPath?              //  버스커 카테고리 선택
     var selectedCategory : String?              //  버스커 선택한 카테고리
     var checkOverlapID : Bool?                  //  아이디 중복 bool 값

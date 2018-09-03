@@ -16,6 +16,7 @@ struct CurrentReservationAll: Codable {
     let r_category : String?
     let member_profile : String?
     let member_nickname : String?
+    let member_score : Double?
 }
 
 struct CurrentReservationAllData: Codable {

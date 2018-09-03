@@ -558,10 +558,10 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
             cell.reservationUIView.layer.cornerRadius = 6    //  둥근정도
             cell.reservationUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
-            cell.reservationUIView.layer.shadowColor = #colorLiteral(red: 0.9176470588, green: 0.9176470588, blue: 0.9176470588, alpha: 1)             //  그림자 색
-            cell.reservationUIView.layer.shadowOpacity = 0.5                            //  그림자 투명도
-            cell.reservationUIView.layer.shadowOffset = CGSize(width: 0 , height: 5 )    //  그림자 x y
-            cell.reservationUIView.layer.shadowRadius = 6
+            cell.reservationUIView.layer.shadowColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)             //  그림자 색
+            cell.reservationUIView.layer.shadowOpacity = 0.5                          //  그림자 투명도
+            cell.reservationUIView.layer.shadowOffset = CGSize(width: 0 , height: 0 )    //  그림자 x y
+            cell.reservationUIView.layer.shadowRadius = 4
             
             //var tmpStartTime = gino( reservationList[ indexPath.row ].r_startTime )
             
