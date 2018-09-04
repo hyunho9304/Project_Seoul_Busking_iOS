@@ -22,6 +22,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     @IBOutlet weak var homeRepresentativeBoroughLabel: UILabel!      //  현재 띄우고 있는 자치구
     @IBOutlet weak var homeBoroughBtn: UIButton!                //  자치구 선택 버튼
     @IBOutlet weak var homeBuskingReservationBtn: UIButton!     //  버스킹예약 버튼
+    @IBOutlet weak var homeRankingBtn: UIButton!    //  랭킹 버튼
     var homeSelectBoroughIndex : Int?                           //  현재 선택된 자치구 index        select 해야 값 있다
     var homeSelectBoroughName : String?                        //   현재 선택된 자치구 name
     var homeSelectedLongitude : Double?                           //  현재 선택된 logitude
@@ -241,6 +242,9 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
         //  버스킹 예약 버튼
         homeBuskingReservationBtn.addTarget(self, action: #selector(self.pressedHomeBuskingReservationBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  랭킹 버튼
+        homeRankingBtn.addTarget(self, action: #selector(self.pressedHomeRankingBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     //  텝바 움직임 애니메이션
@@ -388,6 +392,19 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
             self.present( reservationVC , animated: false , completion: nil )
         }
+    }
+    
+    //  랭킹 버튼 액션
+    @objc func pressedHomeRankingBtn( _ sender : UIButton ) {
+        
+        guard let rankingVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RankingViewController") as? RankingViewController else { return }
+        
+        rankingVC.memberInfo = self.memberInfo
+        
+        self.addChildViewController( rankingVC )
+        rankingVC.view.frame = self.view.frame
+        self.view.addSubview( rankingVC.view )
+        rankingVC.didMove(toParentViewController: self )
     }
     
     //  달력 데이터 서버연동

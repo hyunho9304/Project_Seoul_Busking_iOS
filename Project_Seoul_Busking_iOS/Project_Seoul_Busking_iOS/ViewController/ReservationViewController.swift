@@ -175,7 +175,6 @@ class ReservationViewController: UIViewController {
         
         //  지역선택 버튼
         reservationBoroughBtn.addTarget(self, action: #selector(self.pressedReservationBoroughBtn(_:)), for: UIControlEvents.touchUpInside)
-        
         let boroughTap = UITapGestureRecognizer(target: self , action: #selector( self.pressedReservationBoroughBtn(_:) ))
         reservationBoroughLabel.isUserInteractionEnabled = true
         reservationBoroughLabel.addGestureRecognizer(boroughTap)

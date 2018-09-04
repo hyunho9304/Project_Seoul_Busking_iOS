@@ -50,6 +50,10 @@
 		BEDB78FF213D5E24004318F5 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB78FE213D5E24004318F5 /* MapSearchViewController.swift */; };
 		BEDB7901213D615E004318F5 /* MapSearchBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB7900213D615E004318F5 /* MapSearchBoroughCollectionViewCell.swift */; };
 		BEDB7903213D6A34004318F5 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB7902213D6A34004318F5 /* MapSearchBuskingZoneCollectionViewCell.swift */; };
+		BEDB7907213ED687004318F5 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB7906213ED687004318F5 /* RankingViewController.swift */; };
+		BEDB7909213EF290004318F5 /* RankingSelect1CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB7908213EF290004318F5 /* RankingSelect1CollectionViewCell.swift */; };
+		BEDB790B213EF2A5004318F5 /* RankingSelect2CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB790A213EF2A5004318F5 /* RankingSelect2CollectionViewCell.swift */; };
+		BEDB790D213EF2B2004318F5 /* RankingMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB790C213EF2B2004318F5 /* RankingMemberCollectionViewCell.swift */; };
 		BEEA4D352113097E00FD71C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA4D342113097E00FD71C4 /* AppDelegate.swift */; };
 		BEEA4D3A2113097E00FD71C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEEA4D382113097E00FD71C4 /* Main.storyboard */; };
 		BEEA4D3C2113098000FD71C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEEA4D3B2113098000FD71C4 /* Assets.xcassets */; };
@@ -130,6 +134,10 @@
 		BEDB78FE213D5E24004318F5 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		BEDB7900213D615E004318F5 /* MapSearchBoroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBoroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEDB7902213D6A34004318F5 /* MapSearchBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		BEDB7906213ED687004318F5 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
+		BEDB7908213EF290004318F5 /* RankingSelect1CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingSelect1CollectionViewCell.swift; sourceTree = "<group>"; };
+		BEDB790A213EF2A5004318F5 /* RankingSelect2CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingSelect2CollectionViewCell.swift; sourceTree = "<group>"; };
+		BEDB790C213EF2B2004318F5 /* RankingMemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingMemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEEA4D312113097E00FD71C4 /* Project_Seoul_Busking_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_Seoul_Busking_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEEA4D342113097E00FD71C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEEA4D392113097E00FD71C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -199,6 +207,9 @@
 				BEDB78FC213AFBC2004318F5 /* ReservationCategoryCollectionViewCell.swift */,
 				BEDB7900213D615E004318F5 /* MapSearchBoroughCollectionViewCell.swift */,
 				BEDB7902213D6A34004318F5 /* MapSearchBuskingZoneCollectionViewCell.swift */,
+				BEDB7908213EF290004318F5 /* RankingSelect1CollectionViewCell.swift */,
+				BEDB790A213EF2A5004318F5 /* RankingSelect2CollectionViewCell.swift */,
+				BEDB790C213EF2B2004318F5 /* RankingMemberCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -336,6 +347,7 @@
 				BE9B5A812131A8E2007C3C74 /* TimeTableViewController.swift */,
 				BEFF53732137D7A400CEEE7E /* CategoryViewController.swift */,
 				BEB0C1DE212B40AB004D3F22 /* NextSegue.swift */,
+				BEDB7906213ED687004318F5 /* RankingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -517,13 +529,17 @@
 				BEEA4D5F2113276300FD71C4 /* Extension.swift in Sources */,
 				BEB560FE21248DF900760903 /* BuskingZone.swift in Sources */,
 				BE9B5A822131A8E2007C3C74 /* TimeTableViewController.swift in Sources */,
+				BEDB7909213EF290004318F5 /* RankingSelect1CollectionViewCell.swift in Sources */,
 				BEDB78FD213AFBC2004318F5 /* ReservationCategoryCollectionViewCell.swift in Sources */,
+				BEDB790D213EF2B2004318F5 /* RankingMemberCollectionViewCell.swift in Sources */,
+				BEDB790B213EF2A5004318F5 /* RankingSelect2CollectionViewCell.swift in Sources */,
 				BEB0C1E7212C72DA004D3F22 /* CalendarVars.swift in Sources */,
 				BEB0C1D321259321004D3F22 /* MemberRepresentativeBorough.swift in Sources */,
 				BEDB7901213D615E004318F5 /* MapSearchBoroughCollectionViewCell.swift in Sources */,
 				BEFF53722136710600CEEE7E /* NMapViewResources.swift in Sources */,
 				BEBD52B12117206E009A63A4 /* HomeViewController.swift in Sources */,
 				BEDB78FF213D5E24004318F5 /* MapSearchViewController.swift in Sources */,
+				BEDB7907213ED687004318F5 /* RankingViewController.swift in Sources */,
 				BEB0C1DF212B40AB004D3F22 /* NextSegue.swift in Sources */,
 				BEB0C1D92126F4B8004D3F22 /* Borough.swift in Sources */,
 				BEBD52B82123371D009A63A4 /* MapViewController.swift in Sources */,
