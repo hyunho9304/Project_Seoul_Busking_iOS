@@ -45,8 +45,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     @IBOutlet weak var memberCollectionView: UICollectionView!
     var rankingList : [ Ranking ] = [ Ranking ]()  //  서버 랭킹 리스트
     var isFollowingList : [ Int ] = [ Int ]()   //  팔로잉 리스트
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -212,49 +211,14 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         self.memberListUIView.layoutIfNeeded()
     }
     
-//    func setSelected1( _ sender : String ) {
-//
-//        switch( sender ) {
-//        case "전체" :
-//            selected1 = "all"
-//        case "노래" :
-//            selected1 = "sing"
-//        case "댄스" :
-//            selected1 = "dance"
-//        case "연주" :
-//            selected1 = "music"
-//        case "마술" :
-//            selected1 = "magic"
-//        case "미술" :
-//            selected1 = "art"
-//        case "기타" :
-//            selected1 = "etc"
-//        default:
-//            selected1 = "err"
-//        }
-//    }
-//
-//    func setSelected2( _ sender : String ) {
-//
-//        switch( sender ) {
-//
-//        case "팔로우 순" :
-//            selected2 = "follow"
-//        case "별점 순" :
-//            selected2 = "star"
-//        default :
-//            selected2 = "err"
-//        }
-//    }
-    
     func getMemberList() {
         
-        if( selected1 != nil && selected2 == "별점 순" ) {
-            
-            //  초기화
-            for i in 0 ..< 100 {
-                self.isFollowingList[i] = 0
-            }
+        //  초기화
+        for i in 0 ..< 100 {
+            self.isFollowingList[i] = 0
+        }
+        
+        if( selected1 != nil && selected2 != nil ) {
             
             Server.reqRankingList( select1: self.selected1! , select2: self.selected2!) { (rankingData , rescode) in
                 
@@ -279,6 +243,8 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                                 }
                                 
                             } else if( rescode2 == 401 ) {
+                                
+                                self.isFollowingList[i] = 0
                                 
                                 if( i == self.rankingList.count - 1 ) {
                                     self.memberCollectionView.reloadData()
@@ -403,6 +369,9 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             if( isFollowingList[ indexPath.row ] == 1 ) {
 
                 cell.memberHeartImage.image = #imageLiteral(resourceName: "heart")
+            } else {
+                
+                cell.memberHeartImage.image = #imageLiteral(resourceName: "heartEmpty")
             }
             
             return cell
