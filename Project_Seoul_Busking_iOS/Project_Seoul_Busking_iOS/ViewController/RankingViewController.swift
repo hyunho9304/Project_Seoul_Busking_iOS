@@ -214,11 +214,6 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     
     func getMemberList() {
         
-        //  초기화
-        for i in 0 ..< 100 {
-            self.isFollowingList[i] = 0
-        }
-        
         if( selected1 != nil && selected2 != nil ) {
             
             Server.reqRankingList( select1: self.selected1! , select2: self.selected2!) { (rankingData , rescode) in
@@ -227,40 +222,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                     
                     self.rankingList = rankingData
                     
-                    if( self.rankingList.count == 0 ) {
-                        self.memberCollectionView.reloadData()
-                    }
-                    
-                    for i in 0 ..< self.rankingList.count {
-                        
-                        Server.reqIsFollowing(member_follow_nickname: (self.memberInfo?.member_nickname)!, member_following_nickname: self.rankingList[i].member_nickname! , completion: { ( rescode2 ) in
-                            
-                            if( rescode2 == 201 ) {
-                                
-                                self.isFollowingList[i] = 1
-                                
-                                if( i == self.rankingList.count - 1 ) {
-                                    self.memberCollectionView.reloadData()
-                                }
-                                
-                            } else if( rescode2 == 401 ) {
-                                
-                                self.isFollowingList[i] = 0
-                                
-                                if( i == self.rankingList.count - 1 ) {
-                                    self.memberCollectionView.reloadData()
-                                }
-                            } else {
-                                
-                                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
-                                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-                                alert.addAction( ok )
-                                self.present(alert , animated: true , completion: nil)
-                            }
-                        })
-                    }
-                    
-                    
+                    self.getFollowingList()
                 } else {
                     
                     let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -272,9 +234,89 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         }
     }
     
+    func getFollowingList() {
+        
+        //  초기화
+        for i in 0 ..< 100 {
+            self.isFollowingList[i] = 0
+        }
+        
+        if( self.rankingList.count == 0 ) {
+            self.memberCollectionView.reloadData()
+        }
+        
+        for i in 0 ..< self.rankingList.count {
+            
+            Server.reqIsFollowing(member_follow_nickname: (self.memberInfo?.member_nickname)!, member_following_nickname: self.rankingList[i].member_nickname! , completion: { ( rescode2 ) in
+                
+                if( rescode2 == 201 ) {
+                    
+                    self.isFollowingList[i] = 1
+                    
+                    if( i == self.rankingList.count - 1 ) {
+                        self.memberCollectionView.reloadData()
+                    }
+                    
+                } else if( rescode2 == 401 ) {
+                    
+                    self.isFollowingList[i] = 0
+                    
+                    if( i == self.rankingList.count - 1 ) {
+                        self.memberCollectionView.reloadData()
+                    }
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
+                
+            })
+        }
+
+    }
+    
     @objc func heartTap( _ sender : UIButton ) {
        
-        print(sender.tag )
+        Server.reqFollowing(member_follow_nickname: (self.memberInfo?.member_nickname)!, member_following_nickname: self.rankingList[ sender.tag ].member_nickname!) { (rescode , flag ) in
+            
+            if( rescode == 201 ) {
+                
+                if( flag == 1 ) {
+                    
+                    guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                    
+                    defaultPopUpVC.content = "팔로잉 완료"
+                    
+                    self.addChildViewController( defaultPopUpVC )
+                    defaultPopUpVC.view.frame = self.view.frame
+                    self.view.addSubview( defaultPopUpVC.view )
+                    defaultPopUpVC.didMove(toParentViewController: self )
+                    
+                    sender.setImage(#imageLiteral(resourceName: "heart") , for: .normal )
+                    
+                } else if( flag == 0 ) {
+                    
+                    guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                    
+                    defaultPopUpVC.content = "언팔로우 완료"
+                    
+                    self.addChildViewController( defaultPopUpVC )
+                    defaultPopUpVC.view.frame = self.view.frame
+                    self.view.addSubview( defaultPopUpVC.view )
+                    defaultPopUpVC.didMove(toParentViewController: self )
+                    
+                    sender.setImage(#imageLiteral(resourceName: "heartEmpty")  , for: .normal )
+                }
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
     }
 
     
@@ -350,6 +392,14 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RankingMemberCollectionViewCell", for: indexPath ) as! RankingMemberCollectionViewCell
             
+            if( isFollowingList[ indexPath.row ] == 1 ) {
+                
+                cell.memberHeartImageBtn.setImage(#imageLiteral(resourceName: "heart") , for: .normal )
+            } else {
+                
+                cell.memberHeartImageBtn.setImage(#imageLiteral(resourceName: "heartEmpty") , for: .normal )
+            }
+            
             cell.memberBottomUIView.layer.opacity = 0.2
             
             if( rankingList[ indexPath.row ].member_profile != nil ) {
@@ -367,21 +417,15 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                 cell.memberNumLabel.text = String( tmpNum )
             }
             
+            print( self.isFollowingList )
+            
             cell.memberNicknameLabel.text = self.rankingList[ indexPath.row ].member_nickname
             cell.memberCategoryLabel.text = "# \(gsno(rankingList[ indexPath.row ].member_category))"
 
-            if( isFollowingList[ indexPath.row ] == 1 ) {
-
-                cell.memberHeartImageBtn.setImage(#imageLiteral(resourceName: "heart") , for: .normal )
-            } else {
-                
-                cell.memberHeartImageBtn.setImage(#imageLiteral(resourceName: "heartEmpty") , for: .normal )
-            }
             
             //  cell 안의 버튼 설정
             cell.memberHeartImageBtn.tag = indexPath.row
             cell.memberHeartImageBtn.addTarget(self , action: #selector(self.heartTap(_:)) , for: UIControlEvents.touchUpInside )
-//            heartTap.numberOfTapsRequired = 1
             
             return cell
         }

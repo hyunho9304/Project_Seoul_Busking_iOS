@@ -647,6 +647,47 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  팔로잉 하기( 201 => 1.  401 => 0 )
+    static func reqFollowing( member_follow_nickname : String , member_following_nickname : String , completion : @escaping ( _ status : Int , _ flag : Int ) -> Void ) {
+        
+        let URL = url( "/member/following" )
+        
+        let body: [String: Any] = [
+            "member_follow_nickname" : member_follow_nickname ,
+            "member_following_nickname" : member_following_nickname
+        ]
+        
+        Alamofire.request(URL, method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if( res.response?.statusCode == 201 ){
+                    
+                    if let value = res.result.value {
+                        let following = JSON(value)["following"].int
+                        
+                        if( following == 1 ) {
+                            completion( 201 , 1 )
+                        } else if( following == 0 ) {
+                            completion( 201 , 0 )
+                        }
+                    }
+                }
+                else {
+                    completion(500 , 0 )
+                }
+                break
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+
+        }
+    }
 
 
 
