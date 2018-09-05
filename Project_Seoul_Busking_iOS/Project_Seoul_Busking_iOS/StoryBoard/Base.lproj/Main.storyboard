@@ -791,39 +791,40 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heartEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="qUz-d7-y55">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeH-hh-zod">
                                                             <rect key="frame" x="310" y="23" width="30" height="30"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="qUz-d7-y55" secondAttribute="height" multiplier="1:1" id="RzC-Gl-1K3"/>
+                                                                <constraint firstAttribute="width" secondItem="AeH-hh-zod" secondAttribute="height" multiplier="1:1" id="UgB-8V-MUJ"/>
                                                             </constraints>
-                                                        </imageView>
+                                                            <state key="normal" image="heartEmpty"/>
+                                                        </button>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
+                                                    <constraint firstItem="AeH-hh-zod" firstAttribute="centerY" secondItem="RPv-UZ-YO9" secondAttribute="centerY" id="2wc-sz-z0f"/>
                                                     <constraint firstItem="zHb-bf-1e4" firstAttribute="leading" secondItem="TJ2-7t-93K" secondAttribute="trailing" constant="60" id="4x8-5m-3hx"/>
                                                     <constraint firstItem="TJ2-7t-93K" firstAttribute="leading" secondItem="RPv-UZ-YO9" secondAttribute="leading" constant="42" id="5Xg-DK-4fR"/>
                                                     <constraint firstAttribute="bottom" secondItem="MkQ-ep-SKO" secondAttribute="bottom" id="886-3E-gst"/>
                                                     <constraint firstItem="jqG-pt-kaX" firstAttribute="leading" secondItem="zHb-bf-1e4" secondAttribute="leading" id="9R1-so-7kb"/>
-                                                    <constraint firstItem="qUz-d7-y55" firstAttribute="centerY" secondItem="RPv-UZ-YO9" secondAttribute="centerY" id="EWf-Bn-yPP"/>
                                                     <constraint firstItem="MkQ-ep-SKO" firstAttribute="centerX" secondItem="RPv-UZ-YO9" secondAttribute="centerX" id="EWy-v6-uZa"/>
                                                     <constraint firstItem="MkQ-ep-SKO" firstAttribute="width" secondItem="RPv-UZ-YO9" secondAttribute="width" multiplier="327:375" id="GyQ-Jn-Wil"/>
                                                     <constraint firstItem="GZ9-tj-H5p" firstAttribute="leading" secondItem="TJ2-7t-93K" secondAttribute="trailing" constant="24" id="IjJ-AM-r2X"/>
                                                     <constraint firstItem="VKq-hd-qBA" firstAttribute="centerX" secondItem="jqG-pt-kaX" secondAttribute="centerX" id="Q1k-BF-3wn"/>
                                                     <constraint firstItem="TJ2-7t-93K" firstAttribute="centerY" secondItem="RPv-UZ-YO9" secondAttribute="centerY" id="ULL-wg-JeL"/>
+                                                    <constraint firstItem="AeH-hh-zod" firstAttribute="width" secondItem="RPv-UZ-YO9" secondAttribute="width" multiplier="30:375" id="Yhq-ba-4LN"/>
                                                     <constraint firstItem="GZ9-tj-H5p" firstAttribute="centerY" secondItem="TJ2-7t-93K" secondAttribute="centerY" id="dQb-mv-evF"/>
-                                                    <constraint firstAttribute="trailing" secondItem="qUz-d7-y55" secondAttribute="trailing" constant="35" id="eBr-Eu-ZIX"/>
                                                     <constraint firstItem="jqG-pt-kaX" firstAttribute="top" secondItem="zHb-bf-1e4" secondAttribute="bottom" constant="4" id="fYy-3h-mzC"/>
                                                     <constraint firstItem="VKq-hd-qBA" firstAttribute="centerY" secondItem="jqG-pt-kaX" secondAttribute="centerY" id="fue-q3-CQJ"/>
                                                     <constraint firstItem="zHb-bf-1e4" firstAttribute="top" secondItem="TJ2-7t-93K" secondAttribute="top" id="ifp-KN-d3z"/>
-                                                    <constraint firstItem="qUz-d7-y55" firstAttribute="width" secondItem="RPv-UZ-YO9" secondAttribute="width" multiplier="30:375" id="oXa-AM-zw0"/>
                                                     <constraint firstItem="TJ2-7t-93K" firstAttribute="width" secondItem="RPv-UZ-YO9" secondAttribute="width" multiplier="47:375" id="rb4-Sb-Upf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="AeH-hh-zod" secondAttribute="trailing" constant="35" id="s1u-0g-NoO"/>
                                                     <constraint firstItem="jqG-pt-kaX" firstAttribute="width" secondItem="RPv-UZ-YO9" secondAttribute="width" multiplier="56:375" id="v75-NP-MQz"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="memberBottomUIView" destination="MkQ-ep-SKO" id="lsP-XM-vMW"/>
                                                     <outlet property="memberCategoryBackImage" destination="jqG-pt-kaX" id="bxP-6U-dsj"/>
                                                     <outlet property="memberCategoryLabel" destination="VKq-hd-qBA" id="agj-dr-O6D"/>
-                                                    <outlet property="memberHeartImage" destination="qUz-d7-y55" id="NNJ-jA-6s6"/>
+                                                    <outlet property="memberHeartImageBtn" destination="AeH-hh-zod" id="Xou-KX-6oN"/>
                                                     <outlet property="memberNicknameLabel" destination="zHb-bf-1e4" id="HMM-z4-Scj"/>
                                                     <outlet property="memberNumLabel" destination="GZ9-tj-H5p" id="Uw7-wU-KRD"/>
                                                     <outlet property="memberProfileImage" destination="TJ2-7t-93K" id="xIq-2M-TqS"/>

@@ -45,6 +45,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     @IBOutlet weak var memberCollectionView: UICollectionView!
     var rankingList : [ Ranking ] = [ Ranking ]()  //  서버 랭킹 리스트
     var isFollowingList : [ Int ] = [ Int ]()   //  팔로잉 리스트
+    var tapHeartIndex : Int?                    //  누른 하트 인덱스
 
     
     override func viewDidLoad() {
@@ -270,6 +271,11 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             }
         }
     }
+    
+    @objc func heartTap( _ sender : UIButton ) {
+       
+        print(sender.tag )
+    }
 
     
 //  Mark -> delegate
@@ -364,15 +370,18 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             cell.memberNicknameLabel.text = self.rankingList[ indexPath.row ].member_nickname
             cell.memberCategoryLabel.text = "# \(gsno(rankingList[ indexPath.row ].member_category))"
 
-            print( isFollowingList )
-            
             if( isFollowingList[ indexPath.row ] == 1 ) {
 
-                cell.memberHeartImage.image = #imageLiteral(resourceName: "heart")
+                cell.memberHeartImageBtn.setImage(#imageLiteral(resourceName: "heart") , for: .normal )
             } else {
                 
-                cell.memberHeartImage.image = #imageLiteral(resourceName: "heartEmpty")
+                cell.memberHeartImageBtn.setImage(#imageLiteral(resourceName: "heartEmpty") , for: .normal )
             }
+            
+            //  cell 안의 버튼 설정
+            cell.memberHeartImageBtn.tag = indexPath.row
+            cell.memberHeartImageBtn.addTarget(self , action: #selector(self.heartTap(_:)) , for: UIControlEvents.touchUpInside )
+//            heartTap.numberOfTapsRequired = 1
             
             return cell
         }

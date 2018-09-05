@@ -16,5 +16,5 @@ class RankingMemberCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var memberNicknameLabel: UILabel!
     @IBOutlet weak var memberCategoryBackImage: UIImageView!
     @IBOutlet weak var memberCategoryLabel: UILabel!
-    @IBOutlet weak var memberHeartImage: UIImageView!
+    @IBOutlet weak var memberHeartImageBtn: UIButton!
 }
