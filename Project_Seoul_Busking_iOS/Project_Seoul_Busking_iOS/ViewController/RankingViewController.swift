@@ -128,7 +128,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             self.selectUIView1.isHidden = false
             self.selectUIView2.isHidden = true
             
-            UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
@@ -145,7 +145,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             self.selectUIView1.isHidden = true
             self.selectUIView2.isHidden = true
             
-            UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667
@@ -168,7 +168,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             self.selectUIView1.isHidden = true
             self.selectUIView2.isHidden = false
             
-            UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
@@ -185,7 +185,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             self.selectUIView1.isHidden = true
             self.selectUIView2.isHidden = true
             
-            UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
                 self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667
@@ -203,10 +203,9 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     
     func getMemberList() {
         
-        if( selected1 != nil && selected2 != nil ) {
+        if( selected1 == "전체" && selected2 == "별점 순" ) {
          
-            print( selected1 )
-            print( selected2 )
+            
             
         }
     }
@@ -295,7 +294,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             select1IndexPath = indexPath
             collectionView.reloadData()
             
-            UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667
@@ -313,7 +312,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             select2IndexPath = indexPath
             collectionView.reloadData()
             
-            UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667
