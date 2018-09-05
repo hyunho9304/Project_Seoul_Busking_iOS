@@ -568,6 +568,85 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  해당되는 선택1 , 선택2 에 대한 랭킹 리스트 가져오기
+    static func reqRankingList( select1 : String , select2 : String , completion : @escaping ( [Ranking] , _ status : Int ) -> Void ) {
+  
+        let URL = url( "/collection/rankingList" )
+        
+        let body: [String: Any] = [
+            "select1" : select1 ,
+            "select2" : select2
+        ]
+
+        Alamofire.request(URL, method: .post , parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let rankingData = try decoder.decode(RankingData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
+                            
+                            completion( rankingData.data! , 201 )
+                        }
+                        else{
+                            
+                            completion( rankingData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
+    //  팔로잉하는지 확인( 200 => 1.  401 => 0 )
+    static func reqIsFollowing( member_follow_nickname : String , member_following_nickname : String , completion : @escaping ( _ status : Int ) -> Void ) {
+        
+        let URL = url( "/collection/isFollowing" )
+        
+        let body: [String: Any] = [
+            "member_follow_nickname" : member_follow_nickname ,
+            "member_following_nickname" : member_following_nickname
+        ]
+    
+        Alamofire.request(URL, method: .post, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if( res.response?.statusCode == 201 ){
+                    completion( 201 )
+                }
+                else if( res.response?.statusCode == 401 ) {
+                    completion( 401 )
+                }
+                else {
+                    completion( 500 )
+                }
+                break
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
 
 
 

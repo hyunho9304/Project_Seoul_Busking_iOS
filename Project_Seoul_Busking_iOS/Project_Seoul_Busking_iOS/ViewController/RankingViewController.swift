@@ -43,6 +43,8 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     //  멤버 리스트
     @IBOutlet weak var memberListUIView: UIView!
     @IBOutlet weak var memberCollectionView: UICollectionView!
+    var rankingList : [ Ranking ] = [ Ranking ]()  //  서버 랭킹 리스트
+    var isFollowingList : [ Int ] = [ Int ]()   //  팔로잉 리스트
     
     
     
@@ -50,6 +52,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         super.viewDidLoad()
 
         showAnimate()
+        set()
         setTarget()
         setDelegate()
     }
@@ -58,11 +61,20 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         
         self.view.frame = CGRect(x: self.view.frame.width , y: 0, width: self.view.frame.width , height: self.view.frame.height )
         
-        UIView.animate(withDuration: 0.3 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn , animations: {
+        UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn , animations: {
             
             self.view.frame.origin.x = 0
             
         }, completion: nil )
+    }
+    
+    func set() {
+        
+        memberCollectionView.alwaysBounceVertical = true
+        
+        for _ in 0 ..< 100 {
+            self.isFollowingList.append(-1)
+        }
     }
     
     func setTarget() {
@@ -101,7 +113,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     
     @objc func pressedRankingBackBtn( _ sender : UIButton ) {
         
-        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
             
             self.view.frame.origin.x = self.view.frame.width
             
@@ -128,7 +140,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             self.selectUIView1.isHidden = false
             self.selectUIView2.isHidden = true
             
-            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
@@ -145,7 +157,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             self.selectUIView1.isHidden = true
             self.selectUIView2.isHidden = true
             
-            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667
@@ -168,7 +180,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             self.selectUIView1.isHidden = true
             self.selectUIView2.isHidden = false
             
-            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
@@ -185,7 +197,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             self.selectUIView1.isHidden = true
             self.selectUIView2.isHidden = true
             
-            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
                 self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667
@@ -200,15 +212,99 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         self.memberListUIView.layoutIfNeeded()
     }
     
+//    func setSelected1( _ sender : String ) {
+//
+//        switch( sender ) {
+//        case "전체" :
+//            selected1 = "all"
+//        case "노래" :
+//            selected1 = "sing"
+//        case "댄스" :
+//            selected1 = "dance"
+//        case "연주" :
+//            selected1 = "music"
+//        case "마술" :
+//            selected1 = "magic"
+//        case "미술" :
+//            selected1 = "art"
+//        case "기타" :
+//            selected1 = "etc"
+//        default:
+//            selected1 = "err"
+//        }
+//    }
+//
+//    func setSelected2( _ sender : String ) {
+//
+//        switch( sender ) {
+//
+//        case "팔로우 순" :
+//            selected2 = "follow"
+//        case "별점 순" :
+//            selected2 = "star"
+//        default :
+//            selected2 = "err"
+//        }
+//    }
     
     func getMemberList() {
         
-        if( selected1 == "전체" && selected2 == "별점 순" ) {
-         
+        if( selected1 != nil && selected2 == "별점 순" ) {
             
+            //  초기화
+            for i in 0 ..< 100 {
+                self.isFollowingList[i] = 0
+            }
             
+            Server.reqRankingList( select1: self.selected1! , select2: self.selected2!) { (rankingData , rescode) in
+                
+                if( rescode == 201 ) {
+                    
+                    self.rankingList = rankingData
+                    
+                    if( self.rankingList.count == 0 ) {
+                        self.memberCollectionView.reloadData()
+                    }
+                    
+                    for i in 0 ..< self.rankingList.count {
+                        
+                        Server.reqIsFollowing(member_follow_nickname: (self.memberInfo?.member_nickname)!, member_following_nickname: self.rankingList[i].member_nickname! , completion: { ( rescode2 ) in
+                            
+                            if( rescode2 == 201 ) {
+                                
+                                self.isFollowingList[i] = 1
+                                
+                                if( i == self.rankingList.count - 1 ) {
+                                    self.memberCollectionView.reloadData()
+                                }
+                                
+                            } else if( rescode2 == 401 ) {
+                                
+                                if( i == self.rankingList.count - 1 ) {
+                                    self.memberCollectionView.reloadData()
+                                }
+                            } else {
+                                
+                                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                                alert.addAction( ok )
+                                self.present(alert , animated: true , completion: nil)
+                            }
+                        })
+                    }
+                    
+                    
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
+            }
         }
     }
+
     
 //  Mark -> delegate
     
@@ -220,7 +316,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         } else if( collectionView == selectCollectionView2 ) {
             return select2Arr.count
         } else {
-            return 0
+            return rankingList.count
         }
     }
     
@@ -239,9 +335,9 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                 cell.select1CategoryNameLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 cell.select1BackImage.isHidden = false
                 
-                selected1 = self.select1Arr[ indexPath.row ]
-                selectLabel1.text = self.selected1
+                selectLabel1.text = self.select1Arr[ indexPath.row ]
                 
+                selected1 = self.select1Arr[ indexPath.row ]
                 getMemberList()
                 
             } else {
@@ -264,8 +360,8 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                 cell.select2Label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 cell.select2BackImage.isHidden = false
                 
+                selectLabel2.text = self.select2Arr[ indexPath.row ]
                 selected2 = self.select2Arr[ indexPath.row ]
-                selectLabel2.text = self.selected2
                 
                 getMemberList()
                 
@@ -282,6 +378,33 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RankingMemberCollectionViewCell", for: indexPath ) as! RankingMemberCollectionViewCell
             
+            cell.memberBottomUIView.layer.opacity = 0.2
+            
+            if( rankingList[ indexPath.row ].member_profile != nil ) {
+                
+                cell.memberProfileImage.kf.setImage(with: URL( string:gsno( rankingList[ indexPath.row ].member_profile)) )
+                cell.memberProfileImage.layer.cornerRadius = cell.memberProfileImage.layer.frame.width/2
+                cell.memberProfileImage.clipsToBounds = true
+                
+            } else {
+                
+                cell.memberProfileImage.image = #imageLiteral(resourceName: "defaultProfile.png")
+            }
+            
+            if let tmpNum = self.rankingList[ indexPath.row ].member_num {
+                cell.memberNumLabel.text = String( tmpNum )
+            }
+            
+            cell.memberNicknameLabel.text = self.rankingList[ indexPath.row ].member_nickname
+            cell.memberCategoryLabel.text = "# \(gsno(rankingList[ indexPath.row ].member_category))"
+
+            print( isFollowingList )
+            
+            if( isFollowingList[ indexPath.row ] == 1 ) {
+
+                cell.memberHeartImage.image = #imageLiteral(resourceName: "heart")
+            }
+            
             return cell
         }
     }
@@ -294,7 +417,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             select1IndexPath = indexPath
             collectionView.reloadData()
             
-            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667
@@ -312,7 +435,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             select2IndexPath = indexPath
             collectionView.reloadData()
             
-            UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667

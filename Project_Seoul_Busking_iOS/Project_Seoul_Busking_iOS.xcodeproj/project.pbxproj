@@ -11,6 +11,7 @@
 		BE5CF378212DBBBF0081AD64 /* BuskingZoneListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5CF377212DBBBF0081AD64 /* BuskingZoneListViewController.swift */; };
 		BE5CF37C212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5CF37B212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift */; };
 		BE5CF3822130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5CF3812130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift */; };
+		BE99C273213FEBBC00BA0F7E /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE99C272213FEBBC00BA0F7E /* Ranking.swift */; };
 		BE9B5A802130F318007C3C74 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE9B5A7F2130F315007C3C74 /* NotoSans-Bold.ttf */; };
 		BE9B5A822131A8E2007C3C74 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B5A812131A8E2007C3C74 /* TimeTableViewController.swift */; };
 		BE9B5A842131B427007C3C74 /* TimeTableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B5A832131B427007C3C74 /* TimeTableCollectionViewCell.swift */; };
@@ -94,6 +95,7 @@
 		BE5CF377212DBBBF0081AD64 /* BuskingZoneListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuskingZoneListViewController.swift; sourceTree = "<group>"; };
 		BE5CF37B212EAA3B0081AD64 /* SelectBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE5CF3812130A8AC0081AD64 /* SelectBuskingZoneCntCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBuskingZoneCntCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE99C272213FEBBC00BA0F7E /* Ranking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ranking.swift; sourceTree = "<group>"; };
 		BE9B5A7F2130F315007C3C74 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Bold.ttf"; path = "../../../../../../../../Desktop/서울시 앱공모전/Noto-unhinted/NotoSans-Bold.ttf"; sourceTree = "<group>"; };
 		BE9B5A812131A8E2007C3C74 /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
 		BE9B5A832131B427007C3C74 /* TimeTableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				BEB0C1D82126F4B8004D3F22 /* Borough.swift */,
 				BE9B5A8521331082007C3C74 /* ReservationPossibility.swift */,
 				BE9B5A8921356452007C3C74 /* Reservation.swift */,
+				BE99C272213FEBBC00BA0F7E /* Ranking.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				BEBD52B82123371D009A63A4 /* MapViewController.swift in Sources */,
 				BE9B5A842131B427007C3C74 /* TimeTableCollectionViewCell.swift in Sources */,
 				BEB56100212493CB00760903 /* BuskingZoneCollectionViewCell.swift in Sources */,
+				BE99C273213FEBBC00BA0F7E /* Ranking.swift in Sources */,
 				BEB0C1DB212AB9DA004D3F22 /* ReservationViewController.swift in Sources */,
 				BEFF537621380C9000CEEE7E /* BuskingZoneListAll.swift in Sources */,
 				BEB0C1D72126F1EC004D3F22 /* SelectBoroughCollectionViewCell.swift in Sources */,
