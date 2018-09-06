@@ -223,7 +223,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         //  로그아웃 버튼
         goFirstBtn.addTarget(self, action: #selector(self.pressedGoFirstBtn(_:)), for: UIControlEvents.touchUpInside)
         
-        //  검색 버튼
+        //  지도 검색 버튼
         tapbarSearchBtn.addTarget(self, action: #selector(self.pressedTapbarSearchBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  개인정보 버튼
@@ -272,7 +272,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         self.performSegue(withIdentifier: "signin", sender: self)
     }
     
-    //  검색 버튼 액션
+    //  지도 검색 버튼 액션
     @objc func pressedTapbarSearchBtn( _ sender : UIButton ) {
         
         guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
@@ -399,12 +399,21 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
         guard let rankingVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RankingViewController") as? RankingViewController else { return }
         
+        let containerView = self.view.superview
+        
+        rankingVC.view.frame = CGRect(x: self.view.frame.width , y: 0 , width: self.view.frame.width , height: self.view.frame.height )
         rankingVC.memberInfo = self.memberInfo
         
-        self.addChildViewController( rankingVC )
-        rankingVC.view.frame = self.view.frame
-        self.view.addSubview( rankingVC.view )
-        rankingVC.didMove(toParentViewController: self )
+        containerView?.addSubview(rankingVC.view )
+        
+        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            
+            rankingVC.view.frame.origin.x = 0
+            
+        }) { (finished ) in
+            
+            self.present( rankingVC , animated: false , completion: nil )
+        }
     }
     
     //  달력 데이터 서버연동

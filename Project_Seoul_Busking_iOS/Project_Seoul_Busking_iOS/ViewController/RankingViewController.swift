@@ -15,6 +15,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     
     //  네비게이션 바
     @IBOutlet weak var rankingBackBtn: UIButton!
+    @IBOutlet weak var searchMemberBtn: UIButton!
     
     //  선택1
     @IBOutlet weak var selectBtn1: UIButton!
@@ -46,26 +47,15 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     var rankingList : [ Ranking ] = [ Ranking ]()  //  서버 랭킹 리스트
     var isFollowingList : [ Int ] = [ Int ]()   //  팔로잉 리스트
     var tapHeartIndex : Int?                    //  누른 하트 인덱스
+    var flag : Bool?                 //  isFollowingList 가져왔는지 true , false 에 따라 enable 시킨다.
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        showAnimate()
         set()
         setTarget()
         setDelegate()
-    }
-
-    func showAnimate() {
-        
-        self.view.frame = CGRect(x: self.view.frame.width , y: 0, width: self.view.frame.width , height: self.view.frame.height )
-        
-        UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn , animations: {
-            
-            self.view.frame.origin.x = 0
-            
-        }, completion: nil )
     }
     
     func set() {
@@ -81,6 +71,9 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         
         //  랭킹 백 버튼
         rankingBackBtn.addTarget(self, action: #selector(self.pressedRankingBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  멤버 전체 이름으로 검색 버튼
+        searchMemberBtn.addTarget(self, action: #selector(self.pressedSearchMemberBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  선택1 버튼
         selectBtn1.addTarget(self, action: #selector(self.pressedSelectBtn1(_:)), for: UIControlEvents.touchUpInside)
@@ -113,23 +106,36 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     
     @objc func pressedRankingBackBtn( _ sender : UIButton ) {
         
-        UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
+        guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+        
+        let containerView = self.view.superview
+        
+        containerView?.addSubview(homeVC.view )
+        containerView?.sendSubview(toBack: homeVC.view)
+        
+        homeVC.memberInfo = self.memberInfo
+        
+        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
             self.view.frame.origin.x = self.view.frame.width
             
-        }) { ( finished ) in
+        }) { (finished ) in
             
-            if( finished ) {
-                
-                guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
-                
-                homeVC.memberInfo = self.memberInfo
-                
-                self.present( homeVC , animated: false , completion: nil )
-                
-                self.view.removeFromSuperview()
-            }
+            self.present( homeVC , animated: false , completion:  nil)
         }
+    }
+    
+    //  멤버 전체 이름으로 검색 버튼 액션
+    @objc func pressedSearchMemberBtn( _ sender : UIButton ) {
+        
+        guard let searchMemberVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchMemberViewController") as? SearchMemberViewController else { return }
+        
+        searchMemberVC.memberInfo = self.memberInfo
+        
+        self.addChildViewController( searchMemberVC )
+        searchMemberVC.view.frame = self.view.frame
+        self.view.addSubview( searchMemberVC.view )
+        searchMemberVC.didMove(toParentViewController: self )
     }
     
     //  선택1 버튼 액션
@@ -220,9 +226,12 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                 
                 if( rescode == 201 ) {
                     
+                    self.flag = false
                     self.rankingList = rankingData
+                    self.memberCollectionView.reloadData()
                     
                     self.getFollowingList()
+                    
                 } else {
                     
                     let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -247,23 +256,23 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         
         for i in 0 ..< self.rankingList.count {
             
-            Server.reqIsFollowing(member_follow_nickname: (self.memberInfo?.member_nickname)!, member_following_nickname: self.rankingList[i].member_nickname! , completion: { ( rescode2 ) in
+            Server.reqIsFollowing(member_follow_nickname: (self.memberInfo?.member_nickname)!, member_following_nickname: self.rankingList[i].member_nickname! , completion: { ( rescode ) in
                 
-                if( rescode2 == 201 ) {
+                if( rescode == 201 ) {
                     
                     self.isFollowingList[i] = 1
                     
-                    if( i == self.rankingList.count - 1 ) {
-                        self.memberCollectionView.reloadData()
-                    }
+//                    if( i == self.rankingList.count - 1 ) {
+//                        self.memberCollectionView.reloadData()
+//                    }
                     
-                } else if( rescode2 == 401 ) {
+                } else if( rescode == 401 ) {
                     
                     self.isFollowingList[i] = 0
                     
-                    if( i == self.rankingList.count - 1 ) {
-                        self.memberCollectionView.reloadData()
-                    }
+//                    if( i == self.rankingList.count - 1 ) {
+//                        self.memberCollectionView.reloadData()
+//                    }
                 } else {
                     
                     let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -273,6 +282,15 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                 }
                 
             })
+            
+            if( i == self.rankingList.count - 1 ) {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 , execute: {
+                    // Put your code which should be executed with a delay here
+                    self.flag = true
+                    self.memberCollectionView.reloadData()
+                })
+            }
         }
 
     }
@@ -400,6 +418,12 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                 cell.memberHeartImageBtn.setImage(#imageLiteral(resourceName: "heartEmpty") , for: .normal )
             }
             
+            if( self.flag == true ) {
+                cell.memberHeartImageBtn.isEnabled = true
+            } else {
+                cell.memberHeartImageBtn.isEnabled = false
+            }
+            
             cell.memberBottomUIView.layer.opacity = 0.2
             
             if( rankingList[ indexPath.row ].member_profile != nil ) {
@@ -416,8 +440,6 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             if let tmpNum = self.rankingList[ indexPath.row ].member_num {
                 cell.memberNumLabel.text = String( tmpNum )
             }
-            
-            print( self.isFollowingList )
             
             cell.memberNicknameLabel.text = self.rankingList[ indexPath.row ].member_nickname
             cell.memberCategoryLabel.text = "# \(gsno(rankingList[ indexPath.row ].member_category))"

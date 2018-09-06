@@ -689,6 +689,46 @@ struct Server : APIService {
         }
     }
 
+    //  멤버 리스트 가져오기
+    static func reqMemberList( completion : @escaping ( [MemberList] , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/collection/memberList" )
+        
+        Alamofire.request(URL, method: .get , parameters: nil , encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let memberListData = try decoder.decode(MemberListData.self , from: value)
+                        
+                        if( res.response?.statusCode == 200 ){
+                            
+                            completion( memberListData.data! , 200 )
+                        }
+                        else{
+                            
+                            completion( memberListData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
 
 
     

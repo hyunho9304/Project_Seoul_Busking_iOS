@@ -24,6 +24,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        set()
         setTarget()
         confirmWrite()
         hideKeyboardWhenTappedAround()
@@ -37,6 +38,11 @@ class SignInViewController: UIViewController {
         signInPWTextField.text = ""
     }
     
+    func set() {
+        
+        signInIDTextField.returnKeyType = UIReturnKeyType.continue
+        signInPWTextField.returnKeyType = UIReturnKeyType.done
+    }
     func setTarget() {
         
         signInBtn.addTarget(self, action: #selector(self.pressedSignInBtn(_:)), for: UIControlEvents.touchUpInside)
