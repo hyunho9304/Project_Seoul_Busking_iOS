@@ -11,7 +11,7 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController , UITextFieldDelegate {
 
     @IBOutlet weak var signInIDTextField: UITextField!
     @IBOutlet weak var signInPWTextField: UITextField!
@@ -26,6 +26,7 @@ class SignInViewController: UIViewController {
 
         set()
         setTarget()
+        setDelegate()
         confirmWrite()
         hideKeyboardWhenTappedAround()
         
@@ -47,6 +48,12 @@ class SignInViewController: UIViewController {
         
         signInBtn.addTarget(self, action: #selector(self.pressedSignInBtn(_:)), for: UIControlEvents.touchUpInside)
         signUpBtn.addTarget(self, action: #selector(self.pressedSignUpBtn(_:)), for: UIControlEvents.touchUpInside)
+    }
+    
+    func setDelegate() {
+        
+        signInIDTextField.delegate = self
+        signInPWTextField.delegate = self
     }
     
     func confirmWrite() {
@@ -109,6 +116,20 @@ class SignInViewController: UIViewController {
         self.present( selectTypeVC , animated: true , completion: nil )
     }
     
+    
+//  Mark -> UITextField Delegate
+    //  키보드 확인 눌렀을 때
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
     
 }
 

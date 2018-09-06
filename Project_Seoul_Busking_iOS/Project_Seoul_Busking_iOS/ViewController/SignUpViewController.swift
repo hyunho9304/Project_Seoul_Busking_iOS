@@ -10,7 +10,7 @@
  */
 import UIKit
 
-class SignUpViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout  {
+class SignUpViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , UITextFieldDelegate {
     
     
     @IBOutlet weak var signUpBackBtn: UIButton!
@@ -45,7 +45,10 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     override func viewWillAppear(_ animated: Bool) {
         
         set()
+        setDelegate()
     }
+    
+    
     
     func set() {
 
@@ -68,7 +71,17 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
         
         selectedCategory = ""
         
+        signUpIDTextField.returnKeyType = UIReturnKeyType.continue
+        signUpPWTextField.returnKeyType = UIReturnKeyType.continue
+        signUpNicknameTextField.returnKeyType = UIReturnKeyType.done
         
+    }
+    
+    func setDelegate() {
+        
+        signUpIDTextField.delegate = self
+        signUpPWTextField.delegate = self
+        signUpNicknameTextField.delegate = self
     }
     
     func setTarget() {
@@ -345,6 +358,21 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return 18
+    }
+    
+    
+//  Mark -> UITextField Delegate
+    //  키보드 확인 눌렀을 때
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
 
 }

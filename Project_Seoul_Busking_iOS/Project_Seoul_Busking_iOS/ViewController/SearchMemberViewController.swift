@@ -8,13 +8,16 @@
 
 import UIKit
 
-class SearchMemberViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , UISearchBarDelegate {
-
+class SearchMemberViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , UITextFieldDelegate {
+    
     //  유저 info
     var memberInfo : Member?            //  회원정보
     
     //  네비게이션 바
     @IBOutlet weak var searchMemberBackBtn: UIButton!
+    @IBOutlet weak var searchUIView: UIView!
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchEndBtn: UIButton!
     
     //  내용
     @IBOutlet weak var memberCollectionView: UICollectionView!
@@ -24,12 +27,9 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
     var flag : Bool?                 //  isFollowingList 가져왔는지 true , false 에 따라 enable 시킨다.
     
     //  검색( 팔로잉 )
-    @IBOutlet weak var searchBar: UISearchBar!
     var filteredMemberList : [ MemberList ] = [ MemberList ]()  //  검색 결과
     var filteredFollowingList : [ Int ] = [ Int ]()             //  검색결과팔로잉 리스트
     var isFiltering : Bool = false                              //  검색하는지 체크
-    
-    
     
     
     override func viewDidLoad() {
@@ -39,6 +39,7 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
         set()
         setTarget()
         setDelegate()
+        hideKeyboardWhenTappedAround()
         
     }
     
@@ -65,7 +66,20 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
             self.filteredFollowingList.append(-1)
         }
         
-        searchBar.returnKeyType = UIReturnKeyType.search
+        
+        
+        searchUIView.layer.cornerRadius = 23    //  둥근정도
+        searchUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+        
+        searchUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+        searchUIView.layer.shadowOpacity = 0.16                            //  그림자 투명도
+        searchUIView.layer.shadowOffset = CGSize(width: 0 , height: 2 )    //  그림자 x y
+        searchUIView.layer.shadowRadius = 5                                //  그림자 블러
+        
+        //  작은창에서 설정 2개있음
+        searchTextField.returnKeyType = UIReturnKeyType.search
+        
+        memberCollectionView.alwaysBounceVertical = true
     }
     
     func setTarget() {
@@ -73,6 +87,11 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
         //  뒤로가기 버튼
         searchMemberBackBtn.addTarget(self, action: #selector(self.pressedSearchMemberBackBtn(_:)), for: UIControlEvents.touchUpInside)
         
+        //  검색창 텍스트필드
+        searchTextField.addTarget(self, action: #selector(findMember), for: .editingChanged)
+        
+        //  검색창 텍스트 지우기
+        searchEndBtn.addTarget(self, action: #selector(self.pressedSearchEndBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     func setDelegate() {
@@ -80,7 +99,7 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
         memberCollectionView.delegate = self
         memberCollectionView.dataSource = self
         
-        searchBar.delegate = self
+        searchTextField.delegate = self
     }
 
     //  뒤로가기 버튼 액션
@@ -105,6 +124,45 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
         }
     }
     
+    //  textfield 바뀔때마다 검색
+    @objc func findMember() {
+        
+        if( searchTextField.text == nil || searchTextField.text == "" ) {
+            
+            self.searchEndBtn.isEnabled = false
+            
+            isFiltering = false
+            view.endEditing(true)
+            
+            getMemberList()
+            
+        } else {
+            
+            self.searchEndBtn.isEnabled = true
+            
+            isFiltering = true
+            
+            filteredMemberList = memberList.filter({ (memberList) -> Bool in
+                
+                return (memberList.member_nickname?.localizedCaseInsensitiveContains( self.searchTextField.text! ))!
+            })
+            
+            getSearchFollowingList()
+        }
+    }
+    
+    //  검색창 검색 글 지우기
+    @objc func pressedSearchEndBtn( _ sender : UIButton ) {
+        
+        self.searchEndBtn.isEnabled = false
+        
+        searchTextField.text = nil
+        
+        isFiltering = false
+        view.endEditing(true)
+        
+        getMemberList()
+    }
     
     //  멤버리스트 가져오기
     func getMemberList() {
@@ -430,30 +488,19 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
         return 20
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//  Mark -> UITextField Delegate
+    //  키보드 확인 눌렀을 때
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if( searchBar.text == nil || searchBar.text == "" ) {
-            
-            isFiltering = false
-            view.endEditing(true)
-            
-            getMemberList()
-            
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
         } else {
             
-            isFiltering = true
-            
-            filteredMemberList = memberList.filter({ (memberList) -> Bool in
-                
-                return (memberList.member_nickname?.localizedCaseInsensitiveContains( self.searchBar.text! ))!
-            })
-            
-            getSearchFollowingList()
+            textField.resignFirstResponder()
         }
+        
+        return true
     }
-
-    
-    
     
     
     

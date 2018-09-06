@@ -66,7 +66,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+  
         set()
         setDelegate()
         setTarget()
@@ -154,11 +154,17 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     }
     
     func set() {
-
-        if( memberInfo?.member_type == "0" ) {
+        
+        //  바로 데이터 안와서 딜레이준다
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 , execute: {
             
-            homeBuskingReservationBtn.isHidden = true
-        }
+            if( self.memberInfo?.member_type == "0" ) {
+                
+                self.homeBuskingReservationBtn.isHidden = true
+            }
+            
+        })
+
         
         setShadow()
         
