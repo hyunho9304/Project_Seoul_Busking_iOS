@@ -49,12 +49,14 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     var tapHeartIndex : Int?                    //  누른 하트 인덱스
     var flag : Bool?                 //  isFollowingList 가져왔는지 true , false 에 따라 enable 시킨다.
 
+    var refresher : UIRefreshControl?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         set()
         setTarget()
+        reloadTarget()
         setDelegate()
     }
     
@@ -65,6 +67,27 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
         for _ in 0 ..< 100 {
             self.isFollowingList.append(-1)
         }
+    }
+    
+    func reloadTarget() {
+        
+        refresher = UIRefreshControl()
+        refresher?.tintColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+        refresher?.addTarget( self , action : #selector( reloadData ) , for : .valueChanged )
+        memberCollectionView.addSubview( refresher! )
+    }
+    
+    @objc func reloadData() {
+        
+        self.getMemberList()
+        stopRefresher()
+    }
+    
+    func stopRefresher() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1 , execute: {
+            self.refresher?.endRefreshing()
+        })
     }
     
     func setTarget() {
@@ -313,7 +336,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                     defaultPopUpVC.didMove(toParentViewController: self )
                     
                     sender.setImage(#imageLiteral(resourceName: "heart") , for: .normal )
-                    
+
                 } else if( flag == 0 ) {
                     
                     guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
@@ -326,6 +349,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                     defaultPopUpVC.didMove(toParentViewController: self )
                     
                     sender.setImage(#imageLiteral(resourceName: "heartEmpty")  , for: .normal )
+                    
                 }
             } else {
                 
