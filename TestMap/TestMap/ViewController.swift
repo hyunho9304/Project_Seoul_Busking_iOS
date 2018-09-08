@@ -11,6 +11,7 @@ import Kingfisher
 
 class ViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverlayDelegate , NMapLocationManagerDelegate {
 
+    aaa
     //  넘어온 정보
     var memberInfo : Member?
     var findBuskingZoneIndex : Int = -1
