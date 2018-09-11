@@ -334,7 +334,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
             mapView.delegate = self
             
             //  네이버 앱 키 설정
-            mapView.setClientId("1nj12HfHWHhoIcw1DdmR")
+            mapView.setClientId("BE4DT6u49CwTPGjPqqik")
             
             mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             

@@ -1,0 +1,800 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BED7CA6E21479C0000730650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA6D21479C0000730650 /* AppDelegate.swift */; };
+		BED7CA7021479C0000730650 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA6F21479C0000730650 /* ViewController.swift */; };
+		BED7CA7321479C0000730650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7121479C0000730650 /* Main.storyboard */; };
+		BED7CA7521479C0100730650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7421479C0100730650 /* Assets.xcassets */; };
+		BED7CA7821479C0100730650 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7621479C0100730650 /* LaunchScreen.storyboard */; };
+		BED7CA8021479D6500730650 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7CA7F21479D6500730650 /* ApiGatewayMac.framework */; };
+		BED7CA8121479D6500730650 /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED7CA7F21479D6500730650 /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BED7CA8421479D7000730650 /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7CA8321479D6F00730650 /* NMapViewerSDK.framework */; };
+		BED7CAA22147A0AA00730650 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA912147A0A800730650 /* MapSearchViewController.swift */; };
+		BED7CAA32147A0AA00730650 /* BoroughListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA922147A0A800730650 /* BoroughListViewController.swift */; };
+		BED7CAA42147A0AA00730650 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA932147A0A800730650 /* ReservationViewController.swift */; };
+		BED7CAA52147A0AA00730650 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA942147A0A800730650 /* MapViewController.swift */; };
+		BED7CAA62147A0AA00730650 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA952147A0A800730650 /* SignInViewController.swift */; };
+		BED7CAA72147A0AA00730650 /* NextSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA962147A0A900730650 /* NextSegue.swift */; };
+		BED7CAA82147A0AA00730650 /* SearchMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA972147A0A900730650 /* SearchMemberViewController.swift */; };
+		BED7CAA92147A0AA00730650 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA982147A0A900730650 /* CategoryViewController.swift */; };
+		BED7CAAA2147A0AA00730650 /* BuskingZoneListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA992147A0A900730650 /* BuskingZoneListViewController.swift */; };
+		BED7CAAB2147A0AA00730650 /* MemberInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9A2147A0A900730650 /* MemberInfoViewController.swift */; };
+		BED7CAAC2147A0AA00730650 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9B2147A0A900730650 /* TimeTableViewController.swift */; };
+		BED7CAAD2147A0AA00730650 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9C2147A0A900730650 /* HomeViewController.swift */; };
+		BED7CAAE2147A0AA00730650 /* BuskingZoneMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9D2147A0A900730650 /* BuskingZoneMapViewController.swift */; };
+		BED7CAAF2147A0AA00730650 /* selectBoroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9E2147A0A900730650 /* selectBoroughViewController.swift */; };
+		BED7CAB02147A0AA00730650 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9F2147A0AA00730650 /* SignUpViewController.swift */; };
+		BED7CAB12147A0AA00730650 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAA02147A0AA00730650 /* RankingViewController.swift */; };
+		BED7CAB22147A0AA00730650 /* SelectTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAA12147A0AA00730650 /* SelectTypeViewController.swift */; };
+		BED7CAB52147A0CE00730650 /* DefaultPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAB32147A0CE00730650 /* DefaultPopUpViewController.swift */; };
+		BED7CAB62147A0CE00730650 /* CalendarPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAB42147A0CE00730650 /* CalendarPopUpViewController.swift */; };
+		BED7CAC72147A0F600730650 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAB72147A0F400730650 /* MapSearchBuskingZoneCollectionViewCell.swift */; };
+		BED7CAC82147A0F600730650 /* RankingSelect2CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAB82147A0F400730650 /* RankingSelect2CollectionViewCell.swift */; };
+		BED7CAC92147A0F600730650 /* SelectBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAB92147A0F400730650 /* SelectBoroughCollectionViewCell.swift */; };
+		BED7CACA2147A0F600730650 /* ReservationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABA2147A0F400730650 /* ReservationCollectionViewCell.swift */; };
+		BED7CACB2147A0F600730650 /* HomeCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABB2147A0F500730650 /* HomeCalendarCollectionViewCell.swift */; };
+		BED7CACC2147A0F600730650 /* RankingMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABC2147A0F500730650 /* RankingMemberCollectionViewCell.swift */; };
+		BED7CACD2147A0F600730650 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABD2147A0F500730650 /* CalendarCollectionViewCell.swift */; };
+		BED7CACE2147A0F600730650 /* BuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABE2147A0F500730650 /* BuskingZoneCollectionViewCell.swift */; };
+		BED7CACF2147A0F600730650 /* RankingSelect1CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABF2147A0F500730650 /* RankingSelect1CollectionViewCell.swift */; };
+		BED7CAD02147A0F600730650 /* MapSearchBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC02147A0F500730650 /* MapSearchBoroughCollectionViewCell.swift */; };
+		BED7CAD12147A0F600730650 /* ReservationCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC12147A0F500730650 /* ReservationCategoryCollectionViewCell.swift */; };
+		BED7CAD22147A0F600730650 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC22147A0F500730650 /* SelectBuskingZoneCntCollectionViewCell.swift */; };
+		BED7CAD32147A0F600730650 /* SelectBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC32147A0F600730650 /* SelectBuskingZoneCollectionViewCell.swift */; };
+		BED7CAD42147A0F600730650 /* selectCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC42147A0F600730650 /* selectCategoryCollectionViewCell.swift */; };
+		BED7CAD52147A0F600730650 /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC52147A0F600730650 /* MemberCollectionViewCell.swift */; };
+		BED7CAD62147A0F600730650 /* TimeTableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC62147A0F600730650 /* TimeTableCollectionViewCell.swift */; };
+		BED7CAD92147A11000730650 /* APIservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAD72147A11000730650 /* APIservice.swift */; };
+		BED7CADA2147A11000730650 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAD82147A11000730650 /* Server.swift */; };
+		BED7CAE72147A11E00730650 /* CurrentReservationListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CADB2147A11C00730650 /* CurrentReservationListAll.swift */; };
+		BED7CAE82147A11E00730650 /* CustomCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CADC2147A11D00730650 /* CustomCalendar.swift */; };
+		BED7CAE92147A11E00730650 /* BuskingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CADD2147A11D00730650 /* BuskingZone.swift */; };
+		BED7CAEA2147A11E00730650 /* ReservationPossibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CADE2147A11D00730650 /* ReservationPossibility.swift */; };
+		BED7CAEB2147A11E00730650 /* MemberRepresentativeBorough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CADF2147A11D00730650 /* MemberRepresentativeBorough.swift */; };
+		BED7CAEC2147A11E00730650 /* ToggleBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE02147A11D00730650 /* ToggleBtn.swift */; };
+		BED7CAED2147A11E00730650 /* Borough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE12147A11D00730650 /* Borough.swift */; };
+		BED7CAEE2147A11E00730650 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE22147A11D00730650 /* Member.swift */; };
+		BED7CAEF2147A11E00730650 /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE32147A11D00730650 /* Ranking.swift */; };
+		BED7CAF02147A11E00730650 /* MemberList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE42147A11D00730650 /* MemberList.swift */; };
+		BED7CAF12147A11E00730650 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE52147A11D00730650 /* Reservation.swift */; };
+		BED7CAF22147A11E00730650 /* BuskingZoneListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE62147A11E00730650 /* BuskingZoneListAll.swift */; };
+		BED7CAF62147A12900730650 /* CalendarVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAF32147A12900730650 /* CalendarVars.swift */; };
+		BED7CAF72147A12900730650 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAF42147A12900730650 /* Extension.swift */; };
+		BED7CAF82147A12900730650 /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAF52147A12900730650 /* NMapViewResources.swift */; };
+		BED7CAFF2147A85F00730650 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAF92147A85F00730650 /* NotoSansCJKkr-Bold.otf */; };
+		BED7CB002147A85F00730650 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAFA2147A85F00730650 /* NotoSansCJKkr-Regular.otf */; };
+		BED7CB012147A85F00730650 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAFB2147A85F00730650 /* NotoSansCJKkr-Medium.otf */; };
+		BED7CB022147A85F00730650 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAFC2147A85F00730650 /* NotoSans-Bold.ttf */; };
+		BED7CB032147A85F00730650 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAFD2147A85F00730650 /* NotoSans-Regular.ttf */; };
+		BED7CB042147A85F00730650 /* NotoSansCJKkr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAFE2147A85F00730650 /* NotoSansCJKkr-Black.otf */; };
+		D9FAB110D7EF4C3CB6BD12B9 /* Pods_Seoul_Busking_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1D4F28A6473D3C14F20FAC /* Pods_Seoul_Busking_iOS.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BED7CA8221479D6500730650 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BED7CA8121479D6500730650 /* ApiGatewayMac.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0A1D4F28A6473D3C14F20FAC /* Pods_Seoul_Busking_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seoul_Busking_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DD917AC851E3EF310E5C113 /* Pods-Seoul_Busking_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		5F84945DD247A4E5408F57BE /* Pods-Seoul_Busking_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BED7CA6A21479C0000730650 /* Seoul_Busking_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seoul_Busking_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BED7CA6D21479C0000730650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BED7CA6F21479C0000730650 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BED7CA7221479C0000730650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BED7CA7421479C0100730650 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BED7CA7721479C0100730650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BED7CA7921479C0100730650 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BED7CA7F21479D6500730650 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApiGatewayMac.framework; path = Frameworks/ApiGatewayMac.framework; sourceTree = "<group>"; };
+		BED7CA8321479D6F00730650 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMapViewerSDK.framework; path = Frameworks/NMapViewerSDK.framework; sourceTree = "<group>"; };
+		BED7CA8621479DBB00730650 /* NMapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NMapHeader.h; sourceTree = "<group>"; };
+		BED7CA912147A0A800730650 /* MapSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSearchViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/MapSearchViewController.swift; sourceTree = "<group>"; };
+		BED7CA922147A0A800730650 /* BoroughListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoroughListViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/BoroughListViewController.swift; sourceTree = "<group>"; };
+		BED7CA932147A0A800730650 /* ReservationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservationViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/ReservationViewController.swift; sourceTree = "<group>"; };
+		BED7CA942147A0A800730650 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/MapViewController.swift; sourceTree = "<group>"; };
+		BED7CA952147A0A800730650 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/SignInViewController.swift; sourceTree = "<group>"; };
+		BED7CA962147A0A900730650 /* NextSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NextSegue.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/NextSegue.swift; sourceTree = "<group>"; };
+		BED7CA972147A0A900730650 /* SearchMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchMemberViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/SearchMemberViewController.swift; sourceTree = "<group>"; };
+		BED7CA982147A0A900730650 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/CategoryViewController.swift; sourceTree = "<group>"; };
+		BED7CA992147A0A900730650 /* BuskingZoneListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuskingZoneListViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/BuskingZoneListViewController.swift; sourceTree = "<group>"; };
+		BED7CA9A2147A0A900730650 /* MemberInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberInfoViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/MemberInfoViewController.swift; sourceTree = "<group>"; };
+		BED7CA9B2147A0A900730650 /* TimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeTableViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/TimeTableViewController.swift; sourceTree = "<group>"; };
+		BED7CA9C2147A0A900730650 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/HomeViewController.swift; sourceTree = "<group>"; };
+		BED7CA9D2147A0A900730650 /* BuskingZoneMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuskingZoneMapViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/BuskingZoneMapViewController.swift; sourceTree = "<group>"; };
+		BED7CA9E2147A0A900730650 /* selectBoroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = selectBoroughViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/selectBoroughViewController.swift; sourceTree = "<group>"; };
+		BED7CA9F2147A0AA00730650 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/SignUpViewController.swift; sourceTree = "<group>"; };
+		BED7CAA02147A0AA00730650 /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/RankingViewController.swift; sourceTree = "<group>"; };
+		BED7CAA12147A0AA00730650 /* SelectTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectTypeViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/SelectTypeViewController.swift; sourceTree = "<group>"; };
+		BED7CAB32147A0CE00730650 /* DefaultPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultPopUpViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/PopUpViewController/DefaultPopUpViewController.swift; sourceTree = "<group>"; };
+		BED7CAB42147A0CE00730650 /* CalendarPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarPopUpViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/PopUpViewController/CalendarPopUpViewController.swift; sourceTree = "<group>"; };
+		BED7CAB72147A0F400730650 /* MapSearchBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSearchBuskingZoneCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/MapSearchBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CAB82147A0F400730650 /* RankingSelect2CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingSelect2CollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/RankingSelect2CollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CAB92147A0F400730650 /* SelectBoroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectBoroughCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/SelectBoroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CABA2147A0F400730650 /* ReservationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservationCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/ReservationCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CABB2147A0F500730650 /* HomeCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCalendarCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/HomeCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CABC2147A0F500730650 /* RankingMemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingMemberCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/RankingMemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CABD2147A0F500730650 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CABE2147A0F500730650 /* BuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuskingZoneCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/BuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CABF2147A0F500730650 /* RankingSelect1CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingSelect1CollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/RankingSelect1CollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CAC02147A0F500730650 /* MapSearchBoroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSearchBoroughCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/MapSearchBoroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CAC12147A0F500730650 /* ReservationCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservationCategoryCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/ReservationCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CAC22147A0F500730650 /* SelectBuskingZoneCntCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectBuskingZoneCntCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/SelectBuskingZoneCntCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CAC32147A0F600730650 /* SelectBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectBuskingZoneCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/SelectBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CAC42147A0F600730650 /* selectCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = selectCategoryCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/selectCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CAC52147A0F600730650 /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/MemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CAC62147A0F600730650 /* TimeTableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeTableCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/TimeTableCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CAD72147A11000730650 /* APIservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIservice.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Service/APIservice.swift; sourceTree = "<group>"; };
+		BED7CAD82147A11000730650 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Server.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Service/Server.swift; sourceTree = "<group>"; };
+		BED7CADB2147A11C00730650 /* CurrentReservationListAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentReservationListAll.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/CurrentReservationListAll.swift; sourceTree = "<group>"; };
+		BED7CADC2147A11D00730650 /* CustomCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCalendar.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/CustomCalendar.swift; sourceTree = "<group>"; };
+		BED7CADD2147A11D00730650 /* BuskingZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuskingZone.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/BuskingZone.swift; sourceTree = "<group>"; };
+		BED7CADE2147A11D00730650 /* ReservationPossibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservationPossibility.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/ReservationPossibility.swift; sourceTree = "<group>"; };
+		BED7CADF2147A11D00730650 /* MemberRepresentativeBorough.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberRepresentativeBorough.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/MemberRepresentativeBorough.swift; sourceTree = "<group>"; };
+		BED7CAE02147A11D00730650 /* ToggleBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleBtn.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/ToggleBtn.swift; sourceTree = "<group>"; };
+		BED7CAE12147A11D00730650 /* Borough.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Borough.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/Borough.swift; sourceTree = "<group>"; };
+		BED7CAE22147A11D00730650 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Member.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/Member.swift; sourceTree = "<group>"; };
+		BED7CAE32147A11D00730650 /* Ranking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ranking.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/Ranking.swift; sourceTree = "<group>"; };
+		BED7CAE42147A11D00730650 /* MemberList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberList.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/MemberList.swift; sourceTree = "<group>"; };
+		BED7CAE52147A11D00730650 /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reservation.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/Reservation.swift; sourceTree = "<group>"; };
+		BED7CAE62147A11E00730650 /* BuskingZoneListAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuskingZoneListAll.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/BuskingZoneListAll.swift; sourceTree = "<group>"; };
+		BED7CAF32147A12900730650 /* CalendarVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarVars.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Function/CalendarVars.swift; sourceTree = "<group>"; };
+		BED7CAF42147A12900730650 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Function/Extension.swift; sourceTree = "<group>"; };
+		BED7CAF52147A12900730650 /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NMapViewResources.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Function/NMapViewResources.swift; sourceTree = "<group>"; };
+		BED7CAF92147A85F00730650 /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
+		BED7CAFA2147A85F00730650 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
+		BED7CAFB2147A85F00730650 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
+		BED7CAFC2147A85F00730650 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
+		BED7CAFD2147A85F00730650 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
+		BED7CAFE2147A85F00730650 /* NotoSansCJKkr-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Black.otf"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BED7CA6721479C0000730650 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED7CA8421479D7000730650 /* NMapViewerSDK.framework in Frameworks */,
+				BED7CA8021479D6500730650 /* ApiGatewayMac.framework in Frameworks */,
+				D9FAB110D7EF4C3CB6BD12B9 /* Pods_Seoul_Busking_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BAA7C4A07849DC444ACDB98B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CA8321479D6F00730650 /* NMapViewerSDK.framework */,
+				0A1D4F28A6473D3C14F20FAC /* Pods_Seoul_Busking_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BED7CA6121479BFF00730650 = {
+			isa = PBXGroup;
+			children = (
+				BED7CA7F21479D6500730650 /* ApiGatewayMac.framework */,
+				BED7CA6C21479C0000730650 /* Seoul_Busking_iOS */,
+				BED7CA6B21479C0000730650 /* Products */,
+				D8B6405AF94DD00AF6679197 /* Pods */,
+				BAA7C4A07849DC444ACDB98B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BED7CA6B21479C0000730650 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CA6A21479C0000730650 /* Seoul_Busking_iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BED7CA6C21479C0000730650 /* Seoul_Busking_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CA8621479DBB00730650 /* NMapHeader.h */,
+				BED7CA6D21479C0000730650 /* AppDelegate.swift */,
+				BED7CA7921479C0100730650 /* Info.plist */,
+				BED7CA8C21479E9900730650 /* StoryBoard */,
+				BED7CA8B21479E8D00730650 /* PopUpViewController */,
+				BED7CA8A21479E8600730650 /* ViewController */,
+				BED7CA8921479E7A00730650 /* CollectionViewCell */,
+				BED7CA8821479E7200730650 /* Util */,
+				BED7CA8721479E6600730650 /* Asset */,
+			);
+			path = Seoul_Busking_iOS;
+			sourceTree = "<group>";
+		};
+		BED7CA8721479E6600730650 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CA7421479C0100730650 /* Assets.xcassets */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
+		BED7CA8821479E7200730650 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CA9021479F0700730650 /* Font */,
+				BED7CA8F21479F0000730650 /* Service */,
+				BED7CA8E21479EF900730650 /* Model */,
+				BED7CA8D21479EF300730650 /* Function */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		BED7CA8921479E7A00730650 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CABE2147A0F500730650 /* BuskingZoneCollectionViewCell.swift */,
+				BED7CABD2147A0F500730650 /* CalendarCollectionViewCell.swift */,
+				BED7CABB2147A0F500730650 /* HomeCalendarCollectionViewCell.swift */,
+				BED7CAC02147A0F500730650 /* MapSearchBoroughCollectionViewCell.swift */,
+				BED7CAB72147A0F400730650 /* MapSearchBuskingZoneCollectionViewCell.swift */,
+				BED7CAC52147A0F600730650 /* MemberCollectionViewCell.swift */,
+				BED7CABC2147A0F500730650 /* RankingMemberCollectionViewCell.swift */,
+				BED7CABF2147A0F500730650 /* RankingSelect1CollectionViewCell.swift */,
+				BED7CAB82147A0F400730650 /* RankingSelect2CollectionViewCell.swift */,
+				BED7CAC12147A0F500730650 /* ReservationCategoryCollectionViewCell.swift */,
+				BED7CABA2147A0F400730650 /* ReservationCollectionViewCell.swift */,
+				BED7CAB92147A0F400730650 /* SelectBoroughCollectionViewCell.swift */,
+				BED7CAC22147A0F500730650 /* SelectBuskingZoneCntCollectionViewCell.swift */,
+				BED7CAC32147A0F600730650 /* SelectBuskingZoneCollectionViewCell.swift */,
+				BED7CAC42147A0F600730650 /* selectCategoryCollectionViewCell.swift */,
+				BED7CAC62147A0F600730650 /* TimeTableCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		BED7CA8A21479E8600730650 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CA922147A0A800730650 /* BoroughListViewController.swift */,
+				BED7CA992147A0A900730650 /* BuskingZoneListViewController.swift */,
+				BED7CA9D2147A0A900730650 /* BuskingZoneMapViewController.swift */,
+				BED7CA982147A0A900730650 /* CategoryViewController.swift */,
+				BED7CA9C2147A0A900730650 /* HomeViewController.swift */,
+				BED7CA912147A0A800730650 /* MapSearchViewController.swift */,
+				BED7CA942147A0A800730650 /* MapViewController.swift */,
+				BED7CA9A2147A0A900730650 /* MemberInfoViewController.swift */,
+				BED7CA962147A0A900730650 /* NextSegue.swift */,
+				BED7CAA02147A0AA00730650 /* RankingViewController.swift */,
+				BED7CA932147A0A800730650 /* ReservationViewController.swift */,
+				BED7CA972147A0A900730650 /* SearchMemberViewController.swift */,
+				BED7CA9E2147A0A900730650 /* selectBoroughViewController.swift */,
+				BED7CAA12147A0AA00730650 /* SelectTypeViewController.swift */,
+				BED7CA952147A0A800730650 /* SignInViewController.swift */,
+				BED7CA9F2147A0AA00730650 /* SignUpViewController.swift */,
+				BED7CA9B2147A0A900730650 /* TimeTableViewController.swift */,
+				BED7CA6F21479C0000730650 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		BED7CA8B21479E8D00730650 /* PopUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CAB42147A0CE00730650 /* CalendarPopUpViewController.swift */,
+				BED7CAB32147A0CE00730650 /* DefaultPopUpViewController.swift */,
+			);
+			path = PopUpViewController;
+			sourceTree = "<group>";
+		};
+		BED7CA8C21479E9900730650 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CA7121479C0000730650 /* Main.storyboard */,
+				BED7CA7621479C0100730650 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		BED7CA8D21479EF300730650 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CAF32147A12900730650 /* CalendarVars.swift */,
+				BED7CAF42147A12900730650 /* Extension.swift */,
+				BED7CAF52147A12900730650 /* NMapViewResources.swift */,
+			);
+			name = Function;
+			sourceTree = "<group>";
+		};
+		BED7CA8E21479EF900730650 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CAE12147A11D00730650 /* Borough.swift */,
+				BED7CADD2147A11D00730650 /* BuskingZone.swift */,
+				BED7CAE62147A11E00730650 /* BuskingZoneListAll.swift */,
+				BED7CADB2147A11C00730650 /* CurrentReservationListAll.swift */,
+				BED7CADC2147A11D00730650 /* CustomCalendar.swift */,
+				BED7CAE22147A11D00730650 /* Member.swift */,
+				BED7CAE42147A11D00730650 /* MemberList.swift */,
+				BED7CADF2147A11D00730650 /* MemberRepresentativeBorough.swift */,
+				BED7CAE32147A11D00730650 /* Ranking.swift */,
+				BED7CAE52147A11D00730650 /* Reservation.swift */,
+				BED7CADE2147A11D00730650 /* ReservationPossibility.swift */,
+				BED7CAE02147A11D00730650 /* ToggleBtn.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BED7CA8F21479F0000730650 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CAD72147A11000730650 /* APIservice.swift */,
+				BED7CAD82147A11000730650 /* Server.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		BED7CA9021479F0700730650 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				BED7CAFC2147A85F00730650 /* NotoSans-Bold.ttf */,
+				BED7CAFD2147A85F00730650 /* NotoSans-Regular.ttf */,
+				BED7CAFE2147A85F00730650 /* NotoSansCJKkr-Black.otf */,
+				BED7CAF92147A85F00730650 /* NotoSansCJKkr-Bold.otf */,
+				BED7CAFB2147A85F00730650 /* NotoSansCJKkr-Medium.otf */,
+				BED7CAFA2147A85F00730650 /* NotoSansCJKkr-Regular.otf */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
+		D8B6405AF94DD00AF6679197 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5F84945DD247A4E5408F57BE /* Pods-Seoul_Busking_iOS.debug.xcconfig */,
+				0DD917AC851E3EF310E5C113 /* Pods-Seoul_Busking_iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BED7CA6921479C0000730650 /* Seoul_Busking_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BED7CA7C21479C0100730650 /* Build configuration list for PBXNativeTarget "Seoul_Busking_iOS" */;
+			buildPhases = (
+				9EC1F5ACB593918CF4DC3ADB /* [CP] Check Pods Manifest.lock */,
+				BED7CA6621479C0000730650 /* Sources */,
+				BED7CA6721479C0000730650 /* Frameworks */,
+				BED7CA6821479C0000730650 /* Resources */,
+				59DF04B67A3B10632AED43FA /* [CP] Embed Pods Frameworks */,
+				BED7CA8221479D6500730650 /* Embed Frameworks */,
+				BED7CA8521479D9D00730650 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Seoul_Busking_iOS;
+			productName = Seoul_Busking_iOS;
+			productReference = BED7CA6A21479C0000730650 /* Seoul_Busking_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BED7CA6221479BFF00730650 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "박현호";
+				TargetAttributes = {
+					BED7CA6921479C0000730650 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = BED7CA6521479C0000730650 /* Build configuration list for PBXProject "Seoul_Busking_iOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BED7CA6121479BFF00730650;
+			productRefGroup = BED7CA6B21479C0000730650 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BED7CA6921479C0000730650 /* Seoul_Busking_iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BED7CA6821479C0000730650 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED7CB002147A85F00730650 /* NotoSansCJKkr-Regular.otf in Resources */,
+				BED7CA7821479C0100730650 /* LaunchScreen.storyboard in Resources */,
+				BED7CB042147A85F00730650 /* NotoSansCJKkr-Black.otf in Resources */,
+				BED7CAFF2147A85F00730650 /* NotoSansCJKkr-Bold.otf in Resources */,
+				BED7CB022147A85F00730650 /* NotoSans-Bold.ttf in Resources */,
+				BED7CB032147A85F00730650 /* NotoSans-Regular.ttf in Resources */,
+				BED7CA7521479C0100730650 /* Assets.xcassets in Resources */,
+				BED7CA7321479C0000730650 /* Main.storyboard in Resources */,
+				BED7CB012147A85F00730650 /* NotoSansCJKkr-Medium.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		59DF04B67A3B10632AED43FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9EC1F5ACB593918CF4DC3ADB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Seoul_Busking_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BED7CA8521479D9D00730650 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh Scripts/strip-frameworks.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BED7CA6621479C0000730650 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED7CAF72147A12900730650 /* Extension.swift in Sources */,
+				BED7CAAB2147A0AA00730650 /* MemberInfoViewController.swift in Sources */,
+				BED7CAEE2147A11E00730650 /* Member.swift in Sources */,
+				BED7CAAC2147A0AA00730650 /* TimeTableViewController.swift in Sources */,
+				BED7CAA92147A0AA00730650 /* CategoryViewController.swift in Sources */,
+				BED7CACB2147A0F600730650 /* HomeCalendarCollectionViewCell.swift in Sources */,
+				BED7CAD32147A0F600730650 /* SelectBuskingZoneCollectionViewCell.swift in Sources */,
+				BED7CAD62147A0F600730650 /* TimeTableCollectionViewCell.swift in Sources */,
+				BED7CAAF2147A0AA00730650 /* selectBoroughViewController.swift in Sources */,
+				BED7CACE2147A0F600730650 /* BuskingZoneCollectionViewCell.swift in Sources */,
+				BED7CAA62147A0AA00730650 /* SignInViewController.swift in Sources */,
+				BED7CAEB2147A11E00730650 /* MemberRepresentativeBorough.swift in Sources */,
+				BED7CAC92147A0F600730650 /* SelectBoroughCollectionViewCell.swift in Sources */,
+				BED7CAF02147A11E00730650 /* MemberList.swift in Sources */,
+				BED7CAC82147A0F600730650 /* RankingSelect2CollectionViewCell.swift in Sources */,
+				BED7CAE92147A11E00730650 /* BuskingZone.swift in Sources */,
+				BED7CACD2147A0F600730650 /* CalendarCollectionViewCell.swift in Sources */,
+				BED7CAD22147A0F600730650 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */,
+				BED7CAB02147A0AA00730650 /* SignUpViewController.swift in Sources */,
+				BED7CACC2147A0F600730650 /* RankingMemberCollectionViewCell.swift in Sources */,
+				BED7CAA42147A0AA00730650 /* ReservationViewController.swift in Sources */,
+				BED7CAAD2147A0AA00730650 /* HomeViewController.swift in Sources */,
+				BED7CAEC2147A11E00730650 /* ToggleBtn.swift in Sources */,
+				BED7CAF12147A11E00730650 /* Reservation.swift in Sources */,
+				BED7CAA72147A0AA00730650 /* NextSegue.swift in Sources */,
+				BED7CAA52147A0AA00730650 /* MapViewController.swift in Sources */,
+				BED7CAB52147A0CE00730650 /* DefaultPopUpViewController.swift in Sources */,
+				BED7CAEA2147A11E00730650 /* ReservationPossibility.swift in Sources */,
+				BED7CA7021479C0000730650 /* ViewController.swift in Sources */,
+				BED7CAA22147A0AA00730650 /* MapSearchViewController.swift in Sources */,
+				BED7CAC72147A0F600730650 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */,
+				BED7CAB62147A0CE00730650 /* CalendarPopUpViewController.swift in Sources */,
+				BED7CAED2147A11E00730650 /* Borough.swift in Sources */,
+				BED7CACA2147A0F600730650 /* ReservationCollectionViewCell.swift in Sources */,
+				BED7CAD52147A0F600730650 /* MemberCollectionViewCell.swift in Sources */,
+				BED7CAAA2147A0AA00730650 /* BuskingZoneListViewController.swift in Sources */,
+				BED7CAF62147A12900730650 /* CalendarVars.swift in Sources */,
+				BED7CAA82147A0AA00730650 /* SearchMemberViewController.swift in Sources */,
+				BED7CAEF2147A11E00730650 /* Ranking.swift in Sources */,
+				BED7CAE72147A11E00730650 /* CurrentReservationListAll.swift in Sources */,
+				BED7CAAE2147A0AA00730650 /* BuskingZoneMapViewController.swift in Sources */,
+				BED7CA6E21479C0000730650 /* AppDelegate.swift in Sources */,
+				BED7CAD42147A0F600730650 /* selectCategoryCollectionViewCell.swift in Sources */,
+				BED7CAF22147A11E00730650 /* BuskingZoneListAll.swift in Sources */,
+				BED7CAA32147A0AA00730650 /* BoroughListViewController.swift in Sources */,
+				BED7CACF2147A0F600730650 /* RankingSelect1CollectionViewCell.swift in Sources */,
+				BED7CAF82147A12900730650 /* NMapViewResources.swift in Sources */,
+				BED7CAB22147A0AA00730650 /* SelectTypeViewController.swift in Sources */,
+				BED7CAD12147A0F600730650 /* ReservationCategoryCollectionViewCell.swift in Sources */,
+				BED7CAB12147A0AA00730650 /* RankingViewController.swift in Sources */,
+				BED7CAD92147A11000730650 /* APIservice.swift in Sources */,
+				BED7CAE82147A11E00730650 /* CustomCalendar.swift in Sources */,
+				BED7CADA2147A11000730650 /* Server.swift in Sources */,
+				BED7CAD02147A0F600730650 /* MapSearchBoroughCollectionViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BED7CA7121479C0000730650 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BED7CA7221479C0000730650 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BED7CA7621479C0100730650 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BED7CA7721479C0100730650 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BED7CA7A21479C0100730650 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BED7CA7B21479C0100730650 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BED7CA7D21479C0100730650 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F84945DD247A4E5408F57BE /* Pods-Seoul_Busking_iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7968857L98;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = Seoul_Busking_iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+					"-lxml2",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com-hyunho.Seoul-Busking-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/NMapHeader.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BED7CA7E21479C0100730650 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DD917AC851E3EF310E5C113 /* Pods-Seoul_Busking_iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7968857L98;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = Seoul_Busking_iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+					"-lxml2",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com-hyunho.Seoul-Busking-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/NMapHeader.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BED7CA6521479C0000730650 /* Build configuration list for PBXProject "Seoul_Busking_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BED7CA7A21479C0100730650 /* Debug */,
+				BED7CA7B21479C0100730650 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BED7CA7C21479C0100730650 /* Build configuration list for PBXNativeTarget "Seoul_Busking_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BED7CA7D21479C0100730650 /* Debug */,
+				BED7CA7E21479C0100730650 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BED7CA6221479BFF00730650 /* Project object */;
+}
