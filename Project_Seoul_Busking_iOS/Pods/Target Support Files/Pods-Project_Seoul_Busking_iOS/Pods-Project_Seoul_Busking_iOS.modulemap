@@ -1,6 +1,0 @@
-framework module Pods_Project_Seoul_Busking_iOS {
-  umbrella header "Pods-Project_Seoul_Busking_iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
