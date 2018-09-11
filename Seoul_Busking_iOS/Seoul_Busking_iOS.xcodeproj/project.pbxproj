@@ -8,71 +8,70 @@
 
 /* Begin PBXBuildFile section */
 		BED7CA6E21479C0000730650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA6D21479C0000730650 /* AppDelegate.swift */; };
-		BED7CA7021479C0000730650 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA6F21479C0000730650 /* ViewController.swift */; };
 		BED7CA7321479C0000730650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7121479C0000730650 /* Main.storyboard */; };
 		BED7CA7521479C0100730650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7421479C0100730650 /* Assets.xcassets */; };
 		BED7CA7821479C0100730650 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7621479C0100730650 /* LaunchScreen.storyboard */; };
 		BED7CA8021479D6500730650 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7CA7F21479D6500730650 /* ApiGatewayMac.framework */; };
 		BED7CA8121479D6500730650 /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED7CA7F21479D6500730650 /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BED7CA8421479D7000730650 /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7CA8321479D6F00730650 /* NMapViewerSDK.framework */; };
-		BED7CAA22147A0AA00730650 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA912147A0A800730650 /* MapSearchViewController.swift */; };
-		BED7CAA32147A0AA00730650 /* BoroughListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA922147A0A800730650 /* BoroughListViewController.swift */; };
-		BED7CAA42147A0AA00730650 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA932147A0A800730650 /* ReservationViewController.swift */; };
-		BED7CAA52147A0AA00730650 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA942147A0A800730650 /* MapViewController.swift */; };
-		BED7CAA62147A0AA00730650 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA952147A0A800730650 /* SignInViewController.swift */; };
-		BED7CAA72147A0AA00730650 /* NextSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA962147A0A900730650 /* NextSegue.swift */; };
-		BED7CAA82147A0AA00730650 /* SearchMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA972147A0A900730650 /* SearchMemberViewController.swift */; };
-		BED7CAA92147A0AA00730650 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA982147A0A900730650 /* CategoryViewController.swift */; };
-		BED7CAAA2147A0AA00730650 /* BuskingZoneListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA992147A0A900730650 /* BuskingZoneListViewController.swift */; };
-		BED7CAAB2147A0AA00730650 /* MemberInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9A2147A0A900730650 /* MemberInfoViewController.swift */; };
-		BED7CAAC2147A0AA00730650 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9B2147A0A900730650 /* TimeTableViewController.swift */; };
-		BED7CAAD2147A0AA00730650 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9C2147A0A900730650 /* HomeViewController.swift */; };
-		BED7CAAE2147A0AA00730650 /* BuskingZoneMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9D2147A0A900730650 /* BuskingZoneMapViewController.swift */; };
-		BED7CAAF2147A0AA00730650 /* selectBoroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9E2147A0A900730650 /* selectBoroughViewController.swift */; };
-		BED7CAB02147A0AA00730650 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA9F2147A0AA00730650 /* SignUpViewController.swift */; };
-		BED7CAB12147A0AA00730650 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAA02147A0AA00730650 /* RankingViewController.swift */; };
-		BED7CAB22147A0AA00730650 /* SelectTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAA12147A0AA00730650 /* SelectTypeViewController.swift */; };
-		BED7CAB52147A0CE00730650 /* DefaultPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAB32147A0CE00730650 /* DefaultPopUpViewController.swift */; };
-		BED7CAB62147A0CE00730650 /* CalendarPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAB42147A0CE00730650 /* CalendarPopUpViewController.swift */; };
-		BED7CAC72147A0F600730650 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAB72147A0F400730650 /* MapSearchBuskingZoneCollectionViewCell.swift */; };
-		BED7CAC82147A0F600730650 /* RankingSelect2CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAB82147A0F400730650 /* RankingSelect2CollectionViewCell.swift */; };
-		BED7CAC92147A0F600730650 /* SelectBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAB92147A0F400730650 /* SelectBoroughCollectionViewCell.swift */; };
-		BED7CACA2147A0F600730650 /* ReservationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABA2147A0F400730650 /* ReservationCollectionViewCell.swift */; };
-		BED7CACB2147A0F600730650 /* HomeCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABB2147A0F500730650 /* HomeCalendarCollectionViewCell.swift */; };
-		BED7CACC2147A0F600730650 /* RankingMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABC2147A0F500730650 /* RankingMemberCollectionViewCell.swift */; };
-		BED7CACD2147A0F600730650 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABD2147A0F500730650 /* CalendarCollectionViewCell.swift */; };
-		BED7CACE2147A0F600730650 /* BuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABE2147A0F500730650 /* BuskingZoneCollectionViewCell.swift */; };
-		BED7CACF2147A0F600730650 /* RankingSelect1CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CABF2147A0F500730650 /* RankingSelect1CollectionViewCell.swift */; };
-		BED7CAD02147A0F600730650 /* MapSearchBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC02147A0F500730650 /* MapSearchBoroughCollectionViewCell.swift */; };
-		BED7CAD12147A0F600730650 /* ReservationCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC12147A0F500730650 /* ReservationCategoryCollectionViewCell.swift */; };
-		BED7CAD22147A0F600730650 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC22147A0F500730650 /* SelectBuskingZoneCntCollectionViewCell.swift */; };
-		BED7CAD32147A0F600730650 /* SelectBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC32147A0F600730650 /* SelectBuskingZoneCollectionViewCell.swift */; };
-		BED7CAD42147A0F600730650 /* selectCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC42147A0F600730650 /* selectCategoryCollectionViewCell.swift */; };
-		BED7CAD52147A0F600730650 /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC52147A0F600730650 /* MemberCollectionViewCell.swift */; };
-		BED7CAD62147A0F600730650 /* TimeTableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAC62147A0F600730650 /* TimeTableCollectionViewCell.swift */; };
-		BED7CAD92147A11000730650 /* APIservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAD72147A11000730650 /* APIservice.swift */; };
-		BED7CADA2147A11000730650 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAD82147A11000730650 /* Server.swift */; };
-		BED7CAE72147A11E00730650 /* CurrentReservationListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CADB2147A11C00730650 /* CurrentReservationListAll.swift */; };
-		BED7CAE82147A11E00730650 /* CustomCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CADC2147A11D00730650 /* CustomCalendar.swift */; };
-		BED7CAE92147A11E00730650 /* BuskingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CADD2147A11D00730650 /* BuskingZone.swift */; };
-		BED7CAEA2147A11E00730650 /* ReservationPossibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CADE2147A11D00730650 /* ReservationPossibility.swift */; };
-		BED7CAEB2147A11E00730650 /* MemberRepresentativeBorough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CADF2147A11D00730650 /* MemberRepresentativeBorough.swift */; };
-		BED7CAEC2147A11E00730650 /* ToggleBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE02147A11D00730650 /* ToggleBtn.swift */; };
-		BED7CAED2147A11E00730650 /* Borough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE12147A11D00730650 /* Borough.swift */; };
-		BED7CAEE2147A11E00730650 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE22147A11D00730650 /* Member.swift */; };
-		BED7CAEF2147A11E00730650 /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE32147A11D00730650 /* Ranking.swift */; };
-		BED7CAF02147A11E00730650 /* MemberList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE42147A11D00730650 /* MemberList.swift */; };
-		BED7CAF12147A11E00730650 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE52147A11D00730650 /* Reservation.swift */; };
-		BED7CAF22147A11E00730650 /* BuskingZoneListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAE62147A11E00730650 /* BuskingZoneListAll.swift */; };
-		BED7CAF62147A12900730650 /* CalendarVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAF32147A12900730650 /* CalendarVars.swift */; };
-		BED7CAF72147A12900730650 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAF42147A12900730650 /* Extension.swift */; };
-		BED7CAF82147A12900730650 /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CAF52147A12900730650 /* NMapViewResources.swift */; };
 		BED7CAFF2147A85F00730650 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAF92147A85F00730650 /* NotoSansCJKkr-Bold.otf */; };
 		BED7CB002147A85F00730650 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAFA2147A85F00730650 /* NotoSansCJKkr-Regular.otf */; };
 		BED7CB012147A85F00730650 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAFB2147A85F00730650 /* NotoSansCJKkr-Medium.otf */; };
 		BED7CB022147A85F00730650 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAFC2147A85F00730650 /* NotoSans-Bold.ttf */; };
 		BED7CB032147A85F00730650 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAFD2147A85F00730650 /* NotoSans-Regular.ttf */; };
 		BED7CB042147A85F00730650 /* NotoSansCJKkr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = BED7CAFE2147A85F00730650 /* NotoSansCJKkr-Black.otf */; };
+		BED7CB072147B00A00730650 /* CalendarPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB052147B00900730650 /* CalendarPopUpViewController.swift */; };
+		BED7CB082147B00A00730650 /* DefaultPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB062147B00A00730650 /* DefaultPopUpViewController.swift */; };
+		BED7CB1A2147B02800730650 /* SelectTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB092147B01900730650 /* SelectTypeViewController.swift */; };
+		BED7CB1B2147B02800730650 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB0A2147B01A00730650 /* TimeTableViewController.swift */; };
+		BED7CB1C2147B02800730650 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB0B2147B01C00730650 /* HomeViewController.swift */; };
+		BED7CB1D2147B02800730650 /* MemberInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB0C2147B01D00730650 /* MemberInfoViewController.swift */; };
+		BED7CB1E2147B02800730650 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB0D2147B01E00730650 /* CategoryViewController.swift */; };
+		BED7CB1F2147B02800730650 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB0E2147B01F00730650 /* MapSearchViewController.swift */; };
+		BED7CB202147B02800730650 /* NextSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB0F2147B02000730650 /* NextSegue.swift */; };
+		BED7CB212147B02800730650 /* SearchMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB102147B02200730650 /* SearchMemberViewController.swift */; };
+		BED7CB222147B02800730650 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB112147B02200730650 /* RankingViewController.swift */; };
+		BED7CB232147B02800730650 /* BuskingZoneMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB122147B02400730650 /* BuskingZoneMapViewController.swift */; };
+		BED7CB242147B02800730650 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB132147B02400730650 /* ReservationViewController.swift */; };
+		BED7CB252147B02800730650 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB142147B02500730650 /* SignInViewController.swift */; };
+		BED7CB262147B02800730650 /* selectBoroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB152147B02600730650 /* selectBoroughViewController.swift */; };
+		BED7CB272147B02800730650 /* BuskingZoneListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB162147B02600730650 /* BuskingZoneListViewController.swift */; };
+		BED7CB282147B02800730650 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB172147B02700730650 /* MapViewController.swift */; };
+		BED7CB292147B02800730650 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB182147B02700730650 /* SignUpViewController.swift */; };
+		BED7CB2A2147B02800730650 /* BoroughListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB192147B02800730650 /* BoroughListViewController.swift */; };
+		BED7CB3B2147B04300730650 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB2B2147B03B00730650 /* SelectBuskingZoneCntCollectionViewCell.swift */; };
+		BED7CB3C2147B04300730650 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB2C2147B03C00730650 /* CalendarCollectionViewCell.swift */; };
+		BED7CB3D2147B04300730650 /* selectCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB2D2147B03C00730650 /* selectCategoryCollectionViewCell.swift */; };
+		BED7CB3E2147B04300730650 /* BuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB2E2147B03D00730650 /* BuskingZoneCollectionViewCell.swift */; };
+		BED7CB3F2147B04300730650 /* RankingSelect1CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB2F2147B03D00730650 /* RankingSelect1CollectionViewCell.swift */; };
+		BED7CB402147B04300730650 /* RankingMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB302147B03E00730650 /* RankingMemberCollectionViewCell.swift */; };
+		BED7CB412147B04300730650 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB312147B03F00730650 /* MapSearchBuskingZoneCollectionViewCell.swift */; };
+		BED7CB422147B04300730650 /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB322147B03F00730650 /* MemberCollectionViewCell.swift */; };
+		BED7CB432147B04300730650 /* SelectBuskingZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB332147B04000730650 /* SelectBuskingZoneCollectionViewCell.swift */; };
+		BED7CB442147B04300730650 /* TimeTableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB342147B04000730650 /* TimeTableCollectionViewCell.swift */; };
+		BED7CB452147B04300730650 /* MapSearchBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB352147B04100730650 /* MapSearchBoroughCollectionViewCell.swift */; };
+		BED7CB462147B04300730650 /* HomeCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB362147B04100730650 /* HomeCalendarCollectionViewCell.swift */; };
+		BED7CB472147B04300730650 /* RankingSelect2CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB372147B04100730650 /* RankingSelect2CollectionViewCell.swift */; };
+		BED7CB482147B04300730650 /* ReservationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB382147B04200730650 /* ReservationCollectionViewCell.swift */; };
+		BED7CB492147B04300730650 /* SelectBoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB392147B04200730650 /* SelectBoroughCollectionViewCell.swift */; };
+		BED7CB4A2147B04300730650 /* ReservationCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB3A2147B04300730650 /* ReservationCategoryCollectionViewCell.swift */; };
+		BED7CB4D2147B05400730650 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB4B2147B05300730650 /* Server.swift */; };
+		BED7CB4E2147B05400730650 /* APIservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB4C2147B05400730650 /* APIservice.swift */; };
+		BED7CB5B2147B06500730650 /* BuskingZoneListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB4F2147B06000730650 /* BuskingZoneListAll.swift */; };
+		BED7CB5C2147B06500730650 /* CurrentReservationListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB502147B06000730650 /* CurrentReservationListAll.swift */; };
+		BED7CB5D2147B06500730650 /* MemberList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB512147B06100730650 /* MemberList.swift */; };
+		BED7CB5E2147B06500730650 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB522147B06100730650 /* Member.swift */; };
+		BED7CB5F2147B06500730650 /* BuskingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB532147B06100730650 /* BuskingZone.swift */; };
+		BED7CB602147B06500730650 /* CustomCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB542147B06200730650 /* CustomCalendar.swift */; };
+		BED7CB612147B06500730650 /* MemberRepresentativeBorough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB552147B06200730650 /* MemberRepresentativeBorough.swift */; };
+		BED7CB622147B06500730650 /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB562147B06300730650 /* Ranking.swift */; };
+		BED7CB632147B06500730650 /* Borough.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB572147B06300730650 /* Borough.swift */; };
+		BED7CB642147B06500730650 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB582147B06400730650 /* Reservation.swift */; };
+		BED7CB652147B06500730650 /* ToggleBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB592147B06400730650 /* ToggleBtn.swift */; };
+		BED7CB662147B06500730650 /* ReservationPossibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB5A2147B06500730650 /* ReservationPossibility.swift */; };
+		BED7CB6A2147B07500730650 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB672147B07500730650 /* Extension.swift */; };
+		BED7CB6B2147B07500730650 /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB682147B07500730650 /* NMapViewResources.swift */; };
+		BED7CB6C2147B07500730650 /* CalendarVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB692147B07500730650 /* CalendarVars.swift */; };
 		D9FAB110D7EF4C3CB6BD12B9 /* Pods_Seoul_Busking_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1D4F28A6473D3C14F20FAC /* Pods_Seoul_Busking_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,7 +95,6 @@
 		5F84945DD247A4E5408F57BE /* Pods-Seoul_Busking_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BED7CA6A21479C0000730650 /* Seoul_Busking_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seoul_Busking_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED7CA6D21479C0000730650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BED7CA6F21479C0000730650 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BED7CA7221479C0000730650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BED7CA7421479C0100730650 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BED7CA7721479C0100730650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -104,64 +102,64 @@
 		BED7CA7F21479D6500730650 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApiGatewayMac.framework; path = Frameworks/ApiGatewayMac.framework; sourceTree = "<group>"; };
 		BED7CA8321479D6F00730650 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMapViewerSDK.framework; path = Frameworks/NMapViewerSDK.framework; sourceTree = "<group>"; };
 		BED7CA8621479DBB00730650 /* NMapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NMapHeader.h; sourceTree = "<group>"; };
-		BED7CA912147A0A800730650 /* MapSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSearchViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/MapSearchViewController.swift; sourceTree = "<group>"; };
-		BED7CA922147A0A800730650 /* BoroughListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoroughListViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/BoroughListViewController.swift; sourceTree = "<group>"; };
-		BED7CA932147A0A800730650 /* ReservationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservationViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/ReservationViewController.swift; sourceTree = "<group>"; };
-		BED7CA942147A0A800730650 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/MapViewController.swift; sourceTree = "<group>"; };
-		BED7CA952147A0A800730650 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/SignInViewController.swift; sourceTree = "<group>"; };
-		BED7CA962147A0A900730650 /* NextSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NextSegue.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/NextSegue.swift; sourceTree = "<group>"; };
-		BED7CA972147A0A900730650 /* SearchMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchMemberViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/SearchMemberViewController.swift; sourceTree = "<group>"; };
-		BED7CA982147A0A900730650 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/CategoryViewController.swift; sourceTree = "<group>"; };
-		BED7CA992147A0A900730650 /* BuskingZoneListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuskingZoneListViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/BuskingZoneListViewController.swift; sourceTree = "<group>"; };
-		BED7CA9A2147A0A900730650 /* MemberInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberInfoViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/MemberInfoViewController.swift; sourceTree = "<group>"; };
-		BED7CA9B2147A0A900730650 /* TimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeTableViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/TimeTableViewController.swift; sourceTree = "<group>"; };
-		BED7CA9C2147A0A900730650 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/HomeViewController.swift; sourceTree = "<group>"; };
-		BED7CA9D2147A0A900730650 /* BuskingZoneMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuskingZoneMapViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/BuskingZoneMapViewController.swift; sourceTree = "<group>"; };
-		BED7CA9E2147A0A900730650 /* selectBoroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = selectBoroughViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/selectBoroughViewController.swift; sourceTree = "<group>"; };
-		BED7CA9F2147A0AA00730650 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/SignUpViewController.swift; sourceTree = "<group>"; };
-		BED7CAA02147A0AA00730650 /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/RankingViewController.swift; sourceTree = "<group>"; };
-		BED7CAA12147A0AA00730650 /* SelectTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectTypeViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/ViewController/SelectTypeViewController.swift; sourceTree = "<group>"; };
-		BED7CAB32147A0CE00730650 /* DefaultPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultPopUpViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/PopUpViewController/DefaultPopUpViewController.swift; sourceTree = "<group>"; };
-		BED7CAB42147A0CE00730650 /* CalendarPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarPopUpViewController.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/PopUpViewController/CalendarPopUpViewController.swift; sourceTree = "<group>"; };
-		BED7CAB72147A0F400730650 /* MapSearchBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSearchBuskingZoneCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/MapSearchBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CAB82147A0F400730650 /* RankingSelect2CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingSelect2CollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/RankingSelect2CollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CAB92147A0F400730650 /* SelectBoroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectBoroughCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/SelectBoroughCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CABA2147A0F400730650 /* ReservationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservationCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/ReservationCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CABB2147A0F500730650 /* HomeCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCalendarCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/HomeCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CABC2147A0F500730650 /* RankingMemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingMemberCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/RankingMemberCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CABD2147A0F500730650 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CABE2147A0F500730650 /* BuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuskingZoneCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/BuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CABF2147A0F500730650 /* RankingSelect1CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingSelect1CollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/RankingSelect1CollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CAC02147A0F500730650 /* MapSearchBoroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSearchBoroughCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/MapSearchBoroughCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CAC12147A0F500730650 /* ReservationCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservationCategoryCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/ReservationCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CAC22147A0F500730650 /* SelectBuskingZoneCntCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectBuskingZoneCntCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/SelectBuskingZoneCntCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CAC32147A0F600730650 /* SelectBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectBuskingZoneCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/SelectBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CAC42147A0F600730650 /* selectCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = selectCategoryCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/selectCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CAC52147A0F600730650 /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/MemberCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CAC62147A0F600730650 /* TimeTableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeTableCollectionViewCell.swift; path = ../../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/CollectionViewCell/TimeTableCollectionViewCell.swift; sourceTree = "<group>"; };
-		BED7CAD72147A11000730650 /* APIservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIservice.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Service/APIservice.swift; sourceTree = "<group>"; };
-		BED7CAD82147A11000730650 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Server.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Service/Server.swift; sourceTree = "<group>"; };
-		BED7CADB2147A11C00730650 /* CurrentReservationListAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentReservationListAll.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/CurrentReservationListAll.swift; sourceTree = "<group>"; };
-		BED7CADC2147A11D00730650 /* CustomCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCalendar.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/CustomCalendar.swift; sourceTree = "<group>"; };
-		BED7CADD2147A11D00730650 /* BuskingZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuskingZone.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/BuskingZone.swift; sourceTree = "<group>"; };
-		BED7CADE2147A11D00730650 /* ReservationPossibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservationPossibility.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/ReservationPossibility.swift; sourceTree = "<group>"; };
-		BED7CADF2147A11D00730650 /* MemberRepresentativeBorough.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberRepresentativeBorough.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/MemberRepresentativeBorough.swift; sourceTree = "<group>"; };
-		BED7CAE02147A11D00730650 /* ToggleBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleBtn.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/ToggleBtn.swift; sourceTree = "<group>"; };
-		BED7CAE12147A11D00730650 /* Borough.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Borough.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/Borough.swift; sourceTree = "<group>"; };
-		BED7CAE22147A11D00730650 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Member.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/Member.swift; sourceTree = "<group>"; };
-		BED7CAE32147A11D00730650 /* Ranking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ranking.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/Ranking.swift; sourceTree = "<group>"; };
-		BED7CAE42147A11D00730650 /* MemberList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberList.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/MemberList.swift; sourceTree = "<group>"; };
-		BED7CAE52147A11D00730650 /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reservation.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/Reservation.swift; sourceTree = "<group>"; };
-		BED7CAE62147A11E00730650 /* BuskingZoneListAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuskingZoneListAll.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Model/BuskingZoneListAll.swift; sourceTree = "<group>"; };
-		BED7CAF32147A12900730650 /* CalendarVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarVars.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Function/CalendarVars.swift; sourceTree = "<group>"; };
-		BED7CAF42147A12900730650 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Function/Extension.swift; sourceTree = "<group>"; };
-		BED7CAF52147A12900730650 /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NMapViewResources.swift; path = ../../../Documents/git_project/Project_Busking/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Project_Seoul_Busking_iOS/Util/Function/NMapViewResources.swift; sourceTree = "<group>"; };
 		BED7CAF92147A85F00730650 /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
 		BED7CAFA2147A85F00730650 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		BED7CAFB2147A85F00730650 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
 		BED7CAFC2147A85F00730650 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
 		BED7CAFD2147A85F00730650 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
 		BED7CAFE2147A85F00730650 /* NotoSansCJKkr-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Black.otf"; sourceTree = "<group>"; };
+		BED7CB052147B00900730650 /* CalendarPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPopUpViewController.swift; sourceTree = "<group>"; };
+		BED7CB062147B00A00730650 /* DefaultPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPopUpViewController.swift; sourceTree = "<group>"; };
+		BED7CB092147B01900730650 /* SelectTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTypeViewController.swift; sourceTree = "<group>"; };
+		BED7CB0A2147B01A00730650 /* TimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
+		BED7CB0B2147B01C00730650 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BED7CB0C2147B01D00730650 /* MemberInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberInfoViewController.swift; sourceTree = "<group>"; };
+		BED7CB0D2147B01E00730650 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		BED7CB0E2147B01F00730650 /* MapSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
+		BED7CB0F2147B02000730650 /* NextSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextSegue.swift; sourceTree = "<group>"; };
+		BED7CB102147B02200730650 /* SearchMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMemberViewController.swift; sourceTree = "<group>"; };
+		BED7CB112147B02200730650 /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
+		BED7CB122147B02400730650 /* BuskingZoneMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuskingZoneMapViewController.swift; sourceTree = "<group>"; };
+		BED7CB132147B02400730650 /* ReservationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
+		BED7CB142147B02500730650 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		BED7CB152147B02600730650 /* selectBoroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectBoroughViewController.swift; sourceTree = "<group>"; };
+		BED7CB162147B02600730650 /* BuskingZoneListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuskingZoneListViewController.swift; sourceTree = "<group>"; };
+		BED7CB172147B02700730650 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		BED7CB182147B02700730650 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BED7CB192147B02800730650 /* BoroughListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoroughListViewController.swift; sourceTree = "<group>"; };
+		BED7CB2B2147B03B00730650 /* SelectBuskingZoneCntCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBuskingZoneCntCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB2C2147B03C00730650 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB2D2147B03C00730650 /* selectCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB2E2147B03D00730650 /* BuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB2F2147B03D00730650 /* RankingSelect1CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingSelect1CollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB302147B03E00730650 /* RankingMemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingMemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB312147B03F00730650 /* MapSearchBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB322147B03F00730650 /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB332147B04000730650 /* SelectBuskingZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBuskingZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB342147B04000730650 /* TimeTableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB352147B04100730650 /* MapSearchBoroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchBoroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB362147B04100730650 /* HomeCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB372147B04100730650 /* RankingSelect2CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingSelect2CollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB382147B04200730650 /* ReservationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB392147B04200730650 /* SelectBoroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBoroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB3A2147B04300730650 /* ReservationCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB4B2147B05300730650 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		BED7CB4C2147B05400730650 /* APIservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIservice.swift; sourceTree = "<group>"; };
+		BED7CB4F2147B06000730650 /* BuskingZoneListAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuskingZoneListAll.swift; sourceTree = "<group>"; };
+		BED7CB502147B06000730650 /* CurrentReservationListAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentReservationListAll.swift; sourceTree = "<group>"; };
+		BED7CB512147B06100730650 /* MemberList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberList.swift; sourceTree = "<group>"; };
+		BED7CB522147B06100730650 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		BED7CB532147B06100730650 /* BuskingZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuskingZone.swift; sourceTree = "<group>"; };
+		BED7CB542147B06200730650 /* CustomCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalendar.swift; sourceTree = "<group>"; };
+		BED7CB552147B06200730650 /* MemberRepresentativeBorough.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberRepresentativeBorough.swift; sourceTree = "<group>"; };
+		BED7CB562147B06300730650 /* Ranking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ranking.swift; sourceTree = "<group>"; };
+		BED7CB572147B06300730650 /* Borough.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Borough.swift; sourceTree = "<group>"; };
+		BED7CB582147B06400730650 /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		BED7CB592147B06400730650 /* ToggleBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleBtn.swift; sourceTree = "<group>"; };
+		BED7CB5A2147B06500730650 /* ReservationPossibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationPossibility.swift; sourceTree = "<group>"; };
+		BED7CB672147B07500730650 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		BED7CB682147B07500730650 /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
+		BED7CB692147B07500730650 /* CalendarVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVars.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,22 +242,22 @@
 		BED7CA8921479E7A00730650 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				BED7CABE2147A0F500730650 /* BuskingZoneCollectionViewCell.swift */,
-				BED7CABD2147A0F500730650 /* CalendarCollectionViewCell.swift */,
-				BED7CABB2147A0F500730650 /* HomeCalendarCollectionViewCell.swift */,
-				BED7CAC02147A0F500730650 /* MapSearchBoroughCollectionViewCell.swift */,
-				BED7CAB72147A0F400730650 /* MapSearchBuskingZoneCollectionViewCell.swift */,
-				BED7CAC52147A0F600730650 /* MemberCollectionViewCell.swift */,
-				BED7CABC2147A0F500730650 /* RankingMemberCollectionViewCell.swift */,
-				BED7CABF2147A0F500730650 /* RankingSelect1CollectionViewCell.swift */,
-				BED7CAB82147A0F400730650 /* RankingSelect2CollectionViewCell.swift */,
-				BED7CAC12147A0F500730650 /* ReservationCategoryCollectionViewCell.swift */,
-				BED7CABA2147A0F400730650 /* ReservationCollectionViewCell.swift */,
-				BED7CAB92147A0F400730650 /* SelectBoroughCollectionViewCell.swift */,
-				BED7CAC22147A0F500730650 /* SelectBuskingZoneCntCollectionViewCell.swift */,
-				BED7CAC32147A0F600730650 /* SelectBuskingZoneCollectionViewCell.swift */,
-				BED7CAC42147A0F600730650 /* selectCategoryCollectionViewCell.swift */,
-				BED7CAC62147A0F600730650 /* TimeTableCollectionViewCell.swift */,
+				BED7CB2E2147B03D00730650 /* BuskingZoneCollectionViewCell.swift */,
+				BED7CB2C2147B03C00730650 /* CalendarCollectionViewCell.swift */,
+				BED7CB362147B04100730650 /* HomeCalendarCollectionViewCell.swift */,
+				BED7CB352147B04100730650 /* MapSearchBoroughCollectionViewCell.swift */,
+				BED7CB312147B03F00730650 /* MapSearchBuskingZoneCollectionViewCell.swift */,
+				BED7CB322147B03F00730650 /* MemberCollectionViewCell.swift */,
+				BED7CB302147B03E00730650 /* RankingMemberCollectionViewCell.swift */,
+				BED7CB2F2147B03D00730650 /* RankingSelect1CollectionViewCell.swift */,
+				BED7CB372147B04100730650 /* RankingSelect2CollectionViewCell.swift */,
+				BED7CB3A2147B04300730650 /* ReservationCategoryCollectionViewCell.swift */,
+				BED7CB382147B04200730650 /* ReservationCollectionViewCell.swift */,
+				BED7CB392147B04200730650 /* SelectBoroughCollectionViewCell.swift */,
+				BED7CB2B2147B03B00730650 /* SelectBuskingZoneCntCollectionViewCell.swift */,
+				BED7CB332147B04000730650 /* SelectBuskingZoneCollectionViewCell.swift */,
+				BED7CB2D2147B03C00730650 /* selectCategoryCollectionViewCell.swift */,
+				BED7CB342147B04000730650 /* TimeTableCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -267,24 +265,23 @@
 		BED7CA8A21479E8600730650 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				BED7CA922147A0A800730650 /* BoroughListViewController.swift */,
-				BED7CA992147A0A900730650 /* BuskingZoneListViewController.swift */,
-				BED7CA9D2147A0A900730650 /* BuskingZoneMapViewController.swift */,
-				BED7CA982147A0A900730650 /* CategoryViewController.swift */,
-				BED7CA9C2147A0A900730650 /* HomeViewController.swift */,
-				BED7CA912147A0A800730650 /* MapSearchViewController.swift */,
-				BED7CA942147A0A800730650 /* MapViewController.swift */,
-				BED7CA9A2147A0A900730650 /* MemberInfoViewController.swift */,
-				BED7CA962147A0A900730650 /* NextSegue.swift */,
-				BED7CAA02147A0AA00730650 /* RankingViewController.swift */,
-				BED7CA932147A0A800730650 /* ReservationViewController.swift */,
-				BED7CA972147A0A900730650 /* SearchMemberViewController.swift */,
-				BED7CA9E2147A0A900730650 /* selectBoroughViewController.swift */,
-				BED7CAA12147A0AA00730650 /* SelectTypeViewController.swift */,
-				BED7CA952147A0A800730650 /* SignInViewController.swift */,
-				BED7CA9F2147A0AA00730650 /* SignUpViewController.swift */,
-				BED7CA9B2147A0A900730650 /* TimeTableViewController.swift */,
-				BED7CA6F21479C0000730650 /* ViewController.swift */,
+				BED7CB192147B02800730650 /* BoroughListViewController.swift */,
+				BED7CB162147B02600730650 /* BuskingZoneListViewController.swift */,
+				BED7CB122147B02400730650 /* BuskingZoneMapViewController.swift */,
+				BED7CB0D2147B01E00730650 /* CategoryViewController.swift */,
+				BED7CB0B2147B01C00730650 /* HomeViewController.swift */,
+				BED7CB0E2147B01F00730650 /* MapSearchViewController.swift */,
+				BED7CB172147B02700730650 /* MapViewController.swift */,
+				BED7CB0C2147B01D00730650 /* MemberInfoViewController.swift */,
+				BED7CB112147B02200730650 /* RankingViewController.swift */,
+				BED7CB132147B02400730650 /* ReservationViewController.swift */,
+				BED7CB102147B02200730650 /* SearchMemberViewController.swift */,
+				BED7CB152147B02600730650 /* selectBoroughViewController.swift */,
+				BED7CB092147B01900730650 /* SelectTypeViewController.swift */,
+				BED7CB142147B02500730650 /* SignInViewController.swift */,
+				BED7CB182147B02700730650 /* SignUpViewController.swift */,
+				BED7CB0A2147B01A00730650 /* TimeTableViewController.swift */,
+				BED7CB0F2147B02000730650 /* NextSegue.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -292,8 +289,8 @@
 		BED7CA8B21479E8D00730650 /* PopUpViewController */ = {
 			isa = PBXGroup;
 			children = (
-				BED7CAB42147A0CE00730650 /* CalendarPopUpViewController.swift */,
-				BED7CAB32147A0CE00730650 /* DefaultPopUpViewController.swift */,
+				BED7CB052147B00900730650 /* CalendarPopUpViewController.swift */,
+				BED7CB062147B00A00730650 /* DefaultPopUpViewController.swift */,
 			);
 			path = PopUpViewController;
 			sourceTree = "<group>";
@@ -310,9 +307,9 @@
 		BED7CA8D21479EF300730650 /* Function */ = {
 			isa = PBXGroup;
 			children = (
-				BED7CAF32147A12900730650 /* CalendarVars.swift */,
-				BED7CAF42147A12900730650 /* Extension.swift */,
-				BED7CAF52147A12900730650 /* NMapViewResources.swift */,
+				BED7CB692147B07500730650 /* CalendarVars.swift */,
+				BED7CB672147B07500730650 /* Extension.swift */,
+				BED7CB682147B07500730650 /* NMapViewResources.swift */,
 			);
 			name = Function;
 			sourceTree = "<group>";
@@ -320,18 +317,18 @@
 		BED7CA8E21479EF900730650 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BED7CAE12147A11D00730650 /* Borough.swift */,
-				BED7CADD2147A11D00730650 /* BuskingZone.swift */,
-				BED7CAE62147A11E00730650 /* BuskingZoneListAll.swift */,
-				BED7CADB2147A11C00730650 /* CurrentReservationListAll.swift */,
-				BED7CADC2147A11D00730650 /* CustomCalendar.swift */,
-				BED7CAE22147A11D00730650 /* Member.swift */,
-				BED7CAE42147A11D00730650 /* MemberList.swift */,
-				BED7CADF2147A11D00730650 /* MemberRepresentativeBorough.swift */,
-				BED7CAE32147A11D00730650 /* Ranking.swift */,
-				BED7CAE52147A11D00730650 /* Reservation.swift */,
-				BED7CADE2147A11D00730650 /* ReservationPossibility.swift */,
-				BED7CAE02147A11D00730650 /* ToggleBtn.swift */,
+				BED7CB572147B06300730650 /* Borough.swift */,
+				BED7CB532147B06100730650 /* BuskingZone.swift */,
+				BED7CB4F2147B06000730650 /* BuskingZoneListAll.swift */,
+				BED7CB502147B06000730650 /* CurrentReservationListAll.swift */,
+				BED7CB542147B06200730650 /* CustomCalendar.swift */,
+				BED7CB522147B06100730650 /* Member.swift */,
+				BED7CB512147B06100730650 /* MemberList.swift */,
+				BED7CB552147B06200730650 /* MemberRepresentativeBorough.swift */,
+				BED7CB562147B06300730650 /* Ranking.swift */,
+				BED7CB582147B06400730650 /* Reservation.swift */,
+				BED7CB5A2147B06500730650 /* ReservationPossibility.swift */,
+				BED7CB592147B06400730650 /* ToggleBtn.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -339,8 +336,8 @@
 		BED7CA8F21479F0000730650 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				BED7CAD72147A11000730650 /* APIservice.swift */,
-				BED7CAD82147A11000730650 /* Server.swift */,
+				BED7CB4C2147B05400730650 /* APIservice.swift */,
+				BED7CB4B2147B05300730650 /* Server.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -506,60 +503,59 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BED7CAF72147A12900730650 /* Extension.swift in Sources */,
-				BED7CAAB2147A0AA00730650 /* MemberInfoViewController.swift in Sources */,
-				BED7CAEE2147A11E00730650 /* Member.swift in Sources */,
-				BED7CAAC2147A0AA00730650 /* TimeTableViewController.swift in Sources */,
-				BED7CAA92147A0AA00730650 /* CategoryViewController.swift in Sources */,
-				BED7CACB2147A0F600730650 /* HomeCalendarCollectionViewCell.swift in Sources */,
-				BED7CAD32147A0F600730650 /* SelectBuskingZoneCollectionViewCell.swift in Sources */,
-				BED7CAD62147A0F600730650 /* TimeTableCollectionViewCell.swift in Sources */,
-				BED7CAAF2147A0AA00730650 /* selectBoroughViewController.swift in Sources */,
-				BED7CACE2147A0F600730650 /* BuskingZoneCollectionViewCell.swift in Sources */,
-				BED7CAA62147A0AA00730650 /* SignInViewController.swift in Sources */,
-				BED7CAEB2147A11E00730650 /* MemberRepresentativeBorough.swift in Sources */,
-				BED7CAC92147A0F600730650 /* SelectBoroughCollectionViewCell.swift in Sources */,
-				BED7CAF02147A11E00730650 /* MemberList.swift in Sources */,
-				BED7CAC82147A0F600730650 /* RankingSelect2CollectionViewCell.swift in Sources */,
-				BED7CAE92147A11E00730650 /* BuskingZone.swift in Sources */,
-				BED7CACD2147A0F600730650 /* CalendarCollectionViewCell.swift in Sources */,
-				BED7CAD22147A0F600730650 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */,
-				BED7CAB02147A0AA00730650 /* SignUpViewController.swift in Sources */,
-				BED7CACC2147A0F600730650 /* RankingMemberCollectionViewCell.swift in Sources */,
-				BED7CAA42147A0AA00730650 /* ReservationViewController.swift in Sources */,
-				BED7CAAD2147A0AA00730650 /* HomeViewController.swift in Sources */,
-				BED7CAEC2147A11E00730650 /* ToggleBtn.swift in Sources */,
-				BED7CAF12147A11E00730650 /* Reservation.swift in Sources */,
-				BED7CAA72147A0AA00730650 /* NextSegue.swift in Sources */,
-				BED7CAA52147A0AA00730650 /* MapViewController.swift in Sources */,
-				BED7CAB52147A0CE00730650 /* DefaultPopUpViewController.swift in Sources */,
-				BED7CAEA2147A11E00730650 /* ReservationPossibility.swift in Sources */,
-				BED7CA7021479C0000730650 /* ViewController.swift in Sources */,
-				BED7CAA22147A0AA00730650 /* MapSearchViewController.swift in Sources */,
-				BED7CAC72147A0F600730650 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */,
-				BED7CAB62147A0CE00730650 /* CalendarPopUpViewController.swift in Sources */,
-				BED7CAED2147A11E00730650 /* Borough.swift in Sources */,
-				BED7CACA2147A0F600730650 /* ReservationCollectionViewCell.swift in Sources */,
-				BED7CAD52147A0F600730650 /* MemberCollectionViewCell.swift in Sources */,
-				BED7CAAA2147A0AA00730650 /* BuskingZoneListViewController.swift in Sources */,
-				BED7CAF62147A12900730650 /* CalendarVars.swift in Sources */,
-				BED7CAA82147A0AA00730650 /* SearchMemberViewController.swift in Sources */,
-				BED7CAEF2147A11E00730650 /* Ranking.swift in Sources */,
-				BED7CAE72147A11E00730650 /* CurrentReservationListAll.swift in Sources */,
-				BED7CAAE2147A0AA00730650 /* BuskingZoneMapViewController.swift in Sources */,
+				BED7CB462147B04300730650 /* HomeCalendarCollectionViewCell.swift in Sources */,
+				BED7CB272147B02800730650 /* BuskingZoneListViewController.swift in Sources */,
+				BED7CB212147B02800730650 /* SearchMemberViewController.swift in Sources */,
+				BED7CB292147B02800730650 /* SignUpViewController.swift in Sources */,
+				BED7CB6B2147B07500730650 /* NMapViewResources.swift in Sources */,
+				BED7CB652147B06500730650 /* ToggleBtn.swift in Sources */,
+				BED7CB4A2147B04300730650 /* ReservationCategoryCollectionViewCell.swift in Sources */,
+				BED7CB2A2147B02800730650 /* BoroughListViewController.swift in Sources */,
+				BED7CB1C2147B02800730650 /* HomeViewController.swift in Sources */,
+				BED7CB242147B02800730650 /* ReservationViewController.swift in Sources */,
+				BED7CB482147B04300730650 /* ReservationCollectionViewCell.swift in Sources */,
+				BED7CB262147B02800730650 /* selectBoroughViewController.swift in Sources */,
+				BED7CB282147B02800730650 /* MapViewController.swift in Sources */,
+				BED7CB1B2147B02800730650 /* TimeTableViewController.swift in Sources */,
+				BED7CB4D2147B05400730650 /* Server.swift in Sources */,
+				BED7CB402147B04300730650 /* RankingMemberCollectionViewCell.swift in Sources */,
+				BED7CB632147B06500730650 /* Borough.swift in Sources */,
+				BED7CB602147B06500730650 /* CustomCalendar.swift in Sources */,
+				BED7CB612147B06500730650 /* MemberRepresentativeBorough.swift in Sources */,
+				BED7CB442147B04300730650 /* TimeTableCollectionViewCell.swift in Sources */,
+				BED7CB222147B02800730650 /* RankingViewController.swift in Sources */,
+				BED7CB3B2147B04300730650 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */,
+				BED7CB472147B04300730650 /* RankingSelect2CollectionViewCell.swift in Sources */,
+				BED7CB3E2147B04300730650 /* BuskingZoneCollectionViewCell.swift in Sources */,
+				BED7CB5F2147B06500730650 /* BuskingZone.swift in Sources */,
+				BED7CB5D2147B06500730650 /* MemberList.swift in Sources */,
+				BED7CB1D2147B02800730650 /* MemberInfoViewController.swift in Sources */,
+				BED7CB642147B06500730650 /* Reservation.swift in Sources */,
+				BED7CB082147B00A00730650 /* DefaultPopUpViewController.swift in Sources */,
+				BED7CB3D2147B04300730650 /* selectCategoryCollectionViewCell.swift in Sources */,
+				BED7CB5B2147B06500730650 /* BuskingZoneListAll.swift in Sources */,
+				BED7CB622147B06500730650 /* Ranking.swift in Sources */,
+				BED7CB6C2147B07500730650 /* CalendarVars.swift in Sources */,
 				BED7CA6E21479C0000730650 /* AppDelegate.swift in Sources */,
-				BED7CAD42147A0F600730650 /* selectCategoryCollectionViewCell.swift in Sources */,
-				BED7CAF22147A11E00730650 /* BuskingZoneListAll.swift in Sources */,
-				BED7CAA32147A0AA00730650 /* BoroughListViewController.swift in Sources */,
-				BED7CACF2147A0F600730650 /* RankingSelect1CollectionViewCell.swift in Sources */,
-				BED7CAF82147A12900730650 /* NMapViewResources.swift in Sources */,
-				BED7CAB22147A0AA00730650 /* SelectTypeViewController.swift in Sources */,
-				BED7CAD12147A0F600730650 /* ReservationCategoryCollectionViewCell.swift in Sources */,
-				BED7CAB12147A0AA00730650 /* RankingViewController.swift in Sources */,
-				BED7CAD92147A11000730650 /* APIservice.swift in Sources */,
-				BED7CAE82147A11E00730650 /* CustomCalendar.swift in Sources */,
-				BED7CADA2147A11000730650 /* Server.swift in Sources */,
-				BED7CAD02147A0F600730650 /* MapSearchBoroughCollectionViewCell.swift in Sources */,
+				BED7CB202147B02800730650 /* NextSegue.swift in Sources */,
+				BED7CB452147B04300730650 /* MapSearchBoroughCollectionViewCell.swift in Sources */,
+				BED7CB6A2147B07500730650 /* Extension.swift in Sources */,
+				BED7CB1A2147B02800730650 /* SelectTypeViewController.swift in Sources */,
+				BED7CB3F2147B04300730650 /* RankingSelect1CollectionViewCell.swift in Sources */,
+				BED7CB5C2147B06500730650 /* CurrentReservationListAll.swift in Sources */,
+				BED7CB412147B04300730650 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */,
+				BED7CB5E2147B06500730650 /* Member.swift in Sources */,
+				BED7CB4E2147B05400730650 /* APIservice.swift in Sources */,
+				BED7CB1F2147B02800730650 /* MapSearchViewController.swift in Sources */,
+				BED7CB1E2147B02800730650 /* CategoryViewController.swift in Sources */,
+				BED7CB492147B04300730650 /* SelectBoroughCollectionViewCell.swift in Sources */,
+				BED7CB3C2147B04300730650 /* CalendarCollectionViewCell.swift in Sources */,
+				BED7CB072147B00A00730650 /* CalendarPopUpViewController.swift in Sources */,
+				BED7CB432147B04300730650 /* SelectBuskingZoneCollectionViewCell.swift in Sources */,
+				BED7CB662147B06500730650 /* ReservationPossibility.swift in Sources */,
+				BED7CB422147B04300730650 /* MemberCollectionViewCell.swift in Sources */,
+				BED7CB252147B02800730650 /* SignInViewController.swift in Sources */,
+				BED7CB232147B02800730650 /* BuskingZoneMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
