@@ -72,6 +72,7 @@
 		BED7CB6A2147B07500730650 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB672147B07500730650 /* Extension.swift */; };
 		BED7CB6B2147B07500730650 /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB682147B07500730650 /* NMapViewResources.swift */; };
 		BED7CB6C2147B07500730650 /* CalendarVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB692147B07500730650 /* CalendarVars.swift */; };
+		BED7CB6E2147C2C300730650 /* MemberInfoBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB6D2147C2C300730650 /* MemberInfoBasic.swift */; };
 		D9FAB110D7EF4C3CB6BD12B9 /* Pods_Seoul_Busking_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1D4F28A6473D3C14F20FAC /* Pods_Seoul_Busking_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +161,7 @@
 		BED7CB672147B07500730650 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		BED7CB682147B07500730650 /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
 		BED7CB692147B07500730650 /* CalendarVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVars.swift; sourceTree = "<group>"; };
+		BED7CB6D2147C2C300730650 /* MemberInfoBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoBasic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,21 +267,21 @@
 		BED7CA8A21479E8600730650 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BED7CB142147B02500730650 /* SignInViewController.swift */,
+				BED7CB182147B02700730650 /* SignUpViewController.swift */,
 				BED7CB192147B02800730650 /* BoroughListViewController.swift */,
 				BED7CB162147B02600730650 /* BuskingZoneListViewController.swift */,
 				BED7CB122147B02400730650 /* BuskingZoneMapViewController.swift */,
 				BED7CB0D2147B01E00730650 /* CategoryViewController.swift */,
-				BED7CB0B2147B01C00730650 /* HomeViewController.swift */,
 				BED7CB0E2147B01F00730650 /* MapSearchViewController.swift */,
 				BED7CB172147B02700730650 /* MapViewController.swift */,
+				BED7CB152147B02600730650 /* selectBoroughViewController.swift */,
+				BED7CB0B2147B01C00730650 /* HomeViewController.swift */,
 				BED7CB0C2147B01D00730650 /* MemberInfoViewController.swift */,
 				BED7CB112147B02200730650 /* RankingViewController.swift */,
 				BED7CB132147B02400730650 /* ReservationViewController.swift */,
 				BED7CB102147B02200730650 /* SearchMemberViewController.swift */,
-				BED7CB152147B02600730650 /* selectBoroughViewController.swift */,
 				BED7CB092147B01900730650 /* SelectTypeViewController.swift */,
-				BED7CB142147B02500730650 /* SignInViewController.swift */,
-				BED7CB182147B02700730650 /* SignUpViewController.swift */,
 				BED7CB0A2147B01A00730650 /* TimeTableViewController.swift */,
 				BED7CB0F2147B02000730650 /* NextSegue.swift */,
 			);
@@ -323,6 +325,7 @@
 				BED7CB502147B06000730650 /* CurrentReservationListAll.swift */,
 				BED7CB542147B06200730650 /* CustomCalendar.swift */,
 				BED7CB522147B06100730650 /* Member.swift */,
+				BED7CB6D2147C2C300730650 /* MemberInfoBasic.swift */,
 				BED7CB512147B06100730650 /* MemberList.swift */,
 				BED7CB552147B06200730650 /* MemberRepresentativeBorough.swift */,
 				BED7CB562147B06300730650 /* Ranking.swift */,
@@ -523,6 +526,7 @@
 				BED7CB602147B06500730650 /* CustomCalendar.swift in Sources */,
 				BED7CB612147B06500730650 /* MemberRepresentativeBorough.swift in Sources */,
 				BED7CB442147B04300730650 /* TimeTableCollectionViewCell.swift in Sources */,
+				BED7CB6E2147C2C300730650 /* MemberInfoBasic.swift in Sources */,
 				BED7CB222147B02800730650 /* RankingViewController.swift in Sources */,
 				BED7CB3B2147B04300730650 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */,
 				BED7CB472147B04300730650 /* RankingSelect2CollectionViewCell.swift in Sources */,

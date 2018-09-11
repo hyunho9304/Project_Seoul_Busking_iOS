@@ -614,7 +614,7 @@ struct Server : APIService {
         }
     }
 
-    //  팔로잉하는지 확인( 200 => 1.  401 => 0 )
+    //  팔로잉하는지 확인( 201 => 1.  401 => 0 )
     static func reqIsFollowing( member_follow_nickname : String , member_following_nickname : String , completion : @escaping ( _ status : Int ) -> Void ) {
         
         let URL = url( "/collection/isFollowing" )
@@ -715,6 +715,51 @@ struct Server : APIService {
                         else{
                             
                             completion( memberListData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+    
+    //  회원 기본 정보 가져오기
+    static func reqMemberInfoBasic( member_nickname : String , completion : @escaping ( MemberInfoBasic , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/info/basic" )
+        
+        let body: [String: Any] = [
+            "member_nickname" : member_nickname
+        ]
+        
+        Alamofire.request(URL, method: .post, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let memberInfoBasicData = try decoder.decode( MemberInfoBasicData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
+                            
+                            completion( memberInfoBasicData.data! , 201 )
+                            
+                        }
+                        else{
+                            
+                            completion( memberInfoBasicData.data! , 500 )
                         }
                         
                     } catch {
