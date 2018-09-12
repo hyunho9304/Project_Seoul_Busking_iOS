@@ -466,7 +466,17 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        //  프로필 연결
+        guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
+        
+        memberInfoVC.memberInfo = self.memberInfo
+        
+        if( self.isFiltering == true ) {
+            memberInfoVC.selectMemberNickname = filteredMemberList[ indexPath.row ].member_nickname
+        } else {
+            memberInfoVC.selectMemberNickname = memberList[ indexPath.row ].member_nickname
+        }
+        
+        self.present( memberInfoVC , animated: false , completion: nil )
         
     }
     

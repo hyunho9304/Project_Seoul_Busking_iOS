@@ -518,7 +518,12 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             
         } else {
             
-            //
+            guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
+            
+            memberInfoVC.memberInfo = self.memberInfo
+            memberInfoVC.selectMemberNickname = rankingList[ indexPath.row ].member_nickname
+            
+            self.present( memberInfoVC , animated: false , completion: nil )
         }
         
     }

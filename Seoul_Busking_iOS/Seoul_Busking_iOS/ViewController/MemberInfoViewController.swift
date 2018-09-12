@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemberInfoViewController: UIViewController  {
+class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
 
     //  넘어온 정보
     var memberInfo : Member?
@@ -19,7 +19,7 @@ class MemberInfoViewController: UIViewController  {
     @IBOutlet weak var memberInfoRightBtn: UIButton!
     
     //  내용
-    var memberInfoBasic : MemberInfoBasic?  //  멤버 기본 정보
+    var memberInfoBasic : MemberInfoBasic?  //  멤버 기본 정보 서버
     @IBOutlet weak var memberProfileImageView: UIImageView!
     @IBOutlet weak var memberSetBtn: UIButton!
     @IBOutlet weak var memberNicknameLabel: UILabel!
@@ -39,12 +39,14 @@ class MemberInfoViewController: UIViewController  {
     @IBOutlet weak var animationUIView: UIView!
     
     //  공연 신청 현황
+    var memberInfoReservation : [ MemberReservation ] = [ MemberReservation ]()  //  멤버 공연 신청 현황 서버
     @IBOutlet weak var reservationInfoBtn: UIButton!
     @IBOutlet weak var reservationUIView: UIView!
     @IBOutlet weak var reservationCollectionView: UICollectionView!
     @IBOutlet weak var reservationNothingLabel: UILabel!
     
     //  팔로잉 일정
+    var memberInfoFollowingReservation : [ MemberFollowingReservation ] = [ MemberFollowingReservation ]()  //  멤버 팔로잉 멤버들의 공연 신청 현황 서버
     @IBOutlet weak var followingScheduleBtn: UIButton!
     @IBOutlet weak var followingScheduleUIView: UIView!
     @IBOutlet weak var followingScheduleCollectionView: UICollectionView!
@@ -58,6 +60,11 @@ class MemberInfoViewController: UIViewController  {
     @IBOutlet weak var reviewNothingLabel: UILabel!
     
     
+    var year = calendar.component(.year, from: date)
+    var month = calendar.component(.month, from: date)
+    let day = calendar.component(.day, from: date)
+    let hour = calendar.component(.hour, from: date)
+    var todayDateTime : Int?    //  선택한년월일 ex ) 2018815
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -73,6 +80,7 @@ class MemberInfoViewController: UIViewController  {
 
         set()
         setTarget()
+        setDelegate()
         setTapbarAnimation()
     }
     
@@ -122,7 +130,7 @@ class MemberInfoViewController: UIViewController  {
         //  그림자의 블러는 5 정도 이다
         
         //  자신프로필
-        if( self.selectMemberNickname == nil ) {
+        if( self.selectMemberNickname == nil || self.selectMemberNickname == self.memberInfo?.member_nickname ) {
             
             self.selectMemberNickname = self.memberInfo?.member_nickname
             self.memberInfoRightBtn.setImage(#imageLiteral(resourceName: "setting"), for: .normal)
@@ -139,15 +147,31 @@ class MemberInfoViewController: UIViewController  {
             animationUIView.frame = CGRect(x: 22 , y: 428, width: 121.67 , height: 3 )
         }
 
+        let yearString : String = String(year)
+        var monthString : String = String( month )
+        var dayString : String = String( day )
+        
+        
+        if( monthString.count == 1 ) {
+            monthString.insert("0", at: monthString.startIndex )
+        }
+        if( dayString.count == 1 ) {
+            dayString.insert("0", at: dayString.startIndex )
+        }
+        
+        let tmpDate : String = yearString + monthString + dayString
+        todayDateTime = Int( tmpDate )
+
     }
     
-//    func setDelegate() {
-//
-//
-//
-//        followingScheduleCollectionView.delegate = self
-//        followingScheduleCollectionView.dataSource = self
-//    }
+    func setDelegate() {
+
+        reservationCollectionView.delegate = self
+        reservationCollectionView.dataSource = self
+
+        followingScheduleCollectionView.delegate = self
+        followingScheduleCollectionView.dataSource = self
+    }
     
     func setTarget() {
         
@@ -319,11 +343,13 @@ class MemberInfoViewController: UIViewController  {
                     
                     //  버스커 사진 서버 연동
                     
+                    self.getMemberInfoReservation()
+                    
                     self.reservationInfoBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
                     self.reservationUIView.isHidden = false
                 }
                 
-                //  팔로일 일정 서버 연동
+                self.getMemberInfoFollowingReservation()
                 
             } else {
                 
@@ -352,6 +378,60 @@ class MemberInfoViewController: UIViewController  {
                 self.present(alert , animated: true , completion: nil)
             }
         }
+    }
+    
+    //  공연 신청 현황 가져오기
+    func getMemberInfoReservation() {
+        
+        Server.reqMemberInfoReservation(member_nickname: (self.memberInfoBasic?.member_nickname)! , r_date: self.todayDateTime! ) { ( memberReservationData , rescode ) in
+            
+            if( rescode == 201 ) {
+                
+                self.memberInfoReservation = memberReservationData
+                self.reservationCollectionView.reloadData()
+                
+                if( self.memberInfoReservation.count != 0 ) {
+                    self.reservationNothingLabel.text = "예약된 공연 일정이 없습니다"
+                    self.reservationNothingLabel.isHidden = true
+                } else {
+                    self.reservationNothingLabel.isHidden = false
+                }
+                
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
+    }
+    
+    //  팔로잉 멤버들의 공연 일정 가져오기
+    func getMemberInfoFollowingReservation() {
+        
+        Server.reqMemberInfoFollowingReservation(member_nickname: (self.memberInfoBasic?.member_nickname)!, r_date: self.todayDateTime!) { ( memberFollowingReservationData , rescode ) in
+            
+            if( rescode == 201 ) {
+                
+                self.memberInfoFollowingReservation = memberFollowingReservationData
+                self.followingScheduleCollectionView.reloadData()
+                
+                if( self.memberInfoFollowingReservation.count != 0 ) {
+                    self.followingNothingLabel.text = "예약된 공연 일정이 없습니다"
+                    self.followingNothingLabel.isHidden = true
+                } else {
+                    self.followingNothingLabel.isHidden = false
+                }
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
+        
     }
     
     //  메뉴 디폴트 설정
@@ -385,190 +465,125 @@ class MemberInfoViewController: UIViewController  {
         
     }
     
-////  Mark -> delegate
-//
-//    //  cell 의 개수
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//
-//        if( collectionView == reservationCollectionView ) {
-//            return 0
-//        } else if( collectionView == followingScheduleCollectionView ) {
-//            return 0
-//        } else {
-//            return 0
-//        }
-//    }
-//
-//    //  cell 의 내용
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//        if( collectionView == homeCalendarCollectionView ) {
-//
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCalendarCollectionViewCell", for: indexPath ) as! HomeCalendarCollectionViewCell
-//
-//            cell.calendarDayLabel.text = calendar?.twoWeeksDay![ indexPath.row ]
-//            cell.calendarDateLabel.text = calendar?.twoWeeksDate![ indexPath.row ]
-//
-//            if indexPath == calendarSelectedIndex {
-//
-//                cell.calendarDayLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
-//                cell.calendarDateLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                cell.calendarCircleImageView.isHidden = false
-//
-//                var tmpMonth : String = (self.calendar?.twoWeeksMonth![ indexPath.row ])!
-//                if( tmpMonth.count == 1 ) {
-//                    tmpMonth.insert("0", at: tmpMonth.startIndex )
-//                }
-//                var tmpDay : String = (self.calendar?.twoWeeksDate![ indexPath.row ])!
-//                if( tmpDay.count == 1 ) {
-//                    tmpDay.insert("0", at: tmpDay.startIndex )
-//                }
-//
-//                self.selectYear = self.calendar?.twoWeeksYear![ indexPath.row ]
-//                self.selectMonth = tmpMonth
-//                self.selectDate = tmpDay
-//                self.selectDay = self.calendar?.twoWeeksDay![ indexPath.row ]
-//
-//                let tmpDateTime : String = gsno( selectYear ) + gsno( selectMonth ) + gsno( selectDate )
-//                self.selectDateTime = Int( tmpDateTime )
-//
-//                getReservationList()
-//
-//            } else if ( cell.calendarDayLabel.text == "일" ) {
-//
-//                cell.calendarDayLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
-//                cell.calendarDateLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
-//                cell.calendarCircleImageView.isHidden = true
-//
-//            } else {
-//
-//                cell.calendarDayLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                cell.calendarDateLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                cell.calendarCircleImageView.isHidden = true
-//            }
-//
-//            return cell
-//
-//        } else if( collectionView == homeBuskingZoneCollectionView ) {
-//
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BuskingZoneCollectionViewCell", for: indexPath ) as! BuskingZoneCollectionViewCell
-//
-//            cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
-//            cell.buskingZoneImageView.layer.cornerRadius = cell.buskingZoneImageView.layer.frame.width/2
-//            cell.buskingZoneImageView.clipsToBounds = true
-//
-//            cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
-//
-//            if indexPath == busingZoneSelectedIndex {
-//
-//
-//                cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
-//                cell.buskingZoneNameLabel.font = UIFont(name:"NotoSansCJKkr-Bold", size: 12.0)
-//                self.selectZoneIndex = self.buskingZoneList[ indexPath.row ].sbz_id
-//
-//                cell.buskingZoneImageView.layer.borderColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
-//                cell.buskingZoneImageView.layer.borderWidth = 3
-//
-//                getReservationList()
-//
-//            } else {
-//
-//                cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                cell.buskingZoneNameLabel.font = UIFont(name:"NotoSansCJKkr-Regular", size: 12.0)
-//                cell.buskingZoneImageView.layer.borderWidth = 0
-//            }
-//
-//            return cell
-//
-//        } else {
-//
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCollectionViewCell", for: indexPath ) as! ReservationCollectionViewCell
-//
-//            let borderColor = #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
-//            let borderOpacity : CGFloat = 0.3
-//            cell.reservationUIView.layer.borderColor = borderColor.withAlphaComponent(borderOpacity).cgColor
-//            cell.reservationUIView.layer.borderWidth = 1
-//
-//            cell.reservationUIView.layer.cornerRadius = 6    //  둥근정도
-//            cell.reservationUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
-//            cell.reservationUIView.layer.shadowColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)             //  그림자 색
-//            cell.reservationUIView.layer.shadowOpacity = 0.5                          //  그림자 투명도
-//            cell.reservationUIView.layer.shadowOffset = CGSize(width: 0 , height: 0 )    //  그림자 x y
-//            cell.reservationUIView.layer.shadowRadius = 4
-//
-//            //var tmpStartTime = gino( reservationList[ indexPath.row ].r_startTime )
-//
-//            cell.reservationTimeLabel.text = "\(String(describing: reservationList[ indexPath.row ].r_startTime)) : 00 - \(String(describing: reservationList[ indexPath.row ].r_endTime)) : 00"
-//
-//            cell.reservationTimeLabel.text = "\(gino( reservationList[ indexPath.row ].r_startTime )) : 00 - \(gino( reservationList[ indexPath.row ].r_endTime )) : 00"
-//
-//            if( reservationList[ indexPath.row ].member_profile != nil ) {
-//
-//                cell.reservationProfileImage.kf.setImage( with: URL( string:gsno(reservationList[ indexPath.row ].member_profile ) ) )
-//                cell.reservationProfileImage.layer.cornerRadius = cell.reservationProfileImage.layer.frame.width/2
-//                cell.reservationProfileImage.clipsToBounds = true
-//
-//            } else {
-//
-//                cell.reservationProfileImage.image = #imageLiteral(resourceName: "defaultProfile.png")
-//            }
-//
-//            cell.reservationNickname.text = reservationList[ indexPath.row ].member_nickname
-//
-//            cell.reservationCategory.layer.cornerRadius = 10
-//            cell.reservationCategory.clipsToBounds = true
-//            cell.reservationCategory.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
-//            cell.reservationCategory.text = "# \(gsno( reservationList[ indexPath.row ].r_category))"
-//
-//            return cell
-//        }
-//    }
-//
-//    //  cell 선택 했을 때
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//        if( collectionView == homeCalendarCollectionView ) {
-//
-//            calendarSelectedIndex = indexPath
-//            collectionView.reloadData()
-//
-//        } else if( collectionView == homeBuskingZoneCollectionView ) {
-//
-//            busingZoneSelectedIndex = indexPath
-//            collectionView.reloadData()
-//
-//        } else {
-//
-//            //  개인 프로필로 이동
-//
-//        }
-//    }
-//
-//    //  cell 크기 비율
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        if( collectionView == homeCalendarCollectionView ) {
-//            return CGSize(width: 56 * self.view.frame.width/375 , height: 70 * self.view.frame.height/667 )
-//        }
-//        else if( collectionView == homeBuskingZoneCollectionView ) {
-//            return CGSize(width: 105 * self.view.frame.width/375 , height: 125 * self.view.frame.height/667 )
-//        } else {
-//            return CGSize(width: 340 * self.view.frame.width/375 , height: 70 * self.view.frame.height/667 )
-//        }
-//    }
-//
-//    //  cell 간 가로 간격 ( horizental 이라서 가로를 사용해야 한다 )
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//
-//        if( collectionView == homeCalendarCollectionView ) {
-//            return 0
-//        } else if( collectionView == homeBuskingZoneCollectionView ) {
-//            return 0
-//        } else {
-//            return 3
-//        }
-//    }
+//  Mark -> delegate
+
+    //  cell 의 개수
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        if( collectionView == reservationCollectionView ) {
+            
+            if( memberInfoReservation.count >= 3 ) {
+                return 3
+            } else {
+                return memberInfoReservation.count
+            }
+        } else if( collectionView == followingScheduleCollectionView ) {
+            if( memberInfoFollowingReservation.count >= 3 ) {
+                return 3
+            } else {
+                return memberInfoFollowingReservation.count
+            }
+        } else {
+            return 0
+        }
+    }
+
+    //  cell 의 내용
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if( collectionView == reservationCollectionView ) {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyReservationCollectionViewCell", for: indexPath ) as! MyReservationCollectionViewCell
+            
+            let tmpDate = String( memberInfoReservation[ indexPath.row ].r_date )
+//            let tmpYear : String = String(tmpDate[ tmpDate.startIndex ..< tmpDate.index(tmpDate.startIndex , offsetBy: 4) ])
+            let tmpMonth : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 4) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 6) ] )
+            let tmpDay : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 6) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 8) ] )
+            
+            cell.myReservationFirstUIView.layer.cornerRadius = cell.myReservationFirstUIView.layer.frame.width/2
+            cell.myReservationDateLabel.text = "\(tmpMonth)/\(tmpDay)"
+            cell.myReservationTimeLabel.text = "\(gino( memberInfoReservation[ indexPath.row ].r_startTime )) : 00 - \(gino( memberInfoReservation[ indexPath.row ].r_endTime )) : 00"
+            cell.myReservationZoneNameLabel.text = memberInfoReservation[ indexPath.row ].sbz_name
+            
+            return cell
+            
+        } else {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FollowingScheduleCollectionViewCell", for: indexPath ) as! FollowingScheduleCollectionViewCell
+            
+            let tmpDate = String( memberInfoFollowingReservation[ indexPath.row ].r_date )
+            //            let tmpYear : String = String(tmpDate[ tmpDate.startIndex ..< tmpDate.index(tmpDate.startIndex , offsetBy: 4) ])
+            let tmpMonth : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 4) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 6) ] )
+            let tmpDay : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 6) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 8) ] )
+            
+            cell.followingFirstUIView.layer.cornerRadius = cell.followingFirstUIView.layer.frame.width/2
+            cell.followingDateLabel.text = "\(tmpMonth)/\(tmpDay)"
+            cell.followingTimeLabel.text = "\(gino( memberInfoFollowingReservation[ indexPath.row ].r_startTime )) : 00 - \(gino( memberInfoFollowingReservation[ indexPath.row ].r_endTime )) : 00"
+            
+            if( memberInfoFollowingReservation[ indexPath.row ].member_profile != nil ) {
+                
+                cell.followingProfileImageView.kf.setImage( with: URL( string:gsno(memberInfoFollowingReservation[ indexPath.row ].member_profile ) ) )
+                cell.followingProfileImageView.layer.cornerRadius = cell.followingProfileImageView.layer.frame.width/2
+                cell.followingProfileImageView.clipsToBounds = true
+                
+            } else {
+                
+                cell.followingProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
+            }
+            
+            cell.followingNicknameLabel.text = memberInfoFollowingReservation[ indexPath.row ].member_nickname
+            
+            return cell
+        }
+    }
+
+    //  cell 선택 했을 때
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        if( collectionView == reservationCollectionView ) {
+            
+        } else if( collectionView == followingScheduleCollectionView ) {
+            
+        } else {
+            
+        }
+    }
+
+    //  cell 크기 비율
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if( collectionView == reservationCollectionView ) {
+            return CGSize(width: 375 * self.view.frame.width/375 , height: 27 * self.view.frame.height/667 )
+        } else if( collectionView == followingScheduleCollectionView ) {
+            return CGSize(width: 375 * self.view.frame.width/375 , height: 27 * self.view.frame.height/667 )
+        } else {
+            return CGSize(width: 375 * self.view.frame.width/375 , height: 45 * self.view.frame.height/667 )
+        }
+    }
+
+    //  cell 간 가로 간격 ( horizental 이라서 가로를 사용해야 한다 )
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+
+        if( collectionView == reservationCollectionView ) {
+            return 15 * self.view.frame.width/375
+        } else if( collectionView == followingScheduleCollectionView ) {
+            return 15 * self.view.frame.width/375
+        } else {
+            return 21 * self.view.frame.width/375
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        if( collectionView == reservationCollectionView ) {
+            return 15 * self.view.frame.height/667
+        } else if( collectionView == followingScheduleCollectionView ) {
+            return 15 * self.view.frame.height/667
+        } else {
+            return 21 * self.view.frame.height/667
+        }
+    }
 }
 
 

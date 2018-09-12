@@ -76,6 +76,8 @@
 		BED7CB702148F72800730650 /* FollowingScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB6F2148F72800730650 /* FollowingScheduleCollectionViewCell.swift */; };
 		BED7CB722148FD1600730650 /* MyReservationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB712148FD1600730650 /* MyReservationCollectionViewCell.swift */; };
 		BED7CB74214903FE00730650 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB73214903FE00730650 /* ReviewCollectionViewCell.swift */; };
+		BED7CB762149152E00730650 /* MemberReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB752149152E00730650 /* MemberReservation.swift */; };
+		BED7CB782149536B00730650 /* MemberFollowingReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB772149536B00730650 /* MemberFollowingReservation.swift */; };
 		D9FAB110D7EF4C3CB6BD12B9 /* Pods_Seoul_Busking_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1D4F28A6473D3C14F20FAC /* Pods_Seoul_Busking_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +170,8 @@
 		BED7CB6F2148F72800730650 /* FollowingScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
 		BED7CB712148FD1600730650 /* MyReservationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReservationCollectionViewCell.swift; sourceTree = "<group>"; };
 		BED7CB73214903FE00730650 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		BED7CB752149152E00730650 /* MemberReservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberReservation.swift; sourceTree = "<group>"; };
+		BED7CB772149536B00730650 /* MemberFollowingReservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberFollowingReservation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +345,8 @@
 				BED7CB582147B06400730650 /* Reservation.swift */,
 				BED7CB5A2147B06500730650 /* ReservationPossibility.swift */,
 				BED7CB592147B06400730650 /* ToggleBtn.swift */,
+				BED7CB752149152E00730650 /* MemberReservation.swift */,
+				BED7CB772149536B00730650 /* MemberFollowingReservation.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -529,6 +535,7 @@
 				BED7CB482147B04300730650 /* ReservationCollectionViewCell.swift in Sources */,
 				BED7CB262147B02800730650 /* selectBoroughViewController.swift in Sources */,
 				BED7CB282147B02800730650 /* MapViewController.swift in Sources */,
+				BED7CB762149152E00730650 /* MemberReservation.swift in Sources */,
 				BED7CB1B2147B02800730650 /* TimeTableViewController.swift in Sources */,
 				BED7CB4D2147B05400730650 /* Server.swift in Sources */,
 				BED7CB402147B04300730650 /* RankingMemberCollectionViewCell.swift in Sources */,
@@ -553,6 +560,7 @@
 				BED7CA6E21479C0000730650 /* AppDelegate.swift in Sources */,
 				BED7CB202147B02800730650 /* NextSegue.swift in Sources */,
 				BED7CB452147B04300730650 /* MapSearchBoroughCollectionViewCell.swift in Sources */,
+				BED7CB782149536B00730650 /* MemberFollowingReservation.swift in Sources */,
 				BED7CB6A2147B07500730650 /* Extension.swift in Sources */,
 				BED7CB1A2147B02800730650 /* SelectTypeViewController.swift in Sources */,
 				BED7CB722148FD1600730650 /* MyReservationCollectionViewCell.swift in Sources */,

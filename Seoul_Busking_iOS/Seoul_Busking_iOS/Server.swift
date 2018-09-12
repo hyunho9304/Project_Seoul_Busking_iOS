@@ -149,6 +149,8 @@ struct Server : APIService {
                     
                     do {
                         
+                        print( JSON( value ))
+                        
                         let memberData = try decoder.decode(MemberData.self , from: value)
                         
                         if( res.response?.statusCode == 201 ){
@@ -760,6 +762,96 @@ struct Server : APIService {
                         else{
                             
                             completion( memberInfoBasicData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
+    //  멤버 예약 신청 현황 리스트
+    static func reqMemberInfoReservation( member_nickname : String , r_date : Int , completion : @escaping ( [MemberReservation] , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/info/reservationList" )
+        
+        let body: [String: Any] = [
+            "member_nickname" : member_nickname ,
+            "r_date" : r_date
+        ]
+        
+        Alamofire.request(URL, method: .post , parameters: body , encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let memberReservationData = try decoder.decode(MemberReservationData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
+                            
+                            completion( memberReservationData.data! , 201 )
+                        }
+                        else{
+                            
+                            completion( memberReservationData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+    
+    //  멤버 팔로잉 멤버들의 예약 신청 현황 리스트
+    static func reqMemberInfoFollowingReservation( member_nickname : String , r_date : Int , completion : @escaping ( [MemberFollowingReservation] , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/info/followingReservationList" )
+        
+        let body: [String: Any] = [
+            "member_nickname" : member_nickname ,
+            "r_date" : r_date
+        ]
+        
+        Alamofire.request(URL, method: .post , parameters: body , encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let memberFollowingReservationData = try decoder.decode(MemberFollowingReservationData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
+                            
+                            completion( memberFollowingReservationData.data! , 201 )
+                        }
+                        else{
+                            
+                            completion( memberFollowingReservationData.data! , 500 )
                         }
                         
                     } catch {

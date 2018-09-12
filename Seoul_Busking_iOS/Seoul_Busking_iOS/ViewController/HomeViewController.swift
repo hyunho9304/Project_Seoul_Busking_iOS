@@ -638,7 +638,12 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
         } else {
             
-            //  개인 프로필로 이동
+            guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
+            
+            memberInfoVC.memberInfo = self.memberInfo
+            memberInfoVC.selectMemberNickname = reservationList[ indexPath.row ].member_nickname
+            
+            self.present( memberInfoVC , animated: false , completion: nil )
             
         }
     }
