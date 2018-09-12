@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemberInfoViewController: UIViewController {
+class MemberInfoViewController: UIViewController  {
 
     //  넘어온 정보
     var memberInfo : Member?
@@ -37,18 +37,25 @@ class MemberInfoViewController: UIViewController {
     
     //  애니메이션바
     @IBOutlet weak var animationUIView: UIView!
-    @IBOutlet weak var animationUIViewLeading: NSLayoutConstraint!
+    
     //  공연 신청 현황
     @IBOutlet weak var reservationInfoBtn: UIButton!
     @IBOutlet weak var reservationUIView: UIView!
+    @IBOutlet weak var reservationCollectionView: UICollectionView!
+    @IBOutlet weak var reservationNothingLabel: UILabel!
     
     //  팔로잉 일정
     @IBOutlet weak var followingScheduleBtn: UIButton!
     @IBOutlet weak var followingScheduleUIView: UIView!
+    @IBOutlet weak var followingScheduleCollectionView: UICollectionView!
+    @IBOutlet weak var followingNothingLabel: UILabel!
+    
     
     //  공연 후기
     @IBOutlet weak var reviewBtn: UIButton!
     @IBOutlet weak var reviewUIView: UIView!
+    @IBOutlet weak var reviewCollectionView: UICollectionView!
+    @IBOutlet weak var reviewNothingLabel: UILabel!
     
     
     
@@ -129,11 +136,18 @@ class MemberInfoViewController: UIViewController {
         }
         
         if( self.view.frame.height > 667 ) {
-         
             animationUIView.frame = CGRect(x: 22 , y: 428, width: 121.67 , height: 3 )
         }
 
     }
+    
+//    func setDelegate() {
+//
+//
+//
+//        followingScheduleCollectionView.delegate = self
+//        followingScheduleCollectionView.dataSource = self
+//    }
     
     func setTarget() {
         
@@ -292,9 +306,8 @@ class MemberInfoViewController: UIViewController {
                 }
                 
                 
-                if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
+                if( self.memberInfoBasic?.member_type != "1" ) { //  관람객
 
-                    //  팔로일 일정 서버 연동
                     //  배경사진 적용 서버에서 배경사진 가져오기 수정해야함
                     
                     self.followingScheduleBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
@@ -302,11 +315,15 @@ class MemberInfoViewController: UIViewController {
                     
                 } else {    //  버스커
                     //  공연 신청 현황 서버 연동
+                    //  공연 후기 서버 연동
+                    
                     //  버스커 사진 서버 연동
                     
                     self.reservationInfoBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
                     self.reservationUIView.isHidden = false
                 }
+                
+                //  팔로일 일정 서버 연동
                 
             } else {
                 
@@ -352,14 +369,206 @@ class MemberInfoViewController: UIViewController {
         
         if( sender == self.reservationInfoBtn ) {
             reservationUIView.isHidden = false
+            if( self.memberInfoBasic?.member_type == "0" ) {
+                reservationNothingLabel.text = "버스커가 아닙니다"
+                reservationNothingLabel.isHidden = false
+            }
         } else if( sender == self.followingScheduleBtn ) {
             followingScheduleUIView.isHidden = false
         } else {
             reviewUIView.isHidden = false
+            if( self.memberInfoBasic?.member_type == "0" ) {
+                reviewNothingLabel.text = "버스커가 아닙니다"
+                reviewNothingLabel.isHidden = false
+            }
         }
         
     }
     
+////  Mark -> delegate
+//
+//    //  cell 의 개수
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//
+//        if( collectionView == reservationCollectionView ) {
+//            return 0
+//        } else if( collectionView == followingScheduleCollectionView ) {
+//            return 0
+//        } else {
+//            return 0
+//        }
+//    }
+//
+//    //  cell 의 내용
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//        if( collectionView == homeCalendarCollectionView ) {
+//
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCalendarCollectionViewCell", for: indexPath ) as! HomeCalendarCollectionViewCell
+//
+//            cell.calendarDayLabel.text = calendar?.twoWeeksDay![ indexPath.row ]
+//            cell.calendarDateLabel.text = calendar?.twoWeeksDate![ indexPath.row ]
+//
+//            if indexPath == calendarSelectedIndex {
+//
+//                cell.calendarDayLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+//                cell.calendarDateLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//                cell.calendarCircleImageView.isHidden = false
+//
+//                var tmpMonth : String = (self.calendar?.twoWeeksMonth![ indexPath.row ])!
+//                if( tmpMonth.count == 1 ) {
+//                    tmpMonth.insert("0", at: tmpMonth.startIndex )
+//                }
+//                var tmpDay : String = (self.calendar?.twoWeeksDate![ indexPath.row ])!
+//                if( tmpDay.count == 1 ) {
+//                    tmpDay.insert("0", at: tmpDay.startIndex )
+//                }
+//
+//                self.selectYear = self.calendar?.twoWeeksYear![ indexPath.row ]
+//                self.selectMonth = tmpMonth
+//                self.selectDate = tmpDay
+//                self.selectDay = self.calendar?.twoWeeksDay![ indexPath.row ]
+//
+//                let tmpDateTime : String = gsno( selectYear ) + gsno( selectMonth ) + gsno( selectDate )
+//                self.selectDateTime = Int( tmpDateTime )
+//
+//                getReservationList()
+//
+//            } else if ( cell.calendarDayLabel.text == "일" ) {
+//
+//                cell.calendarDayLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+//                cell.calendarDateLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+//                cell.calendarCircleImageView.isHidden = true
+//
+//            } else {
+//
+//                cell.calendarDayLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//                cell.calendarDateLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//                cell.calendarCircleImageView.isHidden = true
+//            }
+//
+//            return cell
+//
+//        } else if( collectionView == homeBuskingZoneCollectionView ) {
+//
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BuskingZoneCollectionViewCell", for: indexPath ) as! BuskingZoneCollectionViewCell
+//
+//            cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
+//            cell.buskingZoneImageView.layer.cornerRadius = cell.buskingZoneImageView.layer.frame.width/2
+//            cell.buskingZoneImageView.clipsToBounds = true
+//
+//            cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
+//
+//            if indexPath == busingZoneSelectedIndex {
+//
+//
+//                cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+//                cell.buskingZoneNameLabel.font = UIFont(name:"NotoSansCJKkr-Bold", size: 12.0)
+//                self.selectZoneIndex = self.buskingZoneList[ indexPath.row ].sbz_id
+//
+//                cell.buskingZoneImageView.layer.borderColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+//                cell.buskingZoneImageView.layer.borderWidth = 3
+//
+//                getReservationList()
+//
+//            } else {
+//
+//                cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//                cell.buskingZoneNameLabel.font = UIFont(name:"NotoSansCJKkr-Regular", size: 12.0)
+//                cell.buskingZoneImageView.layer.borderWidth = 0
+//            }
+//
+//            return cell
+//
+//        } else {
+//
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCollectionViewCell", for: indexPath ) as! ReservationCollectionViewCell
+//
+//            let borderColor = #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
+//            let borderOpacity : CGFloat = 0.3
+//            cell.reservationUIView.layer.borderColor = borderColor.withAlphaComponent(borderOpacity).cgColor
+//            cell.reservationUIView.layer.borderWidth = 1
+//
+//            cell.reservationUIView.layer.cornerRadius = 6    //  둥근정도
+//            cell.reservationUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+//            cell.reservationUIView.layer.shadowColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)             //  그림자 색
+//            cell.reservationUIView.layer.shadowOpacity = 0.5                          //  그림자 투명도
+//            cell.reservationUIView.layer.shadowOffset = CGSize(width: 0 , height: 0 )    //  그림자 x y
+//            cell.reservationUIView.layer.shadowRadius = 4
+//
+//            //var tmpStartTime = gino( reservationList[ indexPath.row ].r_startTime )
+//
+//            cell.reservationTimeLabel.text = "\(String(describing: reservationList[ indexPath.row ].r_startTime)) : 00 - \(String(describing: reservationList[ indexPath.row ].r_endTime)) : 00"
+//
+//            cell.reservationTimeLabel.text = "\(gino( reservationList[ indexPath.row ].r_startTime )) : 00 - \(gino( reservationList[ indexPath.row ].r_endTime )) : 00"
+//
+//            if( reservationList[ indexPath.row ].member_profile != nil ) {
+//
+//                cell.reservationProfileImage.kf.setImage( with: URL( string:gsno(reservationList[ indexPath.row ].member_profile ) ) )
+//                cell.reservationProfileImage.layer.cornerRadius = cell.reservationProfileImage.layer.frame.width/2
+//                cell.reservationProfileImage.clipsToBounds = true
+//
+//            } else {
+//
+//                cell.reservationProfileImage.image = #imageLiteral(resourceName: "defaultProfile.png")
+//            }
+//
+//            cell.reservationNickname.text = reservationList[ indexPath.row ].member_nickname
+//
+//            cell.reservationCategory.layer.cornerRadius = 10
+//            cell.reservationCategory.clipsToBounds = true
+//            cell.reservationCategory.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
+//            cell.reservationCategory.text = "# \(gsno( reservationList[ indexPath.row ].r_category))"
+//
+//            return cell
+//        }
+//    }
+//
+//    //  cell 선택 했을 때
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//
+//        if( collectionView == homeCalendarCollectionView ) {
+//
+//            calendarSelectedIndex = indexPath
+//            collectionView.reloadData()
+//
+//        } else if( collectionView == homeBuskingZoneCollectionView ) {
+//
+//            busingZoneSelectedIndex = indexPath
+//            collectionView.reloadData()
+//
+//        } else {
+//
+//            //  개인 프로필로 이동
+//
+//        }
+//    }
+//
+//    //  cell 크기 비율
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        if( collectionView == homeCalendarCollectionView ) {
+//            return CGSize(width: 56 * self.view.frame.width/375 , height: 70 * self.view.frame.height/667 )
+//        }
+//        else if( collectionView == homeBuskingZoneCollectionView ) {
+//            return CGSize(width: 105 * self.view.frame.width/375 , height: 125 * self.view.frame.height/667 )
+//        } else {
+//            return CGSize(width: 340 * self.view.frame.width/375 , height: 70 * self.view.frame.height/667 )
+//        }
+//    }
+//
+//    //  cell 간 가로 간격 ( horizental 이라서 가로를 사용해야 한다 )
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//
+//        if( collectionView == homeCalendarCollectionView ) {
+//            return 0
+//        } else if( collectionView == homeBuskingZoneCollectionView ) {
+//            return 0
+//        } else {
+//            return 3
+//        }
+//    }
 }
 
 
