@@ -10,6 +10,7 @@ import Foundation
 
 struct MemberReservation: Codable {
     
+    let r_id : Int?
     let r_date : Int
     let r_startTime : Int?
     let r_endTime : Int?

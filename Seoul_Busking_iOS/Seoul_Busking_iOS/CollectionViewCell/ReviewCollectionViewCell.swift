@@ -10,7 +10,7 @@ import UIKit
 
 class ReviewCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var reviewContentLabel: UILabel!
+    @IBOutlet weak var reviewTitleLabel: UILabel!
     @IBOutlet weak var reviewStar1: UIImageView!
     @IBOutlet weak var reviewStar2: UIImageView!
     @IBOutlet weak var reviewStar3: UIImageView!

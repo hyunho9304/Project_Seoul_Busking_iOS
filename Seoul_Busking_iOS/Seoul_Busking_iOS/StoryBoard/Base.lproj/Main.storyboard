@@ -3465,7 +3465,6 @@
                                                     <constraint firstItem="Kst-Mj-vPN" firstAttribute="leading" secondItem="FWX-Xi-hgA" secondAttribute="trailing" constant="9" id="yEG-qZ-8ei"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="reviewContentLabel" destination="RxV-82-mkQ" id="JAR-9c-TC9"/>
                                                     <outlet property="reviewDateLabel" destination="hUy-QM-khA" id="ZF6-oA-yfE"/>
                                                     <outlet property="reviewNicknameLabel" destination="FWX-Xi-hgA" id="xbD-rE-WGO"/>
                                                     <outlet property="reviewProfileImageView" destination="Kst-Mj-vPN" id="AWR-Ew-nCA"/>
@@ -3474,6 +3473,7 @@
                                                     <outlet property="reviewStar3" destination="Ab3-Sx-ItF" id="EPR-Gr-Hrg"/>
                                                     <outlet property="reviewStar4" destination="dt1-C0-Egj" id="mnb-N9-BIM"/>
                                                     <outlet property="reviewStar5" destination="bJz-e4-tSN" id="eTx-5G-W9E"/>
+                                                    <outlet property="reviewTitleLabel" destination="RxV-82-mkQ" id="dp7-Ui-hex"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -3780,10 +3780,10 @@
                             <constraint firstItem="djl-Pv-IOe" firstAttribute="width" secondItem="DX8-jR-VIQ" secondAttribute="width" multiplier="375:375" id="RvB-OK-oIy"/>
                             <constraint firstItem="gjl-jb-SnZ" firstAttribute="centerX" secondItem="wNW-J4-lJB" secondAttribute="centerX" id="T73-rL-jcM"/>
                             <constraint firstItem="iKl-53-0Lo" firstAttribute="width" secondItem="DX8-jR-VIQ" secondAttribute="width" multiplier="375:375" id="TpI-fC-xyY"/>
+                            <constraint firstItem="Cyo-IK-vXg" firstAttribute="top" secondItem="iKl-53-0Lo" secondAttribute="bottom" constant="5" id="Uwx-PE-OnL"/>
                             <constraint firstItem="U0L-dq-sHL" firstAttribute="leading" secondItem="ZUq-hy-1hm" secondAttribute="trailing" constant="68" id="VNT-Wh-2VK"/>
                             <constraint firstItem="ncy-2Z-WiM" firstAttribute="leading" secondItem="wNW-J4-lJB" secondAttribute="leading" id="VS6-dv-PN9"/>
                             <constraint firstItem="vgN-bJ-pfg" firstAttribute="leading" secondItem="TwJ-Rf-Vf2" secondAttribute="trailing" constant="2.5" id="Wj7-ZT-BI2"/>
-                            <constraint firstItem="Cyo-IK-vXg" firstAttribute="top" secondItem="wNW-J4-lJB" secondAttribute="top" constant="133" id="XRI-vp-7tW"/>
                             <constraint firstItem="gF1-ah-UWq" firstAttribute="width" secondItem="DX8-jR-VIQ" secondAttribute="width" multiplier="375:375" id="Y8v-LS-8sL"/>
                             <constraint firstItem="gF1-ah-UWq" firstAttribute="top" secondItem="M69-Wc-XZy" secondAttribute="bottom" constant="28" id="b9f-w5-7xk"/>
                             <constraint firstItem="gjl-jb-SnZ" firstAttribute="top" secondItem="pKf-xo-VvH" secondAttribute="bottom" constant="6" id="bLF-tb-yMu"/>
