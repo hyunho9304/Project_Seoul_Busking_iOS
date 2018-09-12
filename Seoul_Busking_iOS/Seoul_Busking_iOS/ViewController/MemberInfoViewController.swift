@@ -59,12 +59,10 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var reviewCollectionView: UICollectionView!
     @IBOutlet weak var reviewNothingLabel: UILabel!
     
+    //  더보기 버튼
+    @IBOutlet weak var moreLabel: UILabel!
+    @IBOutlet weak var moreImageBtn: UIButton!
     
-    var year = calendar.component(.year, from: date)
-    var month = calendar.component(.month, from: date)
-    let day = calendar.component(.day, from: date)
-    let hour = calendar.component(.hour, from: date)
-    var todayDateTime : Int?    //  선택한년월일 ex ) 2018815
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -72,6 +70,12 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var tapbarHomeBtn: UIButton!
     @IBOutlet weak var tapbarMemberInfoBtn: UIButton!
     @IBOutlet weak var tapbarUIView: UIView!
+    
+    var year = calendar.component(.year, from: date)
+    var month = calendar.component(.month, from: date)
+    let day = calendar.component(.day, from: date)
+    let hour = calendar.component(.hour, from: date)
+    var todayDateTime : Int?    //  선택한년월일 ex ) 2018815
     
     var uiviewX : CGFloat?
     
@@ -193,6 +197,14 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         //  공연 후기 버튼
         reviewBtn.addTarget(self, action: #selector(self.pressedReviewBtn(_:)), for: UIControlEvents.touchUpInside)
         
+        //  더보기 버튼
+        moreImageBtn.addTarget(self, action: #selector(self.pressedMoreImageBtn(_:)), for: UIControlEvents.touchUpInside)
+        let tapMore = UITapGestureRecognizer(target: self , action: #selector( self.pressedMoreImageBtn(_:) ))
+        moreLabel.isUserInteractionEnabled = true
+        moreLabel.addGestureRecognizer(tapMore)
+        
+        
+        
     }
     
     func setTapbarAnimation() {
@@ -272,6 +284,27 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         
         self.animationUIView.layoutIfNeeded()
         selectMenu( self.reviewBtn )
+    }
+    
+    //  더보기 버튼 액션
+    @objc func pressedMoreImageBtn( _ sender : UIButton ) {
+        
+        if( reservationUIView.isHidden == false ) { //  공연 신청 현황
+            
+            guard let reservationDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationDetailViewController") as? ReservationDetailViewController else { return }
+            
+            reservationDetailVC.memberInfo = self.memberInfo
+            reservationDetailVC.selectMemberNickname = self.selectMemberNickname
+            reservationDetailVC.memberInfoReservation = self.memberInfoReservation
+            
+            self.present( reservationDetailVC , animated: false , completion: nil )
+            
+        } else if( followingScheduleUIView.isHidden == false ) { //  팔로잉 일정
+            
+        } else {    //  공연 후기
+            
+            
+        }
     }
     
     //  멤버 정보 가져오기
