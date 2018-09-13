@@ -89,23 +89,26 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+     
         getShowMemberInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
- 
-            UIView.animate(withDuration: 1 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
-                
-                self.animationUIView.frame.origin.x = self.followingScheduleBtn.frame.origin.x
-                
-            }, completion: nil )
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 , execute: {
             
-            self.animationUIView.layoutIfNeeded()
-
-        }
+            if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
+                
+                UIView.animate(withDuration: 1 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+                    
+                    self.animationUIView.frame.origin.x = self.followingScheduleBtn.frame.origin.x
+                    
+                }, completion: nil )
+                
+                self.animationUIView.layoutIfNeeded()
+                
+            }
+        })
     }
     
     func getItoI( _ sender : Int ) -> Int {

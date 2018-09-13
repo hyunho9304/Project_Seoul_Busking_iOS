@@ -14,8 +14,10 @@ struct MemberReservation: Codable {
     let r_date : Int
     let r_startTime : Int?
     let r_endTime : Int?
-    let r_category : String?
+    let sb_name : String?
     let sbz_name : String?
+    let sbz_address : String?
+    let sbz_photo : String?
     let sbz_longitude : Double?
     let sbz_latitude : Double?
 }
