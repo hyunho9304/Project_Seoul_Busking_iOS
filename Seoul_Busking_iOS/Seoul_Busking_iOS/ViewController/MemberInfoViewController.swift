@@ -95,7 +95,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     
     override func viewDidAppear(_ animated: Bool) {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 , execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 , execute: {
             
             if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
                 

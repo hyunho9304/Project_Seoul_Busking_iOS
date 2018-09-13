@@ -127,7 +127,20 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
     @objc func btnInCell( _ sender : UIButton ) {
         
         if( sender.image(for: .normal) ==  #imageLiteral(resourceName: "right") ) { //  지도 연결
-            print("지도")
+            
+            guard let zoneMapDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ZoneMapDetailViewController") as? ZoneMapDetailViewController else { return }
+            
+            zoneMapDetailVC.memberInfo = self.memberInfo
+            zoneMapDetailVC.uiviewX = self.uiviewX
+            zoneMapDetailVC.selectedBoroughName = self.memberInfoReservation[ sender.tag ].sb_name
+            zoneMapDetailVC.selectedZoneName = self.memberInfoReservation[ sender.tag ].sbz_name
+            zoneMapDetailVC.selectedZoneImage = self.memberInfoReservation[ sender.tag ].sbz_photo
+            zoneMapDetailVC.selectedZoneAddress = self.memberInfoReservation[ sender.tag ].sbz_address
+            zoneMapDetailVC.selectedZoneLongitude = self.memberInfoReservation[ sender.tag ].sbz_longitude
+            zoneMapDetailVC.selectedZoneLatitude = self.memberInfoReservation[ sender.tag ].sbz_latitude
+            
+            self.present( zoneMapDetailVC , animated: true , completion: nil )
+            
         } else {    //  삭제할건지 결정
             print("삭제")
         }

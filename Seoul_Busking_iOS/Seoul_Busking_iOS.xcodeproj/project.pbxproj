@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE487986214A6E28006606C5 /* ZoneMapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */; };
 		BED7CA6E21479C0000730650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA6D21479C0000730650 /* AppDelegate.swift */; };
 		BED7CA7321479C0000730650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7121479C0000730650 /* Main.storyboard */; };
 		BED7CA7521479C0100730650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7421479C0100730650 /* Assets.xcassets */; };
@@ -101,6 +102,7 @@
 		0A1D4F28A6473D3C14F20FAC /* Pods_Seoul_Busking_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seoul_Busking_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD917AC851E3EF310E5C113 /* Pods-Seoul_Busking_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		5F84945DD247A4E5408F57BE /* Pods-Seoul_Busking_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneMapDetailViewController.swift; sourceTree = "<group>"; };
 		BED7CA6A21479C0000730650 /* Seoul_Busking_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seoul_Busking_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED7CA6D21479C0000730650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED7CA7221479C0000730650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				BED7CB0A2147B01A00730650 /* TimeTableViewController.swift */,
 				BED7CB0F2147B02000730650 /* NextSegue.swift */,
 				BED7CB7921496F0E00730650 /* ReservationDetailViewController.swift */,
+				BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				BED7CB1B2147B02800730650 /* TimeTableViewController.swift in Sources */,
 				BED7CB4D2147B05400730650 /* Server.swift in Sources */,
 				BED7CB402147B04300730650 /* RankingMemberCollectionViewCell.swift in Sources */,
+				BE487986214A6E28006606C5 /* ZoneMapDetailViewController.swift in Sources */,
 				BED7CB632147B06500730650 /* Borough.swift in Sources */,
 				BED7CB602147B06500730650 /* CustomCalendar.swift in Sources */,
 				BED7CB612147B06500730650 /* MemberRepresentativeBorough.swift in Sources */,
