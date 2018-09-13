@@ -865,6 +865,37 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  예약 삭제
+    static func reqDropReservation( r_id : Int , completion : @escaping (_ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/drop/reservation" )
+        
+        let body: [String: Any] = [
+            "r_id" : r_id
+        ]
+        
+        Alamofire.request(URL, method: .delete , parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if( res.response?.statusCode == 201 ){
+                    completion( 201 )
+                }
+                else {
+                    completion( 500 )
+                }
+                break
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
 
 
 

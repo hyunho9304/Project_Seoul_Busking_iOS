@@ -94,21 +94,21 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 , execute: {
-            
-            if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
-                
-                UIView.animate(withDuration: 1 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
-                    
-                    self.animationUIView.frame.origin.x = self.followingScheduleBtn.frame.origin.x
-                    
-                }, completion: nil )
-                
-                self.animationUIView.layoutIfNeeded()
-                
-            }
-        })
+
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
+//
+//            if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
+//
+//                UIView.animate(withDuration: 1 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+//
+//                    self.animationUIView.frame.origin.x = self.followingScheduleBtn.frame.origin.x
+//
+//                }, completion: nil )
+//
+//                self.animationUIView.layoutIfNeeded()
+//
+//            }
+//        })
     }
     
     func getItoI( _ sender : Int ) -> Int {
@@ -252,7 +252,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     //  공연 신청 현황 버튼 액션
     @objc func pressedReservationInfoBtn( _ sender : UIButton ) {
         
-        UIView.animate(withDuration: 0.4 , delay: 0, usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+        UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
             self.animationUIView.frame.origin.x = self.reservationInfoBtn.frame.origin.x
             
@@ -266,7 +266,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     //  팔로잉 일정 버튼 액션
     @objc func pressedFollowingScheduleBtn( _ sender : UIButton ) {
         
-        UIView.animate(withDuration: 0.4 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+        UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
             
             self.animationUIView.frame.origin.x = self.followingScheduleBtn.frame.origin.x
             
@@ -279,7 +279,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     //  공연 후기 버튼 액션
     @objc func pressedReviewBtn( _ sender : UIButton ) {
         
-        UIView.animate(withDuration: 0.4 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+        UIView.animate(withDuration: 0.5 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
             
             self.animationUIView.frame.origin.x = self.reviewBtn.frame.origin.x
             
@@ -294,18 +294,67 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         
         if( reservationUIView.isHidden == false ) { //  공연 신청 현황
             
-            guard let reservationDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationDetailViewController") as? ReservationDetailViewController else { return }
+            if( reservationNothingLabel.isHidden == true  ) {
+                
+                guard let reservationDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationDetailViewController") as? ReservationDetailViewController else { return }
+                
+                reservationDetailVC.memberInfo = self.memberInfo
+                reservationDetailVC.selectMemberNickname = self.selectMemberNickname
+                
+                self.present( reservationDetailVC , animated: false , completion: nil )
+                
+            } else {
+                
+                guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                
+                defaultPopUpVC.content = "공연 신청 현황이 없습니다"
+                
+                self.addChildViewController( defaultPopUpVC )
+                defaultPopUpVC.view.frame = self.view.frame
+                self.view.addSubview( defaultPopUpVC.view )
+                defaultPopUpVC.didMove(toParentViewController: self )
+                
+            }
             
-            reservationDetailVC.memberInfo = self.memberInfo
-            reservationDetailVC.selectMemberNickname = self.selectMemberNickname
-            reservationDetailVC.memberInfoReservation = self.memberInfoReservation
-            
-            self.present( reservationDetailVC , animated: false , completion: nil )
             
         } else if( followingScheduleUIView.isHidden == false ) { //  팔로잉 일정
             
+            if( followingNothingLabel.isHidden == true  ) {
+                
+                // 연결
+                
+            } else {
+                
+                guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                
+                defaultPopUpVC.content = "팔로잉 일정이 없습니다"
+                
+                self.addChildViewController( defaultPopUpVC )
+                defaultPopUpVC.view.frame = self.view.frame
+                self.view.addSubview( defaultPopUpVC.view )
+                defaultPopUpVC.didMove(toParentViewController: self )
+                
+            }
+
         } else {    //  공연 후기
             
+            if( reservationNothingLabel.isHidden == true  ) {
+                
+                //  연결
+                
+            } else {
+                
+                guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                
+                defaultPopUpVC.content = "리뷰가 없습니다"
+                
+                self.addChildViewController( defaultPopUpVC )
+                defaultPopUpVC.view.frame = self.view.frame
+                self.view.addSubview( defaultPopUpVC.view )
+                defaultPopUpVC.didMove(toParentViewController: self )
+                
+            }
+
             
         }
     }
@@ -318,6 +367,18 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             if( rescode == 201 ) {
                 
                 self.memberInfoBasic = memberInfoBasicData
+                
+                if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
+                    
+                    UIView.animate(withDuration: 1.5 , delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: .curveEaseOut , animations: {
+                        
+                        self.animationUIView.frame.origin.x = self.followingScheduleBtn.frame.origin.x
+                        
+                    }, completion: nil )
+                    
+                    self.animationUIView.layoutIfNeeded()
+                    
+                }
                 
                 if( self.memberInfoBasic?.member_profile != nil ) {
                     

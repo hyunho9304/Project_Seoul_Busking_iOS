@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BE487986214A6E28006606C5 /* ZoneMapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */; };
-		BE487988214A7703006606C5 /* DefaultYesNoPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE487987214A7703006606C5 /* DefaultYesNoPopUpViewController.swift */; };
 		BED7CA6E21479C0000730650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA6D21479C0000730650 /* AppDelegate.swift */; };
 		BED7CA7321479C0000730650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7121479C0000730650 /* Main.storyboard */; };
 		BED7CA7521479C0100730650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7421479C0100730650 /* Assets.xcassets */; };
@@ -104,7 +103,6 @@
 		0DD917AC851E3EF310E5C113 /* Pods-Seoul_Busking_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		5F84945DD247A4E5408F57BE /* Pods-Seoul_Busking_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneMapDetailViewController.swift; sourceTree = "<group>"; };
-		BE487987214A7703006606C5 /* DefaultYesNoPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultYesNoPopUpViewController.swift; sourceTree = "<group>"; };
 		BED7CA6A21479C0000730650 /* Seoul_Busking_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seoul_Busking_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED7CA6D21479C0000730650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED7CA7221479C0000730650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -317,7 +315,6 @@
 			children = (
 				BED7CB052147B00900730650 /* CalendarPopUpViewController.swift */,
 				BED7CB062147B00A00730650 /* DefaultPopUpViewController.swift */,
-				BE487987214A7703006606C5 /* DefaultYesNoPopUpViewController.swift */,
 			);
 			path = PopUpViewController;
 			sourceTree = "<group>";
@@ -567,7 +564,6 @@
 				BED7CB642147B06500730650 /* Reservation.swift in Sources */,
 				BED7CB082147B00A00730650 /* DefaultPopUpViewController.swift in Sources */,
 				BED7CB3D2147B04300730650 /* selectCategoryCollectionViewCell.swift in Sources */,
-				BE487988214A7703006606C5 /* DefaultYesNoPopUpViewController.swift in Sources */,
 				BED7CB5B2147B06500730650 /* BuskingZoneListAll.swift in Sources */,
 				BED7CB622147B06500730650 /* Ranking.swift in Sources */,
 				BED7CB6C2147B07500730650 /* CalendarVars.swift in Sources */,

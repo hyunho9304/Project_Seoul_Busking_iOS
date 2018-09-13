@@ -20,12 +20,14 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
     //  내용
     var memberInfoReservation : [ MemberReservation ] = [ MemberReservation ]()  //  멤버 공연 신청 현황 서버
     @IBOutlet weak var reservationDetailCollectionView: UICollectionView!
+    var refresher : UIRefreshControl?
     
     //  취소 popView
     @IBOutlet weak var alertUIView: UIView!
     @IBOutlet weak var alertCancelBtn: UIButton!
     @IBOutlet weak var alertCommitBtn: UIButton!
     @IBOutlet weak var backUIView: UIView!
+    var selectedDropIndex : Int?
     
     
     //  텝바
@@ -49,8 +51,14 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
         set()
         setDelegate()
         setTarget()
+        reloadTarget()
         setTapbarAnimation()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        getMemberInfoReservation()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -140,6 +148,27 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
         alertCommitBtn.addTarget(self, action: #selector(self.pressedAlertCommitBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
+    func reloadTarget() {
+        
+        refresher = UIRefreshControl()
+        refresher?.tintColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+        refresher?.addTarget( self , action : #selector( reloadData ) , for : .valueChanged )
+        reservationDetailCollectionView.addSubview( refresher! )
+    }
+    
+    @objc func reloadData() {
+        
+        self.getMemberInfoReservation()
+        stopRefresher()
+    }
+    
+    func stopRefresher() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1 , execute: {
+            self.refresher?.endRefreshing()
+        })
+    }
+    
     func setTapbarAnimation() {
         
         UIView.animate(withDuration: 0.75 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
@@ -197,10 +226,23 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
     //  삭제 버튼 액션
     @objc func pressedAlertCommitBtn( _ sender : UIButton ) {
         
-        
-        
-        //  삭제하고 서버에서 다시 가져오기
-//        self.getMemberInfoReservation()
+        Server.reqDropReservation(r_id: self.memberInfoReservation[selectedDropIndex! ].r_id!) { ( rescode ) in
+
+            if( rescode == 201 ) {
+                
+                self.backUIView.isHidden = true
+                self.alertUIView.isHidden = true
+                self.getMemberInfoReservation()
+                
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
+
     }
     
     @objc func btnInCell( _ sender : UIButton ) {
@@ -231,6 +273,8 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
                 self.alertUIView.alpha = 1.0
                 self.alertUIView.transform = CGAffineTransform( scaleX: 1.0 , y: 1.0 )
             }
+            
+            self.selectedDropIndex = sender.tag
         }
     }
     
@@ -244,7 +288,7 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
                 self.memberInfoReservation = memberReservationData
                 self.reservationDetailCollectionView.reloadData()
                 
-                if( self.memberInfoReservation.count != 0 ) {
+                if( self.memberInfoReservation.count == 0 ) {
                     self.dismiss(animated: false , completion: nil)
                 }
                 
