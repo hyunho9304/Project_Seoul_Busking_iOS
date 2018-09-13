@@ -89,7 +89,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     }
     
     override func viewWillAppear(_ animated: Bool) {
-     
+        
         getShowMemberInfo()
     }
     
@@ -427,9 +427,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 self.reservationCollectionView.reloadData()
                 
                 if( self.memberInfoReservation.count != 0 ) {
-                    self.reservationNothingLabel.text = "예약된 공연 일정이 없습니다"
                     self.reservationNothingLabel.isHidden = true
                 } else {
+                    self.reservationNothingLabel.text = "예약된 공연 일정이 없습니다"
                     self.reservationNothingLabel.isHidden = false
                 }
                 

@@ -21,6 +21,12 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
     var memberInfoReservation : [ MemberReservation ] = [ MemberReservation ]()  //  멤버 공연 신청 현황 서버
     @IBOutlet weak var reservationDetailCollectionView: UICollectionView!
     
+    //  취소 popView
+    @IBOutlet weak var alertUIView: UIView!
+    @IBOutlet weak var alertCancelBtn: UIButton!
+    @IBOutlet weak var alertCommitBtn: UIButton!
+    @IBOutlet weak var backUIView: UIView!
+    
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -31,6 +37,12 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
     
     var uiviewX : CGFloat?
     
+    var year = calendar.component(.year, from: date)
+    var month = calendar.component(.month, from: date)
+    let day = calendar.component(.day, from: date)
+    let hour = calendar.component(.hour, from: date)
+    var todayDateTime : Int?    //  선택한년월일 ex ) 2018815
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +51,17 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
         setTarget()
         setTapbarAnimation()
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let touch : UITouch? = touches.first
+        
+        if touch?.view == backUIView && backUIView.isHidden == false {
+            
+            backUIView.isHidden = true
+            alertUIView.isHidden = true
+        }
     }
     
     func set() {
@@ -54,6 +77,40 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
         //  그림자의 블러는 5 정도 이다
         
         reservationDetailCollectionView.alwaysBounceVertical = true
+        
+        backUIView.isHidden = true
+        backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
+        alertUIView.isHidden = true
+        alertUIView.layer.cornerRadius = 5    //  둥근정도
+        alertUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+        
+        alertUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+        alertUIView.layer.shadowOpacity = 0.15                            //  그림자 투명도
+        alertUIView.layer.shadowOffset = CGSize(width: 0 , height: 3 )    //  그림자 x y
+        alertUIView.layer.shadowRadius = 5                                //  그림자 둥근정도
+        //  그림자의 블러는 5 정도 이다
+        
+        //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
+        alertCommitBtn.layer.cornerRadius = 5
+        alertCommitBtn.layer.maskedCorners = [.layerMaxXMaxYCorner ]
+        
+        alertCancelBtn.layer.cornerRadius = 5
+        alertCancelBtn.layer.maskedCorners = [ .layerMinXMaxYCorner ]
+        
+        let yearString : String = String(year)
+        var monthString : String = String( month )
+        var dayString : String = String( day )
+        
+        
+        if( monthString.count == 1 ) {
+            monthString.insert("0", at: monthString.startIndex )
+        }
+        if( dayString.count == 1 ) {
+            dayString.insert("0", at: dayString.startIndex )
+        }
+        
+        let tmpDate : String = yearString + monthString + dayString
+        todayDateTime = Int( tmpDate )
     }
     
     func setDelegate() {
@@ -75,6 +132,12 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
         
         //  뒤로가기 버튼
         reservationBackBtn.addTarget(self, action: #selector(self.pressedReservationBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  취소 버튼
+        alertCancelBtn.addTarget(self, action: #selector(self.pressedAlertCancelBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  삭제 버튼
+        alertCommitBtn.addTarget(self, action: #selector(self.pressedAlertCommitBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     func setTapbarAnimation() {
@@ -124,6 +187,22 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
         self.dismiss(animated: false, completion: nil )
     }
     
+    //  취소 버튼 액션
+    @objc func pressedAlertCancelBtn( _ sender : UIButton ) {
+        
+        backUIView.isHidden = true
+        alertUIView.isHidden = true
+    }
+    
+    //  삭제 버튼 액션
+    @objc func pressedAlertCommitBtn( _ sender : UIButton ) {
+        
+        
+        
+        //  삭제하고 서버에서 다시 가져오기
+//        self.getMemberInfoReservation()
+    }
+    
     @objc func btnInCell( _ sender : UIButton ) {
         
         if( sender.image(for: .normal) ==  #imageLiteral(resourceName: "right") ) { //  지도 연결
@@ -142,7 +221,40 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
             self.present( zoneMapDetailVC , animated: true , completion: nil )
             
         } else {    //  삭제할건지 결정
-            print("삭제")
+            
+            self.alertUIView.isHidden = false
+            self.backUIView.isHidden = false
+            
+            self.alertUIView.transform = CGAffineTransform( scaleX: 1.3 , y: 1.3 )
+            self.alertUIView.alpha = 0.0
+            UIView.animate(withDuration: 0.18) {
+                self.alertUIView.alpha = 1.0
+                self.alertUIView.transform = CGAffineTransform( scaleX: 1.0 , y: 1.0 )
+            }
+        }
+    }
+    
+    //  공연 신청 현황 가져오기
+    func getMemberInfoReservation() {
+        
+        Server.reqMemberInfoReservation(member_nickname: (self.memberInfo?.member_nickname)! , r_date: self.todayDateTime! ) { ( memberReservationData , rescode ) in
+            
+            if( rescode == 201 ) {
+                
+                self.memberInfoReservation = memberReservationData
+                self.reservationDetailCollectionView.reloadData()
+                
+                if( self.memberInfoReservation.count != 0 ) {
+                    self.dismiss(animated: false , completion: nil)
+                }
+                
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
         }
     }
     
