@@ -12,6 +12,7 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
 
     //  유저 info
     var memberInfo : Member?            //  회원정보
+    var selectMemberNickname : String?      //  선택한 타인 닉네임
     
     //  네비게이션 바
     @IBOutlet weak var searchMemberBackBtn: UIButton!
@@ -25,6 +26,7 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
     var isFollowingList : [ Int ] = [ Int ]()   //  팔로잉 리스트
     var tapHeartIndex : Int?                    //  누른 하트 인덱스
     var flag : Bool?                 //  isFollowingList 가져왔는지 true , false 에 따라 enable 시킨다.
+    var refresher : UIRefreshControl?
     
     //  검색( 팔로잉 )
     var filteredMemberList : [ MemberList ] = [ MemberList ]()  //  검색 결과
@@ -35,9 +37,9 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showAnimate()
         set()
         setTarget()
+        reloadTarget()
         setDelegate()
         hideKeyboardWhenTappedAround()
         
@@ -48,25 +50,12 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
         getMemberList()
     }
     
-    func showAnimate() {
-        
-        self.view.frame = CGRect(x: self.view.frame.width , y: 0, width: self.view.frame.width , height: self.view.frame.height )
-        
-        UIView.animate(withDuration: 0.3 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn , animations: {
-            
-            self.view.frame.origin.x = 0
-            
-        }, completion: nil )
-    }
-    
     func set() {
         
         for _ in 0 ..< 10000 {
             self.isFollowingList.append(-1)
             self.filteredFollowingList.append(-1)
         }
-        
-        
         
         searchUIView.layer.cornerRadius = 23    //  둥근정도
         searchUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
@@ -94,6 +83,27 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
         searchEndBtn.addTarget(self, action: #selector(self.pressedSearchEndBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
+    func reloadTarget() {
+        
+        refresher = UIRefreshControl()
+        refresher?.tintColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+        refresher?.addTarget( self , action : #selector( reloadData ) , for : .valueChanged )
+        memberCollectionView.addSubview( refresher! )
+    }
+    
+    @objc func reloadData() {
+        
+        self.getMemberList()
+        stopRefresher()
+    }
+    
+    func stopRefresher() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1 , execute: {
+            self.refresher?.endRefreshing()
+        })
+    }
+    
     func setDelegate() {
         
         memberCollectionView.delegate = self
@@ -105,23 +115,7 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
     //  뒤로가기 버튼 액션
     @objc func pressedSearchMemberBackBtn( _ sender : UIButton ) {
         
-        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
-            
-            self.view.frame.origin.x = self.view.frame.width
-            
-        }) { ( finished ) in
-            
-            if( finished ) {
-                
-                guard let rankingVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RankingViewController") as? RankingViewController else { return }
-                
-                rankingVC.memberInfo = self.memberInfo
-                
-                self.present( rankingVC , animated: false , completion: nil )
-                
-                self.view.removeFromSuperview()
-            }
-        }
+        self.dismiss(animated: true , completion: nil )
     }
     
     //  textfield 바뀔때마다 검색
@@ -167,15 +161,16 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
     //  멤버리스트 가져오기
     func getMemberList() {
         
-        Server.reqMemberList { ( memberListData , rescode ) in
+        Server.reqMemberInfoFollowingList( member_selectMemberNickname: self.selectMemberNickname!) { (memberListData , rescode ) in
             
-            if( rescode == 200 ) {
+            if( rescode == 201 ) {
                 
                 self.flag = false
                 self.memberList = memberListData
                 self.memberCollectionView.reloadData()
                 
                 self.getFollowingList()
+                
             } else {
                 
                 let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -511,4 +506,5 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
         
         return true
     }
+
 }
