@@ -171,6 +171,12 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         memberFollowingCntLabel.isUserInteractionEnabled = true
         memberFollowingCntLabel.addGestureRecognizer(tapFollowingList)
         
+        //  팔로워 리스트 버튼
+        memberFollowBtn.addTarget(self, action: #selector(self.pressedMemberFollowBtn(_:)), for: UIControlEvents.touchUpInside)
+        let tapFollowList = UITapGestureRecognizer(target: self , action: #selector( self.pressedMemberFollowBtn(_:) ))
+        memberFollowCntLabel.isUserInteractionEnabled = true
+        memberFollowCntLabel.addGestureRecognizer(tapFollowList)
+        
         //  공연 신청 현황 버튼
         reservationInfoBtn.addTarget(self, action: #selector(self.pressedReservationInfoBtn(_:)), for: UIControlEvents.touchUpInside)
         
@@ -238,6 +244,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             
             followingMemberVC.memberInfo = self.memberInfo
             followingMemberVC.selectMemberNickname = self.selectMemberNickname
+            followingMemberVC.type = 0
             
             self.present( followingMemberVC , animated: true , completion: nil )
             
@@ -251,9 +258,34 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             defaultPopUpVC.view.frame = self.view.frame
             self.view.addSubview( defaultPopUpVC.view )
             defaultPopUpVC.didMove(toParentViewController: self )
-            
-            
         }
+    }
+    
+    //  멤버 팔로워 리스트 버튼 액션
+    @objc func pressedMemberFollowBtn( _ sender : UIButton ) {
+        
+        if( memberFollowCntLabel.text != "0" ) {
+            
+            guard let followingMemberVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FollowingMemberViewController") as? FollowingMemberViewController else { return }
+            
+            followingMemberVC.memberInfo = self.memberInfo
+            followingMemberVC.selectMemberNickname = self.selectMemberNickname
+            followingMemberVC.type = 1
+            
+            self.present( followingMemberVC , animated: true , completion: nil )
+            
+        } else {
+            
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+            
+            defaultPopUpVC.content = "팔로워 멤버가 없습니다"
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
+        }
+        
     }
     
     //  공연 신청 현황 버튼 액션

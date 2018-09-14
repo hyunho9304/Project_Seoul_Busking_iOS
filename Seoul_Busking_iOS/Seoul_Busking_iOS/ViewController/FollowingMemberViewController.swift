@@ -13,6 +13,7 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
     //  유저 info
     var memberInfo : Member?            //  회원정보
     var selectMemberNickname : String?      //  선택한 타인 닉네임
+    var type : Int?     //  팔로잉 : 0 , 팔로워 : 1
     
     //  네비게이션 바
     @IBOutlet weak var searchMemberBackBtn: UIButton!
@@ -161,22 +162,45 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
     //  멤버리스트 가져오기
     func getMemberList() {
         
-        Server.reqMemberInfoFollowingList( member_selectMemberNickname: self.selectMemberNickname!) { (memberListData , rescode ) in
+        if( self.type == 0 ) {
             
-            if( rescode == 201 ) {
+            Server.reqMemberInfoFollowingList( member_selectMemberNickname: self.selectMemberNickname!) { (memberListData , rescode ) in
                 
-                self.flag = false
-                self.memberList = memberListData
-                self.memberCollectionView.reloadData()
+                if( rescode == 201 ) {
+                    
+                    self.flag = false
+                    self.memberList = memberListData
+                    self.memberCollectionView.reloadData()
+                    
+                    self.getFollowingList()
+                    
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
+            }
+        } else {
+            
+            Server.reqMemberInfoFollowList(member_selectMemberNickname: self.selectMemberNickname!) { (memberListData , rescode ) in
                 
-                self.getFollowingList()
-                
-            } else {
-                
-                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
-                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-                alert.addAction( ok )
-                self.present(alert , animated: true , completion: nil)
+                if( rescode == 201 ) {
+                    
+                    self.flag = false
+                    self.memberList = memberListData
+                    self.memberCollectionView.reloadData()
+                    
+                    self.getFollowingList()
+                    
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
             }
         }
     }

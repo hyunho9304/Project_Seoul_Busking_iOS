@@ -940,6 +940,51 @@ struct Server : APIService {
         }
     }
     
+    //  팔로워 리스트 가져오기
+    static func reqMemberInfoFollowList( member_selectMemberNickname : String , completion : @escaping ([MemberList] , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/info/followList" )
+        
+        let body: [String: Any] = [
+            "member_selectMemberNickname" : member_selectMemberNickname
+        ]
+        
+        Alamofire.request(URL, method: .post , parameters: body , encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let memberListData = try decoder.decode(MemberListData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
+                            
+                            completion( memberListData.data! , 201 )
+                        }
+                        else{
+                            
+                            completion( memberListData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
+    
 
 
 
