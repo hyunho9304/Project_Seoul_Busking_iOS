@@ -25,7 +25,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var memberNicknameLabel: UILabel!
     @IBOutlet weak var memberCategoryLabel: UILabel!
     @IBOutlet weak var memberIntroductionTextView: UITextView!
+    @IBOutlet weak var memberFollowingLabel: UILabel!
     @IBOutlet weak var memberFollowingCntLabel: UILabel!
+    @IBOutlet weak var memberFollowLabel: UILabel!
     @IBOutlet weak var memberFollowCntLabel: UILabel!
     @IBOutlet weak var memberStar1: UIImageView!
     @IBOutlet weak var memberStar2: UIImageView!
@@ -37,6 +39,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     
     //  애니메이션바
     @IBOutlet weak var animationUIView: UIView!
+    
+    //  어느것 눌렀는지 확인
+    var flag : Int = -1 //  처음에는 -1
     
     //  공연 신청 현황
     var memberInfoReservation : [ MemberReservation ] = [ MemberReservation ]()  //  멤버 공연 신청 현황 서버
@@ -91,37 +96,6 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     override func viewWillAppear(_ animated: Bool) {
         
         getShowMemberInfo()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
-//
-//            if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
-//
-//                UIView.animate(withDuration: 1 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
-//
-//                    self.animationUIView.frame.origin.x = self.followingScheduleBtn.frame.origin.x
-//
-//                }, completion: nil )
-//
-//                self.animationUIView.layoutIfNeeded()
-//
-//            }
-//        })
-    }
-    
-    func getItoI( _ sender : Int ) -> Int {
-        
-        let result = gino( sender )
-        return result
-        
-    }
-    
-    func getStoS( _ sender : String ) -> String {
-        
-        let result = gsno( sender )
-        return result
     }
     
     func set() {
@@ -261,6 +235,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         
         self.animationUIView.layoutIfNeeded()
         selectMenu( self.reservationInfoBtn )
+        self.flag = 0
     }
     
     //  팔로잉 일정 버튼 액션
@@ -274,6 +249,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         
         self.animationUIView.layoutIfNeeded()
         selectMenu( self.followingScheduleBtn )
+        self.flag = 1
     }
     
     //  공연 후기 버튼 액션
@@ -287,6 +263,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         
         self.animationUIView.layoutIfNeeded()
         selectMenu( self.reviewBtn )
+        self.flag = 2
     }
     
     //  더보기 버튼 액션
@@ -301,7 +278,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 reservationDetailVC.memberInfo = self.memberInfo
                 reservationDetailVC.selectMemberNickname = self.selectMemberNickname
                 
-                self.present( reservationDetailVC , animated: false , completion: nil )
+                self.present( reservationDetailVC , animated: true , completion: nil )
                 
             } else {
                 
@@ -321,7 +298,12 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             
             if( followingNothingLabel.isHidden == true  ) {
                 
-                // 연결
+                guard let followingDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FollowingDetailViewController") as? FollowingDetailViewController else { return }
+                
+                followingDetailVC.memberInfo = self.memberInfo
+                followingDetailVC.memberInfoBasic = self.memberInfoBasic
+                
+                self.present( followingDetailVC , animated: true , completion: nil )
                 
             } else {
                 
@@ -367,18 +349,6 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             if( rescode == 201 ) {
                 
                 self.memberInfoBasic = memberInfoBasicData
-                
-                if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
-                    
-                    UIView.animate(withDuration: 1.5 , delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: .curveEaseOut , animations: {
-                        
-                        self.animationUIView.frame.origin.x = self.followingScheduleBtn.frame.origin.x
-                        
-                    }, completion: nil )
-                    
-                    self.animationUIView.layoutIfNeeded()
-                    
-                }
                 
                 if( self.memberInfoBasic?.member_profile != nil ) {
                     
@@ -426,26 +396,61 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                     self.memberScoreLabel.text = String( tmpScore )
                 }
                 
-                
-                if( self.memberInfoBasic?.member_type != "1" ) { //  관람객
-
-                    //  배경사진 적용 서버에서 배경사진 가져오기 수정해야함
+                if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
                     
-                    self.followingScheduleBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
-                    self.followingScheduleUIView.isHidden = false
+                    if( self.flag == -1 ) {
+                        
+                        UIView.animate(withDuration: 1.5 , delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: .curveEaseOut , animations: {
+                            
+                            self.animationUIView.frame.origin.x = self.followingScheduleBtn.frame.origin.x
+                            
+                        }, completion: nil )
+                        
+                        self.animationUIView.layoutIfNeeded()
+                        
+                        //  배경사진 적용 서버에서 배경사진 가져오기 수정해야함
+                        
+                        self.followingScheduleBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
+                        self.followingScheduleUIView.isHidden = false
+                        self.flag = 1
+                    }
+                } else {
                     
-                } else {    //  버스커
                     //  공연 신청 현황 서버 연동
                     //  공연 후기 서버 연동
                     
                     //  버스커 사진 서버 연동
                     
-                    self.getMemberInfoReservation()
+                    if( self.flag == -1 ) {
+                        
+                        print("11111")
+                        
+                        self.getMemberInfoReservation()
+                        
+                        self.reservationInfoBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
+                        self.reservationUIView.isHidden = false
+                        self.flag = 0
+                        
+                    }
+                }
+                
+                if( self.flag == 0 ) {
                     
                     self.reservationInfoBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
                     self.reservationUIView.isHidden = false
+                    
+                } else if( self.flag == 1 ) {
+                    
+                    self.followingScheduleBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
+                    self.followingScheduleUIView.isHidden = false
+                    
+                } else {
+                    
+                    self.reviewBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
+                    self.reviewUIView.isHidden = false
                 }
                 
+                //  공통
                 self.getMemberInfoFollowingReservation()
                 
             } else {
@@ -464,9 +469,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         Server.reqIsFollowing(member_follow_nickname: (self.memberInfo?.member_nickname)! , member_following_nickname: (self.selectMemberNickname)!) { (rescode ) in
             
             if( rescode == 201 ) {  //  팔로잉 하는중
-                self.memberSetBtn.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+                self.memberSetBtn.setImage(#imageLiteral(resourceName: "heart") , for: .normal)
             } else if( rescode == 401 ) {   //  팔로잉 안함
-                self.memberSetBtn.setImage(#imageLiteral(resourceName: "heartEmpty"), for: .normal)
+                self.memberSetBtn.setImage( #imageLiteral(resourceName: "followEmpty") , for: .normal)
             } else {
                 
                 let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -515,9 +520,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 self.followingScheduleCollectionView.reloadData()
                 
                 if( self.memberInfoFollowingReservation.count != 0 ) {
-                    self.followingNothingLabel.text = "예약된 공연 일정이 없습니다"
                     self.followingNothingLabel.isHidden = true
                 } else {
+                    self.followingNothingLabel.text = "예약된 공연 일정이 없습니다"
                     self.followingNothingLabel.isHidden = false
                 }
             } else {
@@ -528,7 +533,6 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 self.present(alert , animated: true , completion: nil)
             }
         }
-        
     }
     
     //  메뉴 디폴트 설정
@@ -680,6 +684,19 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         } else {
             return 21 * self.view.frame.height/667
         }
+    }
+    
+    func getItoI( _ sender : Int ) -> Int {
+        
+        let result = gino( sender )
+        return result
+        
+    }
+    
+    func getStoS( _ sender : String ) -> String {
+        
+        let result = gsno( sender )
+        return result
     }
 }
 

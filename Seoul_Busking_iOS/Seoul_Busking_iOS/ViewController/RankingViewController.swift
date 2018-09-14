@@ -523,7 +523,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             memberInfoVC.memberInfo = self.memberInfo
             memberInfoVC.selectMemberNickname = rankingList[ indexPath.row ].member_nickname
             
-            self.present( memberInfoVC , animated: false , completion: nil )
+            self.present( memberInfoVC , animated: true , completion: nil )
         }
         
     }

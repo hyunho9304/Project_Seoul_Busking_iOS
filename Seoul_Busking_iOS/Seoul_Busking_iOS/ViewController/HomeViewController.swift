@@ -643,7 +643,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             memberInfoVC.memberInfo = self.memberInfo
             memberInfoVC.selectMemberNickname = reservationList[ indexPath.row ].member_nickname
             
-            self.present( memberInfoVC , animated: false , completion: nil )
+            self.present( memberInfoVC , animated: true , completion: nil )
             
         }
     }

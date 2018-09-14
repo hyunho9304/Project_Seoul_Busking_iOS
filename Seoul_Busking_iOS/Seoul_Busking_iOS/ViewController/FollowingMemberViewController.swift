@@ -1,15 +1,15 @@
 //
-//  SearchMemberViewController.swift
-//  Project_Seoul_Busking_iOS
+//  FollowingMemberViewController.swift
+//  Seoul_Busking_iOS
 //
-//  Created by 박현호 on 2018. 9. 6..
+//  Created by 박현호 on 2018. 9. 14..
 //  Copyright © 2018년 박현호. All rights reserved.
 //
 
 import UIKit
 
-class SearchMemberViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , UITextFieldDelegate {
-    
+class FollowingMemberViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , UITextFieldDelegate {
+
     //  유저 info
     var memberInfo : Member?            //  회원정보
     
@@ -34,7 +34,7 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         showAnimate()
         set()
         setTarget()
@@ -101,7 +101,7 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
         
         searchTextField.delegate = self
     }
-
+    
     //  뒤로가기 버튼 액션
     @objc func pressedSearchMemberBackBtn( _ sender : UIButton ) {
         
@@ -242,11 +242,11 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
                 if( rescode2 == 201 ) {
                     
                     self.filteredFollowingList[i] = 1
-
+                    
                 } else if( rescode2 == 401 ) {
                     
                     self.filteredFollowingList[i] = 0
-
+                    
                 } else {
                     
                     let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -363,7 +363,7 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
     
     
     
-//  Mark -> delegate
+    //  Mark -> delegate
     
     //  cell 의 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -396,7 +396,7 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
                 
                 cell.memberisFollowingBtn.setImage(#imageLiteral(resourceName: "heartEmpty") , for: .normal )
             }
-
+            
             if( filteredMemberList[ indexPath.row ].member_profile != nil ) {
                 
                 cell.memberImageView.kf.setImage(with: URL( string:gsno( filteredMemberList[ indexPath.row ].member_profile)) )
@@ -498,7 +498,7 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
         return 20
     }
     
-//  Mark -> UITextField Delegate
+    //  Mark -> UITextField Delegate
     //  키보드 확인 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -511,12 +511,4 @@ class SearchMemberViewController: UIViewController , UICollectionViewDelegate , 
         
         return true
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }
