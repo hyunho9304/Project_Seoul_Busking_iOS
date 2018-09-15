@@ -43,8 +43,8 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
     var reviewScoreCnt : [ Int ] = [ Int ]()    //  리뷰 각각 점수 개수
     @IBOutlet weak var reviewDetailCollectionView: UICollectionView!
     var refresher : UIRefreshControl?
+    @IBOutlet weak var reviewNothingTextView: UITextView!
     
-    @IBOutlet weak var reviewNothingLabel: UILabel!
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
     @IBOutlet weak var tapbarSearchBtn: UIButton!
@@ -88,12 +88,15 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
                 if( self.memberReviewList.count == 0 ) {
                     
                     self.reviewDetailCollectionView.isHidden = true
-                    self.reviewNothingLabel.isHidden = false
+                    
+                    let tmpNickname = self.getStoS( self.selectMemberNickname! )
+                    self.reviewNothingTextView.text = "\(tmpNickname) 에게 \n 처음으로 리뷰를 남겨보세요"
+                    self.reviewNothingTextView.isHidden = false
                     
                 } else {
                     
                     self.reviewDetailCollectionView.isHidden = false
-                    self.reviewNothingLabel.isHidden = true
+                    self.reviewNothingTextView.isHidden = true
                     
                     let starPercentileUIViewArr = [ self.starPercentileUIView5 , self.starPercentileUIView4 , self.starPercentileUIView3 , self.starPercentileUIView2 , self.starPercentileUIView1 ]
                     let width = Double(self.starPercentileBackUIView1.frame.width)
@@ -328,6 +331,19 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return 0
+    }
+    
+    func getItoI( _ sender : Int ) -> Int {
+        
+        let result = gino( sender )
+        return result
+        
+    }
+    
+    func getStoS( _ sender : String ) -> String {
+        
+        let result = gsno( sender )
+        return result
     }
 
 }
