@@ -125,7 +125,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         }
         
         if( self.view.frame.height > 667 ) {
-            animationUIView.frame = CGRect(x: 22 , y: 428, width: 121.67 , height: 3 )
+            animationUIView.frame = CGRect(x: 22 , y: 429, width: 121.67 , height: 3 )
         }
 
         let yearString : String = String(year)
@@ -385,24 +385,26 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
 
         } else {    //  공연 후기
             
-            if( reservationNothingLabel.isHidden == true  ) {
+            if( memberInfoBasic?.member_type == "1" ) {
                 
-                //  연결
+                guard let reviewDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewDetailViewController") as? ReviewDetailViewController else { return }
+                
+                reviewDetailVC.memberInfo = self.memberInfo
+                reviewDetailVC.selectMemberNickname = self.selectMemberNickname
+                
+                self.present( reviewDetailVC , animated: true , completion: nil )
                 
             } else {
                 
                 guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
                 
-                defaultPopUpVC.content = "리뷰가 없습니다"
+                defaultPopUpVC.content = "버스커가 아닙니다"
                 
                 self.addChildViewController( defaultPopUpVC )
                 defaultPopUpVC.view.frame = self.view.frame
                 self.view.addSubview( defaultPopUpVC.view )
                 defaultPopUpVC.didMove(toParentViewController: self )
-                
             }
-
-            
         }
     }
     

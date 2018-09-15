@@ -983,6 +983,41 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  리뷰 업로드
+    static func reqMemberReviewUpload( review_fromNickname : String , review_toNickname : String , review_title : String , review_content : String , review_score : Int , completion : @escaping (_ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/review/upload" )
+        
+        let body: [String: Any] = [
+            "review_fromNickname" : review_fromNickname ,
+            "review_toNickname" : review_toNickname ,
+            "review_title" : review_title ,
+            "review_content" : review_content ,
+            "review_score" : review_score ,
+        ]
+        
+        Alamofire.request(URL, method: .post, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if( res.response?.statusCode == 201 ){
+                    completion( 201 )
+                }
+                else {
+                    completion( 500 )
+                }
+                break
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
 
     
 

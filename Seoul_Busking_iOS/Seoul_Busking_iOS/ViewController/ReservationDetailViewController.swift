@@ -22,7 +22,7 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
     @IBOutlet weak var reservationDetailCollectionView: UICollectionView!
     var refresher : UIRefreshControl?
     
-    //  취소 popView
+    //  popView
     @IBOutlet weak var alertUIView: UIView!
     @IBOutlet weak var alertCancelBtn: UIButton!
     @IBOutlet weak var alertCommitBtn: UIButton!
@@ -144,7 +144,7 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
         //  취소 버튼
         alertCancelBtn.addTarget(self, action: #selector(self.pressedAlertCancelBtn(_:)), for: UIControlEvents.touchUpInside)
         
-        //  삭제 버튼
+        //  확인 버튼
         alertCommitBtn.addTarget(self, action: #selector(self.pressedAlertCommitBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
@@ -223,7 +223,7 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
         alertUIView.isHidden = true
     }
     
-    //  삭제 버튼 액션
+    //  확인 버튼 액션
     @objc func pressedAlertCommitBtn( _ sender : UIButton ) {
         
         Server.reqDropReservation(r_id: self.memberInfoReservation[selectedDropIndex! ].r_id!) { ( rescode ) in
@@ -248,7 +248,7 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
     //  공연 신청 현황 가져오기
     func getMemberInfoReservation() {
         
-        Server.reqMemberInfoReservation(member_nickname: (self.memberInfo?.member_nickname)! , r_date: self.todayDateTime! ) { ( memberReservationData , rescode ) in
+        Server.reqMemberInfoReservation(member_nickname: self.selectMemberNickname! , r_date: self.todayDateTime! ) { ( memberReservationData , rescode ) in
             
             if( rescode == 201 ) {
                 

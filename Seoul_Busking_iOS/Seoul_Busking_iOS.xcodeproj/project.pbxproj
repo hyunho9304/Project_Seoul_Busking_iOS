@@ -11,6 +11,8 @@
 		BEBE0FC3214B974F00B7601F /* FollowingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FC2214B974E00B7601F /* FollowingDetailViewController.swift */; };
 		BEBE0FC5214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FC4214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift */; };
 		BEBE0FCC214BC94400B7601F /* FollowingMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */; };
+		BEBE0FD0214CE84500B7601F /* ReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FCF214CE84500B7601F /* ReviewDetailViewController.swift */; };
+		BEBE0FD2214CEB4E00B7601F /* ReviewCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FD1214CEB4E00B7601F /* ReviewCreateViewController.swift */; };
 		BED7CA6E21479C0000730650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA6D21479C0000730650 /* AppDelegate.swift */; };
 		BED7CA7321479C0000730650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7121479C0000730650 /* Main.storyboard */; };
 		BED7CA7521479C0100730650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7421479C0100730650 /* Assets.xcassets */; };
@@ -109,6 +111,8 @@
 		BEBE0FC2214B974E00B7601F /* FollowingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingDetailViewController.swift; sourceTree = "<group>"; };
 		BEBE0FC4214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingMemberViewController.swift; sourceTree = "<group>"; };
+		BEBE0FCF214CE84500B7601F /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
+		BEBE0FD1214CEB4E00B7601F /* ReviewCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCreateViewController.swift; sourceTree = "<group>"; };
 		BED7CA6A21479C0000730650 /* Seoul_Busking_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seoul_Busking_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED7CA6D21479C0000730650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED7CA7221479C0000730650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -315,6 +319,8 @@
 				BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */,
 				BEBE0FC2214B974E00B7601F /* FollowingDetailViewController.swift */,
 				BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */,
+				BEBE0FCF214CE84500B7601F /* ReviewDetailViewController.swift */,
+				BEBE0FD1214CEB4E00B7601F /* ReviewCreateViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BED7CB462147B04300730650 /* HomeCalendarCollectionViewCell.swift in Sources */,
+				BEBE0FD2214CEB4E00B7601F /* ReviewCreateViewController.swift in Sources */,
 				BED7CB272147B02800730650 /* BuskingZoneListViewController.swift in Sources */,
 				BED7CB212147B02800730650 /* SearchMemberViewController.swift in Sources */,
 				BED7CB292147B02800730650 /* SignUpViewController.swift in Sources */,
@@ -575,6 +582,7 @@
 				BED7CB3D2147B04300730650 /* selectCategoryCollectionViewCell.swift in Sources */,
 				BED7CB5B2147B06500730650 /* BuskingZoneListAll.swift in Sources */,
 				BED7CB622147B06500730650 /* Ranking.swift in Sources */,
+				BEBE0FD0214CE84500B7601F /* ReviewDetailViewController.swift in Sources */,
 				BED7CB6C2147B07500730650 /* CalendarVars.swift in Sources */,
 				BED7CA6E21479C0000730650 /* AppDelegate.swift in Sources */,
 				BED7CB202147B02800730650 /* NextSegue.swift in Sources */,
