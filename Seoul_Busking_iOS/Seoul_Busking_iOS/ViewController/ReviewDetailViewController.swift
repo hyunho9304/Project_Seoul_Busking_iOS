@@ -44,6 +44,7 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
     @IBOutlet weak var reviewDetailCollectionView: UICollectionView!
     var refresher : UIRefreshControl?
     
+    @IBOutlet weak var reviewNothingLabel: UILabel!
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
     @IBOutlet weak var tapbarSearchBtn: UIButton!
@@ -81,20 +82,24 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
                 
                 self.reviewDetailCollectionView.reloadData()
                 
-                if( self.memberReviewList.count == 0 ) {
-                    
-                    //  없음 표시
-                }
-                
                 self.starScore.text = String( self.memberScore )
                 self.starTotalCntLabel.text = "총 \(self.reviewTotalCnt)개"
                 
-                let starPercentileUIViewArr = [ self.starPercentileUIView5 , self.starPercentileUIView4 , self.starPercentileUIView3 , self.starPercentileUIView2 , self.starPercentileUIView1 ]
-                
-                let width = Double(self.starPercentileBackUIView1.frame.width)
-                
-                for i in 0 ..< 5 {
-                    starPercentileUIViewArr[i]?.frame.size.width = CGFloat(( ( Double(self.reviewScoreCnt[i]) / Double(self.reviewTotalCnt) ) * width))
+                if( self.memberReviewList.count == 0 ) {
+                    
+                    self.reviewDetailCollectionView.isHidden = true
+                    self.reviewNothingLabel.isHidden = false
+                    
+                } else {
+                    
+                    self.reviewDetailCollectionView.isHidden = false
+                    self.reviewNothingLabel.isHidden = true
+                    
+                    let starPercentileUIViewArr = [ self.starPercentileUIView5 , self.starPercentileUIView4 , self.starPercentileUIView3 , self.starPercentileUIView2 , self.starPercentileUIView1 ]
+                    let width = Double(self.starPercentileBackUIView1.frame.width)
+                    for i in 0 ..< 5 {
+                        starPercentileUIViewArr[i]?.frame.size.width = CGFloat(( ( Double(self.reviewScoreCnt[i]) / Double(self.reviewTotalCnt) ) * width))
+                    }
                 }
             } else {
                 
