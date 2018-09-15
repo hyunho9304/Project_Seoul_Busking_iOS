@@ -103,6 +103,22 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
         
         backUIView.isHidden = true
         backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
+        alertUIView.isHidden = true
+        alertUIView.layer.cornerRadius = 5    //  둥근정도
+        alertUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+        
+        alertUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+        alertUIView.layer.shadowOpacity = 0.15                            //  그림자 투명도
+        alertUIView.layer.shadowOffset = CGSize(width: 0 , height: 3 )    //  그림자 x y
+        alertUIView.layer.shadowRadius = 5                                //  그림자 둥근정도
+        //  그림자의 블러는 5 정도 이다
+        
+        //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
+        alertCommitBtn.layer.cornerRadius = 5
+        alertCommitBtn.layer.maskedCorners = [.layerMaxXMaxYCorner ]
+        
+        alertCancelBtn.layer.cornerRadius = 5
+        alertCancelBtn.layer.maskedCorners = [ .layerMinXMaxYCorner ]
     }
     
     func setDelegate() {

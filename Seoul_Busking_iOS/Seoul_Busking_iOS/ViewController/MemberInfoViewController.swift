@@ -490,8 +490,6 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                     
                     if( self.flag == -1 ) {
                         
-                        print("11111")
-                        
                         self.getMemberInfoReservation()
                         
                         self.reservationInfoBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )

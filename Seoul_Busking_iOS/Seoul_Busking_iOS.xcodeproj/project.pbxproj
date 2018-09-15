@@ -13,6 +13,8 @@
 		BEBE0FCC214BC94400B7601F /* FollowingMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */; };
 		BEBE0FD0214CE84500B7601F /* ReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FCF214CE84500B7601F /* ReviewDetailViewController.swift */; };
 		BEBE0FD2214CEB4E00B7601F /* ReviewCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FD1214CEB4E00B7601F /* ReviewCreateViewController.swift */; };
+		BEBE0FD4214D562000B7601F /* ReviewDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FD3214D562000B7601F /* ReviewDetailCollectionViewCell.swift */; };
+		BEBE0FD6214D64D400B7601F /* MemberReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FD5214D64D400B7601F /* MemberReview.swift */; };
 		BED7CA6E21479C0000730650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CA6D21479C0000730650 /* AppDelegate.swift */; };
 		BED7CA7321479C0000730650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7121479C0000730650 /* Main.storyboard */; };
 		BED7CA7521479C0100730650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED7CA7421479C0100730650 /* Assets.xcassets */; };
@@ -113,6 +115,8 @@
 		BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingMemberViewController.swift; sourceTree = "<group>"; };
 		BEBE0FCF214CE84500B7601F /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
 		BEBE0FD1214CEB4E00B7601F /* ReviewCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCreateViewController.swift; sourceTree = "<group>"; };
+		BEBE0FD3214D562000B7601F /* ReviewDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		BEBE0FD5214D64D400B7601F /* MemberReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberReview.swift; sourceTree = "<group>"; };
 		BED7CA6A21479C0000730650 /* Seoul_Busking_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seoul_Busking_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED7CA6D21479C0000730650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED7CA7221479C0000730650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 				BED7CB73214903FE00730650 /* ReviewCollectionViewCell.swift */,
 				BED7CB7B21497BA500730650 /* ReservationDetailCollectionViewCell.swift */,
 				BEBE0FC4214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift */,
+				BEBE0FD3214D562000B7601F /* ReviewDetailCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				BED7CB592147B06400730650 /* ToggleBtn.swift */,
 				BED7CB752149152E00730650 /* MemberReservation.swift */,
 				BED7CB772149536B00730650 /* MemberFollowingReservation.swift */,
+				BEBE0FD5214D64D400B7601F /* MemberReview.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -574,6 +580,7 @@
 				BED7CB3B2147B04300730650 /* SelectBuskingZoneCntCollectionViewCell.swift in Sources */,
 				BED7CB472147B04300730650 /* RankingSelect2CollectionViewCell.swift in Sources */,
 				BED7CB3E2147B04300730650 /* BuskingZoneCollectionViewCell.swift in Sources */,
+				BEBE0FD6214D64D400B7601F /* MemberReview.swift in Sources */,
 				BED7CB5F2147B06500730650 /* BuskingZone.swift in Sources */,
 				BED7CB5D2147B06500730650 /* MemberList.swift in Sources */,
 				BED7CB1D2147B02800730650 /* MemberInfoViewController.swift in Sources */,
@@ -592,6 +599,7 @@
 				BED7CB1A2147B02800730650 /* SelectTypeViewController.swift in Sources */,
 				BED7CB722148FD1600730650 /* MyReservationCollectionViewCell.swift in Sources */,
 				BED7CB3F2147B04300730650 /* RankingSelect1CollectionViewCell.swift in Sources */,
+				BEBE0FD4214D562000B7601F /* ReviewDetailCollectionViewCell.swift in Sources */,
 				BEBE0FC5214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift in Sources */,
 				BED7CB5C2147B06500730650 /* CurrentReservationListAll.swift in Sources */,
 				BED7CB412147B04300730650 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */,

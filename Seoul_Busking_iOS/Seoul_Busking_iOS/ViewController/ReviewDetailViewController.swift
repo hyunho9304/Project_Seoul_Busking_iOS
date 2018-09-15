@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Kingfisher
 
-class ReviewDetailViewController: UIViewController {
+class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
 
     //  유저 정보
     var memberInfo : Member?
@@ -22,6 +23,8 @@ class ReviewDetailViewController: UIViewController {
     @IBOutlet weak var reviewCreateImageBtn: UIButton!
     
     //  별점
+    @IBOutlet weak var starScore: UILabel!
+    @IBOutlet weak var starTotalCntLabel: UILabel!
     @IBOutlet weak var starPercentileBackUIView5: UIView!
     @IBOutlet weak var starPercentileUIView5: UIView!
     @IBOutlet weak var starPercentileBackUIView4: UIView!
@@ -33,10 +36,13 @@ class ReviewDetailViewController: UIViewController {
     @IBOutlet weak var starPercentileBackUIView1: UIView!
     @IBOutlet weak var starPercentileUIView1: UIView!
     
-    
-    
-    
-    
+    //  내용
+    var memberReviewList : [ MemberReview ] = [ MemberReview ]()  //  멤버 리뷰 서버
+    var memberScore : Double = 0
+    var reviewTotalCnt : Int = 0    //  리뷰 전체 개수
+    var reviewScoreCnt : [ Int ] = [ Int ]()    //  리뷰 각각 점수 개수
+    @IBOutlet weak var reviewDetailCollectionView: UICollectionView!
+    var refresher : UIRefreshControl?
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -51,8 +57,76 @@ class ReviewDetailViewController: UIViewController {
         super.viewDidLoad()
         
         set()
+        setDelegate()
         setTarget()
+        reloadTarget()
         setTapbarAnimation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        getReviewList()
+    }
+    
+    func getReviewList() {
+        
+        Server.reqMemberReviewList(review_toNickname: self.selectMemberNickname!) { ( memberReviewData , score  , totalCnt , scoreCnt , rescode ) in
+            
+            if( rescode == 200 ) {
+                
+                self.memberReviewList = memberReviewData
+                self.memberScore = score
+                self.reviewTotalCnt = totalCnt
+                self.reviewScoreCnt = scoreCnt
+                
+                self.reviewDetailCollectionView.reloadData()
+                
+                if( self.memberReviewList.count == 0 ) {
+                    
+                    //  없음 표시
+                }
+                
+                self.starScore.text = String( self.memberScore )
+                self.starTotalCntLabel.text = "총 \(self.reviewTotalCnt)개"
+                
+                let starPercentileUIViewArr = [ self.starPercentileUIView5 , self.starPercentileUIView4 , self.starPercentileUIView3 , self.starPercentileUIView2 , self.starPercentileUIView1 ]
+                
+                let width = Double(self.starPercentileBackUIView1.frame.width)
+                
+                for i in 0 ..< 5 {
+                    starPercentileUIViewArr[i]?.frame.size.width = CGFloat(( ( Double(self.reviewScoreCnt[i]) / Double(self.reviewTotalCnt) ) * width))
+                }
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
+        
+    }
+    
+    func reloadTarget() {
+        
+        refresher = UIRefreshControl()
+        refresher?.tintColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+        refresher?.addTarget( self , action : #selector( reloadData ) , for : .valueChanged )
+        reviewDetailCollectionView.alwaysBounceVertical = true
+        reviewDetailCollectionView.addSubview( refresher! )
+    }
+    
+    @objc func reloadData() {
+        
+        self.getReviewList()
+        stopRefresher()
+    }
+    
+    func stopRefresher() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1 , execute: {
+            self.refresher?.endRefreshing()
+        })
     }
     
     func set() {
@@ -72,15 +146,23 @@ class ReviewDetailViewController: UIViewController {
         let starPercentileUIView = [ starPercentileUIView5 , starPercentileUIView4 , starPercentileUIView3 , starPercentileUIView2 , starPercentileUIView1 ]
         
         for i in 0 ..< 5 {
-            starPercentileBackUIViewArr[i]?.layer.cornerRadius = 5    //  둥근정도
+            starPercentileBackUIViewArr[i]?.layer.cornerRadius = 1    //  둥근정도
             starPercentileBackUIViewArr[i]?.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
-            starPercentileUIView[i]?.layer.cornerRadius = 5    //  둥근정도
+            starPercentileUIView[i]?.layer.cornerRadius = 1    //  둥근정도
             starPercentileUIView[i]?.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
             
         }
         
-//        starPercentileUIView5.frame.size.width = 1 / self. * 168
-
+        //  초기화
+        for _ in 0 ..< 5 {
+            self.reviewScoreCnt.append(0)
+        }
+    }
+    
+    func setDelegate() {
+        
+        reviewDetailCollectionView.delegate = self
+        reviewDetailCollectionView.dataSource = self
     }
     
     func setTarget() {
@@ -164,6 +246,83 @@ class ReviewDetailViewController: UIViewController {
         reviewCreateVC.selectMemberNickname = self.selectMemberNickname
         
         self.present( reviewCreateVC , animated: true , completion: nil )
+    }
+
+//  Mark -> delegate
+    //  cell 의 개수
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return memberReviewList.count
+    }
+    
+    //  cell 의 내용
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewDetailCollectionViewCell", for: indexPath ) as! ReviewDetailCollectionViewCell
+        
+        let borderColor = #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
+        let borderOpacity : CGFloat = 0.3
+        cell.reviewDetailUIView.layer.borderColor = borderColor.withAlphaComponent(borderOpacity).cgColor
+        cell.reviewDetailUIView.layer.borderWidth = 2
+        cell.reviewDetailUIView.layer.cornerRadius = 6
+        cell.reviewDetailUIView.layer.shadowColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
+        cell.reviewDetailUIView.layer.shadowOpacity = 0.5
+        cell.reviewDetailUIView.layer.shadowOffset = CGSize( width: 0 , height: 2 )
+        cell.reviewDetailUIView.layer.shadowRadius = 5
+        
+        
+        cell.reviewDetailTitleLabel.text = memberReviewList[ indexPath.row ].review_title
+        cell.reviewDetailDateLabel.text = memberReviewList[ indexPath.row ].review_uploadtime
+
+        let starArr = [ cell.reviewDetailStar1 , cell.reviewDetailStar2 , cell.reviewDetailStar3 , cell.reviewDetailStar4 , cell.reviewDetailStar5 ]
+        let starCnt = memberReviewList[ indexPath.row ].review_score
+
+        for i in 0 ..< 5 {
+            starArr[i]?.image = #imageLiteral(resourceName: "nonStar")
+        }
+        for i in 0 ..< starCnt! {
+            starArr[i]?.image = #imageLiteral(resourceName: "star")
+        }
+
+        cell.reviewDetailNicknameLabel.text = memberReviewList[ indexPath.row ].review_fromNickname
+
+        if( memberReviewList[ indexPath.row ].member_profile != nil ) {
+
+            cell.reviewDetailProfileImageView.kf.setImage( with: URL( string:gsno(memberReviewList[ indexPath.row ].member_profile ) ) )
+            cell.reviewDetailProfileImageView.layer.cornerRadius = cell.reviewDetailProfileImageView.layer.frame.width/2
+            cell.reviewDetailProfileImageView.clipsToBounds = true
+
+        } else {
+
+            cell.reviewDetailProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
+        }
+
+        cell.reviewDetailTextView.text = memberReviewList[ indexPath.row ].review_content
+
+        return cell
+    }
+
+    
+    //  cell 선택 했을 때
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
+    //  cell 크기 비율
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 375 * self.view.frame.width/375 , height: 216 * self.view.frame.height/667 )
+    }
+    
+    //  cell 간 가로 간격 ( horizental 이라서 가로를 사용해야 한다 )
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
     }
 
 }

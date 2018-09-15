@@ -1017,6 +1017,50 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  리뷰 리스트 가져오기
+    static func reqMemberReviewList( review_toNickname : String ,  completion : @escaping ([MemberReview] , Double , Int , [Int] , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/review/list" )
+        
+        let body: [String: Any] = [
+            "review_toNickname" : review_toNickname
+        ]
+        
+        Alamofire.request(URL, method: .post , parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let memberReviewData = try decoder.decode(MemberReviewData.self , from: value)
+                        
+                        if( res.response?.statusCode == 200 ){
+                            
+                            completion( memberReviewData.data! , memberReviewData.member_score , memberReviewData.totalCnt , memberReviewData.scoreCnt , 200 )
+                        }
+                        else{
+                            
+                            completion( memberReviewData.data! , memberReviewData.member_score , memberReviewData.totalCnt , memberReviewData.scoreCnt , 500 )
+                        }
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
 
 
     

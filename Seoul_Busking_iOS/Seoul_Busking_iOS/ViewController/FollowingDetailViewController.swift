@@ -37,8 +37,6 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
     let hour = calendar.component(.hour, from: date)
     var todayDateTime : Int?    //  선택한년월일 ex ) 2018815
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
