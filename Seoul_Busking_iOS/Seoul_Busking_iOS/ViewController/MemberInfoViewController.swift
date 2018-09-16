@@ -172,6 +172,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         //  백 버튼
         memberInfoBackBtn.addTarget(self, action: #selector(self.pressedMemberInfoBackBtn(_:)), for: UIControlEvents.touchUpInside)
         
+        //  ( 프로필수정 , 팔로잉 ) 버튼 클릭
+        memberSetBtn.addTarget(self, action: #selector(self.pressedMemberSetBtn(_:)), for: UIControlEvents.touchUpInside)
+        
         //  팔로잉 리스트 버튼
         memberFollowingBtn.addTarget(self, action: #selector(self.pressedMemberFollowingBtn(_:)), for: UIControlEvents.touchUpInside)
         let tapFollowingList = UITapGestureRecognizer(target: self , action: #selector( self.pressedMemberFollowingBtn(_:) ))
@@ -242,6 +245,58 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     @objc func pressedMemberInfoBackBtn( _ sender : UIButton ) {
         
         self.dismiss(animated: false , completion: nil )
+    }
+    
+    //  ( 프로필 수정 , 팔로잉 ) 버튼 액션
+    @objc func pressedMemberSetBtn( _ sender : UIButton ) {
+        
+        if( memberSetBtn.image(for: .normal ) == #imageLiteral(resourceName: "modifyProfile") ) {
+            
+            print( "프로필수정" )
+        } else {
+            
+            Server.reqFollowing(member_follow_nickname: (self.memberInfo?.member_nickname)!, member_following_nickname: self.selectMemberNickname! ) { (rescode , flag ) in
+                
+                if( rescode == 201 ) {
+                    
+                    if( flag == 1 ) {
+                        
+                        guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                        
+                        defaultPopUpVC.content = "팔로잉 완료"
+                        
+                        self.addChildViewController( defaultPopUpVC )
+                        defaultPopUpVC.view.frame = self.view.frame
+                        self.view.addSubview( defaultPopUpVC.view )
+                        defaultPopUpVC.didMove(toParentViewController: self )
+                        
+                        sender.setImage(#imageLiteral(resourceName: "heart") , for: .normal )
+                        self.memberFollowCntLabel.text = String( Int( self.memberFollowCntLabel.text! )! + 1 )
+                        
+                    } else if( flag == 0 ) {
+                        
+                        guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                        
+                        defaultPopUpVC.content = "언팔로우 완료"
+                        
+                        self.addChildViewController( defaultPopUpVC )
+                        defaultPopUpVC.view.frame = self.view.frame
+                        self.view.addSubview( defaultPopUpVC.view )
+                        defaultPopUpVC.didMove(toParentViewController: self )
+                        
+                        sender.setImage(#imageLiteral(resourceName: "followEmpty")  , for: .normal )
+                        self.memberFollowCntLabel.text = String( Int( self.memberFollowCntLabel.text! )! - 1 )
+                    }
+                    
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
+            }
+        }
     }
     
     //  멤버 팔로잉 리스트 버튼 액션
