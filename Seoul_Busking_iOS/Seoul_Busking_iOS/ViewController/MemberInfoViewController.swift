@@ -59,6 +59,10 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     
     
     //  공연 후기
+    var memberReviewList : [ MemberReview ] = [ MemberReview ]()  //  멤버 리뷰 서버
+    var memberScore : Double = 0
+    var reviewTotalCnt : Int = 0    //  리뷰 전체 개수
+    var reviewScoreCnt : [ Int ] = [ Int ]()    //  리뷰 각각 점수 개수
     @IBOutlet weak var reviewBtn: UIButton!
     @IBOutlet weak var reviewUIView: UIView!
     @IBOutlet weak var reviewCollectionView: UICollectionView!
@@ -152,6 +156,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
 
         followingScheduleCollectionView.delegate = self
         followingScheduleCollectionView.dataSource = self
+        
+        reviewCollectionView.delegate = self
+        reviewCollectionView.dataSource = self
     }
     
     func setTarget() {
@@ -192,8 +199,10 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         moreLabel.isUserInteractionEnabled = true
         moreLabel.addGestureRecognizer(tapMore)
         
-        
-        
+        //  리뷰 없을때 누를경우 버튼
+        let tapNothingReviewLabel = UITapGestureRecognizer(target: self , action: #selector( self.pressedReviewNothingLabel(_:) ))
+        reviewNothingLabel.isUserInteractionEnabled = true
+        reviewNothingLabel.addGestureRecognizer(tapNothingReviewLabel)
     }
     
     func setTapbarAnimation() {
@@ -408,6 +417,31 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         }
     }
     
+    //  리뷰 없을때 버튼 액션
+    @objc func pressedReviewNothingLabel( _ sender : UIButton ) {
+        
+        if( memberInfoBasic?.member_type == "1" ) {
+            
+            guard let reviewDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewDetailViewController") as? ReviewDetailViewController else { return }
+            
+            reviewDetailVC.memberInfo = self.memberInfo
+            reviewDetailVC.selectMemberNickname = self.selectMemberNickname
+            
+            self.present( reviewDetailVC , animated: true , completion: nil )
+            
+        } else {
+            
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+            
+            defaultPopUpVC.content = "버스커가 아닙니다"
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
+        }
+    }
+    
     //  멤버 정보 가져오기
     func getShowMemberInfo() {
         
@@ -472,7 +506,6 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                             self.animationUIView.frame.origin.x = self.followingScheduleBtn.frame.origin.x
                             
                         }, completion: nil )
-                        
                         self.animationUIView.layoutIfNeeded()
                         
                         //  배경사진 적용 서버에서 배경사진 가져오기 수정해야함
@@ -483,21 +516,22 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                     }
                 } else {
                     
-                    //  공연 신청 현황 서버 연동
-                    //  공연 후기 서버 연동
-                    
-                    //  버스커 사진 서버 연동
-                    
                     if( self.flag == -1 ) {
-                        
-                        self.getMemberInfoReservation()
                         
                         self.reservationInfoBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
                         self.reservationUIView.isHidden = false
                         self.flag = 0
-                        
                     }
+                    
+                    self.getMemberInfoReservation()
+                    self.getReviewList()
+                    
+                    //  버스커 사진 서버 연동
+                    
                 }
+                
+                //  공통
+                self.getMemberInfoFollowingReservation()
                 
                 if( self.flag == 0 ) {
                     
@@ -514,10 +548,6 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                     self.reviewBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
                     self.reviewUIView.isHidden = false
                 }
-                
-                //  공통
-                self.getMemberInfoFollowingReservation()
-                
             } else {
                 
                 let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
@@ -600,6 +630,40 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         }
     }
     
+    //  리뷰 가져오기
+    func getReviewList() {
+        
+        Server.reqMemberReviewList(review_toNickname: self.selectMemberNickname!) { ( memberReviewData , score  , totalCnt , scoreCnt , rescode ) in
+            
+            if( rescode == 200 ) {
+                
+                self.memberReviewList = memberReviewData
+                self.memberScore = score
+                self.reviewTotalCnt = totalCnt
+                self.reviewScoreCnt = scoreCnt
+                
+                self.reviewCollectionView.reloadData()
+                
+                if( self.memberReviewList.count != 0 ) {
+                    
+                    self.reviewNothingLabel.isHidden = true
+                    
+                } else {
+                    
+                    self.reviewNothingLabel.text = "리뷰가 없습니다( 첫 리뷰를 남겨보세요 )"
+                    self.reviewNothingLabel.isHidden = false
+                }
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+            }
+        }
+    }
+
+    
     //  메뉴 디폴트 설정
     func selectMenu( _ sender : UIButton ) {
         
@@ -650,7 +714,11 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 return memberInfoFollowingReservation.count
             }
         } else {
-            return 0
+            if( memberReviewList.count >= 2 ) {
+                return 2
+            } else {
+                return memberReviewList.count
+            }
         }
     }
 
@@ -674,7 +742,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             
             return cell
             
-        } else {
+        } else if( collectionView == followingScheduleCollectionView ) {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FollowingScheduleCollectionViewCell", for: indexPath ) as! FollowingScheduleCollectionViewCell
             
@@ -701,6 +769,38 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             cell.followingNicknameLabel.text = memberInfoFollowingReservation[ indexPath.row ].member_nickname
             
             return cell
+            
+        } else {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewCollectionViewCell", for: indexPath ) as! ReviewCollectionViewCell
+            
+            cell.reviewTitleLabel.text = memberReviewList[ indexPath.row ].review_title
+            cell.reviewDateLabel.text = memberReviewList[ indexPath.row ].review_uploadtime
+            
+            let starArr = [ cell.reviewStar1 , cell.reviewStar2 , cell.reviewStar3 , cell.reviewStar4 , cell.reviewStar5 ]
+            let starCnt = memberReviewList[ indexPath.row ].review_score
+            
+            for i in 0 ..< 5 {
+                starArr[i]?.image = #imageLiteral(resourceName: "nonStar")
+            }
+            for i in 0 ..< starCnt! {
+                starArr[i]?.image = #imageLiteral(resourceName: "star")
+            }
+            
+            cell.reviewNicknameLabel.text = memberReviewList[ indexPath.row ].review_fromNickname
+            
+            if( memberReviewList[ indexPath.row ].member_profile != nil ) {
+                
+                cell.reviewProfileImageView.kf.setImage( with: URL( string:gsno(memberReviewList[ indexPath.row ].member_profile ) ) )
+                cell.reviewProfileImageView.layer.cornerRadius = cell.reviewProfileImageView.layer.frame.width/2
+                cell.reviewProfileImageView.clipsToBounds = true
+                
+            } else {
+                
+                cell.reviewProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
+            }
+            
+            return cell
         }
     }
 
@@ -709,10 +809,72 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
 
         if( collectionView == reservationCollectionView ) {
             
+            if( reservationNothingLabel.isHidden == true  ) {
+                
+                guard let reservationDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationDetailViewController") as? ReservationDetailViewController else { return }
+                
+                reservationDetailVC.memberInfo = self.memberInfo
+                reservationDetailVC.selectMemberNickname = self.selectMemberNickname
+                
+                self.present( reservationDetailVC , animated: true , completion: nil )
+                
+            } else {
+                
+                guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                
+                defaultPopUpVC.content = "공연 신청 현황이 없습니다"
+                
+                self.addChildViewController( defaultPopUpVC )
+                defaultPopUpVC.view.frame = self.view.frame
+                self.view.addSubview( defaultPopUpVC.view )
+                defaultPopUpVC.didMove(toParentViewController: self )
+                
+            }
         } else if( collectionView == followingScheduleCollectionView ) {
             
+            if( followingNothingLabel.isHidden == true  ) {
+                
+                guard let followingDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FollowingDetailViewController") as? FollowingDetailViewController else { return }
+                
+                followingDetailVC.memberInfo = self.memberInfo
+                followingDetailVC.memberInfoBasic = self.memberInfoBasic
+                
+                self.present( followingDetailVC , animated: true , completion: nil )
+                
+            } else {
+                
+                guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                
+                defaultPopUpVC.content = "팔로잉 일정이 없습니다"
+                
+                self.addChildViewController( defaultPopUpVC )
+                defaultPopUpVC.view.frame = self.view.frame
+                self.view.addSubview( defaultPopUpVC.view )
+                defaultPopUpVC.didMove(toParentViewController: self )
+                
+            }
         } else {
             
+            if( memberInfoBasic?.member_type == "1" ) {
+                
+                guard let reviewDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewDetailViewController") as? ReviewDetailViewController else { return }
+                
+                reviewDetailVC.memberInfo = self.memberInfo
+                reviewDetailVC.selectMemberNickname = self.selectMemberNickname
+                
+                self.present( reviewDetailVC , animated: true , completion: nil )
+                
+            } else {
+                
+                guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+                
+                defaultPopUpVC.content = "버스커가 아닙니다"
+                
+                self.addChildViewController( defaultPopUpVC )
+                defaultPopUpVC.view.frame = self.view.frame
+                self.view.addSubview( defaultPopUpVC.view )
+                defaultPopUpVC.didMove(toParentViewController: self )
+            }
         }
     }
 

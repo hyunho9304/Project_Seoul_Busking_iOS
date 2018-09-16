@@ -149,8 +149,6 @@ struct Server : APIService {
                     
                     do {
                         
-                        print( JSON( value ))
-                        
                         let memberData = try decoder.decode(MemberData.self , from: value)
                         
                         if( res.response?.statusCode == 201 ){

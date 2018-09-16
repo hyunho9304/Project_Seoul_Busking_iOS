@@ -112,7 +112,6 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
                 self.present(alert , animated: true , completion: nil)
             }
         }
-        
     }
     
     func reloadTarget() {

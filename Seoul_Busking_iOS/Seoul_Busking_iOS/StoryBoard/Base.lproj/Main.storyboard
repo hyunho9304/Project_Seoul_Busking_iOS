@@ -3187,7 +3187,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKl-53-0Lo">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="148"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="147.5"/>
                                 <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="iKl-53-0Lo" secondAttribute="height" multiplier="375:148" id="Mq6-Co-PVF"/>
@@ -3232,7 +3232,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cyo-IK-vXg">
-                                <rect key="frame" x="265" y="153" width="90" height="40"/>
+                                <rect key="frame" x="265" y="152.5" width="90" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Cyo-IK-vXg" secondAttribute="height" multiplier="9:4" id="eu7-xO-Dni"/>
                                 </constraints>
@@ -3464,7 +3464,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예약된 공연 일정이 없습니다" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6o-ZE-FXE">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리뷰가 없습니다( 첫 리뷰를 남겨보세요 )" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6o-ZE-FXE">
                                         <rect key="frame" x="0.0" y="55" width="375" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Y6o-ZE-FXE" secondAttribute="height" multiplier="15:1" id="6VQ-fe-Kvy"/>
@@ -5100,7 +5100,7 @@
                                     <constraint firstAttribute="width" secondItem="InY-2a-TUx" secondAttribute="height" multiplier="1:1" id="Uq7-Nt-asq"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="첫 리뷰를 남기세요" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pvw-sa-SKj">
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="첫 리뷰를 남기세요" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pvw-sa-SKj">
                                 <rect key="frame" x="34" y="291.5" width="307" height="104"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
