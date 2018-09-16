@@ -172,7 +172,7 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
     //  뒤로가기 버튼 액션
     @objc func pressedReservationBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: true , completion: nil )
+        self.dismiss(animated: false , completion: nil )
     }
     
     //  팔로잉 멤버들의 공연 일정 가져오기
@@ -186,7 +186,7 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
                 self.followingDetailCollectionView.reloadData()
                 
                 if( self.memberInfoFollowingReservation.count == 0 ) {
-                    self.dismiss(animated: true , completion: nil)
+                    self.dismiss(animated: false , completion: nil)
                 }
                 
             } else {
@@ -273,6 +273,12 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
+        
+        memberInfoVC.memberInfo = self.memberInfo
+        memberInfoVC.selectMemberNickname = memberInfoFollowingReservation[ indexPath.row ].member_nickname
+        
+        self.present( memberInfoVC , animated: true , completion: nil )
     }
     
     //  cell 크기 비율

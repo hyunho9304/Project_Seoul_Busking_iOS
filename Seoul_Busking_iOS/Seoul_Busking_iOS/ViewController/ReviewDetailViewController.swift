@@ -241,7 +241,7 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
     //  뒤로가기 버튼 액션
     @objc func pressedNavigationBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: true , completion: nil )
+        self.dismiss(animated: false , completion: nil )
     }
     
     //  후기 작성 버튼 액션
@@ -252,7 +252,7 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
         reviewCreateVC.memberInfo = self.memberInfo
         reviewCreateVC.selectMemberNickname = self.selectMemberNickname
         
-        self.present( reviewCreateVC , animated: true , completion: nil )
+        self.present( reviewCreateVC , animated: false , completion: nil )
     }
 
 //  Mark -> delegate

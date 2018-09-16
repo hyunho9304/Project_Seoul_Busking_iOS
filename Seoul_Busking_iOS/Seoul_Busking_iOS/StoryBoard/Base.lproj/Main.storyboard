@@ -3187,7 +3187,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKl-53-0Lo">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="147.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="148"/>
                                 <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="iKl-53-0Lo" secondAttribute="height" multiplier="375:148" id="Mq6-Co-PVF"/>
@@ -3232,7 +3232,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cyo-IK-vXg">
-                                <rect key="frame" x="265" y="152.5" width="90" height="40"/>
+                                <rect key="frame" x="265" y="153" width="90" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Cyo-IK-vXg" secondAttribute="height" multiplier="9:4" id="eu7-xO-Dni"/>
                                 </constraints>

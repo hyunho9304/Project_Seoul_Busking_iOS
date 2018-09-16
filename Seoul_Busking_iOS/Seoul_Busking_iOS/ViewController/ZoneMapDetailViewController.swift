@@ -103,7 +103,7 @@ class ZoneMapDetailViewController: UIViewController , NMapViewDelegate , NMapPOI
     
     @objc func pressedMapDetailBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: true , completion: nil)
+        self.dismiss(animated: false , completion: nil)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

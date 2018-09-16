@@ -213,7 +213,7 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
     //  뒤로가기 버튼 액션
     @objc func pressedReservationBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: true, completion: nil )
+        self.dismiss(animated: false, completion: nil )
     }
     
     //  취소 버튼 액션
@@ -256,7 +256,7 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
                 self.reservationDetailCollectionView.reloadData()
                 
                 if( self.memberInfoReservation.count == 0 ) {
-                    self.dismiss(animated: true , completion: nil)
+                    self.dismiss(animated: false , completion: nil)
                 }
                 
             } else {
@@ -332,7 +332,7 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
             zoneMapDetailVC.selectedZoneLongitude = self.memberInfoReservation[ sender.tag ].sbz_longitude
             zoneMapDetailVC.selectedZoneLatitude = self.memberInfoReservation[ sender.tag ].sbz_latitude
             
-            self.present( zoneMapDetailVC , animated: true , completion: nil )
+            self.present( zoneMapDetailVC , animated: false , completion: nil )
             
         } else {    //  삭제할건지 결정
             
@@ -353,7 +353,36 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
     
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
+        if(  self.memberInfo?.member_nickname != self.selectMemberNickname  ) { //  지도 연결
+            
+            guard let zoneMapDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ZoneMapDetailViewController") as? ZoneMapDetailViewController else { return }
+            
+            zoneMapDetailVC.memberInfo = self.memberInfo
+            zoneMapDetailVC.uiviewX = self.uiviewX
+            zoneMapDetailVC.selectedBoroughName = self.memberInfoReservation[ indexPath.row ].sb_name
+            zoneMapDetailVC.selectedZoneName = self.memberInfoReservation[ indexPath.row ].sbz_name
+            zoneMapDetailVC.selectedZoneImage = self.memberInfoReservation[ indexPath.row ].sbz_photo
+            zoneMapDetailVC.selectedZoneAddress = self.memberInfoReservation[ indexPath.row ].sbz_address
+            zoneMapDetailVC.selectedZoneLongitude = self.memberInfoReservation[ indexPath.row ].sbz_longitude
+            zoneMapDetailVC.selectedZoneLatitude = self.memberInfoReservation[ indexPath.row ].sbz_latitude
+            
+            self.present( zoneMapDetailVC , animated: false , completion: nil )
+            
+        } else {    //  삭제할건지 결정
+            
+            self.alertUIView.isHidden = false
+            self.backUIView.isHidden = false
+            
+            self.alertUIView.transform = CGAffineTransform( scaleX: 1.3 , y: 1.3 )
+            self.alertUIView.alpha = 0.0
+            UIView.animate(withDuration: 0.18) {
+                self.alertUIView.alpha = 1.0
+                self.alertUIView.transform = CGAffineTransform( scaleX: 1.0 , y: 1.0 )
+            }
+            
+            self.selectedDropIndex = indexPath.row
+        }
     }
     
     //  cell 크기 비율

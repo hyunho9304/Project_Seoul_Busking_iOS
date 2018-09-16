@@ -255,7 +255,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             followingMemberVC.selectMemberNickname = self.selectMemberNickname
             followingMemberVC.type = 0
             
-            self.present( followingMemberVC , animated: true , completion: nil )
+            self.present( followingMemberVC , animated: false , completion: nil )
             
         } else {
             
@@ -281,7 +281,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             followingMemberVC.selectMemberNickname = self.selectMemberNickname
             followingMemberVC.type = 1
             
-            self.present( followingMemberVC , animated: true , completion: nil )
+            self.present( followingMemberVC , animated: false , completion: nil )
             
         } else {
             
@@ -352,7 +352,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 reservationDetailVC.memberInfo = self.memberInfo
                 reservationDetailVC.selectMemberNickname = self.selectMemberNickname
                 
-                self.present( reservationDetailVC , animated: true , completion: nil )
+                self.present( reservationDetailVC , animated: false , completion: nil )
                 
             } else {
                 
@@ -377,7 +377,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 followingDetailVC.memberInfo = self.memberInfo
                 followingDetailVC.memberInfoBasic = self.memberInfoBasic
                 
-                self.present( followingDetailVC , animated: true , completion: nil )
+                self.present( followingDetailVC , animated: false , completion: nil )
                 
             } else {
                 
@@ -401,7 +401,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 reviewDetailVC.memberInfo = self.memberInfo
                 reviewDetailVC.selectMemberNickname = self.selectMemberNickname
                 
-                self.present( reviewDetailVC , animated: true , completion: nil )
+                self.present( reviewDetailVC , animated: false , completion: nil )
                 
             } else {
                 
@@ -427,7 +427,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             reviewDetailVC.memberInfo = self.memberInfo
             reviewDetailVC.selectMemberNickname = self.selectMemberNickname
             
-            self.present( reviewDetailVC , animated: true , completion: nil )
+            self.present( reviewDetailVC , animated: false , completion: nil )
             
         } else {
             
@@ -701,24 +701,29 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         if( collectionView == reservationCollectionView ) {
-            
-            if( memberInfoReservation.count >= 3 ) {
-                return 3
-            } else {
-                return memberInfoReservation.count
-            }
+
+            return memberInfoReservation.count
+//            if( memberInfoReservation.count >= 3 ) {
+//                return 3
+//            } else {
+//                return memberInfoReservation.count
+//            }
         } else if( collectionView == followingScheduleCollectionView ) {
-            if( memberInfoFollowingReservation.count >= 3 ) {
-                return 3
-            } else {
-                return memberInfoFollowingReservation.count
-            }
+            
+            return memberInfoFollowingReservation.count
+//            if( memberInfoFollowingReservation.count >= 3 ) {
+//                return 3
+//            } else {
+//                return memberInfoFollowingReservation.count
+//            }
         } else {
-            if( memberReviewList.count >= 2 ) {
-                return 2
-            } else {
-                return memberReviewList.count
-            }
+            
+            return memberReviewList.count
+//            if( memberReviewList.count >= 2 ) {
+//                return 2
+//            } else {
+//                return memberReviewList.count
+//            }
         }
     }
 
@@ -816,7 +821,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 reservationDetailVC.memberInfo = self.memberInfo
                 reservationDetailVC.selectMemberNickname = self.selectMemberNickname
                 
-                self.present( reservationDetailVC , animated: true , completion: nil )
+                self.present( reservationDetailVC , animated: false , completion: nil )
                 
             } else {
                 
@@ -839,7 +844,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 followingDetailVC.memberInfo = self.memberInfo
                 followingDetailVC.memberInfoBasic = self.memberInfoBasic
                 
-                self.present( followingDetailVC , animated: true , completion: nil )
+                self.present( followingDetailVC , animated: false , completion: nil )
                 
             } else {
                 
@@ -862,7 +867,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 reviewDetailVC.memberInfo = self.memberInfo
                 reviewDetailVC.selectMemberNickname = self.selectMemberNickname
                 
-                self.present( reviewDetailVC , animated: true , completion: nil )
+                self.present( reviewDetailVC , animated: false , completion: nil )
                 
             } else {
                 

@@ -116,7 +116,7 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
     //  뒤로가기 버튼 액션
     @objc func pressedSearchMemberBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: true , completion: nil )
+        self.dismiss(animated: false , completion: nil )
     }
     
     //  textfield 바뀔때마다 검색

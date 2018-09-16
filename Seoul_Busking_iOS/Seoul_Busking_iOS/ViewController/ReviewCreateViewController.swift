@@ -211,7 +211,7 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
     //  뒤로가기 버튼 액션
     @objc func pressedReviewCreateBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: true , completion: nil )
+        self.dismiss(animated: false , completion: nil )
     }
     
     //  별점 버튼 액션
@@ -274,9 +274,8 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
                 self.backUIView.isHidden = true
                 self.alertUIView.isHidden = true
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 , execute: {
-                    self.dismiss(animated: true , completion: nil )
-                })
+                self.dismiss(animated: false , completion: nil )
+                
             } else {
                 
                 let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
