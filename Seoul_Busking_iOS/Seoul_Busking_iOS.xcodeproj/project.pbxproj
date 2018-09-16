@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BE487986214A6E28006606C5 /* ZoneMapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */; };
+		BEBA63C8214EC2A800BBB6CE /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */; };
 		BEBE0FC3214B974F00B7601F /* FollowingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FC2214B974E00B7601F /* FollowingDetailViewController.swift */; };
 		BEBE0FC5214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FC4214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift */; };
 		BEBE0FCC214BC94400B7601F /* FollowingMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */; };
@@ -110,6 +111,7 @@
 		0DD917AC851E3EF310E5C113 /* Pods-Seoul_Busking_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		5F84945DD247A4E5408F57BE /* Pods-Seoul_Busking_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneMapDetailViewController.swift; sourceTree = "<group>"; };
+		BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewController.swift; sourceTree = "<group>"; };
 		BEBE0FC2214B974E00B7601F /* FollowingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingDetailViewController.swift; sourceTree = "<group>"; };
 		BEBE0FC4214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingMemberViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */,
 				BEBE0FCF214CE84500B7601F /* ReviewDetailViewController.swift */,
 				BEBE0FD1214CEB4E00B7601F /* ReviewCreateViewController.swift */,
+				BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				BEBE0FC5214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift in Sources */,
 				BED7CB5C2147B06500730650 /* CurrentReservationListAll.swift in Sources */,
 				BED7CB412147B04300730650 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */,
+				BEBA63C8214EC2A800BBB6CE /* ModifyProfileViewController.swift in Sources */,
 				BED7CB5E2147B06500730650 /* Member.swift in Sources */,
 				BED7CB4E2147B05400730650 /* APIservice.swift in Sources */,
 				BED7CB7C21497BA500730650 /* ReservationDetailCollectionViewCell.swift in Sources */,

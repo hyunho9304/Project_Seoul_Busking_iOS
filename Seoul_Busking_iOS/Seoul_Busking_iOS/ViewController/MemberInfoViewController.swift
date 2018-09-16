@@ -79,14 +79,13 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var tapbarHomeBtn: UIButton!
     @IBOutlet weak var tapbarMemberInfoBtn: UIButton!
     @IBOutlet weak var tapbarUIView: UIView!
+    var uiviewX : CGFloat?
     
     var year = calendar.component(.year, from: date)
     var month = calendar.component(.month, from: date)
     let day = calendar.component(.day, from: date)
     let hour = calendar.component(.hour, from: date)
     var todayDateTime : Int?    //  선택한년월일 ex ) 2018815
-    
-    var uiviewX : CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,9 +96,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         setTapbarAnimation()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
-        getShowMemberInfo()
+        getMemberInfo()
     }
     
     func set() {
@@ -252,7 +251,14 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         
         if( memberSetBtn.image(for: .normal ) == #imageLiteral(resourceName: "modifyProfile") ) {
             
-            print( "프로필수정" )
+            guard let modifyProfileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ModifyProfileViewController") as? ModifyProfileViewController else { return }
+            
+            modifyProfileVC.memberInfo = self.memberInfo
+            modifyProfileVC.memberInfoBasic = self.memberInfoBasic
+            modifyProfileVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
+            
+            self.present( modifyProfileVC , animated: false , completion: nil )
+            
         } else {
             
             Server.reqFollowing(member_follow_nickname: (self.memberInfo?.member_nickname)!, member_following_nickname: self.selectMemberNickname! ) { (rescode , flag ) in
@@ -497,6 +503,35 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         }
     }
     
+    //  멤버 정보 memberInfo 업데이트
+    func getMemberInfo() {
+        
+        if( self.memberInfo?.member_nickname == self.selectMemberNickname ) {
+            
+            Server.reqMemberInfoRe(member_ID: (self.memberInfo?.member_ID)!) { (memberInfoReData , rescode ) in
+                
+                if( rescode == 201 ) {
+                    
+                    self.memberInfo = memberInfoReData
+                    self.selectMemberNickname = self.getStoS( (self.memberInfo?.member_nickname)! )
+                    
+                    self.getShowMemberInfo()
+                    
+                } else {
+                    
+                    let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                    alert.addAction( ok )
+                    self.present(alert , animated: true , completion: nil)
+                }
+            }
+            
+        } else {
+            self.getShowMemberInfo()
+        }
+        
+    }
+    
     //  멤버 정보 가져오기
     func getShowMemberInfo() {
         
@@ -538,7 +573,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 
                 var starArr : [ UIImageView ] = [ self.memberStar1 , self.memberStar2 , self.memberStar3 , self.memberStar4 , self.memberStar5 ]
                 let intScore : Int = Int( (self.memberInfoBasic?.member_score)! )
-
+                
                 for i in 0 ..< 5 {
                     
                     starArr[i].image = #imageLiteral(resourceName: "nonStar")

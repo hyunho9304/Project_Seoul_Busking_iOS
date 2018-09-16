@@ -312,7 +312,13 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
     
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+     
+        guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
         
+        memberInfoVC.memberInfo = self.memberInfo
+        memberInfoVC.selectMemberNickname = memberReviewList[ indexPath.row ].review_fromNickname
+        
+        self.present( memberInfoVC , animated: true , completion: nil )
     }
     
     //  cell 크기 비율

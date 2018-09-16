@@ -12,6 +12,7 @@ struct Member : Codable {
     
     let member_type : String?
     var member_nickname : String?
+    let member_ID : String?
 }
 
 

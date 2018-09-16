@@ -1058,6 +1058,54 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  회원 memberInfo 업데이트 된것 가져오기
+    static func reqMemberInfoRe( member_ID : String , completion : @escaping ( Member , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/info/re" )
+        
+        let body: [String: Any] = [
+            "member_ID" : member_ID
+        ]
+        
+        Alamofire.request(URL, method: .post, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        print("kakaka")
+                        print( JSON(value))
+                        
+                        let memberData = try decoder.decode(MemberData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
+                            
+                            completion( memberData.data! , 201 )
+                        }
+                        else{
+                            
+                            completion( memberData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
 
 
 
