@@ -137,7 +137,11 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     @objc func pressedMapBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: false , completion: nil )
+        guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+        
+        homeVC.memberInfo = self.memberInfo
+        
+        self.present( homeVC , animated: false , completion: nil )
     }
     
     

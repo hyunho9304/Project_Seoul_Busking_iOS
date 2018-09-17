@@ -172,6 +172,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         //  백 버튼
         memberInfoBackBtn.addTarget(self, action: #selector(self.pressedMemberInfoBackBtn(_:)), for: UIControlEvents.touchUpInside)
         
+        //  오른쪽 버튼
+        memberInfoRightBtn.addTarget(self, action: #selector(self.pressedMemberInfoRightBtn(_:)), for: UIControlEvents.touchUpInside)
+        
         //  ( 프로필수정 , 팔로잉 ) 버튼 클릭
         memberSetBtn.addTarget(self, action: #selector(self.pressedMemberSetBtn(_:)), for: UIControlEvents.touchUpInside)
         
@@ -245,6 +248,31 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     @objc func pressedMemberInfoBackBtn( _ sender : UIButton ) {
         
         self.dismiss(animated: false , completion: nil )
+    }
+    
+    //  오른쪽 버튼
+    @objc func pressedMemberInfoRightBtn( _ sender : UIButton ) {
+        
+        if( self.memberInfoRightBtn.image(for: .normal ) == #imageLiteral(resourceName: "setting") ) {
+            
+            guard let settingVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController else { return }
+            
+            settingVC.memberInfo = self.memberInfo
+            settingVC.selectMemberNickname = self.selectMemberNickname
+            settingVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
+            
+            self.present( settingVC , animated: true , completion: nil )
+            
+        } else {
+            
+            guard let reportVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as? ReportViewController else { return }
+            
+            reportVC.memberInfo = self.memberInfo
+            reportVC.selectMemberNickname = self.selectMemberNickname
+            reportVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
+            
+            self.present( reportVC , animated: true , completion: nil )
+        }
     }
     
     //  ( 프로필 수정 , 팔로잉 ) 버튼 액션

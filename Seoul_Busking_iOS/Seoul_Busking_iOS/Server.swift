@@ -1211,6 +1211,39 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  신고 업로드
+    static func reqMemberReport( report_fromNickname : String , report_toNickname : String , report_title : String , report_content : String , completion : @escaping (_ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/report" )
+        
+        let body: [String: Any] = [
+            "report_fromNickname" : report_fromNickname ,
+            "report_toNickname" : report_toNickname ,
+            "report_title" : report_title ,
+            "report_content" : report_content
+            ]
+        
+        Alamofire.request(URL, method: .post, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if( res.response?.statusCode == 201 ){
+                    completion( 201 )
+                }
+                else {
+                    completion( 500 )
+                }
+                break
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
 
 
 

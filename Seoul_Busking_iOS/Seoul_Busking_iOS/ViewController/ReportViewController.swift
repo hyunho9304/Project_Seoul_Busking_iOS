@@ -1,40 +1,32 @@
 //
-//  ReviewCreateViewController.swift
+//  ReportViewController.swift
 //  Seoul_Busking_iOS
 //
-//  Created by 박현호 on 2018. 9. 15..
+//  Created by 박현호 on 2018. 9. 17..
 //  Copyright © 2018년 박현호. All rights reserved.
 //
 
 import UIKit
 
-class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITextViewDelegate {
+class ReportViewController: UIViewController , UITextFieldDelegate , UITextViewDelegate {
 
-    //  유저 정보
+    //  넘어온 정보
     var memberInfo : Member?
     var selectMemberNickname : String?      //  선택한 타인 닉네임
     
     //  네비게이션 바
-    @IBOutlet weak var reviewCreateBackBtn: UIButton!
-    
-    //  별
-    @IBOutlet weak var star1: UIButton!
-    @IBOutlet weak var star2: UIButton!
-    @IBOutlet weak var star3: UIButton!
-    @IBOutlet weak var star4: UIButton!
-    @IBOutlet weak var star5: UIButton!
-    var selectScore : Int?
+    @IBOutlet weak var reportBackBtn: UIButton!
     
     //  제목
-    @IBOutlet weak var reviewTitleUIView: UIView!
-    @IBOutlet weak var reviewTitleTextField: UITextField!
+    @IBOutlet weak var reportTitleUIView: UIView!
+    @IBOutlet weak var reportTitleTextField: UITextField!
     
     //  내용
-    @IBOutlet weak var reviewContentUIView: UIView!
-    @IBOutlet weak var reviewContentTextView: UITextView!
+    @IBOutlet weak var reportContentUIView: UIView!
+    @IBOutlet weak var reportContentTextView: UITextView!
     
     //  작성하기 버튼
-    @IBOutlet weak var reviewCommitBtn: UIButton!
+    @IBOutlet weak var reportCommitBtn: UIButton!
     
     //  popView
     @IBOutlet weak var alertUIView: UIView!
@@ -51,6 +43,7 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
     var uiviewX : CGFloat?
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,19 +51,8 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
         setDelegate()
         setReturnType()
         setTarget()
-        setTapbarAnimation()
+        
         hideKeyboardWhenTappedAround()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        let touch : UITouch? = touches.first
-        
-        if touch?.view == backUIView {
-            
-            backUIView.isHidden = true
-            alertUIView.isHidden = true
-        }
     }
     
     func set() {
@@ -85,21 +67,21 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
         
-        reviewTitleUIView.layer.cornerRadius = 8    //  둥근정도
-        reviewTitleUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
-        reviewTitleUIView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)             //  그림자 색
-        reviewTitleUIView.layer.shadowOpacity = 0.11                          //  그림자 투명도
-        reviewTitleUIView.layer.shadowOffset = CGSize(width: 0 , height: 1 )    //  그림자 x y
-        reviewTitleUIView.layer.shadowRadius = 15
+        reportTitleUIView.layer.cornerRadius = 8    //  둥근정도
+        reportTitleUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+        reportTitleUIView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)             //  그림자 색
+        reportTitleUIView.layer.shadowOpacity = 0.11                          //  그림자 투명도
+        reportTitleUIView.layer.shadowOffset = CGSize(width: 0 , height: 1 )    //  그림자 x y
+        reportTitleUIView.layer.shadowRadius = 15
         
-        reviewContentUIView.layer.cornerRadius = 8    //  둥근정도
-        reviewContentUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
-        reviewContentUIView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)             //  그림자 색
-        reviewContentUIView.layer.shadowOpacity = 0.11                          //  그림자 투명도
-        reviewContentUIView.layer.shadowOffset = CGSize(width: 0 , height: 1 )    //  그림자 x y
-        reviewContentUIView.layer.shadowRadius = 15
+        reportContentUIView.layer.cornerRadius = 8    //  둥근정도
+        reportContentUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+        reportContentUIView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)             //  그림자 색
+        reportContentUIView.layer.shadowOpacity = 0.11                          //  그림자 투명도
+        reportContentUIView.layer.shadowOffset = CGSize(width: 0 , height: 1 )    //  그림자 x y
+        reportContentUIView.layer.shadowRadius = 15
         
-        reviewCommitBtn.layer.cornerRadius = 25
+        reportCommitBtn.layer.cornerRadius = 25
         
         backUIView.isHidden = true
         backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
@@ -119,17 +101,7 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
         
         alertCancelBtn.layer.cornerRadius = 5
         alertCancelBtn.layer.maskedCorners = [ .layerMinXMaxYCorner ]
-    }
-    
-    func setDelegate() {
         
-        reviewTitleTextField.delegate = self
-        reviewContentTextView.delegate = self
-    }
-    
-    func setReturnType() {
-        
-        reviewTitleTextField.returnKeyType = UIReturnKeyType.done
     }
     
     func setTarget() {
@@ -143,39 +115,30 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
         //  개인정보 버튼
         tapbarMemberInfoBtn.addTarget(self, action: #selector(self.pressedTapbarMemberInfoBtn(_:)), for: UIControlEvents.touchUpInside)
         
-        //  뒤로가기 버튼
-        reviewCreateBackBtn.addTarget(self, action: #selector(self.pressedReviewCreateBackBtn(_:)), for: UIControlEvents.touchUpInside)
-        
-        //  별점 버튼
-        star1.addTarget(self, action: #selector(self.pressedStarBtn(_:)), for: UIControlEvents.touchUpInside)
-        star2.addTarget(self, action: #selector(self.pressedStarBtn(_:)), for: UIControlEvents.touchUpInside)
-        star3.addTarget(self, action: #selector(self.pressedStarBtn(_:)), for: UIControlEvents.touchUpInside)
-        star4.addTarget(self, action: #selector(self.pressedStarBtn(_:)), for: UIControlEvents.touchUpInside)
-        star5.addTarget(self, action: #selector(self.pressedStarBtn(_:)), for: UIControlEvents.touchUpInside)
+        //  백 버튼
+        reportBackBtn.addTarget(self, action: #selector(self.pressedMemberReportBackBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  작성하기 버튼
-        reviewCommitBtn.addTarget(self, action: #selector(self.pressedReviewCommitBtn(_:)), for: UIControlEvents.touchUpInside)
+        reportCommitBtn.addTarget(self, action: #selector(self.pressedReportCommitBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  취소 버튼
         alertCancelBtn.addTarget(self, action: #selector(self.pressedAlertCancelBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  확인 버튼
         alertCommitBtn.addTarget(self, action: #selector(self.pressedAlertCommitBtn(_:)), for: UIControlEvents.touchUpInside)
-        
     }
     
-    func setTapbarAnimation() {
+    func setDelegate() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01 , execute: {
-            
-            UIView.animate(withDuration: 0.75 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
-                
-                self.tapbarUIView.frame.origin.x = self.tapbarMemberInfoBtn.frame.origin.x
-                
-            }, completion: nil )
-        })
+        reportTitleTextField.delegate = self
+        reportContentTextView.delegate = self
     }
     
+    func setReturnType() {
+        
+        reportTitleTextField.returnKeyType = UIReturnKeyType.done
+    }
+
     //  검색 버튼 액션
     @objc func pressedTapbarSearchBtn( _ sender : UIButton ) {
         
@@ -191,7 +154,8 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
         
         guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         
-        homeVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        
+        homeVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
         homeVC.memberInfo = self.memberInfo
         
         self.present( homeVC , animated: false , completion: nil )
@@ -200,39 +164,20 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
     //  개인정보 버튼 액션
     @objc func pressedTapbarMemberInfoBtn( _ sender : UIButton ) {
         
-        guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
+        self.dismiss(animated: true , completion: nil )
         
-        memberInfoVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
-        memberInfoVC.memberInfo = self.memberInfo
-        
-        self.present( memberInfoVC , animated: false , completion: nil )
     }
     
-    //  뒤로가기 버튼 액션
-    @objc func pressedReviewCreateBackBtn( _ sender : UIButton ) {
+    //  백 버튼 액션
+    @objc func pressedMemberReportBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: false , completion: nil )
-    }
-    
-    //  별점 버튼 액션
-    @objc func pressedStarBtn( _ sender : UIButton ) {
-        
-        let starArr = [ star1 , star2 , star3 , star4 , star5 ]
-        
-        for i in 0 ..< 5 {
-            starArr[i]?.setBackgroundImage( #imageLiteral(resourceName: "nonStar") , for: .normal )
-        }
-        
-        self.selectScore = ( sender.tag + 1 )
-        for i in 0 ..< ( sender.tag + 1 ) {
-            starArr[i]?.setBackgroundImage( #imageLiteral(resourceName: "star") , for: .normal )
-        }
+        self.dismiss(animated: true , completion: nil )
     }
     
     //  작성하기 버튼 액션
-    @objc func pressedReviewCommitBtn( _ sender : UIButton ) {
+    @objc func pressedReportCommitBtn( _ sender : UIButton ) {
         
-        if( selectScore != nil && reviewTitleTextField.text != "제목" && reviewContentTextView.text != "내용" ) {
+        if( reportTitleTextField.text != "신고 사유" && reportContentTextView.text != "세부 내용" ) {
             
             self.alertUIView.isHidden = false
             self.backUIView.isHidden = false
@@ -256,7 +201,7 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
             defaultPopUpVC.didMove(toParentViewController: self )
         }
     }
-
+    
     //  취소 버튼 액션
     @objc func pressedAlertCancelBtn( _ sender : UIButton ) {
         
@@ -267,7 +212,7 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
     //  확인 버튼 액션
     @objc func pressedAlertCommitBtn( _ sender : UIButton ) {
         
-        Server.reqMemberReviewUpload(review_fromNickname: (self.memberInfo?.member_nickname)! , review_toNickname: self.selectMemberNickname! , review_title: self.reviewTitleTextField.text! , review_content: self.reviewContentTextView.text! , review_score: self.selectScore!) { ( rescode ) in
+        Server.reqMemberReport(report_fromNickname: (self.memberInfo?.member_nickname)! , report_toNickname: self.selectMemberNickname! , report_title: self.reportTitleTextField.text! , report_content: self.reportContentTextView.text!) { ( rescode ) in
             
             if( rescode == 201 ) {
                 
@@ -285,17 +230,11 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
             }
         }
     }
-
     
-    
-    
-    
-    
-    
-//  Mark -> UITextField Delegate
+    //  Mark -> UITextField Delegate
     //  키보드 확인 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
+        
         view.endEditing(true)
         return true
     }
@@ -303,12 +242,12 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
     //  title 선택시 default 글 지우기
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        if( textField.text == "제목" ) {
+        if( textField.text == "신고 사유" ) {
             textField.text = nil
         }
     }
     
-//  Mark -? UITextView Delegate
+    //  Mark -? UITextView Delegate
     //  키보드 확인 눌렀을 때
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         
@@ -319,18 +258,16 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
     //  content 선택시 default 글 지우기
     func textViewDidBeginEditing(_ textView: UITextView) {
         
-        if( textView.text == "내용" ) {
+        if( textView.text == "세부 내용" ) {
             textView.text = nil
         }
     }
     
 
 
+
+
 }
-
-
-
-
 
 
 

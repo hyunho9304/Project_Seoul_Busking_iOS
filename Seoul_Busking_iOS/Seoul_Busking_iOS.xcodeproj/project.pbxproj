@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BE487986214A6E28006606C5 /* ZoneMapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */; };
 		BEBA63C8214EC2A800BBB6CE /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */; };
+		BEBA63CA214FB62100BBB6CE /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63C9214FB62100BBB6CE /* ReportViewController.swift */; };
+		BEBA63CC214FB63000BBB6CE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */; };
 		BEBE0FC3214B974F00B7601F /* FollowingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FC2214B974E00B7601F /* FollowingDetailViewController.swift */; };
 		BEBE0FC5214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FC4214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift */; };
 		BEBE0FCC214BC94400B7601F /* FollowingMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */; };
@@ -112,6 +114,8 @@
 		5F84945DD247A4E5408F57BE /* Pods-Seoul_Busking_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneMapDetailViewController.swift; sourceTree = "<group>"; };
 		BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewController.swift; sourceTree = "<group>"; };
+		BEBA63C9214FB62100BBB6CE /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		BEBE0FC2214B974E00B7601F /* FollowingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingDetailViewController.swift; sourceTree = "<group>"; };
 		BEBE0FC4214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingMemberViewController.swift; sourceTree = "<group>"; };
@@ -329,6 +333,8 @@
 				BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */,
 				BEBE0FCF214CE84500B7601F /* ReviewDetailViewController.swift */,
 				BEBE0FD1214CEB4E00B7601F /* ReviewCreateViewController.swift */,
+				BEBA63C9214FB62100BBB6CE /* ReportViewController.swift */,
+				BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -600,6 +606,7 @@
 				BED7CB782149536B00730650 /* MemberFollowingReservation.swift in Sources */,
 				BED7CB6A2147B07500730650 /* Extension.swift in Sources */,
 				BED7CB1A2147B02800730650 /* SelectTypeViewController.swift in Sources */,
+				BEBA63CA214FB62100BBB6CE /* ReportViewController.swift in Sources */,
 				BED7CB722148FD1600730650 /* MyReservationCollectionViewCell.swift in Sources */,
 				BED7CB3F2147B04300730650 /* RankingSelect1CollectionViewCell.swift in Sources */,
 				BEBE0FD4214D562000B7601F /* ReviewDetailCollectionViewCell.swift in Sources */,
@@ -612,6 +619,7 @@
 				BED7CB7C21497BA500730650 /* ReservationDetailCollectionViewCell.swift in Sources */,
 				BED7CB1F2147B02800730650 /* MapSearchViewController.swift in Sources */,
 				BED7CB1E2147B02800730650 /* CategoryViewController.swift in Sources */,
+				BEBA63CC214FB63000BBB6CE /* SettingViewController.swift in Sources */,
 				BED7CB492147B04300730650 /* SelectBoroughCollectionViewCell.swift in Sources */,
 				BED7CB3C2147B04300730650 /* CalendarCollectionViewCell.swift in Sources */,
 				BED7CB7A21496F0E00730650 /* ReservationDetailViewController.swift in Sources */,
