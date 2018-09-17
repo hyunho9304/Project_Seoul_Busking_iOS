@@ -247,7 +247,26 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
         let tmpDay : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 6) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 8) ] )
         
         cell.followingDetailDateLabel.text = "\(tmpMonth) / \(tmpDay)"
-        cell.followingDetailTimeLabel.text = "\(gino( memberInfoFollowingReservation[ indexPath.row ].r_startTime )) : 00 - \(gino( memberInfoFollowingReservation[ indexPath.row ].r_endTime )) : 00"
+        
+        var resultStartMin : String = "0"
+        var resultEndMin : String = "0"
+        let startmin : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_startMin )
+        let tmpStartMin = String( startmin )
+        let endMin : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_endMin )
+        let tmpEndMin = String( endMin )
+        if( tmpStartMin.count == 1 ) {
+            resultStartMin = resultStartMin + tmpStartMin
+        } else {
+            resultEndMin = tmpEndMin
+        }
+        if( tmpEndMin.count == 1 ) {
+            resultEndMin = resultEndMin + tmpEndMin
+        } else {
+            resultEndMin = tmpEndMin
+        }
+        
+        cell.followingDetailTimeLabel.text = "\(gino( memberInfoFollowingReservation[ indexPath.row ].r_startTime )) : \(resultStartMin) - \(gino( memberInfoFollowingReservation[ indexPath.row ].r_endTime )) : \(resultEndMin)"
+        
         cell.followingDetailZoneNameLabel.text = memberInfoFollowingReservation[ indexPath.row ].sbz_name
 
         

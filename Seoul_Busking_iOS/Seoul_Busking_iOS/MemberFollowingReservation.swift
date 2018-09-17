@@ -15,7 +15,9 @@ struct MemberFollowingReservation: Codable {
     let r_category : String?
     let r_date : Int
     let r_startTime : Int?
+    let r_startMin : Int?
     let r_endTime : Int?
+    let r_endMin : Int?
     let sbz_name : String?
 }
 

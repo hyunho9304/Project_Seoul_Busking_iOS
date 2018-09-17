@@ -301,7 +301,27 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
         let tmpDay : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 6) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 8) ] )
         
         cell.reservationDetailDateLabel.text = "\(tmpMonth) / \(tmpDay)"
-        cell.reservationDetailTimeLabel.text = "\(gino( memberInfoReservation[ indexPath.row ].r_startTime )) : 00 - \(gino( memberInfoReservation[ indexPath.row ].r_endTime )) : 00"
+        
+        var resultStartMin : String = "0"
+        var resultEndMin : String = "0"
+        let startmin : Int = gino( memberInfoReservation[ indexPath.row ].r_startMin )
+        let tmpStartMin = String( startmin )
+        let endMin : Int = gino( memberInfoReservation[ indexPath.row ].r_endMin )
+        let tmpEndMin = String( endMin )
+        if( tmpStartMin.count == 1 ) {
+            resultStartMin = resultStartMin + tmpStartMin
+        } else {
+            resultEndMin = tmpEndMin
+        }
+        if( tmpEndMin.count == 1 ) {
+            resultEndMin = resultEndMin + tmpEndMin
+        } else {
+            resultEndMin = tmpEndMin
+        }
+        
+        cell.reservationDetailTimeLabel.text = "\(gino( memberInfoReservation[ indexPath.row ].r_startTime )) : \(resultStartMin) - \(gino( memberInfoReservation[ indexPath.row ].r_endTime )) : \(resultEndMin)"
+        
+        
         cell.reservationDetailZoneNameLabel.text = memberInfoReservation[ indexPath.row ].sbz_name
         
         if( self.memberInfo?.member_nickname == self.selectMemberNickname ) {

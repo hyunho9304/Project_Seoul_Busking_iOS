@@ -872,7 +872,26 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             
             cell.myReservationFirstUIView.layer.cornerRadius = cell.myReservationFirstUIView.layer.frame.width/2
             cell.myReservationDateLabel.text = "\(tmpMonth)/\(tmpDay)"
-            cell.myReservationTimeLabel.text = "\(gino( memberInfoReservation[ indexPath.row ].r_startTime )) : 00 - \(gino( memberInfoReservation[ indexPath.row ].r_endTime )) : 00"
+            
+            var resultStartMin : String = "0"
+            var resultEndMin : String = "0"
+            let startmin : Int = gino( memberInfoReservation[ indexPath.row ].r_startMin )
+            let tmpStartMin = String( startmin )
+            let endMin : Int = gino( memberInfoReservation[ indexPath.row ].r_endMin )
+            let tmpEndMin = String( endMin )
+            if( tmpStartMin.count == 1 ) {
+                resultStartMin = resultStartMin + tmpStartMin
+            } else {
+                resultEndMin = tmpEndMin
+            }
+            if( tmpEndMin.count == 1 ) {
+                resultEndMin = resultEndMin + tmpEndMin
+            } else {
+                resultEndMin = tmpEndMin
+            }
+            
+            cell.myReservationTimeLabel.text = "\(gino( memberInfoReservation[ indexPath.row ].r_startTime )) : \(resultStartMin) - \(gino( memberInfoReservation[ indexPath.row ].r_endTime )) : \(resultEndMin)"
+            
             cell.myReservationZoneNameLabel.text = memberInfoReservation[ indexPath.row ].sbz_name
             
             return cell
@@ -888,7 +907,25 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             
             cell.followingFirstUIView.layer.cornerRadius = cell.followingFirstUIView.layer.frame.width/2
             cell.followingDateLabel.text = "\(tmpMonth)/\(tmpDay)"
-            cell.followingTimeLabel.text = "\(gino( memberInfoFollowingReservation[ indexPath.row ].r_startTime )) : 00 - \(gino( memberInfoFollowingReservation[ indexPath.row ].r_endTime )) : 00"
+
+            var resultStartMin : String = "0"
+            var resultEndMin : String = "0"
+            let startmin : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_startMin )
+            let tmpStartMin = String( startmin )
+            let endMin : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_endMin )
+            let tmpEndMin = String( endMin )
+            if( tmpStartMin.count == 1 ) {
+                resultStartMin = resultStartMin + tmpStartMin
+            } else {
+                resultEndMin = tmpEndMin
+            }
+            if( tmpEndMin.count == 1 ) {
+                resultEndMin = resultEndMin + tmpEndMin
+            } else {
+                resultEndMin = tmpEndMin
+            }
+            
+            cell.followingTimeLabel.text = "\(gino( memberInfoFollowingReservation[ indexPath.row ].r_startTime )) : \(resultStartMin) - \(gino( memberInfoFollowingReservation[ indexPath.row ].r_endTime )) : \(resultEndMin)"
             
             if( memberInfoFollowingReservation[ indexPath.row ].member_profile != nil ) {
                 
