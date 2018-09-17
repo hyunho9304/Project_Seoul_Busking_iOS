@@ -57,6 +57,9 @@ class ModifyProfileViewController: UIViewController {
         //  홈 버튼
         tapbarHomeBtn.addTarget(self, action: #selector(self.pressedTapbarHomeBtn(_:)), for: UIControlEvents.touchUpInside)
         
+        //  개인정보 버튼
+        tapbarMemberInfoBtn.addTarget(self, action: #selector(self.pressedTapbarMemberInfoBtn(_:)), for: UIControlEvents.touchUpInside)
+        
         //  백 버튼
         memberModifyProfilesBackBtn.addTarget(self, action: #selector(self.pressedMemberModifyProfilesBackBtn(_:)), for: UIControlEvents.touchUpInside)
 
@@ -77,12 +80,19 @@ class ModifyProfileViewController: UIViewController {
         
         guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         
+        
         homeVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
         homeVC.memberInfo = self.memberInfo
         
         self.present( homeVC , animated: false , completion: nil )
     }
     
+    //  개인정보 버튼 액션
+    @objc func pressedTapbarMemberInfoBtn( _ sender : UIButton ) {
+        
+        self.dismiss(animated: false , completion: nil )
+        
+    }
     //  백 버튼 액션
     @objc func pressedMemberModifyProfilesBackBtn( _ sender : UIButton ) {
         
