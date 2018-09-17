@@ -11,6 +11,7 @@ import Foundation
 struct BuskingZone: Codable {
 
     let sbz_id : Int?
+    let sbz_type : Int?
     let sbz_name : String?
     let sbz_photo : String?
     let sbz_address : String?

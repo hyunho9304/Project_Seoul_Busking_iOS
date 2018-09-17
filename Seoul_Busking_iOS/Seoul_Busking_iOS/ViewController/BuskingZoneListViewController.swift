@@ -243,7 +243,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
     //  서버에서 해당하는 존 리스트 가져오기
     func buskingZoneInit() {
         
-        Server.reqBuskingZoneList(sb_id: selectedBoroughIndex! ) { ( buskingZoneListData , rescode ) in
+        Server.reqBuskingZoneListType(sb_id: selectedBoroughIndex! ) { ( buskingZoneListData , rescode ) in
             
             if rescode == 200 {
                 
