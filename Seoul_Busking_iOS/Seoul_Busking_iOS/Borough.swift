@@ -11,6 +11,7 @@ import Foundation
 struct Borough: Codable {
     
     let sb_id : Int?
+    let sb_type : Int?
     let sb_name : String?
     let sb_longitude : Double?
     let sb_latitude : Double?

@@ -276,6 +276,14 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectBoroughCollectionViewCell", for: indexPath ) as! SelectBoroughCollectionViewCell
         
+        cell.isUserInteractionEnabled = false
+        cell.boroughLabel.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        
+        if( boroughList[ indexPath.row ].sb_type == 1 ) {
+            cell.isUserInteractionEnabled = true
+            cell.boroughLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+        }
+        
         cell.boroughLabel.text = boroughList[ indexPath.row ].sb_name
         
         if( indexPath == boroughSelectedIndexPath ) {
@@ -292,7 +300,6 @@ class BoroughListViewController: UIViewController , UICollectionViewDelegate , U
         } else {
             
             cell.boroughBackView.isHidden = true
-            cell.boroughLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
             
         }
         
