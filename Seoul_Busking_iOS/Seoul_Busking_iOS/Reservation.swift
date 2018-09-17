@@ -11,7 +11,9 @@ import Foundation
 struct Reservation: Codable {
     
     let r_startTime : Int?
+    let r_startMin : Int?
     let r_endTime : Int?
+    let r_endMin : Int?
     let r_category : String?
     let member_profile : String?
     let member_nickname : String?

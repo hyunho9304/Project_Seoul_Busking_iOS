@@ -599,9 +599,25 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
             //var tmpStartTime = gino( reservationList[ indexPath.row ].r_startTime )
             
-            cell.reservationTimeLabel.text = "\(String(describing: reservationList[ indexPath.row ].r_startTime)) : 00 - \(String(describing: reservationList[ indexPath.row ].r_endTime)) : 00"
+//            cell.reservationTimeLabel.text = "\(String(describing: reservationList[ indexPath.row ].r_startTime)) : \(String(describing: reservationList[ indexPath.row ].r_startMin)) - \(String(describing: reservationList[ indexPath.row ].r_endTime)) : \(String(describing: reservationList[ indexPath.row ].r_endMin))"
             
-            cell.reservationTimeLabel.text = "\(gino( reservationList[ indexPath.row ].r_startTime )) : 00 - \(gino( reservationList[ indexPath.row ].r_endTime )) : 00"
+            var resultStartMin : String = "0"
+            var resultEndMin : String = "0"
+            let startmin : Int = gino( reservationList[ indexPath.row ].r_startMin )
+            let tmpStartMin = String( startmin )
+            let endMin : Int = gino( reservationList[ indexPath.row ].r_endMin )
+            let tmpEndMin = String( endMin )
+            if( tmpStartMin.count == 1 ) {
+                resultStartMin = resultStartMin + tmpStartMin
+            } else {
+                resultEndMin = tmpEndMin
+            }
+            if( tmpEndMin.count == 1 ) {
+                resultEndMin = resultEndMin + tmpEndMin
+            } else {
+                resultEndMin = tmpEndMin
+            }
+            cell.reservationTimeLabel.text = "\(gino( reservationList[ indexPath.row ].r_startTime )) : \(resultStartMin) - \(gino( reservationList[ indexPath.row ].r_endTime )) : \(resultEndMin)"
             
             if( reservationList[ indexPath.row ].member_profile != nil ) {
                 

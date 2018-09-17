@@ -464,14 +464,16 @@ struct Server : APIService {
     }
     
     //  예약 시도
-    static func reqReservationAttempt( r_date : Int , r_startTime : Int , r_endTime : Int , r_category : String ,sb_id : Int , sbz_id : Int , member_nickname : String , completion : @escaping (_ status : Int ) -> Void ) {
+    static func reqReservationAttempt( r_date : Int , r_startTime : Int , r_startMin : Int , r_endTime : Int , r_endMin : Int , r_category : String ,sb_id : Int , sbz_id : Int , member_nickname : String , completion : @escaping (_ status : Int ) -> Void ) {
 
         let URL = url( "/reservation/attempt" )
 
         let body: [String: Any] = [
             "r_date" : r_date ,
             "r_startTime" : r_startTime ,
+            "r_startMin" : r_startMin ,
             "r_endTime" : r_endTime ,
+            "r_endMin" : r_endMin ,
             "r_category" : r_category ,
             "sb_id" : sb_id ,
             "sbz_id" : sbz_id ,
@@ -540,9 +542,9 @@ struct Server : APIService {
     }
     
     //  현재 예약 전부 가져오기
-    static func reqCurrentReservationListAll( r_date : Int , r_time : Int ,  completion : @escaping ([CurrentReservationAll] , _ status : Int ) -> Void ) {
+    static func reqCurrentReservationListAll( r_date : Int , r_time : Int , r_min : Int , completion : @escaping ([CurrentReservationAll] , _ status : Int ) -> Void ) {
         
-        let URL = url( "/collection/currentList?r_date=\(r_date)&r_time=\(r_time)" )
+        let URL = url( "/collection/currentList?r_date=\(r_date)&r_time=\(r_time)&r_min=\(r_min)" )
         
         Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
             

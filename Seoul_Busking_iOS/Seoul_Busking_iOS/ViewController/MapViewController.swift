@@ -68,6 +68,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     var month = calendar.component(.month, from: date)
     let day = calendar.component(.day, from: date)
     let hour = calendar.component(.hour, from: date)
+    let min = calendar.component(.minute , from: date)
     var todayDateTime : Int?    //  선택한년월일 ex ) 2018815
     
     
@@ -172,7 +173,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                         
                         self.buskingZoneListAll = buskingZoneListAllData
                         
-                        Server.reqCurrentReservationListAll(r_date: self.todayDateTime! , r_time: self.hour , completion: { ( currentReservationAllData , rescode ) in
+                        Server.reqCurrentReservationListAll(r_date: self.todayDateTime! , r_time: 17 , r_min: 6 , completion: { ( currentReservationAllData , rescode ) in
                             
                             if( rescode == 200 ) {
                                 
@@ -225,7 +226,28 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                                             
                                             var starArr : [ UIImageView ] = [ self.zoneCurrentInfoStar1 , self.zoneCurrentInfoStar2 , self.zoneCurrentInfoStar3 , self.zoneCurrentInfoStar4 , self.zoneCurrentInfoStar5 ]
                                             
-                                            self.zoneCurrentInfoTimeLabel.text = "\(tmpStartTime) : 00 - \(tmpEndTime) : 00"
+                                            var resultStartMin : String = "0"
+                                            var resultEndMin : String = "0"
+                                            let startmin : Int = self.getItoI( self.currentReservationListAll[ index ].r_startMin! )
+                                            let tmpStartMin = String( startmin )
+                                            let endMin : Int = self.getItoI( self.currentReservationListAll[ index ].r_endMin! )
+                                            let tmpEndMin = String( endMin )
+                                            if( tmpStartMin.count == 1 ) {
+                                                resultStartMin = resultStartMin + tmpStartMin
+                                            } else {
+                                                resultEndMin = tmpEndMin
+                                            }
+                                            if( tmpEndMin.count == 1 ) {
+                                                resultEndMin = resultEndMin + tmpEndMin
+                                            } else {
+                                                resultEndMin = tmpEndMin
+                                            }
+                                                
+                                            self.zoneCurrentInfoTimeLabel.text = "\(tmpStartTime) : \(resultStartMin) - \(tmpEndTime) : \(resultEndMin)"
+                                            
+                                            print("ho")
+                                            print( self.zoneCurrentInfoTimeLabel.text )
+                                            
                                             
                                             self.zoneCurrentInfoNickname.text = self.currentReservationListAll[ index ].member_nickname
                                             self.zoneCurrentInfoCategory.text = "# \(tmpCategory)"
@@ -666,7 +688,24 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
             self.zoneCurrentInfoUIView.isHidden = false
             self.zoneCurrentInfoNothingUIView.isHidden = true
             
-            zoneCurrentInfoTimeLabel.text = "\(gino(currentReservationListAll[ index ].r_startTime )) : 00 - \(gino(currentReservationListAll[ index ].r_endTime)) : 00"
+            var resultStartMin : String = "0"
+            var resultEndMin : String = "0"
+            let startmin : Int = self.getItoI( self.currentReservationListAll[ index ].r_startMin! )
+            let tmpStartMin = String( startmin )
+            let endMin : Int = self.getItoI( self.currentReservationListAll[ index ].r_endMin! )
+            let tmpEndMin = String( endMin )
+            if( tmpStartMin.count == 1 ) {
+                resultStartMin = resultStartMin + tmpStartMin
+            } else {
+                resultEndMin = tmpEndMin
+            }
+            if( tmpEndMin.count == 1 ) {
+                resultEndMin = resultEndMin + tmpEndMin
+            } else {
+                resultEndMin = tmpEndMin
+            }
+            
+            zoneCurrentInfoTimeLabel.text = "\(gino(currentReservationListAll[ index ].r_startTime )) : \(resultStartMin) - \(gino(currentReservationListAll[ index ].r_endTime)) : \(resultEndMin)"
             
             zoneCurrentInfoNickname.text = currentReservationListAll[ index ].member_nickname
             zoneCurrentInfoCategory.text = "# \(gsno( currentReservationListAll[ index ].r_category))"
