@@ -283,6 +283,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
         guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         
+        print( memberInfo )
+        
         mapVC.memberInfo = self.memberInfo
         mapVC.mapSelectedBoroughIndex = self.homeSelectBoroughIndex
         mapVC.mapSelectedBoroughName = self.homeSelectBoroughName

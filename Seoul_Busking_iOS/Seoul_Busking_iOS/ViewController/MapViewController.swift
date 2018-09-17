@@ -569,6 +569,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     @objc func mapSearchBtnClicked( _ sender : UIButton! ) {
         
         guard let mapSearchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapSearchViewController") as? MapSearchViewController else { return }
+
         
         mapSearchVC.memberInfo = self.memberInfo
         
@@ -698,7 +699,6 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         
         if( tmpFindIndex != -1 ) {
             
-            print("ha")
             //  지도 중심위치 선택한 존 위치로 설정
             if let mapView = self.navermapView {
                 mapView.animate(to: NGeoPoint(longitude: self.findBuskingZoneLongitude! , latitude: self.findBuskingZoneLatitude! ))

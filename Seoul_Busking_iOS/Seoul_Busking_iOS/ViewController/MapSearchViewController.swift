@@ -13,6 +13,9 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
     //  넘어온 정보
     var memberInfo : Member?
     
+    //  네비게이션 바
+    @IBOutlet weak var mapSearchBackBtn: UIButton!
+    
     @IBOutlet weak var mapSearchBoroughCollectionView: UICollectionView!
     var boroughList : [ Borough ] = [ Borough ]()  //  서버 자치구 리스트
     var boroughSelectedIndexPath :IndexPath?    //  선택고려
@@ -32,6 +35,7 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
         super.viewDidLoad()
 
         set()
+        setTarget()
         setDelegate()
         
     }
@@ -91,6 +95,14 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
         mapSearchBuskingZoneCollectionView.alwaysBounceVertical = true
     }
     
+    func setTarget() {
+        
+        //  지도 검색 백 버튼
+        mapSearchBackBtn.addTarget(self, action: #selector(self.pressedMapSearchBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        
+    }
+    
     func setDelegate() {
         
         mapSearchBoroughCollectionView.delegate = self
@@ -98,6 +110,12 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
         
         mapSearchBuskingZoneCollectionView.delegate = self
         mapSearchBuskingZoneCollectionView.dataSource = self
+    }
+    
+    //  지도 검색 백 버튼 액션
+    @objc func pressedMapSearchBackBtn( _ sender : UIButton ) {
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -165,6 +183,7 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
             selectBuskingZoneLatitude = buskingZoneList[ indexPath.row ].sbz_latitude
             
             guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
+            
             
             mapVC.memberInfo = self.memberInfo
             mapVC.findBuskingZoneIndex = self.selectBuskingZoneIndex!
