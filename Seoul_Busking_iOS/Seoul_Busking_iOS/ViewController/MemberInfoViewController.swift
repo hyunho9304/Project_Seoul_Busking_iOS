@@ -20,6 +20,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     
     //  내용
     var memberInfoBasic : MemberInfoBasic?  //  멤버 기본 정보 서버
+    @IBOutlet weak var memberBackProfileImageView: UIImageView!
     @IBOutlet weak var memberProfileImageView: UIImageView!
     @IBOutlet weak var memberSetBtn: UIButton!
     @IBOutlet weak var memberNicknameLabel: UILabel!
@@ -128,7 +129,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         }
         
         if( self.view.frame.height > 667 ) {
-            animationUIView.frame = CGRect(x: 22 , y: 429, width: 121.67 , height: 3 )
+            animationUIView.frame = CGRect(x: 22 , y: 441, width: 121.67 , height: 3 )
         }
 
         let yearString : String = String(year)
@@ -257,7 +258,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             modifyProfileVC.memberInfoBasic = self.memberInfoBasic
             modifyProfileVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
             
-            self.present( modifyProfileVC , animated: false , completion: nil )
+            self.present( modifyProfileVC , animated: true , completion: nil )
             
         } else {
             
@@ -551,6 +552,17 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                     
                 } else {
                     self.memberProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
+                }
+                
+                //  수정 -> 배경화면
+                if( self.memberInfoBasic?.member_backProfile != nil ) {
+                    
+                    let tmpProfile = self.getStoS( (self.memberInfoBasic?.member_backProfile)! )
+                    
+                    self.memberBackProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
+                    
+                } else {
+                    self.memberBackProfileImageView.image = #imageLiteral(resourceName: "3_3.png")
                 }
                 
                 self.memberNicknameLabel.text = self.memberInfoBasic?.member_nickname

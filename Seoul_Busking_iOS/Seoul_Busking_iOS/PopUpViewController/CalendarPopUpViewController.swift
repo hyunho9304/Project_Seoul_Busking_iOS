@@ -269,6 +269,8 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             
             let tmpString = " \(gsno( selectYear )) . \(gsno( selectMonth )) . \(gsno( selectDate ))"
             
+            
+            
             reservationVC.memberInfo = self.memberInfo
             reservationVC.uiviewX = self.uiviewX
             reservationVC.selectedBoroughIndex = self.selectedBoroughIndex

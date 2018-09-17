@@ -317,6 +317,7 @@
 				BED7CB152147B02600730650 /* selectBoroughViewController.swift */,
 				BED7CB0B2147B01C00730650 /* HomeViewController.swift */,
 				BED7CB0C2147B01D00730650 /* MemberInfoViewController.swift */,
+				BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */,
 				BED7CB112147B02200730650 /* RankingViewController.swift */,
 				BED7CB132147B02400730650 /* ReservationViewController.swift */,
 				BED7CB102147B02200730650 /* SearchMemberViewController.swift */,
@@ -328,7 +329,6 @@
 				BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */,
 				BEBE0FCF214CE84500B7601F /* ReviewDetailViewController.swift */,
 				BEBE0FD1214CEB4E00B7601F /* ReviewCreateViewController.swift */,
-				BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

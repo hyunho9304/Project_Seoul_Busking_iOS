@@ -82,6 +82,8 @@ class DefaultPopUpViewController: UIViewController {
     
     @objc func pressedOkBtn( _ sender : UIButton ) {
 
+        
+        
         if( memberInfo == nil ) {
             
             self.view.removeFromSuperview()

@@ -1105,6 +1105,112 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  프로필 수정 버스커 업데이트
+    static func reqMemberBuskerUpdateInfo( member_ID : String , member_nickname : String , member_introduction : String , member_category : String , file1 : UIImage , file2 : UIImage , completion : @escaping (_ status : Int) -> Void ) {
+        
+        let URL = url( "/member/update/info" )
+
+        let member_IDData = member_ID.data(using: .utf8 )
+        let member_nicknameData = member_nickname.data(using: .utf8 )
+        let member_introductionData = member_introduction.data(using: .utf8 )
+        let member_categoryData = member_category.data(using: .utf8 )
+        let fileData1 = UIImageJPEGRepresentation(file1 , 0.3 )
+        let fileData2 = UIImageJPEGRepresentation(file2 , 0.3 )
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            multipartFormData.append( member_IDData! , withName : "member_ID" )
+            multipartFormData.append( member_nicknameData!, withName: "member_nickname")
+            multipartFormData.append( member_introductionData!, withName: "member_introduction")
+            multipartFormData.append( member_categoryData!, withName: "member_category")
+            multipartFormData.append( fileData1!, withName: "file" , fileName:"backProfile.jpg" , mimeType : "image/jpeg")
+            multipartFormData.append( fileData2!, withName: "file" , fileName:"profile" , mimeType : "image/jpeg")
+            
+        }, to: URL, method: .put, headers: nil) { (encodingResult) in
+            
+            switch encodingResult {
+                
+            case .success(request: let upload , streamingFromDisk: _, streamFileURL: _) :
+                
+                upload.responseData(completionHandler: { (res) in
+                    switch res.result {
+                        
+                    case .success :
+                        
+                        if( res.response?.statusCode == 201){
+                            completion(201)
+                        }
+                        else {
+                            completion(500)
+                        }
+                        
+                        break
+                        
+                    case.failure(let err) :
+                        print( err.localizedDescription)
+                    }
+                })
+                
+            case .failure(let err ) :
+                print( err.localizedDescription)
+            }
+        }
+    }
+
+    //  프로필 수정 관람객 업데이트
+    static func reqMemberUpdateInfo( member_ID : String , member_nickname : String , member_introduction : String , file1 : UIImage , file2 : UIImage , completion : @escaping (_ status : Int) -> Void ) {
+        
+        let member_category = ""
+        
+        let URL = url( "/member/update/info" )
+        
+        let member_IDData = member_ID.data(using: .utf8 )
+        let member_nicknameData = member_nickname.data(using: .utf8 )
+        let member_introductionData = member_introduction.data(using: .utf8 )
+        let member_categoryData = member_category.data(using: .utf8 )
+        let fileData1 = UIImageJPEGRepresentation(file1 , 0.3 )
+        let fileData2 = UIImageJPEGRepresentation(file2 , 0.3 )
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            multipartFormData.append( member_IDData! , withName : "member_ID" )
+            multipartFormData.append( member_nicknameData!, withName: "member_nickname")
+            multipartFormData.append( member_introductionData!, withName: "member_introduction")
+            multipartFormData.append( member_categoryData!, withName: "member_category")
+            multipartFormData.append( fileData1!, withName: "file" , fileName:"backProfile.jpg" , mimeType : "image/jpeg")
+            multipartFormData.append( fileData2!, withName: "file" , fileName:"profile" , mimeType : "image/jpeg")
+            
+        }, to: URL, method: .put, headers: nil) { (encodingResult) in
+            
+            switch encodingResult {
+                
+            case .success(request: let upload , streamingFromDisk: _, streamFileURL: _) :
+                
+                upload.responseData(completionHandler: { (res) in
+                    switch res.result {
+                        
+                    case .success :
+                        
+                        if( res.response?.statusCode == 201){
+                            completion(201)
+                        }
+                        else {
+                            completion(500)
+                        }
+                        
+                        break
+                        
+                    case.failure(let err) :
+                        print( err.localizedDescription)
+                    }
+                })
+                
+            case .failure(let err ) :
+                print( err.localizedDescription)
+            }
+        }
+    }
 
 
 

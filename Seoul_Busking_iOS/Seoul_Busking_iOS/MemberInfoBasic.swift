@@ -13,6 +13,7 @@ struct MemberInfoBasic : Codable {
     let member_type : String?
     let member_category : String?
     let member_nickname : String?
+    let member_backProfile : String?
     let member_profile : String?
     let member_introduction : String?
     let member_score : Double?

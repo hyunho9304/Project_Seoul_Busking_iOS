@@ -26,22 +26,27 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
     var selectedStartTime : [Int] = [ -1 , -1 ]     //  멤버가 선택한 시간 시작 시간
     var selectedEndTime : [Int] = [ -1 , -1 ]       //  멤버가 선택한 시간 끝나는 시간
     var selectedCategory : String?              //  멤버가 선택한 장르
-    var uiviewX : CGFloat?
     
     //  내용
     @IBOutlet weak var popUpViewBackBtn: UIButton!
-    @IBOutlet weak var selectCategoryUIView: UIView!
     @IBOutlet weak var selectCategoryCollectionView: UICollectionView!
     var categoryArr : [String] = [ "노래" , "댄스" , "연주" , "마술" , "미술" , "기타" ]
-    var selectedIndex : IndexPath?              //  버스커 카테고리 선택
-    var selectCategory : String?              //  버스커 선택한 카테고리
+    var categoryImageArr = [ #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") ]
     
-    @IBOutlet weak var categoryCommitBtn: UIButton! //  카테고리 선택버튼
+    //  텝바
+    @IBOutlet weak var tapbarMenuUIView: UIView!
+    @IBOutlet weak var tapbarSearchBtn: UIButton!
+    @IBOutlet weak var tapbarHomeBtn: UIButton!
+    @IBOutlet weak var tapbarMemberInfoBtn: UIButton!
+    @IBOutlet weak var tapbarUIView: UIView!
+    var uiviewX : CGFloat?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         showAnimate()
+        set()
         setDelegate()
         setTarget()
     }
@@ -57,6 +62,19 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
         }, completion: nil )
     }
     
+    func set() {
+        
+        if uiviewX != nil {
+            
+            tapbarUIView.frame.origin.x = uiviewX!
+        }
+        
+        tapbarMenuUIView.layer.shadowColor = #colorLiteral(red: 0.4941176471, green: 0.5921568627, blue: 0.6588235294, alpha: 1)             //  그림자 색
+        tapbarMenuUIView.layer.shadowOpacity = 0.24                            //  그림자 투명도
+        tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
+        //  그림자의 블러는 5 정도 이다
+    }
+    
     func setDelegate() {
         
         selectCategoryCollectionView.delegate = self
@@ -67,10 +85,6 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
 
         //  뷰 닫기 버튼
         popUpViewBackBtn.addTarget(self, action: #selector(self.pressedPopUpViewBackBtn(_:)), for: UIControlEvents.touchUpInside)
-        
-        //  카테고리 선택 버튼
-        categoryCommitBtn.addTarget(self, action: #selector(self.pressedCategoryCommitBtn(_:)), for: UIControlEvents.touchUpInside)
-        
         
     }
     
@@ -112,8 +126,27 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
         }
     }
     
-    //  선택완료 버튼 액션
-    @objc func pressedCategoryCommitBtn( _ sender : UIButton ) {
+// Mark -> delegate
+    
+    //  cell 의 개수
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return categoryArr.count
+    }
+    
+    //  cell 의 내용
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCategoryCollectionViewCell", for: indexPath ) as! ReservationCategoryCollectionViewCell
+        
+        cell.categoryNameLabel.text = categoryArr[ indexPath.row ]
+        cell.categoryImageView.image = categoryImageArr[ indexPath.row ]
+        
+        return cell
+    }
+    
+    //  cell 선택 했을 때
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseIn , animations: {
             
@@ -141,57 +174,18 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
                 reservationVC.selectedTimeCnt = self.selectedTimeCnt
                 reservationVC.selectedStartTime = self.selectedStartTime
                 reservationVC.selectedEndTime = self.selectedEndTime
-                reservationVC.selectedCategory = self.selectCategory
+                reservationVC.selectedCategory = self.categoryArr[ indexPath.row ]
                 
                 self.present( reservationVC , animated: false , completion: nil )
                 
                 self.view.removeFromSuperview()            }
         }
-
-    }
-    
-    
-// Mark -> delegate
-    
-    //  cell 의 개수
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return categoryArr.count
-    }
-    
-    //  cell 의 내용
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCategoryCollectionViewCell", for: indexPath ) as! ReservationCategoryCollectionViewCell
-        
-        cell.categoryNameLabel.text = categoryArr[ indexPath.row ]
-        
-        if indexPath == selectedIndex {
-            
-            cell.backgroundColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
-            cell.categoryNameLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            self.selectCategory = categoryArr[ indexPath.row ]
-        }
-        else {
-            
-            cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            cell.categoryNameLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
-        }
-        
-        return cell
-    }
-    
-    //  cell 선택 했을 때
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        selectedIndex = indexPath
-        collectionView.reloadData()
     }
     
     //  cell 크기 비율
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 115 * self.view.frame.width/375 , height: 90 * self.view.frame.height/667 )
+        return CGSize(width: 128 * self.view.frame.width/375 , height: 90 * self.view.frame.height/667 )
     }
     
     //  cell 섹션 내부 여백( default 는 0 보다 크다 )
@@ -203,13 +197,13 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
     //  cell 간 세로 간격 ( vertical 이라서 세로 사용해야 한다 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 10
+        return 26
     }
     
     //  cell 간 가로 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 10
+        return 24
     }
     
     
