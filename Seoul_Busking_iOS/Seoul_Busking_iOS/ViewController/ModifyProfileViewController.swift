@@ -35,6 +35,10 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
     @IBOutlet weak var modifyCategoryLabel: UILabel!
     var checkOverlapNickname : Bool?            //  닉네임 중복 bool 값
     
+    @IBOutlet weak var modifyBackProfilePlusBtn: UIButton!
+    @IBOutlet weak var modifyProfilePlusBtn: UIButton!
+    
+    
     
     //  카테고리
     @IBOutlet weak var backUIView: UIView!
@@ -141,7 +145,7 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
             self.modifyBackProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
             
         } else {
-            self.modifyBackProfileImageView.image = #imageLiteral(resourceName: "3_3.png")
+            self.modifyBackProfileImageView.backgroundColor = #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1)
         }
         
         modifyNicknameTextField.text = self.memberInfoBasic?.member_nickname
@@ -195,13 +199,16 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
         let tapBackProfileImage = UITapGestureRecognizer(target: self , action: #selector( self.pressedModifyBackProfileImageView(_:) ))
         modifyBackProfileImageView.isUserInteractionEnabled = true
         modifyBackProfileImageView.addGestureRecognizer(tapBackProfileImage)
+        //  배경사진 수정 버튼
+        modifyBackProfilePlusBtn.addTarget(self, action: #selector(self.pressedModifyBackProfileImageView(_:)), for: UIControlEvents.touchUpInside)
 
-        
         //  프로필사진
         let tapProfileImage = UITapGestureRecognizer(target: self , action: #selector( self.pressedModifyProfileImageView(_:) ))
         modifyProfileImageView.isUserInteractionEnabled = true
         modifyProfileImageView.addGestureRecognizer(tapProfileImage)
-
+        //  프로필 수정 버튼
+        modifyProfilePlusBtn.addTarget(self, action: #selector(self.pressedModifyProfileImageView(_:)), for: UIControlEvents.touchUpInside)
+        
         //  닉네임 중복 확인 체크 버튼
         modifyOverlapCheckBtn.addTarget(self, action: #selector(self.pressedModifyOverlapCheckBtn(_:)), for: UIControlEvents.touchUpInside)
         

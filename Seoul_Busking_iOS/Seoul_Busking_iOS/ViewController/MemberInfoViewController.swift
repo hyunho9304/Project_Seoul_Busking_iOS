@@ -590,7 +590,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                     self.memberBackProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
                     
                 } else {
-                    self.memberBackProfileImageView.image = #imageLiteral(resourceName: "3_3.png")
+                    self.memberBackProfileImageView.backgroundColor = #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1)
                 }
                 
                 self.memberNicknameLabel.text = self.memberInfoBasic?.member_nickname
