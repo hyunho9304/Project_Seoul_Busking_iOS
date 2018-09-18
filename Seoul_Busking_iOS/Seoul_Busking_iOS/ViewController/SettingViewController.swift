@@ -17,6 +17,7 @@ class SettingViewController: UIViewController {
     //  네비게이션 바
     @IBOutlet weak var settingBackBtn: UIButton!
     
+    @IBOutlet weak var logoutBtn: UIButton!
     
     
     //  텝바
@@ -61,6 +62,9 @@ class SettingViewController: UIViewController {
         
         //  백 버튼
         settingBackBtn.addTarget(self, action: #selector(self.pressedSettingBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  로그아웃 버튼
+        logoutBtn.addTarget(self, action: #selector(self.presseLogoutBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     //  검색 버튼 액션
@@ -96,6 +100,12 @@ class SettingViewController: UIViewController {
     @objc func pressedSettingBackBtn( _ sender : UIButton ) {
         
         self.dismiss(animated: true , completion: nil )
+    }
+    
+    //  로그아웃 버튼 액션
+    @objc func presseLogoutBtn( _ sender : UIButton ) {
+        
+        self.performSegue(withIdentifier: "logout", sender: self)
     }
 
 

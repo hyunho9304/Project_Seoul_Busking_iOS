@@ -62,8 +62,6 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     var uiviewX : CGFloat?                              //  텝바 선택 애니메이션 위한 x 좌표
     
     
-    @IBOutlet weak var goFirstBtn: UIButton!        //  로그아웃버튼
-    
     override func viewDidLoad() {
         super.viewDidLoad()
   
@@ -225,10 +223,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     }
     
     func setTarget() {
-        
-        //  로그아웃 버튼
-        goFirstBtn.addTarget(self, action: #selector(self.pressedGoFirstBtn(_:)), for: UIControlEvents.touchUpInside)
-        
+
         //  지도 검색 버튼
         tapbarSearchBtn.addTarget(self, action: #selector(self.pressedTapbarSearchBtn(_:)), for: UIControlEvents.touchUpInside)
         
@@ -271,19 +266,13 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
         }, completion: nil )
     }
-
-    //  로그아웃 버튼 액션
-    @objc func pressedGoFirstBtn( _ sender : UIButton ) {
-        
-        self.performSegue(withIdentifier: "signin", sender: self)
-    }
     
     //  지도 검색 버튼 액션
     @objc func pressedTapbarSearchBtn( _ sender : UIButton ) {
         
         guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         
-        print( memberInfo )
+        
         
         mapVC.memberInfo = self.memberInfo
         mapVC.mapSelectedBoroughIndex = self.homeSelectBoroughIndex

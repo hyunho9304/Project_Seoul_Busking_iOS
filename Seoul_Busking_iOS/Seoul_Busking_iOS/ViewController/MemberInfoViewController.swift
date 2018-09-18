@@ -36,6 +36,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var memberStar4: UIImageView!
     @IBOutlet weak var memberStar5: UIImageView!
     @IBOutlet weak var memberScoreLabel: UILabel!
+    @IBOutlet weak var scoreUIView: UIView!
     
     
     //  애니메이션바
@@ -100,6 +101,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     override func viewDidAppear(_ animated: Bool) {
         
         getMemberInfo()
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     func set() {
@@ -175,6 +177,16 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         //  오른쪽 버튼
         memberInfoRightBtn.addTarget(self, action: #selector(self.pressedMemberInfoRightBtn(_:)), for: UIControlEvents.touchUpInside)
         
+        //  배경화면 이미지
+        let tapBackgroundImage = UITapGestureRecognizer(target: self , action: #selector( self.pressedMemberBackProfileImageView(_:) ))
+        memberBackProfileImageView.isUserInteractionEnabled = true
+        memberBackProfileImageView.addGestureRecognizer(tapBackgroundImage)
+        
+        //  프로필 이미지
+        let tapProfileImage = UITapGestureRecognizer(target: self , action: #selector( self.pressedMemberProfileImageView(_:) ))
+        memberProfileImageView.isUserInteractionEnabled = true
+        memberProfileImageView.addGestureRecognizer(tapProfileImage)
+        
         //  ( 프로필수정 , 팔로잉 ) 버튼 클릭
         memberSetBtn.addTarget(self, action: #selector(self.pressedMemberSetBtn(_:)), for: UIControlEvents.touchUpInside)
         
@@ -189,6 +201,11 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         let tapFollowList = UITapGestureRecognizer(target: self , action: #selector( self.pressedMemberFollowBtn(_:) ))
         memberFollowCntLabel.isUserInteractionEnabled = true
         memberFollowCntLabel.addGestureRecognizer(tapFollowList)
+        
+        //  스타 , 점수
+        let tapReviewStar = UITapGestureRecognizer(target: self , action: #selector( self.pressedScoreUIView(_:) ))
+        scoreUIView.isUserInteractionEnabled = true
+        scoreUIView.addGestureRecognizer(tapReviewStar)
         
         //  공연 신청 현황 버튼
         reservationInfoBtn.addTarget(self, action: #selector(self.pressedReservationInfoBtn(_:)), for: UIControlEvents.touchUpInside)
@@ -273,6 +290,26 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             
             self.present( reportVC , animated: true , completion: nil )
         }
+    }
+    
+    //  배경화면 이미지 액션
+    @objc func pressedMemberBackProfileImageView( _ sender : UIImageView ) {
+        
+        guard let profileDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileDetailViewController") as? ProfileDetailViewController else { return }
+        
+        profileDetailVC.detailImage = memberBackProfileImageView.image
+        
+        self.present( profileDetailVC , animated: false , completion: nil )
+    }
+    
+    //  프로필 이미지 액션
+    @objc func pressedMemberProfileImageView( _ sender : UIImageView ) {
+        
+        guard let profileDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileDetailViewController") as? ProfileDetailViewController else { return }
+        
+        profileDetailVC.detailImage = memberProfileImageView.image
+        
+        self.present( profileDetailVC , animated: false , completion: nil )
     }
     
     //  ( 프로필 수정 , 팔로잉 ) 버튼 액션
@@ -385,6 +422,31 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             defaultPopUpVC.didMove(toParentViewController: self )
         }
         
+    }
+    
+    //  스타 & 점수 뷰 액션
+    @objc func pressedScoreUIView( _ sender : UIView ) {
+        
+        if( memberInfoBasic?.member_type == "1" ) {
+            
+            guard let reviewDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewDetailViewController") as? ReviewDetailViewController else { return }
+            
+            reviewDetailVC.memberInfo = self.memberInfo
+            reviewDetailVC.selectMemberNickname = self.selectMemberNickname
+            
+            self.present( reviewDetailVC , animated: false , completion: nil )
+            
+        } else {
+            
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+            
+            defaultPopUpVC.content = "버스커가 아닙니다"
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
+        }
     }
     
     //  공연 신청 현황 버튼 액션
@@ -582,6 +644,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                     self.memberProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
                 }
                 
+                
                 //  수정 -> 배경화면
                 if( self.memberInfoBasic?.member_backProfile != nil ) {
                     
@@ -629,6 +692,8 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 
                 if( self.memberInfoBasic?.member_type != "1" ) { //  관람객 디폴트 설정
                     
+                    self.scoreUIView.isHidden = true
+                    
                     if( self.flag == -1 ) {
                         
                         UIView.animate(withDuration: 1.5 , delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: .curveEaseOut , animations: {
@@ -645,6 +710,8 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                         self.flag = 1
                     }
                 } else {
+                    
+                    self.scoreUIView.isHidden = false
                     
                     if( self.flag == -1 ) {
                         

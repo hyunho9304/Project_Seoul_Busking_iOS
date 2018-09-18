@@ -121,6 +121,11 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         
         //  홈 백 버튼
         mapBackBtn.addTarget(self, action: #selector(self.pressedMapBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  프로필사진
+        let tapProfileImage = UITapGestureRecognizer(target: self , action: #selector( self.pressedZoneCurrentInfoProfileImageView(_:) ))
+        zoneCurrentInfoProfileImageView.isUserInteractionEnabled = true
+        zoneCurrentInfoProfileImageView.addGestureRecognizer(tapProfileImage)
     }
     
     func getItoI( _ sender : Int ) -> Int {
@@ -143,6 +148,17 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         homeVC.memberInfo = self.memberInfo
         
         self.present( homeVC , animated: false , completion: nil )
+    }
+    
+    //  프로필 사진 버튼 액션
+    @objc func pressedZoneCurrentInfoProfileImageView( _ sender : UIImageView ) {
+        
+        guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
+        
+        memberInfoVC.memberInfo = self.memberInfo
+        memberInfoVC.selectMemberNickname = zoneCurrentInfoNickname.text
+        
+        self.present( memberInfoVC , animated: true , completion: nil )
     }
     
     

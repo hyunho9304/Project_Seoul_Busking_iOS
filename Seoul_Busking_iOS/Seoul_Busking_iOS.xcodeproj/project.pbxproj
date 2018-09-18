@@ -11,6 +11,7 @@
 		BEBA63C8214EC2A800BBB6CE /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */; };
 		BEBA63CA214FB62100BBB6CE /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63C9214FB62100BBB6CE /* ReportViewController.swift */; };
 		BEBA63CC214FB63000BBB6CE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */; };
+		BEBA63D02150D94900BBB6CE /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63CF2150D94900BBB6CE /* ProfileDetailViewController.swift */; };
 		BEBE0FC3214B974F00B7601F /* FollowingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FC2214B974E00B7601F /* FollowingDetailViewController.swift */; };
 		BEBE0FC5214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FC4214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift */; };
 		BEBE0FCC214BC94400B7601F /* FollowingMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */; };
@@ -116,6 +117,7 @@
 		BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewController.swift; sourceTree = "<group>"; };
 		BEBA63C9214FB62100BBB6CE /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		BEBA63CF2150D94900BBB6CE /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		BEBE0FC2214B974E00B7601F /* FollowingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingDetailViewController.swift; sourceTree = "<group>"; };
 		BEBE0FC4214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEBE0FCB214BC94400B7601F /* FollowingMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingMemberViewController.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				BEBE0FD1214CEB4E00B7601F /* ReviewCreateViewController.swift */,
 				BEBA63C9214FB62100BBB6CE /* ReportViewController.swift */,
 				BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */,
+				BEBA63CF2150D94900BBB6CE /* ProfileDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				BED7CB262147B02800730650 /* selectBoroughViewController.swift in Sources */,
 				BED7CB282147B02800730650 /* MapViewController.swift in Sources */,
 				BED7CB762149152E00730650 /* MemberReservation.swift in Sources */,
+				BEBA63D02150D94900BBB6CE /* ProfileDetailViewController.swift in Sources */,
 				BED7CB1B2147B02800730650 /* TimeTableViewController.swift in Sources */,
 				BED7CB4D2147B05400730650 /* Server.swift in Sources */,
 				BED7CB402147B04300730650 /* RankingMemberCollectionViewCell.swift in Sources */,

@@ -37,6 +37,9 @@ class SignInViewController: UIViewController , UITextFieldDelegate {
         signInBtn.isEnabled = false
         signInIDTextField.text = ""
         signInPWTextField.text = ""
+        
+        
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     func set() {

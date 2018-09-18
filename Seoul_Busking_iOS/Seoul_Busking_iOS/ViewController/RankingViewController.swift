@@ -228,7 +228,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             
             UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
-                self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+                self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667
                 
             }) { (finished ) in
