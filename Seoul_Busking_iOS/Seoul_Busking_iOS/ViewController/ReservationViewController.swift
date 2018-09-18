@@ -11,6 +11,9 @@ import Kingfisher
 
 class ReservationViewController: UIViewController {
 
+    //  처음인지 설정
+    var first : Bool?
+    
     //  유저 정보
     var memberInfo : Member?
     
@@ -86,6 +89,12 @@ class ReservationViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        viewWillSet()
+        
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         
         if( selectedZoneName != nil ) {
@@ -111,7 +120,6 @@ class ReservationViewController: UIViewController {
         }
         
         self.reservationDateTimeView.layoutIfNeeded()
-        
     }
     
     func set() {
@@ -130,6 +138,9 @@ class ReservationViewController: UIViewController {
         //  그림자의 블러는 5 정도 이다
         
         reservationCommitBtn.layer.cornerRadius = 25
+    }
+    
+    func viewWillSet() {
         
         if( selectedBoroughName != nil ) {
             reservationBoroughLabel.text = self.selectedBoroughName

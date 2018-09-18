@@ -44,7 +44,12 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     var buskingZoneList : [ BuskingZone ] = [ BuskingZone ]()  //  서버 버스킹 존 데이터
     var busingZoneSelectedIndex:IndexPath?                     //  선택고려
     var selectZoneIndex : Int?                                 //  선택한 버스킹 존 인덱스
+    var selectZoneName : String?                               //  선택한 버스킹 존 이름
+    var selectZoneImage : String?                              //  선택한 버스킹 존 이미지
     @IBOutlet weak var nothingZone: UILabel!
+    
+    
+    @IBOutlet weak var reservationNowBtn: UIButton!
     
     
     //  예약 공연 목록
@@ -241,6 +246,9 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         homeRepresentativeBoroughLabel.isUserInteractionEnabled = true
         homeRepresentativeBoroughLabel.addGestureRecognizer(tapBorough)
         
+        //  지금 예약하기 버튼
+        reservationNowBtn.addTarget(self, action: #selector(self.pressedReservationNowBtn(_:)), for: UIControlEvents.touchUpInside)
+        
         //  버스킹 예약 버튼
         homeBuskingReservationBtn.addTarget(self, action: #selector(self.pressedHomeBuskingReservationBtn(_:)), for: UIControlEvents.touchUpInside)
         
@@ -367,19 +375,47 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
     }
     
+    //  지금 당장 예약하기 버튼 액션
+    @objc func pressedReservationNowBtn( _ sender : UIButton ) {
+        
+        guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
+
+        reservationVC.view.frame = CGRect(x: self.view.frame.width , y: 0 , width: self.view.frame.width , height: self.view.frame.height )
+        reservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        reservationVC.memberInfo = self.memberInfo
+
+        let tmpString = " \(gsno( selectYear )) . \(gsno( selectMonth )) . \(gsno( selectDate ))"
+        
+        reservationVC.selectedBoroughIndex = self.homeSelectBoroughIndex
+        reservationVC.selectedBoroughName = self.homeSelectBoroughName
+        reservationVC.selectedBoroughLongitude = self.homeSelectedLongitude
+        reservationVC.selectedBoroughLatitude = self.homeSelectedLatitude
+        reservationVC.selectedZoneIndex = self.selectZoneIndex
+        reservationVC.selectedZoneName = self.selectZoneName
+        reservationVC.selectedZoneImage = self.selectZoneImage
+        reservationVC.selectedTmpDate = tmpString
+        reservationVC.selectedDate = self.selectDateTime
+
+        UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            
+            reservationVC.view.frame.origin.x = 0
+            
+        }) { (finished ) in
+            
+            self.present( reservationVC , animated: false , completion: nil )
+        }
+        
+    }
+    
     //  버스킹 예약 버튼 액션
     @objc func pressedHomeBuskingReservationBtn( _ sender : UIButton ) {
         
         guard let reservationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReservationViewController") as? ReservationViewController else { return }
-        
-        let containerView = self.view.superview
-        
+
         reservationVC.view.frame = CGRect(x: self.view.frame.width , y: 0 , width: self.view.frame.width , height: self.view.frame.height )
         reservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
         reservationVC.memberInfo = self.memberInfo
-        
-        containerView?.addSubview(reservationVC.view )
-        
+ 
         
         UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
@@ -555,6 +591,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
                 cell.buskingZoneNameLabel.font = UIFont(name:"NotoSansCJKkr-Bold", size: 12.0)
                 self.selectZoneIndex = self.buskingZoneList[ indexPath.row ].sbz_id
+                self.selectZoneName = self.buskingZoneList[ indexPath.row ].sbz_name
+                self.selectZoneImage = self.buskingZoneList[ indexPath.row ].sbz_photo
                 
                 cell.buskingZoneImageView.layer.borderColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
                 cell.buskingZoneImageView.layer.borderWidth = 3

@@ -40,6 +40,9 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     @IBOutlet weak var selectTimeCommitBtn: UIButton!
     
     
+    let hour = calendar.component(.hour, from: date)
+    
+    
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
     @IBOutlet weak var tapbarSearchBtn: UIButton!
@@ -69,7 +72,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func getReservationPossibilityInit() {
         
-        Server.reqReservationPossibility(r_date: selectedDate! , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex!) { ( reservationPossibilityData , rescode ) in
+        Server.reqReservationPossibility(r_date: self.selectedDate! , r_time: self.hour , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex!) { ( reservationPossibilityData , rescode ) in
             
             if( rescode == 200 ) {
                 
@@ -371,12 +374,27 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         
         cell.timeTableContentsLabel.text = "\(indexPath.row + 17) : 00 - \(indexPath.row + 18) : 00"
         
-        if( reservationPossibility?.possibility[ indexPath.row ] == 1 ) {
+        if( reservationPossibility?.possibility[ indexPath.row ] == 1 ) {   //  예약 가능
          
             cell.isUserInteractionEnabled = true
             
             cell.timeTableCircleImageView.image = #imageLiteral(resourceName: "checkO")
             cell.timeTableReservInfoImageView.image = #imageLiteral(resourceName: "reser.png")
+            
+        } else if( reservationPossibility?.possibility[ indexPath.row ] == 0 ) {    //  예약 중
+            
+            cell.isUserInteractionEnabled = false
+            
+            cell.timeTableCircleImageView.image = #imageLiteral(resourceName: "checkX")
+            cell.timeTableReservInfoImageView.image = #imageLiteral(resourceName: "reserCopy.png")
+            
+        } else {        //  예약 시간 지남 불가능
+            
+            cell.isUserInteractionEnabled = false
+            
+            cell.timeTableCircleImageView.image = #imageLiteral(resourceName: "checkX")
+            cell.timeTableReservInfoImageView.image = #imageLiteral(resourceName: "reserCopy.png")  //  수정 -> 예약 마감 이미지
+            
         }
         
         
