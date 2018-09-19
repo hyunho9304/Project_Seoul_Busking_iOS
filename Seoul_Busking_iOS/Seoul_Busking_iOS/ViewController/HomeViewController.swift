@@ -386,6 +386,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
 
         let tmpString = " \(gsno( selectYear )) . \(gsno( selectMonth )) . \(gsno( selectDate ))"
         
+        reservationVC.view.frame = CGRect(x: self.view.frame.width , y: 0 , width: self.view.frame.width , height: self.view.frame.height )
         reservationVC.selectedBoroughIndex = self.homeSelectBoroughIndex
         reservationVC.selectedBoroughName = self.homeSelectBoroughName
         reservationVC.selectedBoroughLongitude = self.homeSelectedLongitude
@@ -395,13 +396,12 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         reservationVC.selectedZoneImage = self.selectZoneImage
         reservationVC.selectedTmpDate = tmpString
         reservationVC.selectedDate = self.selectDateTime
-
+        
         UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
             reservationVC.view.frame.origin.x = 0
             
         }) { (finished ) in
-            
             self.present( reservationVC , animated: false , completion: nil )
         }
         
@@ -416,6 +416,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         reservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
         reservationVC.memberInfo = self.memberInfo
  
+        let containerView = self.view.superview
+        containerView?.addSubview(reservationVC.view )
         
         UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
