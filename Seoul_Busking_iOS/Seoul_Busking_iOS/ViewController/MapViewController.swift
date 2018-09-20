@@ -117,6 +117,8 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         let tmpDate : String = yearString + monthString + dayString
         todayDateTime = Int( tmpDate )
         
+        print( todayDateTime )
+        
     }
     
     func setTarget() {

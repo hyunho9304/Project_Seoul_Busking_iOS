@@ -40,7 +40,12 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     @IBOutlet weak var selectTimeCommitBtn: UIButton!
     
     
+    var year = calendar.component(.year, from: date)
+    var month = calendar.component(.month, from: date)
+    let weekday = calendar.component(.weekday, from: date)
+    let day = calendar.component(.day, from: date)
     let hour = calendar.component(.hour, from: date)
+    var today : Int?
     
     
     //  텝바
@@ -72,7 +77,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func getReservationPossibilityInit() {
         
-        Server.reqReservationPossibility(r_date: self.selectedDate! , r_time: self.hour , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex!) { ( reservationPossibilityData , rescode ) in
+        Server.reqReservationPossibility(r_date: self.selectedDate! , r_today : self.today! , r_time: self.hour , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex!) { ( reservationPossibilityData , rescode ) in
             
             if( rescode == 200 ) {
                 
@@ -116,6 +121,21 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         
         selectTimeCommitBtn.layer.cornerRadius = 25
         timeTableCollectionView.allowsMultipleSelection = true
+        
+        let yearString : String = String(year)
+        var monthString : String = String( month )
+        var dayString : String = String( day )
+        
+        
+        if( monthString.count == 1 ) {
+            monthString.insert("0", at: monthString.startIndex )
+        }
+        if( dayString.count == 1 ) {
+            dayString.insert("0", at: dayString.startIndex )
+        }
+        
+        let tmpDate : String = yearString + monthString + dayString
+        today = Int( tmpDate )
     }
     
     func setDelegate() {
@@ -395,7 +415,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
             cell.isUserInteractionEnabled = false
             
             cell.timeTableCircleImageView.image = #imageLiteral(resourceName: "checkX")
-            cell.timeTableReservInfoImageView.image = #imageLiteral(resourceName: "reserCopy.png")  //  수정 -> 예약 마감 이미지
+            cell.timeTableReservInfoImageView.image = #imageLiteral(resourceName: "reserCopy2.png")  //  수정 -> 예약 마감 이미지
             
         }
         

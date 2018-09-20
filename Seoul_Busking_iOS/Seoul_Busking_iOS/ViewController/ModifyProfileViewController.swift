@@ -442,7 +442,6 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCategoryCollectionViewCell", for: indexPath ) as! ReservationCategoryCollectionViewCell
         
-        cell.categoryNameLabel.text = categoryArr[ indexPath.row ]
         cell.categoryImageView.image = categoryImageArr[ indexPath.row ]
         
         return cell

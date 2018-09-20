@@ -777,7 +777,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         Server.reqIsFollowing(member_follow_nickname: (self.memberInfo?.member_nickname)! , member_following_nickname: (self.selectMemberNickname)!) { (rescode ) in
             
             if( rescode == 201 ) {  //  팔로잉 하는중
-                self.memberSetBtn.setImage(#imageLiteral(resourceName: "heart") , for: .normal)
+                self.memberSetBtn.setImage(#imageLiteral(resourceName: "following") , for: .normal)
             } else if( rescode == 401 ) {   //  팔로잉 안함
                 self.memberSetBtn.setImage( #imageLiteral(resourceName: "follow") , for: .normal)
             } else {

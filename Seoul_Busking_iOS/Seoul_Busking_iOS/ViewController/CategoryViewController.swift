@@ -30,8 +30,8 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
     //  내용
     @IBOutlet weak var popUpViewBackBtn: UIButton!
     @IBOutlet weak var selectCategoryCollectionView: UICollectionView!
-    var categoryArr : [String] = [ "노래" , "댄스" , "연주" , "마술" , "미술" , "기타" ]
-    var categoryImageArr = [ #imageLiteral(resourceName: "musician1.jpg") , #imageLiteral(resourceName: "b-boying.jpg") , #imageLiteral(resourceName: "musician.jpg") , #imageLiteral(resourceName: "artist.jpg") , #imageLiteral(resourceName: "magic.jpg") , #imageLiteral(resourceName: "street-artists.jpg") ]
+    var categoryArr : [String] = [ "노래" , "미술" , "댄스" , "연주" , "마술" , "기타" ]
+    var categoryImageArr = [ #imageLiteral(resourceName: "rectangle6.jpg") , #imageLiteral(resourceName: "rectangle6Copy.jpg") , #imageLiteral(resourceName: "rectangle6Copy2.jpg") , #imageLiteral(resourceName: "rectangle6Copy4.jpg") , #imageLiteral(resourceName: "rectangle6Copy3.jpg") , #imageLiteral(resourceName: "rectangle6Copy5.jpg") ]
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -182,7 +182,6 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCategoryCollectionViewCell", for: indexPath ) as! ReservationCategoryCollectionViewCell
         
-        cell.categoryNameLabel.text = categoryArr[ indexPath.row ]
         cell.categoryImageView.image = categoryImageArr[ indexPath.row ]
         
         return cell
@@ -228,7 +227,7 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
     //  cell 크기 비율
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 128 * self.view.frame.width/375 , height: 90 * self.view.frame.height/667 )
+        return CGSize(width: 170 * self.view.frame.width/375 , height: 170 * self.view.frame.height/667 )
     }
     
     //  cell 섹션 내부 여백( default 는 0 보다 크다 )
@@ -240,13 +239,13 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
     //  cell 간 세로 간격 ( vertical 이라서 세로 사용해야 한다 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 26
+        return 0
     }
     
     //  cell 간 가로 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 24
+        return 0
     }
     
     

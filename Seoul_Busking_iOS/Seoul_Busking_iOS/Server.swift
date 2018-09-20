@@ -424,9 +424,9 @@ struct Server : APIService {
     
     
     //  예약가능한 시간 가져오기
-    static func reqReservationPossibility( r_date : Int , r_time : Int , sb_id : Int , sbz_id : Int , completion : @escaping ( ReservationPossibility , _ status : Int ) -> Void ) {
+    static func reqReservationPossibility( r_date : Int , r_today : Int , r_time : Int , sb_id : Int , sbz_id : Int , completion : @escaping ( ReservationPossibility , _ status : Int ) -> Void ) {
         
-        let URL = url( "/reservation/possibility?r_date=\(r_date)&r_time=\(r_time)&sb_id=\(sb_id)&sbz_id=\(sbz_id)" )
+        let URL = url( "/reservation/possibility?r_date=\(r_date)&r_today=\(r_today)&r_time=\(r_time)&sb_id=\(sb_id)&sbz_id=\(sbz_id)" )
         
         Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
             
