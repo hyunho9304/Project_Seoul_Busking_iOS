@@ -126,7 +126,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         } else {    //  타인 프로필
             
             self.memberInfoRightBtn.setImage(#imageLiteral(resourceName: "report"), for: .normal)
-            self.memberSetBtn.setImage(#imageLiteral(resourceName: "followEmpty"), for: .normal)
+            self.memberSetBtn.setImage( #imageLiteral(resourceName: "follow") , for: .normal)
             getisFollowing()
         }
         
@@ -170,6 +170,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         
         //  홈 버튼
         tapbarHomeBtn.addTarget(self, action: #selector(self.pressedTapbarHomeBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  개인정보 버튼
+        tapbarMemberInfoBtn.addTarget(self, action: #selector(self.pressedTapbarMemberInfoBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  백 버튼
         memberInfoBackBtn.addTarget(self, action: #selector(self.pressedMemberInfoBackBtn(_:)), for: UIControlEvents.touchUpInside)
@@ -267,6 +270,18 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         self.dismiss(animated: false , completion: nil )
     }
     
+    //  개인정보 버튼 액션
+    @objc func pressedTapbarMemberInfoBtn( _ sender : UIButton ) {
+        
+        guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
+        
+        memberInfoVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        memberInfoVC.memberInfo = self.memberInfo
+        
+        self.present( memberInfoVC , animated: false , completion: nil )
+        
+    }
+    
     //  오른쪽 버튼
     @objc func pressedMemberInfoRightBtn( _ sender : UIButton ) {
         
@@ -323,7 +338,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             modifyProfileVC.memberInfoBasic = self.memberInfoBasic
             modifyProfileVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
             
-            self.present( modifyProfileVC , animated: true , completion: nil )
+            self.present( modifyProfileVC , animated: false , completion: nil )
             
         } else {
             
@@ -342,7 +357,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                         self.view.addSubview( defaultPopUpVC.view )
                         defaultPopUpVC.didMove(toParentViewController: self )
                         
-                        sender.setImage(#imageLiteral(resourceName: "heart") , for: .normal )
+                        sender.setImage(#imageLiteral(resourceName: "following") , for: .normal )
                         self.memberFollowCntLabel.text = String( Int( self.memberFollowCntLabel.text! )! + 1 )
                         
                     } else if( flag == 0 ) {
@@ -356,7 +371,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                         self.view.addSubview( defaultPopUpVC.view )
                         defaultPopUpVC.didMove(toParentViewController: self )
                         
-                        sender.setImage(#imageLiteral(resourceName: "followEmpty")  , for: .normal )
+                        sender.setImage(#imageLiteral(resourceName: "follow")  , for: .normal )
                         self.memberFollowCntLabel.text = String( Int( self.memberFollowCntLabel.text! )! - 1 )
                     }
                     
@@ -763,7 +778,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             if( rescode == 201 ) {  //  팔로잉 하는중
                 self.memberSetBtn.setImage(#imageLiteral(resourceName: "heart") , for: .normal)
             } else if( rescode == 401 ) {   //  팔로잉 안함
-                self.memberSetBtn.setImage( #imageLiteral(resourceName: "followEmpty") , for: .normal)
+                self.memberSetBtn.setImage( #imageLiteral(resourceName: "follow") , for: .normal)
             } else {
                 
                 let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )

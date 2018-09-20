@@ -253,14 +253,14 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
     //  개인정보 버튼 액션
     @objc func pressedTapbarMemberInfoBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: true , completion: nil )
+        self.dismiss(animated: false , completion: nil )
         
     }
     
     //  백 버튼 액션
     @objc func pressedMemberModifyProfilesBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: true , completion: nil )
+        self.dismiss(animated: false , completion: nil )
     }
     
     //  프로필 수정 커밋 버튼 액션
@@ -282,7 +282,6 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
             self.view.addSubview( defaultPopUpVC.view )
             defaultPopUpVC.didMove(toParentViewController: self )
         }
-        
     }
     
     //  배경사진 이미지 액션

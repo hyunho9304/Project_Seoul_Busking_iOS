@@ -42,6 +42,10 @@ class SignInViewController: UIViewController , UITextFieldDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
+    override func viewWillLayoutSubviews() {
+       
+    }
+    
     func set() {
         
         signInIDTextField.returnKeyType = UIReturnKeyType.continue

@@ -29,7 +29,10 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
     var selectBuskingZoneLongitude : Double?
     var selectBuskingZoneLatitude : Double?
     
+    //  오른쪽 버스킹 존
     @IBOutlet weak var mapSearchZoneUIView: UIView!
+    @IBOutlet weak var mapSearchNothingLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,10 +89,15 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func set() {
         
+        mapSearchNothingLabel.isHidden = false
+        
         mapSearchZoneUIView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)             //  그림자 색
         mapSearchZoneUIView.layer.shadowOpacity = 0.16                          //  그림자 투명도
-        mapSearchZoneUIView.layer.shadowOffset = CGSize(width: -3 , height: 0 )    //  그림자 x y
+        mapSearchZoneUIView.layer.shadowOffset = CGSize(width: -3 , height: -1 )    //  그림자 x y
         mapSearchZoneUIView.layer.shadowRadius = 6
+        
+        //let shadowRect: CGRect = mapSearchZoneUIView.bounds.insetBy(dx: 0, dy: 4)
+        //mapSearchZoneUIView.layer.shadowPath = UIBezierPath(rect: shadowRect).cgPath
         
         mapSearchBoroughCollectionView.alwaysBounceVertical = true
         mapSearchBuskingZoneCollectionView.alwaysBounceVertical = true
@@ -174,8 +182,12 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if( collectionView == mapSearchBoroughCollectionView ) {
+            
+            mapSearchNothingLabel.isHidden = true
+            
             boroughSelectedIndexPath = indexPath
             collectionView.reloadData()
+            
         } else {
             
             selectBuskingZoneIndex = buskingZoneList[ indexPath.row ].sbz_id

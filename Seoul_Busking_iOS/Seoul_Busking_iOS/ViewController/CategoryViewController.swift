@@ -31,7 +31,7 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
     @IBOutlet weak var popUpViewBackBtn: UIButton!
     @IBOutlet weak var selectCategoryCollectionView: UICollectionView!
     var categoryArr : [String] = [ "노래" , "댄스" , "연주" , "마술" , "미술" , "기타" ]
-    var categoryImageArr = [ #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") ]
+    var categoryImageArr = [ #imageLiteral(resourceName: "musician1.jpg") , #imageLiteral(resourceName: "b-boying.jpg") , #imageLiteral(resourceName: "musician.jpg") , #imageLiteral(resourceName: "artist.jpg") , #imageLiteral(resourceName: "magic.jpg") , #imageLiteral(resourceName: "street-artists.jpg") ]
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -82,10 +82,51 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
     }
     
     func setTarget() {
+        
+        //  검색 버튼
+        tapbarSearchBtn.addTarget(self, action: #selector(self.pressedTapbarSearchBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  홈 버튼
+        tapbarHomeBtn.addTarget(self, action: #selector(self.pressedTapbarHomeBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  개인정보 버튼
+        tapbarMemberInfoBtn.addTarget(self, action: #selector(self.pressedTapbarMemberInfoBtn(_:)), for: UIControlEvents.touchUpInside)
 
         //  뷰 닫기 버튼
         popUpViewBackBtn.addTarget(self, action: #selector(self.pressedPopUpViewBackBtn(_:)), for: UIControlEvents.touchUpInside)
         
+    }
+    
+    //  검색 버튼 액션
+    @objc func pressedTapbarSearchBtn( _ sender : UIButton ) {
+        
+        guard let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
+        
+        mapVC.memberInfo = self.memberInfo
+        
+        self.present( mapVC , animated: false , completion: nil )
+    }
+    
+    //  홈 버튼 액션
+    @objc func pressedTapbarHomeBtn( _ sender : UIButton ) {
+        
+        guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+        
+        homeVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        homeVC.memberInfo = self.memberInfo
+        
+        self.present( homeVC , animated: false , completion: nil )
+    }
+    
+    //  개인정보 버튼 액션
+    @objc func pressedTapbarMemberInfoBtn( _ sender : UIButton ) {
+        
+        guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
+        
+        memberInfoVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
+        memberInfoVC.memberInfo = self.memberInfo
+        
+        self.present( memberInfoVC , animated: false , completion: nil )
     }
     
     //  뷰 닫기 버튼 액션

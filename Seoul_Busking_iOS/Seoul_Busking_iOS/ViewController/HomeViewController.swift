@@ -353,7 +353,6 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     //  자치구 선택 버튼 액션
     @objc func pressedHomeBoroughBtn( _ sender : UIButton ) {
         
-        
         guard let selectBoroughVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "selectBoroughViewController") as? selectBoroughViewController else { return }
 
         selectBoroughVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
