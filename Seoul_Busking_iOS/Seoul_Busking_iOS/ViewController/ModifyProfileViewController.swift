@@ -43,10 +43,13 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
     //  카테고리
     @IBOutlet weak var backUIView: UIView!
     @IBOutlet weak var collectionViewUIView: UIView!
-    @IBOutlet weak var selectCategoryCollectionView: UICollectionView!
-    var categoryArr : [String] = [ "노래" , "댄스" , "연주" , "마술" , "미술" , "기타" ]
-    var categoryImageArr = [ #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") , #imageLiteral(resourceName: "2_3_1.png") ]
+    @IBOutlet weak var modifyCategoryUIViewBackBtn: UIButton!
+    @IBOutlet weak var modifyCategoryCommitBtn: UIButton!
+    @IBOutlet weak var modifyCategoryCollectionView: UICollectionView!
+    
+    var categoryArr : [String] = [ "노래" , "미술" , "댄스" , "마술" , "연주" , "기타" ]
     var selectCategory : String?
+    var categorySelectedIndex:IndexPath?                     //  선택고려
     
     //  알림창
     @IBOutlet weak var alertUIView: UIView!
@@ -160,6 +163,17 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
             self.modifyCategoryLabel.text = "# \(tmpCategory)"
             selectCategory = tmpCategory
             
+            var index : Int = -1
+            for i in 0 ..< 6 {
+                if( categoryArr[i] == tmpCategory ) {
+                    index = i
+                }
+            }
+            
+            let indexPathForFirstRow = IndexPath(row: index, section: 0)
+            self.collectionView( self.modifyCategoryCollectionView, didSelectItemAt: indexPathForFirstRow )
+            
+            
         } else {
             modifyCateogyUIView.isHidden = true
         }
@@ -176,8 +190,8 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
         
         modifyNicknameTextField.delegate = self
         
-        selectCategoryCollectionView.delegate = self
-        selectCategoryCollectionView.dataSource = self
+        modifyCategoryCollectionView.delegate = self
+        modifyCategoryCollectionView.dataSource = self
     }
     
     func setTarget() {
@@ -193,6 +207,12 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
         
         //  백 버튼
         memberModifyProfilesBackBtn.addTarget(self, action: #selector(self.pressedMemberModifyProfilesBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  카테고리 수정 close 버튼
+        modifyCategoryUIViewBackBtn.addTarget(self, action: #selector(self.pressedModifyCategoryUIViewBackBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  카테고리 수정 변경완료 수정 버튼
+        modifyCategoryCommitBtn.addTarget(self, action: #selector(self.pressedModifyCategoryCommitBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  프로필 수정 커밋 버튼
         memberModifyProfileCommitBtn.addTarget(self, action: #selector(self.pressedMemberMemberModifyProfileCommitBtn(_:)), for: UIControlEvents.touchUpInside)
@@ -263,6 +283,21 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
     @objc func pressedMemberModifyProfilesBackBtn( _ sender : UIButton ) {
         
         self.dismiss(animated: false , completion: nil )
+    }
+    
+    //  카테고리 변경 백 버튼 액션
+    @objc func pressedModifyCategoryUIViewBackBtn( _ sender : UIButton ) {
+        
+        backUIView.isHidden = true
+        collectionViewUIView.isHidden = true
+    }
+    
+    //  카테고리 변경 완료 버튼 액션
+    @objc func pressedModifyCategoryCommitBtn( _ sender : UIButton ) {
+        
+        modifyCategoryLabel.text = "# \(gsno(selectCategory))"
+        backUIView.isHidden = true
+        collectionViewUIView.isHidden = true
     }
     
     //  프로필 수정 커밋 버튼 액션
@@ -440,9 +475,22 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
     //  cell 의 내용
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCategoryCollectionViewCell", for: indexPath ) as! ReservationCategoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ModifyCateogyCollectionViewCell", for: indexPath ) as! ModifyCateogyCollectionViewCell
         
-        cell.categoryImageView.image = categoryImageArr[ indexPath.row ]
+        cell.modifyCatgegoryLabel.text = categoryArr[ indexPath.row ]
+        cell.modifyCategoryRightWayImageView.isHidden = true
+        
+        if ( indexPath == categorySelectedIndex ) {
+            
+            cell.modifyCategoryRightWayImageView.isHidden = false
+            cell.modifyCatgegoryLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
+            self.selectCategory = "\(categoryArr[ indexPath.row ])"
+            
+        } else {
+            cell.modifyCatgegoryLabel.textColor = UIColor.black
+        }
+        
+        
         
         return cell
     }
@@ -450,16 +498,15 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        modifyCategoryLabel.text = "# \(categoryArr[ indexPath.row ])"
-        backUIView.isHidden = true
-        collectionViewUIView.isHidden = true
-        selectCategory = self.categoryArr[ indexPath.row ]
+        categorySelectedIndex = indexPath
+        collectionView.reloadData()
+        
     }
     
     //  cell 크기 비율
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 141 * self.view.frame.width/375 , height: 106 * self.view.frame.height/667 )
+        return CGSize(width: 212 * self.view.frame.width/375 , height: 30 * self.view.frame.height/667 )
     }
     
     //  cell 섹션 내부 여백( default 는 0 보다 크다 )
@@ -471,13 +518,13 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
     //  cell 간 세로 간격 ( vertical 이라서 세로 사용해야 한다 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        return 5
     }
     
     //  cell 간 가로 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        return 5
     }
     
     func getItoI( _ sender : Int ) -> Int {

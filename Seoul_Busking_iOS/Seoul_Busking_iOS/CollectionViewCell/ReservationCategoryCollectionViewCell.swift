@@ -11,4 +11,6 @@ import UIKit
 class ReservationCategoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryImageView: UIImageView!
+    
+
 }

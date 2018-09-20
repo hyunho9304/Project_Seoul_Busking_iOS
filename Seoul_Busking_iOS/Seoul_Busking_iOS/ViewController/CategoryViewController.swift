@@ -174,7 +174,7 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
     //  cell 의 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return categoryArr.count
+        return categoryImageArr.count
     }
     
     //  cell 의 내용

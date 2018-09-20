@@ -331,14 +331,15 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     //  ( 프로필 수정 , 팔로잉 ) 버튼 액션
     @objc func pressedMemberSetBtn( _ sender : UIButton ) {
         
-        if( memberSetBtn.image(for: .normal ) == #imageLiteral(resourceName: "modifyProfile") ) {
-            
+        print(1111)
+        if( memberInfo?.member_nickname == memberInfoBasic?.member_nickname ) {
+            print(22)
             guard let modifyProfileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ModifyProfileViewController") as? ModifyProfileViewController else { return }
             
             modifyProfileVC.memberInfo = self.memberInfo
             modifyProfileVC.memberInfoBasic = self.memberInfoBasic
             modifyProfileVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
-            
+            print(33)
             self.present( modifyProfileVC , animated: false , completion: nil )
             
         } else {
