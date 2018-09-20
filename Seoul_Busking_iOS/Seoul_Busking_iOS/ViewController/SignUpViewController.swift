@@ -51,6 +51,8 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
     
     
     func set() {
+        
+        UIApplication.shared.statusBarStyle = .default
 
         signUpCompletionBtn.isEnabled = false  //  default setting
         

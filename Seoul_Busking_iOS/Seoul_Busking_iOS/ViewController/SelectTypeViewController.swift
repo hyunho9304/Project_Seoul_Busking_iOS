@@ -32,6 +32,8 @@ class SelectTypeViewController: UIViewController {
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .default
+        
         selectNextBtn.isEnabled = false  //  default setting
         selectBuskerBtn.setImage( #imageLiteral(resourceName: "2_3_1") , for: .normal)
         selectAudienceBtn.setImage( #imageLiteral(resourceName: "2_4_1") , for: .normal)
