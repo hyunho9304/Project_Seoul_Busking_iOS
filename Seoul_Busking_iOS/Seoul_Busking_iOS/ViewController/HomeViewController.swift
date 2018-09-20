@@ -46,16 +46,18 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     var selectZoneIndex : Int?                                 //  선택한 버스킹 존 인덱스
     var selectZoneName : String?                               //  선택한 버스킹 존 이름
     var selectZoneImage : String?                              //  선택한 버스킹 존 이미지
-    @IBOutlet weak var nothingZone: UILabel!
     
     
     @IBOutlet weak var reservationNowBtn: UIButton!
+    @IBOutlet weak var reservationNowImageBtn: UIButton!
     
     
     //  예약 공연 목록
     @IBOutlet weak var homeReservationCollectionView: UICollectionView!
     var reservationList : [ Reservation ] = [ Reservation ]()   //  서버 예약 목록 데이터
-    @IBOutlet weak var nothingReservation: UILabel!
+    
+    @IBOutlet weak var nothingReservationUIView: UIView!
+    
     var refresher : UIRefreshControl?
     
     //  tap bar
@@ -128,13 +130,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                         
                         if( self.buskingZoneList.count != 0 ) {
                             
-                            self.nothingZone.isHidden = true
-                            
                             let indexPathForFirstRow = IndexPath(row: 0, section: 0)
                             self.collectionView( self.homeBuskingZoneCollectionView, didSelectItemAt: indexPathForFirstRow )
-                        } else {
-                            
-                            self.nothingZone.isHidden = false
                         }
                         
                     } else {
@@ -215,6 +212,19 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         tapbarMenuUIView.layer.shadowOpacity = 0.24                            //  그림자 투명도
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
+        
+        //  존 없을경우
+        
+        nothingReservationUIView.layer.cornerRadius = 6    //  둥근정도
+        nothingReservationUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+        nothingReservationUIView.layer.shadowColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)             //  그림자 색
+        nothingReservationUIView.layer.shadowOpacity = 0.5                          //  그림자 투명도
+        nothingReservationUIView.layer.shadowOffset = CGSize(width: 0 , height: 0 )    //  그림자 x y
+        nothingReservationUIView.layer.shadowRadius = 4
+        
+//        let shadowRect: CGRect = nothingReservationUIView.bounds.insetBy(dx: 0, dy: 1)
+//        nothingReservationUIView.layer.shadowPath = UIBezierPath(rect: shadowRect).cgPath
+        
     }
     
     func setDelegate() {
@@ -250,6 +260,9 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
         //  지금 예약하기 버튼
         reservationNowBtn.addTarget(self, action: #selector(self.pressedReservationNowBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  지금 예약하기 이미지 버튼
+        reservationNowImageBtn.addTarget(self, action: #selector(self.pressedReservationNowBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  버스킹 예약 버튼
         homeBuskingReservationBtn.addTarget(self, action: #selector(self.pressedHomeBuskingReservationBtn(_:)), for: UIControlEvents.touchUpInside)
@@ -495,11 +508,11 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                     
                     if( self.reservationList.count != 0 ) {
                         
-                        self.nothingReservation.isHidden = true
+                        self.nothingReservationUIView.isHidden = true
                         
                     } else {
                         
-                        self.nothingReservation.isHidden = false
+                        self.nothingReservationUIView.isHidden = false
                     }
                 } else {
                     

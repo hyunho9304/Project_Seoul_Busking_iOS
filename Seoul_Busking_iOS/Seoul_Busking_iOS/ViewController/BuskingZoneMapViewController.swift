@@ -114,6 +114,10 @@ class BuskingZoneMapViewController: UIViewController , NMapViewDelegate , NMapPO
         UIApplication.shared.statusBarStyle = .lightContent
         
         navigationBarZoneName.text = self.selectedBoroughName
+        
+        zoneCurrentInfoUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+        zoneCurrentInfoUIView.layer.shadowOpacity = 0.39                            //  그림자 투명도
+        zoneCurrentInfoUIView.layer.shadowOffset = CGSize(width: 0 , height: 0 )    //  그림자 x y
     }
     
     func setTarget() {
@@ -466,6 +470,9 @@ class BuskingZoneMapViewController: UIViewController , NMapViewDelegate , NMapPO
         
         zoneCurrentInfoNameLebel.text = buskingZoneList[ index ].sbz_name
         zoneCurrentInfoImageView.kf.setImage(with: URL( string:gsno( buskingZoneList[ index ].sbz_photo ) ) )
+        zoneCurrentInfoImageView.layer.cornerRadius = zoneCurrentInfoImageView.layer.frame.width/2
+        zoneCurrentInfoImageView.clipsToBounds = true
+        
         zoneCurrentInfoAddressTextField.text = buskingZoneList[ index ].sbz_address
         
         //  지도 중심위치 선택한 존 위치로 설정

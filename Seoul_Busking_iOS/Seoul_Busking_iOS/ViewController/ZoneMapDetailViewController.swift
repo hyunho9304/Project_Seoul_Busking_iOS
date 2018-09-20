@@ -94,6 +94,10 @@ class ZoneMapDetailViewController: UIViewController , NMapViewDelegate , NMapPOI
         UIApplication.shared.statusBarStyle = .lightContent
         
         navigationBarZoneName.text = self.selectedBoroughName
+        
+        zoneCurrentInfoUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+        zoneCurrentInfoUIView.layer.shadowOpacity = 0.39                            //  그림자 투명도
+        zoneCurrentInfoUIView.layer.shadowOffset = CGSize(width: 0 , height: 0 )    //  그림자 x y
     }
     
     func setTarget() {
@@ -403,6 +407,8 @@ class ZoneMapDetailViewController: UIViewController , NMapViewDelegate , NMapPOI
         
         zoneCurrentInfoNameLebel.text = self.selectedZoneName
         zoneCurrentInfoImageView.kf.setImage(with: URL( string:gsno( self.selectedZoneImage) ) )
+        zoneCurrentInfoImageView.layer.cornerRadius = zoneCurrentInfoImageView.layer.frame.width/2
+        zoneCurrentInfoImageView.clipsToBounds = true
         zoneCurrentInfoAddressTextField.text = self.selectedZoneAddress
         
         //  지도 중심위치 선택한 존 위치로 설정
