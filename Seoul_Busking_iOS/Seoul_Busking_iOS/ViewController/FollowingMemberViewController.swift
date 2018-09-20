@@ -53,6 +53,8 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .default
+        
         for _ in 0 ..< 10000 {
             self.isFollowingList.append(-1)
             self.filteredFollowingList.append(-1)

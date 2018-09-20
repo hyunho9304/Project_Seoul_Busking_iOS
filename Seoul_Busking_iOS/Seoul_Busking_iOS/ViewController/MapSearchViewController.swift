@@ -89,6 +89,8 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         mapSearchNothingLabel.isHidden = false
         
         mapSearchZoneUIView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)             //  그림자 색

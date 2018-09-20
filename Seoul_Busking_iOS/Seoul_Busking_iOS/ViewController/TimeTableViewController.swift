@@ -102,6 +102,8 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         if uiviewX != nil {
             
             tapbarUIView.frame.origin.x = uiviewX!

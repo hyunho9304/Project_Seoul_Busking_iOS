@@ -100,8 +100,9 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
     
     override func viewDidAppear(_ animated: Bool) {
         
-        getMemberInfo()
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        getMemberInfo()
     }
     
     func set() {

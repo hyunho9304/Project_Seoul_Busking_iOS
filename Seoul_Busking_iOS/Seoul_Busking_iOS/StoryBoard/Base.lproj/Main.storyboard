@@ -2535,7 +2535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gxa-VR-hcD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6693.6000000000004" y="1701.4992503748126"/>
+            <point key="canvasLocation" x="6679" y="1701"/>
         </scene>
         <!--Category View Controller-->
         <scene sceneID="Gbq-t1-W3L">
@@ -2703,7 +2703,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64l-sB-fxI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7668" y="1700.5997001499252"/>
+            <point key="canvasLocation" x="7537" y="1701"/>
         </scene>
         <!--Borough List View Controller-->
         <scene sceneID="cek-pZ-cS1">

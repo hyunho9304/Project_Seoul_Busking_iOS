@@ -62,6 +62,8 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         memberCollectionView.alwaysBounceVertical = true
         
         for _ in 0 ..< 100 {

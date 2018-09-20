@@ -124,6 +124,8 @@ class ReservationViewController: UIViewController {
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         reservationCommitBtn.isEnabled = false
         reservationCommitBtn.alpha = 0.6
         

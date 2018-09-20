@@ -57,6 +57,8 @@ class ReportViewController: UIViewController , UITextFieldDelegate , UITextViewD
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         if uiviewX != nil {
             
             tapbarUIView.frame.origin.x = uiviewX!

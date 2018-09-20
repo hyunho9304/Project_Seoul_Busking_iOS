@@ -100,6 +100,8 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         let yearString : String = String(year)
         var monthString : String = String( month )
         var dayString : String = String( day )

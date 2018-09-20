@@ -64,6 +64,8 @@ class CategoryViewController: UIViewController , UICollectionViewDelegate , UICo
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         if uiviewX != nil {
             
             tapbarUIView.frame.origin.x = uiviewX!

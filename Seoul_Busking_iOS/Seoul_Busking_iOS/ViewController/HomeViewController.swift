@@ -158,6 +158,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         //  바로 데이터 안와서 딜레이준다
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 , execute: {
             

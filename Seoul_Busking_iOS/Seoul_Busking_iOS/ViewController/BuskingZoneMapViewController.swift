@@ -111,6 +111,8 @@ class BuskingZoneMapViewController: UIViewController , NMapViewDelegate , NMapPO
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         navigationBarZoneName.text = self.selectedBoroughName
     }
     

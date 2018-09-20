@@ -91,6 +91,8 @@ class ZoneMapDetailViewController: UIViewController , NMapViewDelegate , NMapPOI
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         navigationBarZoneName.text = self.selectedBoroughName
     }
     

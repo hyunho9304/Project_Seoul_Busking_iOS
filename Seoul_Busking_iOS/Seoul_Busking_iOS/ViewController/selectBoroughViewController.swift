@@ -80,6 +80,8 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         if uiviewX != nil {
             
             tapbarUIView.frame.origin.x = uiviewX!

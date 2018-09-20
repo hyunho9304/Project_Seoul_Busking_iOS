@@ -75,6 +75,8 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
     
     func set() {
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         if uiviewX != nil {
             
             tapbarUIView.frame.origin.x = uiviewX!

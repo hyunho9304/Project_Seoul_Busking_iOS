@@ -120,6 +120,8 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
     }
     
     func set() {
+        
+        UIApplication.shared.statusBarStyle = .lightContent
 
         self.view.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
         calendarPopUpUIView.layer.cornerRadius = 15
