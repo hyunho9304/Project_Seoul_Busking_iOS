@@ -173,7 +173,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                 
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
-                self.memberListUIView.frame.origin.y = 246 * self.view.frame.height / 667
+                self.memberListUIView.frame.origin.y = 229 * self.view.frame.height / 667
                 
             }) { (finished ) in
                 
@@ -189,7 +189,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
-                self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667
+                self.memberListUIView.frame.origin.y = 123 * self.view.frame.height / 667
                 
             }) { (finished ) in
                 
@@ -213,7 +213,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
                 
                 self.selectBtn1.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
-                self.memberListUIView.frame.origin.y = 200 * self.view.frame.height / 667
+                self.memberListUIView.frame.origin.y = 183 * self.view.frame.height / 667
                 
             }) { (finished ) in
                 
@@ -229,7 +229,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             UIView.animate(withDuration: 0.5 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
                 
                 self.selectBtn2.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2 )
-                self.memberListUIView.frame.origin.y = 140 * self.view.frame.height / 667
+                self.memberListUIView.frame.origin.y = 123 * self.view.frame.height / 667
                 
             }) { (finished ) in
                 
