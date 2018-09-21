@@ -506,7 +506,7 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
     //  cell 크기 비율
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 212 * self.view.frame.width/375 , height: 30 * self.view.frame.height/667 )
+        return CGSize(width: 212 * self.view.frame.width/375 , height: 37 * self.view.frame.height/667 )
     }
     
     //  cell 섹션 내부 여백( default 는 0 보다 크다 )
@@ -518,13 +518,13 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
     //  cell 간 세로 간격 ( vertical 이라서 세로 사용해야 한다 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 5
+        return 0
     }
     
     //  cell 간 가로 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 5
+        return 0
     }
     
     func getItoI( _ sender : Int ) -> Int {

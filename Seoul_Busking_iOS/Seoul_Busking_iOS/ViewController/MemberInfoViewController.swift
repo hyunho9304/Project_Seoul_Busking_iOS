@@ -291,6 +291,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             guard let settingVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController else { return }
             
             settingVC.memberInfo = self.memberInfo
+            
             settingVC.selectMemberNickname = self.selectMemberNickname
             settingVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
             
