@@ -48,6 +48,17 @@ class SettingViewController: UIViewController {
         setTarget()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let touch : UITouch? = touches.first
+        
+        if touch?.view == backUIView {
+            
+            backUIView.isHidden = true
+            alertUIView.isHidden = true
+        }
+    }
+    
     func set() {
         
         UIApplication.shared.statusBarStyle = .lightContent

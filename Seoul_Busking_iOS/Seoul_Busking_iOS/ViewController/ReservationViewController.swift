@@ -60,9 +60,15 @@ class ReservationViewController: UIViewController {
     var selectedCategory : String?
     
     
+    
     //  신청하기
     @IBOutlet weak var reservationCommitBtn: UIButton!
     
+    //  popView
+    @IBOutlet weak var alertUIView: UIView!
+    @IBOutlet weak var alertTitleLabel: UILabel!
+    @IBOutlet weak var alertCommitBtn: UIButton!
+    @IBOutlet weak var backUIView: UIView!
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -74,12 +80,6 @@ class ReservationViewController: UIViewController {
     var uiviewX : CGFloat?
     
     
-    //  자치구 calloutView
-    @IBOutlet var boroughListCalloutView: UIView!
-    @IBOutlet weak var BoroughListCollectionView: UICollectionView!
-    var boroughList : [ Borough ] = [ Borough ]()  //  서버 자치구 리스트
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,6 +87,17 @@ class ReservationViewController: UIViewController {
         setTarget()
         setTapbarAnimation()
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let touch : UITouch? = touches.first
+        
+        if touch?.view == backUIView {
+            
+            backUIView.isHidden = true
+            alertUIView.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,6 +151,22 @@ class ReservationViewController: UIViewController {
         //  그림자의 블러는 5 정도 이다
         
         reservationCommitBtn.layer.cornerRadius = 25
+        
+        backUIView.isHidden = true
+        backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
+        alertUIView.isHidden = true
+        alertUIView.layer.cornerRadius = 5    //  둥근정도
+        alertUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+        
+        alertUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+        alertUIView.layer.shadowOpacity = 0.15                            //  그림자 투명도
+        alertUIView.layer.shadowOffset = CGSize(width: 0 , height: 3 )    //  그림자 x y
+        alertUIView.layer.shadowRadius = 5                                //  그림자 둥근정도
+        //  그림자의 블러는 5 정도 이다
+        
+        //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
+        alertCommitBtn.layer.cornerRadius = 5
+        alertCommitBtn.layer.maskedCorners = [.layerMaxXMaxYCorner ]
     }
     
     func viewWillSet() {
@@ -216,6 +243,8 @@ class ReservationViewController: UIViewController {
         reservationCategoryLabel.isUserInteractionEnabled = true
         reservationCategoryLabel.addGestureRecognizer(categoryTap)
         
+        //  확인 버튼
+        alertCommitBtn.addTarget(self, action: #selector(self.pressedAlertCommitBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  신청하기 버튼
         reservationCommitBtn.addTarget(self, action: #selector(self.pressedReservationCommitBtn(_:)), for: UIControlEvents.touchUpInside)
@@ -327,14 +356,9 @@ class ReservationViewController: UIViewController {
         
         if( reservationBoroughLabel.text == "지역 선택" ) {
             
-            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
-            
-            defaultPopUpVC.content = "지역을 선택해 주세요"
-            
-            self.addChildViewController( defaultPopUpVC )
-            defaultPopUpVC.view.frame = self.view.frame
-            self.view.addSubview( defaultPopUpVC.view )
-            defaultPopUpVC.didMove(toParentViewController: self )
+            alertTitleLabel.text = "지역을 선택해 주세요"
+            backUIView.isHidden = false
+            alertUIView.isHidden = false
             
         } else {
             
@@ -373,14 +397,9 @@ class ReservationViewController: UIViewController {
         
         if( reservationZoneLabel.text == "위치 선택" ) {
 
-            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
-
-            defaultPopUpVC.content = "위치를 선택해 주세요."
-
-            self.addChildViewController( defaultPopUpVC )
-            defaultPopUpVC.view.frame = self.view.frame
-            self.view.addSubview( defaultPopUpVC.view )
-            defaultPopUpVC.didMove(toParentViewController: self )
+            alertTitleLabel.text = "위치를 선택해 주세요"
+            backUIView.isHidden = false
+            alertUIView.isHidden = false
 
         } else {
 
@@ -418,14 +437,9 @@ class ReservationViewController: UIViewController {
         
         if( reservationDateLabel.text == "공연 날짜 선택" ) {
             
-            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
-            
-            defaultPopUpVC.content = "날짜를 선택해 주세요."
-            
-            self.addChildViewController( defaultPopUpVC )
-            defaultPopUpVC.view.frame = self.view.frame
-            self.view.addSubview( defaultPopUpVC.view )
-            defaultPopUpVC.didMove(toParentViewController: self )
+            alertTitleLabel.text = "날짜를 선택해 주세요"
+            backUIView.isHidden = false
+            alertUIView.isHidden = false
             
         } else {
             
@@ -461,16 +475,11 @@ class ReservationViewController: UIViewController {
         self.reservationZoneUIView.isHidden = true
         
         if( reservationTimeLabel.text == "공연 시간 선택" ) {
-            
-            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
-            
-            defaultPopUpVC.content = "시간을 선택해 주세요."
-            
-            self.addChildViewController( defaultPopUpVC )
-            defaultPopUpVC.view.frame = self.view.frame
-            self.view.addSubview( defaultPopUpVC.view )
-            defaultPopUpVC.didMove(toParentViewController: self )
-            
+
+            alertTitleLabel.text = "시간을 선택해 주세요"
+            backUIView.isHidden = false
+            alertUIView.isHidden = false
+           
         } else {
             
             guard let categoryPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryViewController") as? CategoryViewController else { return }
@@ -499,6 +508,27 @@ class ReservationViewController: UIViewController {
         }
     }
     
+    //  확인 버튼 액션
+    @objc func pressedAlertCommitBtn( _ sender : UIButton ) {
+        
+        backUIView.isHidden = true
+        alertUIView.isHidden = true
+        
+        if( alertTitleLabel.text == "날짜를 선택해 주세요" || alertTitleLabel.text == "시간을 선택해 주세요" ) {
+        
+            UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
+            
+            self.reservationDateTimeView.frame.origin.y = 323 * self.view.frame.height / 667
+            
+            
+            }) { (finished ) in
+            
+            self.reservationZoneUIView.isHidden = false
+            }
+            
+            self.reservationDateTimeView.layoutIfNeeded()
+        }
+    }
     
     //  신청하기 버튼 액션
     @objc func pressedReservationCommitBtn( _ sender : UIButton ) {

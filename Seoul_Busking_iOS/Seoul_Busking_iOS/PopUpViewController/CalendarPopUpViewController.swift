@@ -144,15 +144,15 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             switch day {
                 
             case 1...7 :
-                NumberOfEmptyBox = weekday - day + 7
+                NumberOfEmptyBox = weekday - day + 0
             case 8...14 :
-                NumberOfEmptyBox = weekday - day + 14
+                NumberOfEmptyBox = weekday - day + 7
             case 15...21 :
-                NumberOfEmptyBox = weekday - day + 21
+                NumberOfEmptyBox = weekday - day + 14
             case 22...28 :
-                NumberOfEmptyBox = weekday - day + 28
+                NumberOfEmptyBox = weekday - day + 21
             case 29...31 :
-                NumberOfEmptyBox = weekday - day + 35
+                NumberOfEmptyBox = weekday - day + 38
             default :
                 break
             }
