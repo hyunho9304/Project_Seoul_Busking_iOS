@@ -291,12 +291,10 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             guard let settingVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController else { return }
             
             settingVC.memberInfo = self.memberInfo
-            
-            settingVC.selectMemberNickname = self.selectMemberNickname
+            settingVC.memberInfoBasic = self.memberInfoBasic
             settingVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
             
             self.present( settingVC , animated: true , completion: nil )
-            
         } else {
             
             guard let reportVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as? ReportViewController else { return }
@@ -671,7 +669,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                     self.memberBackProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
                     
                 } else {
-                    self.memberBackProfileImageView.backgroundColor = #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1)
+                    self.memberBackProfileImageView.image = #imageLiteral(resourceName: "defaultbackProfile")
                 }
                 
                 self.memberNicknameLabel.text = self.memberInfoBasic?.member_nickname

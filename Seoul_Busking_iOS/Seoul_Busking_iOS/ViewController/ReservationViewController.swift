@@ -329,7 +329,7 @@ class ReservationViewController: UIViewController {
             
             guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
             
-            defaultPopUpVC.content = "지역을 선택해 주세요."
+            defaultPopUpVC.content = "지역을 선택해 주세요"
             
             self.addChildViewController( defaultPopUpVC )
             defaultPopUpVC.view.frame = self.view.frame

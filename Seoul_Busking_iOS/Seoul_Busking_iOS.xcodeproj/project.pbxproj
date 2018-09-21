@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE0F9E0E21550BA2000B5417 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F9E0D21550BA2000B5417 /* WelcomeViewController.swift */; };
 		BE440D932153F05100096D2B /* ModifyCateogyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE440D922153F05000096D2B /* ModifyCateogyCollectionViewCell.swift */; };
 		BE487986214A6E28006606C5 /* ZoneMapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */; };
 		BEBA63C8214EC2A800BBB6CE /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */; };
@@ -114,6 +115,7 @@
 		0A1D4F28A6473D3C14F20FAC /* Pods_Seoul_Busking_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seoul_Busking_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD917AC851E3EF310E5C113 /* Pods-Seoul_Busking_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		5F84945DD247A4E5408F57BE /* Pods-Seoul_Busking_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seoul_Busking_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seoul_Busking_iOS/Pods-Seoul_Busking_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BE0F9E0D21550BA2000B5417 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		BE440D922153F05000096D2B /* ModifyCateogyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyCateogyCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneMapDetailViewController.swift; sourceTree = "<group>"; };
 		BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewController.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				BEBA63C9214FB62100BBB6CE /* ReportViewController.swift */,
 				BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */,
 				BEBA63CF2150D94900BBB6CE /* ProfileDetailViewController.swift */,
+				BE0F9E0D21550BA2000B5417 /* WelcomeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				BED7CB212147B02800730650 /* SearchMemberViewController.swift in Sources */,
 				BED7CB292147B02800730650 /* SignUpViewController.swift in Sources */,
 				BED7CB74214903FE00730650 /* ReviewCollectionViewCell.swift in Sources */,
+				BE0F9E0E21550BA2000B5417 /* WelcomeViewController.swift in Sources */,
 				BED7CB6B2147B07500730650 /* NMapViewResources.swift in Sources */,
 				BED7CB652147B06500730650 /* ToggleBtn.swift in Sources */,
 				BED7CB4A2147B04300730650 /* ReservationCategoryCollectionViewCell.swift in Sources */,

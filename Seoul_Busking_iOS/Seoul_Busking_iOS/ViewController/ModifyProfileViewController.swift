@@ -150,7 +150,7 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
             self.modifyBackProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
             
         } else {
-            self.modifyBackProfileImageView.backgroundColor = #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1)
+            self.modifyBackProfileImageView.image = #imageLiteral(resourceName: "defaultbackProfile")
         }
         
         modifyNicknameTextField.text = self.memberInfoBasic?.member_nickname

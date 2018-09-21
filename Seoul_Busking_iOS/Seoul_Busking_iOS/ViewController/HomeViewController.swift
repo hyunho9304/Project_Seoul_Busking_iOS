@@ -175,6 +175,9 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             tapbarUIView.frame.origin.x = uiviewX!
         }
         
+        reservationNowBtn.isHidden = true
+        reservationNowImageBtn.isHidden = true
+        
         reloadTarget()
     }
     
@@ -598,6 +601,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
             cell.buskingZoneImageView.layer.cornerRadius = cell.buskingZoneImageView.layer.frame.width/2
             cell.buskingZoneImageView.clipsToBounds = true
+            cell.buskingZoneImageView.layoutIfNeeded()
             
             cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
             
@@ -612,6 +616,14 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 
                 cell.buskingZoneImageView.layer.borderColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
                 cell.buskingZoneImageView.layer.borderWidth = 3
+                
+                if( buskingZoneList[ indexPath.row ].sbz_type == 1 ) {
+                    reservationNowBtn.isHidden = false
+                    reservationNowImageBtn.isHidden = false
+                } else {
+                    reservationNowBtn.isHidden = true
+                    reservationNowImageBtn.isHidden = true
+                }
                 
                 getReservationList()
                 
@@ -667,6 +679,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 cell.reservationProfileImage.kf.setImage( with: URL( string:gsno(reservationList[ indexPath.row ].member_profile ) ) )
                 cell.reservationProfileImage.layer.cornerRadius = cell.reservationProfileImage.layer.frame.width/2
                 cell.reservationProfileImage.clipsToBounds = true
+                cell.reservationProfileImage.layoutIfNeeded()
                 
             } else {
                 

@@ -184,12 +184,22 @@ class SignUpViewController: UIViewController , UICollectionViewDelegate , UIColl
                 
                 if rescode == 201 {
                     
-                    guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
-                    
-                    homeVC.memberInfo = memberData
-                    
-                    self.present( homeVC , animated: true , completion: nil )
-                    
+                    if( memberData.member_type == "1" ) {
+                        
+                        guard let welcomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }
+                        
+                        welcomeVC.memberInfo = memberData
+                        
+                        self.present( welcomeVC , animated: true , completion: nil )
+                        
+                    } else {
+                        
+                        guard let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+                        
+                        homeVC.memberInfo = memberData
+                        
+                        self.present( homeVC , animated: true , completion: nil )
+                    }
                 } else {
                     
                     let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
