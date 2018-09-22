@@ -120,7 +120,7 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
     }
     
     func set() {
-        
+ 
         UIApplication.shared.statusBarStyle = .lightContent
 
         self.view.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
@@ -143,16 +143,38 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             
             switch day {
                 
-            case 1...7 :
-                NumberOfEmptyBox = weekday - day + 0
-            case 8...14 :
-                NumberOfEmptyBox = weekday - day + 7
-            case 15...21 :
-                NumberOfEmptyBox = weekday - day + 14
-            case 22...28 :
-                NumberOfEmptyBox = weekday - day + 21
-            case 29...31 :
-                NumberOfEmptyBox = weekday - day + 38
+            case 1 :
+                NumberOfEmptyBox = weekday - day
+            case 2...8 :
+                if( weekday - day < 0 ){
+                    NumberOfEmptyBox = weekday - day + 7
+                } else {
+                    NumberOfEmptyBox = weekday - day
+                }
+            case 9...15 :
+                if( weekday - day < 0 ){
+                    NumberOfEmptyBox = weekday - day + 14
+                } else {
+                    NumberOfEmptyBox = weekday - day
+                }
+            case 16...22 :
+                if( weekday - day < 0 ){
+                    NumberOfEmptyBox = weekday - day + 21
+                } else {
+                    NumberOfEmptyBox = weekday - day
+                }
+            case 23...29 :
+                if( weekday - day < 0 ){
+                    NumberOfEmptyBox = weekday - day + 28
+                } else {
+                    NumberOfEmptyBox = weekday - day
+                }
+            case 30...31 :
+                if( weekday - day < 0 ){
+                    NumberOfEmptyBox = weekday - day + 35
+                } else {
+                    NumberOfEmptyBox = weekday - day
+                }
             default :
                 break
             }

@@ -2,17 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>NotoSans-Regular</string>
-		<string>NotoSans-Bold</string>
-		<string>NotoSansCHKkr-Black</string>
-		<string>NotoSansCJKkr-Bold</string>
-		<string>NotoSansCJKkr-Medium</string>
-		<string>NotoSansCJKkr-Regular</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>유랑예인</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,12 +20,44 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string>NSLocationWhenInUseUsageDescription</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>$(PRODUCT_NAME) calendar events</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires to access your photo library to show image on profile and send via chat</string>
+	<key>NSContactsUsageDescription</key>
+	<string>$(PRODUCT_NAME) contact use</string>
+	<key>NSLocationAlwaysAndWhenInUsageDescription</key>
+	<string>Always and in usage permissions</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>$(PRODUCT_NAME) location use</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) location use</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app requires to access your microphone to record video with your voice send via chat</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires to access your photo library to show image on profile and send via chat</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>$(PRODUCT_NAME) reminder use</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NotoSans-Regular</string>
+		<string>NotoSans-Bold</string>
+		<string>NotoSansCHKkr-Black</string>
+		<string>NotoSansCJKkr-Bold</string>
+		<string>NotoSansCJKkr-Medium</string>
+		<string>NotoSansCJKkr-Regular</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -52,30 +77,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>LSApplicationCategoryType</key>
-	<string>NSLocationWhenInUseUsageDescription</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) location use</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>$(PRODUCT_NAME) location use</string>
-	<key>NSLocationAlwaysAndWhenInUsageDescription</key>
-	<string>Always and in usage permissions</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>$(PRODUCT_NAME) calendar events</string>
-	<key>NSRemindersUsageDescription</key>
-	<string>$(PRODUCT_NAME) reminder use</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This app requires to access your photo library to show image on profile and send via chat</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This app requires to access your microphone to record video with your voice send via chat</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires to access your photo library to show image on profile and send via chat</string>
-	<key>NSContactsUsageDescription</key>
-	<string>$(PRODUCT_NAME) contact use</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
