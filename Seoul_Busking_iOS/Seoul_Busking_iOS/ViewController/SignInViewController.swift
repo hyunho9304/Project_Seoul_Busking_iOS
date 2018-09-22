@@ -42,15 +42,12 @@ class SignInViewController: UIViewController , UITextFieldDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
-    override func viewWillLayoutSubviews() {
-       
-    }
-    
     func set() {
         
         signInIDTextField.returnKeyType = UIReturnKeyType.continue
         signInPWTextField.returnKeyType = UIReturnKeyType.done
     }
+    
     func setTarget() {
         
         signInBtn.addTarget(self, action: #selector(self.pressedSignInBtn(_:)), for: UIControlEvents.touchUpInside)
