@@ -173,8 +173,25 @@ class SettingViewController: UIViewController {
     //  버스커 신청 뷰 액션
     @objc func pressedSettingReqBuskerUIView( _ sender : UIView ) {
         
-        print("버스커 신청 이동")
-        
+        if( memberInfo?.member_type == "0" ) {
+            
+            guard let changeBuskerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChangeBuskerViewController") as? ChangeBuskerViewController else { return }
+            
+            
+            changeBuskerVC.memberInfo = self.memberInfo
+            
+            self.present( changeBuskerVC , animated: false , completion: nil )
+        } else {
+            
+            guard let defaultPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DefaultPopUpViewController") as? DefaultPopUpViewController else { return }
+            
+            defaultPopUpVC.content = "이미 버스커 입니다"
+            
+            self.addChildViewController( defaultPopUpVC )
+            defaultPopUpVC.view.frame = self.view.frame
+            self.view.addSubview( defaultPopUpVC.view )
+            defaultPopUpVC.didMove(toParentViewController: self )
+        }
     }
     
     //  공지사항 뷰 액션

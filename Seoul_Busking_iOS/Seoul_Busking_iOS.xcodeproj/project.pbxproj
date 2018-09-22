@@ -10,6 +10,9 @@
 		BE0F9E0E21550BA2000B5417 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F9E0D21550BA2000B5417 /* WelcomeViewController.swift */; };
 		BE440D932153F05100096D2B /* ModifyCateogyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE440D922153F05000096D2B /* ModifyCateogyCollectionViewCell.swift */; };
 		BE487986214A6E28006606C5 /* ZoneMapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */; };
+		BEB9DD572156355800F73F68 /* ChangeBuskerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB9DD562156355800F73F68 /* ChangeBuskerViewController.swift */; };
+		BEB9DD59215639C900F73F68 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB9DD58215639C900F73F68 /* SelectCategoryViewController.swift */; };
+		BEB9DD5B215641F300F73F68 /* ChangeWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB9DD5A215641F300F73F68 /* ChangeWelcomeViewController.swift */; };
 		BEBA63C8214EC2A800BBB6CE /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */; };
 		BEBA63CA214FB62100BBB6CE /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63C9214FB62100BBB6CE /* ReportViewController.swift */; };
 		BEBA63CC214FB63000BBB6CE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */; };
@@ -118,6 +121,9 @@
 		BE0F9E0D21550BA2000B5417 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		BE440D922153F05000096D2B /* ModifyCateogyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyCateogyCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE487985214A6E28006606C5 /* ZoneMapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneMapDetailViewController.swift; sourceTree = "<group>"; };
+		BEB9DD562156355800F73F68 /* ChangeBuskerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBuskerViewController.swift; sourceTree = "<group>"; };
+		BEB9DD58215639C900F73F68 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
+		BEB9DD5A215641F300F73F68 /* ChangeWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWelcomeViewController.swift; sourceTree = "<group>"; };
 		BEBA63C7214EC2A800BBB6CE /* ModifyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewController.swift; sourceTree = "<group>"; };
 		BEBA63C9214FB62100BBB6CE /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -344,6 +350,9 @@
 				BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */,
 				BEBA63CF2150D94900BBB6CE /* ProfileDetailViewController.swift */,
 				BE0F9E0D21550BA2000B5417 /* WelcomeViewController.swift */,
+				BEB9DD562156355800F73F68 /* ChangeBuskerViewController.swift */,
+				BEB9DD58215639C900F73F68 /* SelectCategoryViewController.swift */,
+				BEB9DD5A215641F300F73F68 /* ChangeWelcomeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -570,6 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BED7CB462147B04300730650 /* HomeCalendarCollectionViewCell.swift in Sources */,
+				BEB9DD5B215641F300F73F68 /* ChangeWelcomeViewController.swift in Sources */,
 				BEBE0FD2214CEB4E00B7601F /* ReviewCreateViewController.swift in Sources */,
 				BED7CB272147B02800730650 /* BuskingZoneListViewController.swift in Sources */,
 				BED7CB212147B02800730650 /* SearchMemberViewController.swift in Sources */,
@@ -601,6 +611,7 @@
 				BED7CB472147B04300730650 /* RankingSelect2CollectionViewCell.swift in Sources */,
 				BED7CB3E2147B04300730650 /* BuskingZoneCollectionViewCell.swift in Sources */,
 				BEBE0FD6214D64D400B7601F /* MemberReview.swift in Sources */,
+				BEB9DD572156355800F73F68 /* ChangeBuskerViewController.swift in Sources */,
 				BED7CB5F2147B06500730650 /* BuskingZone.swift in Sources */,
 				BED7CB5D2147B06500730650 /* MemberList.swift in Sources */,
 				BED7CB1D2147B02800730650 /* MemberInfoViewController.swift in Sources */,
@@ -640,6 +651,7 @@
 				BEBE0FC3214B974F00B7601F /* FollowingDetailViewController.swift in Sources */,
 				BED7CB422147B04300730650 /* MemberCollectionViewCell.swift in Sources */,
 				BED7CB252147B02800730650 /* SignInViewController.swift in Sources */,
+				BEB9DD59215639C900F73F68 /* SelectCategoryViewController.swift in Sources */,
 				BED7CB702148F72800730650 /* FollowingScheduleCollectionViewCell.swift in Sources */,
 				BE440D932153F05100096D2B /* ModifyCateogyCollectionViewCell.swift in Sources */,
 				BEBE0FCC214BC94400B7601F /* FollowingMemberViewController.swift in Sources */,

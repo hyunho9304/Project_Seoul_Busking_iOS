@@ -1287,6 +1287,52 @@ struct Server : APIService {
             }
         }
     }
+    
+    //  버스커 신청
+    static func reqMemberUpdateType( member_ID : String , member_category : String , completion : @escaping ( Member , _ status : Int ) -> Void ) {
+        
+        let URL = url( "/member/update/type" )
+        
+        let body: [String: Any] = [
+            "member_ID" : member_ID ,
+            "member_category" : member_category ,
+        ]
+        
+        Alamofire.request(URL, method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+            
+            switch res.result {
+                
+            case .success:
+                
+                if let value = res.result.value {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        
+                        let memberData = try decoder.decode(MemberData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
+                            
+                            completion( memberData.data! , 201 )
+                        }
+                        else{
+                            
+                            completion( memberData.data! , 500 )
+                        }
+                        
+                    } catch {
+                        print( "catch err" )
+                    }
+                }
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+                break
+            }
+        }
+    }
+
 
 
 
