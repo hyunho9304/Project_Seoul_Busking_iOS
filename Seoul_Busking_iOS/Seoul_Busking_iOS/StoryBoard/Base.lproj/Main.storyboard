@@ -3574,7 +3574,7 @@
                                     <constraint firstAttribute="width" secondItem="8aA-uc-Pp8" secondAttribute="height" multiplier="375:148" id="9le-Uw-ekZ"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwk-hj-J3R">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwk-hj-J3R">
                                 <rect key="frame" x="0.0" y="70" width="375" height="148"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wwk-hj-J3R" secondAttribute="height" multiplier="375:148" id="wec-IA-49f"/>
@@ -3587,7 +3587,7 @@
                                     <constraint firstAttribute="width" secondItem="SMo-VI-chg" secondAttribute="height" multiplier="1:1" id="PSc-Up-BPg"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppz-rK-iGl">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppz-rK-iGl">
                                 <rect key="frame" x="19" y="178" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ppz-rK-iGl" secondAttribute="height" multiplier="1:1" id="xWT-F5-QeY"/>
@@ -3892,6 +3892,7 @@
                             <constraint firstItem="wwk-hj-J3R" firstAttribute="width" secondItem="jEE-8r-VaW" secondAttribute="width" multiplier="375:375" id="WCa-Qt-82c"/>
                             <constraint firstItem="spg-wH-hXT" firstAttribute="leading" secondItem="nIh-EJ-tm2" secondAttribute="leading" constant="19" id="WKG-17-qD1"/>
                             <constraint firstItem="spg-wH-hXT" firstAttribute="top" secondItem="ppz-rK-iGl" secondAttribute="bottom" constant="15" id="X80-rO-8Mx"/>
+                            <constraint firstItem="ppz-rK-iGl" firstAttribute="top" secondItem="wwk-hj-J3R" secondAttribute="bottom" constant="-40" id="XcV-2m-u4I"/>
                             <constraint firstItem="ppz-rK-iGl" firstAttribute="leading" secondItem="nIh-EJ-tm2" secondAttribute="leading" constant="19" id="XyQ-3P-th9"/>
                             <constraint firstItem="Gbw-zJ-lC7" firstAttribute="width" secondItem="jEE-8r-VaW" secondAttribute="width" multiplier="246:375" id="ZPq-0t-zYz"/>
                             <constraint firstItem="Khu-ib-suG" firstAttribute="leading" secondItem="up8-DJ-Mcu" secondAttribute="leading" id="ZiR-Ie-hdC"/>
@@ -3900,6 +3901,7 @@
                             <constraint firstItem="0Fu-0t-kUx" firstAttribute="width" secondItem="jEE-8r-VaW" secondAttribute="width" multiplier="68:375" id="bPt-pv-cOD"/>
                             <constraint firstItem="ndw-ft-ata" firstAttribute="bottom" secondItem="nIh-EJ-tm2" secondAttribute="bottom" id="e9Q-Z6-cyz"/>
                             <constraint firstItem="up8-DJ-Mcu" firstAttribute="leading" secondItem="nIh-EJ-tm2" secondAttribute="leading" constant="19" id="eHM-zk-d9J"/>
+                            <constraint firstItem="SMo-VI-chg" firstAttribute="top" secondItem="wwk-hj-J3R" secondAttribute="bottom" constant="-40" id="eO6-ZC-lZF"/>
                             <constraint firstItem="B6k-PH-d6n" firstAttribute="leading" secondItem="nIh-EJ-tm2" secondAttribute="leading" constant="15" id="fpL-JB-uEa"/>
                             <constraint firstItem="NMe-Ew-J5Y" firstAttribute="width" secondItem="jEE-8r-VaW" secondAttribute="width" multiplier="265:375" id="fw6-xa-WLw"/>
                             <constraint firstItem="wwk-hj-J3R" firstAttribute="top" secondItem="BXs-ZI-gQx" secondAttribute="bottom" id="gbZ-nF-YQI"/>

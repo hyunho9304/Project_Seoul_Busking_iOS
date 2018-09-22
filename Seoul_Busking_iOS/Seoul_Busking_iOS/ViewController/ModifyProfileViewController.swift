@@ -89,7 +89,7 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
     
     func set() {
         
-        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.statusBarStyle = .default
         
         if uiviewX != nil {
             
