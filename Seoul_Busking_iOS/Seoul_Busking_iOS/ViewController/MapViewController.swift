@@ -319,7 +319,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                                     
                                     //  지도 중심위치 선택한 자치구 위치로 설정
                                     if let mapView = self.navermapView {
-                                        mapView.setMapCenter(NGeoPoint(longitude: self.mapSelectedLongitude! , latitude: self.mapSelectedLatitude! ), atLevel: 8)
+                                        mapView.setMapCenter(NGeoPoint(longitude: self.mapSelectedLongitude! , latitude: self.mapSelectedLatitude! ), atLevel: 10)
                                     }
                                 } else {
                                     
