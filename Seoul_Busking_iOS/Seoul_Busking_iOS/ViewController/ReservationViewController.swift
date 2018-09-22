@@ -13,6 +13,7 @@ class ReservationViewController: UIViewController {
 
     //  처음인지 설정
     var first : Bool?
+    var fl : Bool?
     
     //  유저 정보
     var memberInfo : Member?
@@ -65,10 +66,13 @@ class ReservationViewController: UIViewController {
     @IBOutlet weak var reservationCommitBtn: UIButton!
     
     //  popView
+    @IBOutlet weak var alertNoticeUIView: UIView!
     @IBOutlet weak var alertUIView: UIView!
     @IBOutlet weak var alertTitleLabel: UILabel!
     @IBOutlet weak var alertCommitBtn: UIButton!
+    @IBOutlet weak var alertNoticeCommitBtn: UIButton!
     @IBOutlet weak var backUIView: UIView!
+    
     
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
@@ -93,16 +97,25 @@ class ReservationViewController: UIViewController {
         
         let touch : UITouch? = touches.first
         
-        if touch?.view == backUIView {
+        if touch?.view == backUIView && alertNoticeUIView.isHidden == true {
             
             backUIView.isHidden = true
             alertUIView.isHidden = true
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         viewWillSet()
+        
+        if( fl == true ) {
+            backUIView.isHidden = false
+            alertNoticeUIView.isHidden = false
+        } else {
+            backUIView.isHidden = true
+            alertNoticeUIView.isHidden = true
+        }
         
     }
     
@@ -150,10 +163,16 @@ class ReservationViewController: UIViewController {
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
         
+        
+        
         reservationCommitBtn.layer.cornerRadius = 25
         
-        backUIView.isHidden = true
         backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
+        
+        alertNoticeUIView.layer.cornerRadius = 8    //  둥근정도
+        alertNoticeUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+        
+        
         alertUIView.isHidden = true
         alertUIView.layer.cornerRadius = 5    //  둥근정도
         alertUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
@@ -167,6 +186,7 @@ class ReservationViewController: UIViewController {
         //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
         alertCommitBtn.layer.cornerRadius = 5
         alertCommitBtn.layer.maskedCorners = [.layerMaxXMaxYCorner ]
+        
     }
     
     func viewWillSet() {
@@ -245,6 +265,9 @@ class ReservationViewController: UIViewController {
         
         //  확인 버튼
         alertCommitBtn.addTarget(self, action: #selector(self.pressedAlertCommitBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  공지 숙지 확인 버튼
+        alertNoticeCommitBtn.addTarget(self, action: #selector(self.pressedAlertNoticeCommitBtn(_:)), for: UIControlEvents.touchUpInside)
         
         //  신청하기 버튼
         reservationCommitBtn.addTarget(self, action: #selector(self.pressedReservationCommitBtn(_:)), for: UIControlEvents.touchUpInside)
@@ -440,6 +463,7 @@ class ReservationViewController: UIViewController {
             alertTitleLabel.text = "날짜를 선택해 주세요"
             backUIView.isHidden = false
             alertUIView.isHidden = false
+            alertNoticeUIView.isHidden = true
             
         } else {
             
@@ -479,6 +503,7 @@ class ReservationViewController: UIViewController {
             alertTitleLabel.text = "시간을 선택해 주세요"
             backUIView.isHidden = false
             alertUIView.isHidden = false
+            alertNoticeUIView.isHidden = true
            
         } else {
             
@@ -528,6 +553,14 @@ class ReservationViewController: UIViewController {
             
             self.reservationDateTimeView.layoutIfNeeded()
         }
+    }
+    
+    //  공지 숙지 확인 버튼 액션
+    @objc func pressedAlertNoticeCommitBtn( _ sender : UIButton ) {
+        
+        backUIView.isHidden = true
+        alertUIView.isHidden = true
+        alertNoticeUIView.isHidden = true
     }
     
     //  신청하기 버튼 액션

@@ -414,6 +414,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         reservationVC.selectedTmpDate = tmpString
         reservationVC.selectedDate = self.selectDateTime
         
+        reservationVC.fl = true
+        
         UIView.animate(withDuration: 0.3 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
             
             reservationVC.view.frame.origin.x = 0
@@ -432,6 +434,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         reservationVC.view.frame = CGRect(x: self.view.frame.width , y: 0 , width: self.view.frame.width , height: self.view.frame.height )
         reservationVC.uiviewX = self.tapbarHomeBtn.frame.origin.x
         reservationVC.memberInfo = self.memberInfo
+        
+        reservationVC.fl = true
  
         let containerView = self.view.superview
         containerView?.addSubview(reservationVC.view )

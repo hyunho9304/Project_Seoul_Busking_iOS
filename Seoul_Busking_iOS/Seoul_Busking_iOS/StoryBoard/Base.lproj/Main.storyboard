@@ -2099,13 +2099,45 @@
                                             <constraint firstAttribute="trailing" secondItem="mcz-PL-aqP" secondAttribute="trailing" id="koU-bv-3oj"/>
                                         </constraints>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFV-ED-SGk">
+                                        <rect key="frame" x="20" y="68" width="335" height="531"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noticeTex" translatesAutoresizingMaskIntoConstraints="NO" id="iGB-2O-gpj">
+                                                <rect key="frame" x="33.5" y="32" width="268" height="394"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="iGB-2O-gpj" secondAttribute="height" multiplier="134:197" id="cFj-pZ-M7B"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lc7-O5-Qn3">
+                                                <rect key="frame" x="30" y="452" width="275" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Lc7-O5-Qn3" secondAttribute="height" multiplier="11:2" id="KGW-yJ-QZ1"/>
+                                                </constraints>
+                                                <state key="normal" image="noticeSuk"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="iGB-2O-gpj" firstAttribute="centerX" secondItem="sFV-ED-SGk" secondAttribute="centerX" id="8rO-2b-OZ2"/>
+                                            <constraint firstItem="Lc7-O5-Qn3" firstAttribute="width" secondItem="sFV-ED-SGk" secondAttribute="width" multiplier="275:335" id="8wl-bJ-krs"/>
+                                            <constraint firstItem="iGB-2O-gpj" firstAttribute="top" secondItem="sFV-ED-SGk" secondAttribute="top" constant="32" id="M1g-Bh-Fko"/>
+                                            <constraint firstItem="Lc7-O5-Qn3" firstAttribute="top" secondItem="iGB-2O-gpj" secondAttribute="bottom" constant="26" id="ODZ-9t-a2y"/>
+                                            <constraint firstItem="iGB-2O-gpj" firstAttribute="width" secondItem="sFV-ED-SGk" secondAttribute="width" multiplier="268:335" id="c0p-H7-aGw"/>
+                                            <constraint firstItem="Lc7-O5-Qn3" firstAttribute="centerX" secondItem="sFV-ED-SGk" secondAttribute="centerX" id="s44-ds-QP0"/>
+                                            <constraint firstAttribute="bottom" secondItem="Lc7-O5-Qn3" secondAttribute="bottom" constant="29" id="uRK-6d-U5L"/>
+                                            <constraint firstAttribute="width" secondItem="sFV-ED-SGk" secondAttribute="height" multiplier="335:531" id="xv5-DS-99R"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dHg-4p-WoX" secondAttribute="height" multiplier="375:667" id="1QI-2z-TyK"/>
                                     <constraint firstItem="Kpe-Xh-4lD" firstAttribute="width" secondItem="dHg-4p-WoX" secondAttribute="width" multiplier="280:375" id="bIr-rT-YDU"/>
+                                    <constraint firstItem="sFV-ED-SGk" firstAttribute="centerY" secondItem="dHg-4p-WoX" secondAttribute="centerY" id="hEt-QN-s3R"/>
                                     <constraint firstItem="Kpe-Xh-4lD" firstAttribute="centerY" secondItem="dHg-4p-WoX" secondAttribute="centerY" id="hLG-4x-ORO"/>
                                     <constraint firstItem="Kpe-Xh-4lD" firstAttribute="centerX" secondItem="dHg-4p-WoX" secondAttribute="centerX" id="nRh-yc-BkV"/>
+                                    <constraint firstItem="sFV-ED-SGk" firstAttribute="centerX" secondItem="dHg-4p-WoX" secondAttribute="centerX" id="tUv-Ck-MQR"/>
+                                    <constraint firstItem="sFV-ED-SGk" firstAttribute="width" secondItem="dHg-4p-WoX" secondAttribute="width" multiplier="335:375" id="xA0-tw-yfk"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -2145,6 +2177,8 @@
                     <navigationItem key="navigationItem" id="IUM-4F-X6a"/>
                     <connections>
                         <outlet property="alertCommitBtn" destination="mcz-PL-aqP" id="Mwr-1Y-JrZ"/>
+                        <outlet property="alertNoticeCommitBtn" destination="Lc7-O5-Qn3" id="b4w-Gc-dtt"/>
+                        <outlet property="alertNoticeUIView" destination="sFV-ED-SGk" id="9Hi-LU-mil"/>
                         <outlet property="alertTitleLabel" destination="bwd-YG-Vah" id="s9K-2Z-6jY"/>
                         <outlet property="alertUIView" destination="Kpe-Xh-4lD" id="xOL-s1-As8"/>
                         <outlet property="backUIView" destination="dHg-4p-WoX" id="EG7-6y-Uff"/>
@@ -7736,6 +7770,8 @@
         <image name="more" width="35" height="35"/>
         <image name="moreCopy" width="12" height="7"/>
         <image name="nonStar" width="20" height="20"/>
+        <image name="noticeSuk" width="275" height="50"/>
+        <image name="noticeTex" width="268" height="394"/>
         <image name="oval2" width="36" height="36"/>
         <image name="pinActive" width="12" height="12"/>
         <image name="plus" width="12" height="12"/>
