@@ -268,18 +268,7 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewDetailCollectionViewCell", for: indexPath ) as! ReviewDetailCollectionViewCell
-        
-        let borderColor = #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
-        let borderOpacity : CGFloat = 0.3
-        cell.reviewDetailUIView.layer.borderColor = borderColor.withAlphaComponent(borderOpacity).cgColor
-        cell.reviewDetailUIView.layer.borderWidth = 2
-        cell.reviewDetailUIView.layer.cornerRadius = 6
-        cell.reviewDetailUIView.layer.shadowColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
-        cell.reviewDetailUIView.layer.shadowOpacity = 0.5
-        cell.reviewDetailUIView.layer.shadowOffset = CGSize( width: 0 , height: 2 )
-        cell.reviewDetailUIView.layer.shadowRadius = 5
-        
-        
+
         cell.reviewDetailTitleLabel.text = memberReviewList[ indexPath.row ].review_title
         cell.reviewDetailDateLabel.text = memberReviewList[ indexPath.row ].review_uploadtime
 

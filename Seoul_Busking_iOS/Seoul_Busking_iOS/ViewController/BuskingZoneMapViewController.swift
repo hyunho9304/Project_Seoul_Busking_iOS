@@ -393,7 +393,7 @@ class BuskingZoneMapViewController: UIViewController , NMapViewDelegate , NMapPO
             
             //  지도 중심위치 선택한 자치구 위치로 설정
             if let mapView = self.navermapView {
-                mapView.setMapCenter(NGeoPoint(longitude: self.selectedBoroughLongitude! , latitude: self.selectedBoroughLatitude! ), atLevel: 12)
+                mapView.setMapCenter(NGeoPoint(longitude: self.selectedBoroughLongitude! , latitude: self.selectedBoroughLatitude! ), atLevel: 8)
             }
         }
     }

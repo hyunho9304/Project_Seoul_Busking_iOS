@@ -130,6 +130,9 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
         alertCancelBtn.layer.cornerRadius = 5
         alertCancelBtn.layer.maskedCorners = [ .layerMinXMaxYCorner ]
         
+        self.modifyProfilePlusBtn.layer.cornerRadius = self.modifyProfilePlusBtn.layer.frame.width/2
+        self.modifyProfilePlusBtn.clipsToBounds = true
+        
         if( self.memberInfoBasic?.member_profile != nil ) {
             
             let tmpProfile = self.getStoS( (self.memberInfoBasic?.member_profile)! )
@@ -142,7 +145,6 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
             self.modifyProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
         }
         
-        //  수정 -> 배경화면
         if( self.memberInfoBasic?.member_backProfile != nil ) {
             
             let tmpProfile = self.getStoS( (self.memberInfoBasic?.member_backProfile)! )
