@@ -75,7 +75,7 @@
 		BED7CB4D2147B05400730650 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB4B2147B05300730650 /* Server.swift */; };
 		BED7CB4E2147B05400730650 /* APIservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB4C2147B05400730650 /* APIservice.swift */; };
 		BED7CB5B2147B06500730650 /* BuskingZoneListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB4F2147B06000730650 /* BuskingZoneListAll.swift */; };
-		BED7CB5C2147B06500730650 /* CurrentReservationListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB502147B06000730650 /* CurrentReservationListAll.swift */; };
+		BED7CB5C2147B06500730650 /* CurrentReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB502147B06000730650 /* CurrentReservation.swift */; };
 		BED7CB5D2147B06500730650 /* MemberList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB512147B06100730650 /* MemberList.swift */; };
 		BED7CB5E2147B06500730650 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB522147B06100730650 /* Member.swift */; };
 		BED7CB5F2147B06500730650 /* BuskingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED7CB532147B06100730650 /* BuskingZone.swift */; };
@@ -188,7 +188,7 @@
 		BED7CB4B2147B05300730650 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		BED7CB4C2147B05400730650 /* APIservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIservice.swift; sourceTree = "<group>"; };
 		BED7CB4F2147B06000730650 /* BuskingZoneListAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuskingZoneListAll.swift; sourceTree = "<group>"; };
-		BED7CB502147B06000730650 /* CurrentReservationListAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentReservationListAll.swift; sourceTree = "<group>"; };
+		BED7CB502147B06000730650 /* CurrentReservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentReservation.swift; sourceTree = "<group>"; };
 		BED7CB512147B06100730650 /* MemberList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberList.swift; sourceTree = "<group>"; };
 		BED7CB522147B06100730650 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		BED7CB532147B06100730650 /* BuskingZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuskingZone.swift; sourceTree = "<group>"; };
@@ -348,7 +348,6 @@
 				BEBE0FD1214CEB4E00B7601F /* ReviewCreateViewController.swift */,
 				BEBA63C9214FB62100BBB6CE /* ReportViewController.swift */,
 				BEBA63CB214FB63000BBB6CE /* SettingViewController.swift */,
-				BEBA63CF2150D94900BBB6CE /* ProfileDetailViewController.swift */,
 				BE0F9E0D21550BA2000B5417 /* WelcomeViewController.swift */,
 				BEB9DD562156355800F73F68 /* ChangeBuskerViewController.swift */,
 				BEB9DD58215639C900F73F68 /* SelectCategoryViewController.swift */,
@@ -362,6 +361,7 @@
 			children = (
 				BED7CB052147B00900730650 /* CalendarPopUpViewController.swift */,
 				BED7CB062147B00A00730650 /* DefaultPopUpViewController.swift */,
+				BEBA63CF2150D94900BBB6CE /* ProfileDetailViewController.swift */,
 			);
 			path = PopUpViewController;
 			sourceTree = "<group>";
@@ -391,7 +391,7 @@
 				BED7CB572147B06300730650 /* Borough.swift */,
 				BED7CB532147B06100730650 /* BuskingZone.swift */,
 				BED7CB4F2147B06000730650 /* BuskingZoneListAll.swift */,
-				BED7CB502147B06000730650 /* CurrentReservationListAll.swift */,
+				BED7CB502147B06000730650 /* CurrentReservation.swift */,
 				BED7CB542147B06200730650 /* CustomCalendar.swift */,
 				BED7CB522147B06100730650 /* Member.swift */,
 				BED7CB6D2147C2C300730650 /* MemberInfoBasic.swift */,
@@ -633,7 +633,7 @@
 				BED7CB3F2147B04300730650 /* RankingSelect1CollectionViewCell.swift in Sources */,
 				BEBE0FD4214D562000B7601F /* ReviewDetailCollectionViewCell.swift in Sources */,
 				BEBE0FC5214B9D5E00B7601F /* FollowingDetailCollectionViewCell.swift in Sources */,
-				BED7CB5C2147B06500730650 /* CurrentReservationListAll.swift in Sources */,
+				BED7CB5C2147B06500730650 /* CurrentReservation.swift in Sources */,
 				BED7CB412147B04300730650 /* MapSearchBuskingZoneCollectionViewCell.swift in Sources */,
 				BEBA63C8214EC2A800BBB6CE /* ModifyProfileViewController.swift in Sources */,
 				BED7CB5E2147B06500730650 /* Member.swift in Sources */,

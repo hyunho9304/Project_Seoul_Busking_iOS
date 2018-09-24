@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CurrentReservationAll: Codable {
+struct CurrentReservation: Codable {
     
     let sbz_id : Int?
     let r_startTime : Int?
@@ -21,9 +21,9 @@ struct CurrentReservationAll: Codable {
     let member_score : Double?
 }
 
-struct CurrentReservationAllData: Codable {
+struct CurrentReservationData: Codable {
     
     let status: String
-    let data: [CurrentReservationAll]?
+    let data: CurrentReservation?
     let message: String
 }

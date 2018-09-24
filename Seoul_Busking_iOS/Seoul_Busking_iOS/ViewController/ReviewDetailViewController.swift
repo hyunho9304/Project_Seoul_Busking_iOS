@@ -293,7 +293,7 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
         if( memberReviewList[ indexPath.row ].member_profile != nil ) {
 
             cell.reviewDetailProfileImageView.kf.setImage( with: URL( string:gsno(memberReviewList[ indexPath.row ].member_profile ) ) )
-            cell.reviewDetailProfileImageView.layer.cornerRadius = ( cell.reviewDetailProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+            cell.reviewDetailProfileImageView.layer.cornerRadius = cell.reviewDetailProfileImageView.layer.frame.width/2
             cell.reviewDetailProfileImageView.clipsToBounds = true
 
         } else {

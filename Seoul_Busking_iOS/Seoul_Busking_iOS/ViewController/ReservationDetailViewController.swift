@@ -304,25 +304,49 @@ class ReservationDetailViewController: UIViewController , UICollectionViewDelega
         
         cell.reservationDetailDateLabel.text = "\(tmpMonth) / \(tmpDay)"
         
+        
+        var resultStartTime : String = "0"
+        var resultEndTime : String = "0"
         var resultStartMin : String = "0"
         var resultEndMin : String = "0"
+        
+        let startTime : Int = gino( memberInfoReservation[ indexPath.row ].r_startTime )
+        let tmpStartTime = String( startTime )
+        
+        let endTime : Int = gino( memberInfoReservation[ indexPath.row ].r_endTime )
+        let tmpEndTime = String( endTime )
+        
         let startmin : Int = gino( memberInfoReservation[ indexPath.row ].r_startMin )
         let tmpStartMin = String( startmin )
+        
         let endMin : Int = gino( memberInfoReservation[ indexPath.row ].r_endMin )
         let tmpEndMin = String( endMin )
+        
+        if( tmpStartTime.count == 1 ) {
+            resultStartTime = resultStartTime + tmpStartTime
+        } else {
+            resultStartTime = tmpStartTime
+        }
+        
         if( tmpStartMin.count == 1 ) {
             resultStartMin = resultStartMin + tmpStartMin
         } else {
-            resultEndMin = tmpEndMin
+            resultStartMin = tmpStartMin
         }
+        
         if( tmpEndMin.count == 1 ) {
             resultEndMin = resultEndMin + tmpEndMin
         } else {
             resultEndMin = tmpEndMin
         }
         
-        cell.reservationDetailTimeLabel.text = "\(gino( memberInfoReservation[ indexPath.row ].r_startTime )) : \(resultStartMin) - \(gino( memberInfoReservation[ indexPath.row ].r_endTime )) : \(resultEndMin)"
+        if( resultEndTime.count == 1 ) {
+            resultEndTime = resultEndTime + tmpEndTime
+        } else {
+            resultEndTime = tmpStartMin
+        }
         
+        cell.reservationDetailTimeLabel.text = "\(resultStartTime) : \(resultStartMin) - \(resultEndTime) : \(resultEndMin)"
         
         cell.reservationDetailZoneNameLabel.text = memberInfoReservation[ indexPath.row ].sbz_name
         

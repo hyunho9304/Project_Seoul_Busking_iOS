@@ -39,15 +39,6 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     //  선택 완료
     @IBOutlet weak var selectTimeCommitBtn: UIButton!
     
-    
-    var year = calendar.component(.year, from: date)
-    var month = calendar.component(.month, from: date)
-    let weekday = calendar.component(.weekday, from: date)
-    let day = calendar.component(.day, from: date)
-    let hour = calendar.component(.hour, from: date)
-    var today : Int?
-    
-    
     //  텝바
     @IBOutlet weak var tapbarMenuUIView: UIView!
     @IBOutlet weak var tapbarSearchBtn: UIButton!
@@ -77,7 +68,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func getReservationPossibilityInit() {
         
-        Server.reqReservationPossibility(r_date: self.selectedDate! , r_today : self.today! , r_time: self.hour , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex!) { ( reservationPossibilityData , rescode ) in
+        Server.reqReservationPossibility(r_date: self.selectedDate! , sb_id: selectedBoroughIndex! , sbz_id: selectedZoneIndex!) { ( reservationPossibilityData , rescode ) in
             
             if( rescode == 200 ) {
                 
@@ -121,21 +112,6 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         
         selectTimeCommitBtn.layer.cornerRadius = 25 * self.view.frame.width / 375
         timeTableCollectionView.allowsMultipleSelection = true
-        
-        let yearString : String = String(year)
-        var monthString : String = String( month )
-        var dayString : String = String( day )
-        
-        
-        if( monthString.count == 1 ) {
-            monthString.insert("0", at: monthString.startIndex )
-        }
-        if( dayString.count == 1 ) {
-            dayString.insert("0", at: dayString.startIndex )
-        }
-        
-        let tmpDate : String = yearString + monthString + dayString
-        today = Int( tmpDate )
     }
     
     func setDelegate() {

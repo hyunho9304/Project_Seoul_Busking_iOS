@@ -124,7 +124,10 @@ class ZoneMapDetailViewController: UIViewController , NMapViewDelegate , NMapPOI
         
         profileDetailVC.detailImage = self.zoneCurrentInfoImageView.image
         
-        self.present( profileDetailVC , animated: false , completion: nil )
+        self.addChildViewController( profileDetailVC )
+        profileDetailVC.view.frame = self.view.frame
+        self.view.addSubview( profileDetailVC.view )
+        profileDetailVC.didMove(toParentViewController: self )
     }
     
     
@@ -423,7 +426,7 @@ class ZoneMapDetailViewController: UIViewController , NMapViewDelegate , NMapPOI
         
         zoneCurrentInfoNameLebel.text = self.selectedZoneName
         zoneCurrentInfoImageView.kf.setImage(with: URL( string:gsno( self.selectedZoneImage) ) )
-        zoneCurrentInfoImageView.layer.cornerRadius = ( zoneCurrentInfoImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+        zoneCurrentInfoImageView.layer.cornerRadius = zoneCurrentInfoImageView.layer.frame.width/2
         zoneCurrentInfoImageView.clipsToBounds = true
         zoneCurrentInfoAddressTextField.text = self.selectedZoneAddress
         

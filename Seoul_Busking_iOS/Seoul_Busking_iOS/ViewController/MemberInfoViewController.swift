@@ -314,7 +314,10 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         
         profileDetailVC.detailImage = memberBackProfileImageView.image
         
-        self.present( profileDetailVC , animated: false , completion: nil )
+        self.addChildViewController( profileDetailVC )
+        profileDetailVC.view.frame = self.view.frame
+        self.view.addSubview( profileDetailVC.view )
+        profileDetailVC.didMove(toParentViewController: self )
     }
     
     //  프로필 이미지 액션
@@ -324,15 +327,17 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
         
         profileDetailVC.detailImage = memberProfileImageView.image
         
-        self.present( profileDetailVC , animated: false , completion: nil )
+        self.addChildViewController( profileDetailVC )
+        profileDetailVC.view.frame = self.view.frame
+        self.view.addSubview( profileDetailVC.view )
+        profileDetailVC.didMove(toParentViewController: self )
     }
     
     //  ( 프로필 수정 , 팔로잉 ) 버튼 액션
     @objc func pressedMemberSetBtn( _ sender : UIButton ) {
         
-        print(1111)
         if( memberInfo?.member_nickname == memberInfoBasic?.member_nickname ) {
-            print(22)
+            
             guard let modifyProfileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ModifyProfileViewController") as? ModifyProfileViewController else { return }
             
             modifyProfileVC.memberInfo = self.memberInfo
@@ -653,7 +658,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                     let tmpProfile = self.getStoS( (self.memberInfoBasic?.member_profile)! )
                     
                     self.memberProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
-                    self.memberProfileImageView.layer.cornerRadius = ( self.memberProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+                    self.memberProfileImageView.layer.cornerRadius = self.memberProfileImageView.layer.frame.width/2
                     self.memberProfileImageView.clipsToBounds = true
                     
                 } else {
@@ -953,27 +958,51 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             let tmpMonth : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 4) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 6) ] )
             let tmpDay : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 6) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 8) ] )
             
-            cell.myReservationFirstUIView.layer.cornerRadius = ( cell.myReservationFirstUIView.layer.frame.width/2 ) * self.view.frame.width / 375
+            cell.myReservationFirstUIView.layer.cornerRadius = cell.myReservationFirstUIView.layer.frame.width/2
             cell.myReservationDateLabel.text = "\(tmpMonth)/\(tmpDay)"
             
+            var resultStartTime : String = "0"
+            var resultEndTime : String = "0"
             var resultStartMin : String = "0"
             var resultEndMin : String = "0"
+            
+            let startTime : Int = gino( memberInfoReservation[ indexPath.row ].r_startTime )
+            let tmpStartTime = String( startTime )
+            
+            let endTime : Int = gino( memberInfoReservation[ indexPath.row ].r_endTime )
+            let tmpEndTime = String( endTime )
+            
             let startmin : Int = gino( memberInfoReservation[ indexPath.row ].r_startMin )
             let tmpStartMin = String( startmin )
+            
             let endMin : Int = gino( memberInfoReservation[ indexPath.row ].r_endMin )
             let tmpEndMin = String( endMin )
+            
+            if( tmpStartTime.count == 1 ) {
+                resultStartTime = resultStartTime + tmpStartTime
+            } else {
+                resultStartTime = tmpStartTime
+            }
+            
             if( tmpStartMin.count == 1 ) {
                 resultStartMin = resultStartMin + tmpStartMin
             } else {
-                resultEndMin = tmpEndMin
+                resultStartMin = tmpStartMin
             }
+            
             if( tmpEndMin.count == 1 ) {
                 resultEndMin = resultEndMin + tmpEndMin
             } else {
                 resultEndMin = tmpEndMin
             }
             
-            cell.myReservationTimeLabel.text = "\(gino( memberInfoReservation[ indexPath.row ].r_startTime )) : \(resultStartMin) - \(gino( memberInfoReservation[ indexPath.row ].r_endTime )) : \(resultEndMin)"
+            if( resultEndTime.count == 1 ) {
+                resultEndTime = resultEndTime + tmpEndTime
+            } else {
+                resultEndTime = tmpStartMin
+            }
+            
+            cell.myReservationTimeLabel.text = "\(resultStartTime) : \(resultStartMin) - \(resultEndTime) : \(resultEndMin)"
             
             cell.myReservationZoneNameLabel.text = memberInfoReservation[ indexPath.row ].sbz_name
             
@@ -988,32 +1017,56 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             let tmpMonth : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 4) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 6) ] )
             let tmpDay : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 6) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 8) ] )
             
-            cell.followingFirstUIView.layer.cornerRadius = (cell.followingFirstUIView.layer.frame.width/2 ) * self.view.frame.width / 375
+            cell.followingFirstUIView.layer.cornerRadius = cell.followingFirstUIView.layer.frame.width/2
             cell.followingDateLabel.text = "\(tmpMonth)/\(tmpDay)"
-
+            
+            var resultStartTime : String = "0"
+            var resultEndTime : String = "0"
             var resultStartMin : String = "0"
             var resultEndMin : String = "0"
+            
+            let startTime : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_startTime )
+            let tmpStartTime = String( startTime )
+            
+            let endTime : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_endTime )
+            let tmpEndTime = String( endTime )
+            
             let startmin : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_startMin )
             let tmpStartMin = String( startmin )
+            
             let endMin : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_endMin )
             let tmpEndMin = String( endMin )
+            
+            if( tmpStartTime.count == 1 ) {
+                resultStartTime = resultStartTime + tmpStartTime
+            } else {
+                resultStartTime = tmpStartTime
+            }
+            
             if( tmpStartMin.count == 1 ) {
                 resultStartMin = resultStartMin + tmpStartMin
             } else {
-                resultEndMin = tmpEndMin
+                resultStartMin = tmpStartMin
             }
+            
             if( tmpEndMin.count == 1 ) {
                 resultEndMin = resultEndMin + tmpEndMin
             } else {
                 resultEndMin = tmpEndMin
             }
             
-            cell.followingTimeLabel.text = "\(gino( memberInfoFollowingReservation[ indexPath.row ].r_startTime )) : \(resultStartMin) - \(gino( memberInfoFollowingReservation[ indexPath.row ].r_endTime )) : \(resultEndMin)"
+            if( resultEndTime.count == 1 ) {
+                resultEndTime = resultEndTime + tmpEndTime
+            } else {
+                resultEndTime = tmpStartMin
+            }
+            
+            cell.followingTimeLabel.text = "\(resultStartTime) : \(resultStartMin) - \(resultEndTime) : \(resultEndMin)"
             
             if( memberInfoFollowingReservation[ indexPath.row ].member_profile != nil ) {
                 
                 cell.followingProfileImageView.kf.setImage( with: URL( string:gsno(memberInfoFollowingReservation[ indexPath.row ].member_profile ) ) )
-                cell.followingProfileImageView.layer.cornerRadius = ( cell.followingProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+                cell.followingProfileImageView.layer.cornerRadius = cell.followingProfileImageView.layer.frame.width/2
                 cell.followingProfileImageView.clipsToBounds = true
                 
             } else {
@@ -1047,7 +1100,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             if( memberReviewList[ indexPath.row ].member_profile != nil ) {
                 
                 cell.reviewProfileImageView.kf.setImage( with: URL( string:gsno(memberReviewList[ indexPath.row ].member_profile ) ) )
-                cell.reviewProfileImageView.layer.cornerRadius = ( cell.reviewProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+                cell.reviewProfileImageView.layer.cornerRadius = cell.reviewProfileImageView.layer.frame.width/2
                 cell.reviewProfileImageView.clipsToBounds = true
                 
             } else {

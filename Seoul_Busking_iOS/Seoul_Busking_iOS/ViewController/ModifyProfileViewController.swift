@@ -130,7 +130,7 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
         alertCancelBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCancelBtn.layer.maskedCorners = [ .layerMinXMaxYCorner ]
         
-        self.modifyProfilePlusBtn.layer.cornerRadius = ( self.modifyProfilePlusBtn.layer.frame.width/2 ) * self.view.frame.width / 375
+        self.modifyProfilePlusBtn.layer.cornerRadius = self.modifyProfilePlusBtn.layer.frame.width/2
         self.modifyProfilePlusBtn.clipsToBounds = true
         
         if( self.memberInfoBasic?.member_profile != nil ) {
@@ -138,7 +138,7 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
             let tmpProfile = self.getStoS( (self.memberInfoBasic?.member_profile)! )
             
             self.modifyProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
-            self.modifyProfileImageView.layer.cornerRadius = ( self.modifyProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+            self.modifyProfileImageView.layer.cornerRadius = self.modifyProfileImageView.layer.frame.width/2
             self.modifyProfileImageView.clipsToBounds = true
             
         } else {
@@ -562,7 +562,7 @@ extension ModifyProfileViewController: UIImagePickerControllerDelegate,UINavigat
             modifyBackProfileImageView.image = image
         } else {
             modifyProfileImageView.image = image
-            modifyProfileImageView.layer.cornerRadius = ( self.modifyProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+            modifyProfileImageView.layer.cornerRadius = self.modifyProfileImageView.layer.frame.width/2
             modifyProfileImageView.clipsToBounds = true
         }
     }

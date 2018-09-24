@@ -230,7 +230,7 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
         if( memberInfoFollowingReservation[ indexPath.row ].member_profile != nil ) {
             
             cell.followingDetailProfileImageView.kf.setImage( with: URL( string:gsno(memberInfoFollowingReservation[ indexPath.row ].member_profile ) ) )
-            cell.followingDetailProfileImageView.layer.cornerRadius = ( cell.followingDetailProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+            cell.followingDetailProfileImageView.layer.cornerRadius = cell.followingDetailProfileImageView.layer.frame.width/2
             cell.followingDetailProfileImageView.clipsToBounds = true
             
         } else {
@@ -250,24 +250,48 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
         
         cell.followingDetailDateLabel.text = "\(tmpMonth) / \(tmpDay)"
         
+        var resultStartTime : String = "0"
+        var resultEndTime : String = "0"
         var resultStartMin : String = "0"
         var resultEndMin : String = "0"
+        
+        let startTime : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_startTime )
+        let tmpStartTime = String( startTime )
+        
+        let endTime : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_endTime )
+        let tmpEndTime = String( endTime )
+        
         let startmin : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_startMin )
         let tmpStartMin = String( startmin )
+        
         let endMin : Int = gino( memberInfoFollowingReservation[ indexPath.row ].r_endMin )
         let tmpEndMin = String( endMin )
+        
+        if( tmpStartTime.count == 1 ) {
+            resultStartTime = resultStartTime + tmpStartTime
+        } else {
+            resultStartTime = tmpStartTime
+        }
+        
         if( tmpStartMin.count == 1 ) {
             resultStartMin = resultStartMin + tmpStartMin
         } else {
-            resultEndMin = tmpEndMin
+            resultStartMin = tmpStartMin
         }
+        
         if( tmpEndMin.count == 1 ) {
             resultEndMin = resultEndMin + tmpEndMin
         } else {
             resultEndMin = tmpEndMin
         }
         
-        cell.followingDetailTimeLabel.text = "\(gino( memberInfoFollowingReservation[ indexPath.row ].r_startTime )) : \(resultStartMin) - \(gino( memberInfoFollowingReservation[ indexPath.row ].r_endTime )) : \(resultEndMin)"
+        if( resultEndTime.count == 1 ) {
+            resultEndTime = resultEndTime + tmpEndTime
+        } else {
+            resultEndTime = tmpStartMin
+        }
+        
+        cell.followingDetailTimeLabel.text  = "\(resultStartTime) : \(resultStartMin) - \(resultEndTime) : \(resultEndMin)"
         
         cell.followingDetailZoneNameLabel.text = memberInfoFollowingReservation[ indexPath.row ].sbz_name
 

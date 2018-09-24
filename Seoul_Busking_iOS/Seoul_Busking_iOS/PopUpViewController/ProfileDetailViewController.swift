@@ -48,7 +48,8 @@ class ProfileDetailViewController: UIViewController , UIScrollViewDelegate {
     //  뒤로가기 버튼 액션
     @objc func pressedProfileDetailBackBtn( _ sender : UIButton ) {
         
-        self.dismiss(animated: false , completion: nil )
+        self.view.removeFromSuperview()
+        
     }
     
     func setDelegate() {

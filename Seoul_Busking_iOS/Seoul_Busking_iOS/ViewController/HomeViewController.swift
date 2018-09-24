@@ -669,28 +669,53 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
 //            cell.reservationTimeLabel.text = "\(String(describing: reservationList[ indexPath.row ].r_startTime)) : \(String(describing: reservationList[ indexPath.row ].r_startMin)) - \(String(describing: reservationList[ indexPath.row ].r_endTime)) : \(String(describing: reservationList[ indexPath.row ].r_endMin))"
             
+            var resultStartTime : String = "0"
+            var resultEndTime : String = "0"
             var resultStartMin : String = "0"
             var resultEndMin : String = "0"
+            
+            let startTime : Int = gino( reservationList[ indexPath.row ].r_startTime )
+            let tmpStartTime = String( startTime )
+            
+            let endTime : Int = gino( reservationList[ indexPath.row ].r_endTime )
+            let tmpEndTime = String( endTime )
+            
             let startmin : Int = gino( reservationList[ indexPath.row ].r_startMin )
             let tmpStartMin = String( startmin )
+            
             let endMin : Int = gino( reservationList[ indexPath.row ].r_endMin )
             let tmpEndMin = String( endMin )
+            
+            if( tmpStartTime.count == 1 ) {
+                resultStartTime = resultStartTime + tmpStartTime
+            } else {
+                resultStartTime = tmpStartTime
+            }
+            
             if( tmpStartMin.count == 1 ) {
                 resultStartMin = resultStartMin + tmpStartMin
             } else {
-                resultEndMin = tmpEndMin
+                resultStartMin = tmpStartMin
             }
+            
             if( tmpEndMin.count == 1 ) {
                 resultEndMin = resultEndMin + tmpEndMin
             } else {
                 resultEndMin = tmpEndMin
             }
-            cell.reservationTimeLabel.text = "\(gino( reservationList[ indexPath.row ].r_startTime )) : \(resultStartMin) - \(gino( reservationList[ indexPath.row ].r_endTime )) : \(resultEndMin)"
+            
+            if( resultEndTime.count == 1 ) {
+                resultEndTime = resultEndTime + tmpEndTime
+            } else {
+                resultEndTime = tmpStartMin
+            }
+            
+            cell.reservationTimeLabel.text = "\(resultStartTime) : \(resultStartMin) - \(resultEndTime) : \(resultEndMin)"
             
             if( reservationList[ indexPath.row ].member_profile != nil ) {
                 
                 cell.reservationProfileImage.kf.setImage( with: URL( string:gsno(reservationList[ indexPath.row ].member_profile ) ) )
-                cell.reservationProfileImage.layer.cornerRadius = ( cell.reservationProfileImage.layer.frame.width/2 ) * self.view.frame.width / 375
+                cell.reservationProfileImage.layer.cornerRadius = cell.reservationProfileImage.layer.frame.width/2
                 cell.reservationProfileImage.clipsToBounds = true
                 cell.reservationProfileImage.layoutIfNeeded()
                 

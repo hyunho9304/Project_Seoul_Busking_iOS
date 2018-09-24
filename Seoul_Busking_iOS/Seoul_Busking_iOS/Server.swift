@@ -424,9 +424,9 @@ struct Server : APIService {
     
     
     //  예약가능한 시간 가져오기
-    static func reqReservationPossibility( r_date : Int , r_today : Int , r_time : Int , sb_id : Int , sbz_id : Int , completion : @escaping ( ReservationPossibility , _ status : Int ) -> Void ) {
+    static func reqReservationPossibility( r_date : Int , sb_id : Int , sbz_id : Int , completion : @escaping ( ReservationPossibility , _ status : Int ) -> Void ) {
         
-        let URL = url( "/reservation/possibility?r_date=\(r_date)&r_today=\(r_today)&r_time=\(r_time)&sb_id=\(sb_id)&sbz_id=\(sbz_id)" )
+        let URL = url( "/reservation/possibility?r_date=\(r_date)&sb_id=\(sb_id)&sbz_id=\(sbz_id)" )
         
         Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
             
@@ -541,12 +541,16 @@ struct Server : APIService {
         }
     }
     
-    //  현재 예약 전부 가져오기
-    static func reqCurrentReservationListAll( r_date : Int , r_time : Int , r_min : Int , completion : @escaping ([CurrentReservationAll] , _ status : Int ) -> Void ) {
+    //  현재 예약 확인
+    static func reqIsCurrentReservation( sbz_id : Int , completion : @escaping (CurrentReservation , _ status : Int ) -> Void ) {
         
-        let URL = url( "/collection/currentList?r_date=\(r_date)&r_time=\(r_time)&r_min=\(r_min)" )
+        let URL = url( "/collection/isCurrent" )
         
-        Alamofire.request(URL, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseData() { res in
+        let body: [String: Any] = [
+            "sbz_id" : sbz_id
+        ]
+        
+        Alamofire.request(URL, method: .post , parameters: body, encoding: JSONEncoding.default, headers: nil).responseData() { res in
             
             switch res.result {
                 
@@ -558,15 +562,22 @@ struct Server : APIService {
                     
                     do {
                         
-                        let currentReservationAllData = try decoder.decode(CurrentReservationAllData.self , from: value)
+                        print( "what" )
+                        print( JSON( value ))
                         
-                        if( res.response?.statusCode == 200 ){
+                        let currentReservationData = try decoder.decode(CurrentReservationData.self , from: value)
+                        
+                        if( res.response?.statusCode == 201 ){
                             
-                            completion( currentReservationAllData.data! , 200 )
+                            completion( currentReservationData.data! , 201 )
+                            
+                        } else if( res.response?.statusCode == 401 ) {
+                            
+                            completion( currentReservationData.data! , 401 )
                         }
                         else{
                             
-                            completion( currentReservationAllData.data! , 500 )
+                            completion( currentReservationData.data! , 500 )
                         }
                         
                     } catch {
