@@ -87,26 +87,26 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
         
-        reviewTitleUIView.layer.cornerRadius = 8    //  둥근정도
+        reviewTitleUIView.layer.cornerRadius = 8 * self.view.frame.width / 375    //  둥근정도
         reviewTitleUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         reviewTitleUIView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)             //  그림자 색
         reviewTitleUIView.layer.shadowOpacity = 0.11                          //  그림자 투명도
         reviewTitleUIView.layer.shadowOffset = CGSize(width: 0 , height: 1 )    //  그림자 x y
         reviewTitleUIView.layer.shadowRadius = 15
         
-        reviewContentUIView.layer.cornerRadius = 8    //  둥근정도
+        reviewContentUIView.layer.cornerRadius = 8 * self.view.frame.width / 375    //  둥근정도
         reviewContentUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         reviewContentUIView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)             //  그림자 색
         reviewContentUIView.layer.shadowOpacity = 0.11                          //  그림자 투명도
         reviewContentUIView.layer.shadowOffset = CGSize(width: 0 , height: 1 )    //  그림자 x y
         reviewContentUIView.layer.shadowRadius = 15
         
-        reviewCommitBtn.layer.cornerRadius = 25
+        reviewCommitBtn.layer.cornerRadius = 25 * self.view.frame.width / 375
         
         backUIView.isHidden = true
         backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
         alertUIView.isHidden = true
-        alertUIView.layer.cornerRadius = 5    //  둥근정도
+        alertUIView.layer.cornerRadius = 5 * self.view.frame.width / 375    //  둥근정도
         alertUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         
         alertUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
@@ -116,10 +116,10 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
         //  그림자의 블러는 5 정도 이다
         
         //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
-        alertCommitBtn.layer.cornerRadius = 5
+        alertCommitBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCommitBtn.layer.maskedCorners = [.layerMaxXMaxYCorner ]
         
-        alertCancelBtn.layer.cornerRadius = 5
+        alertCancelBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCancelBtn.layer.maskedCorners = [ .layerMinXMaxYCorner ]
     }
     

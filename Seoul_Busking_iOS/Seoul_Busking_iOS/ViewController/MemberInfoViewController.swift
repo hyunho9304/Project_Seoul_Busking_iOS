@@ -653,7 +653,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                     let tmpProfile = self.getStoS( (self.memberInfoBasic?.member_profile)! )
                     
                     self.memberProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
-                    self.memberProfileImageView.layer.cornerRadius = self.memberProfileImageView.layer.frame.width/2
+                    self.memberProfileImageView.layer.cornerRadius = ( self.memberProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
                     self.memberProfileImageView.clipsToBounds = true
                     
                 } else {
@@ -953,7 +953,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             let tmpMonth : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 4) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 6) ] )
             let tmpDay : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 6) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 8) ] )
             
-            cell.myReservationFirstUIView.layer.cornerRadius = cell.myReservationFirstUIView.layer.frame.width/2
+            cell.myReservationFirstUIView.layer.cornerRadius = ( cell.myReservationFirstUIView.layer.frame.width/2 ) * self.view.frame.width / 375
             cell.myReservationDateLabel.text = "\(tmpMonth)/\(tmpDay)"
             
             var resultStartMin : String = "0"
@@ -988,7 +988,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             let tmpMonth : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 4) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 6) ] )
             let tmpDay : String = String(tmpDate[ tmpDate.index(tmpDate.startIndex, offsetBy: 6) ..< tmpDate.index(tmpDate.startIndex, offsetBy: 8) ] )
             
-            cell.followingFirstUIView.layer.cornerRadius = cell.followingFirstUIView.layer.frame.width/2
+            cell.followingFirstUIView.layer.cornerRadius = (cell.followingFirstUIView.layer.frame.width/2 ) * self.view.frame.width / 375
             cell.followingDateLabel.text = "\(tmpMonth)/\(tmpDay)"
 
             var resultStartMin : String = "0"
@@ -1013,7 +1013,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             if( memberInfoFollowingReservation[ indexPath.row ].member_profile != nil ) {
                 
                 cell.followingProfileImageView.kf.setImage( with: URL( string:gsno(memberInfoFollowingReservation[ indexPath.row ].member_profile ) ) )
-                cell.followingProfileImageView.layer.cornerRadius = cell.followingProfileImageView.layer.frame.width/2
+                cell.followingProfileImageView.layer.cornerRadius = ( cell.followingProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
                 cell.followingProfileImageView.clipsToBounds = true
                 
             } else {
@@ -1047,7 +1047,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             if( memberReviewList[ indexPath.row ].member_profile != nil ) {
                 
                 cell.reviewProfileImageView.kf.setImage( with: URL( string:gsno(memberReviewList[ indexPath.row ].member_profile ) ) )
-                cell.reviewProfileImageView.layer.cornerRadius = cell.reviewProfileImageView.layer.frame.width/2
+                cell.reviewProfileImageView.layer.cornerRadius = ( cell.reviewProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
                 cell.reviewProfileImageView.clipsToBounds = true
                 
             } else {

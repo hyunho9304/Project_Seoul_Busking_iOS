@@ -92,7 +92,7 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
         
-        selectCommitBtn.layer.cornerRadius = 25
+        selectCommitBtn.layer.cornerRadius = 25 * self.view.frame.width / 375
     }
     
     func setDelegate() {
@@ -240,7 +240,7 @@ class selectBoroughViewController: UIViewController , UICollectionViewDelegate ,
         
         if( indexPath == boroughSelectedIndexPath ) {
             
-            cell.boroughBackView.layer.cornerRadius = 20
+            cell.boroughBackView.layer.cornerRadius = 20 * self.view.frame.width / 375
             cell.boroughBackView.isHidden = false
             cell.boroughLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             

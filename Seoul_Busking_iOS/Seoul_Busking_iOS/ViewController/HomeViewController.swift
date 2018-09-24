@@ -163,6 +163,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             if( self.memberInfo?.member_type == "0" ) {
                 
                 self.homeBuskingReservationBtn.isHidden = true
+                self.reservationNowBtn.isHidden = true
+                self.reservationNowImageBtn.isHidden = true
             }
             
         })
@@ -218,7 +220,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
         
         //  존 없을경우
         
-        nothingReservationUIView.layer.cornerRadius = 6    //  둥근정도
+        nothingReservationUIView.layer.cornerRadius = 6 * self.view.frame.width / 375    //  둥근정도
         nothingReservationUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         nothingReservationUIView.layer.shadowColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)             //  그림자 색
         nothingReservationUIView.layer.shadowOpacity = 0.5                          //  그림자 투명도
@@ -604,13 +606,11 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
             cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
             cell.buskingZoneImageView.layer.cornerRadius = cell.buskingZoneImageView.layer.frame.width/2
-            cell.buskingZoneImageView.clipsToBounds = true
-            cell.buskingZoneImageView.layoutIfNeeded()
+            
             
             cell.buskingZoneNameLabel.text = buskingZoneList[ indexPath.row ].sbz_name
             
             if indexPath == busingZoneSelectedIndex {
-                
                 
                 cell.buskingZoneNameLabel.textColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
                 cell.buskingZoneNameLabel.font = UIFont(name:"NotoSansCJKkr-Bold", size: 12.0)
@@ -621,13 +621,18 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 cell.buskingZoneImageView.layer.borderColor = #colorLiteral(red: 0.4470588235, green: 0.3137254902, blue: 0.8941176471, alpha: 1)
                 cell.buskingZoneImageView.layer.borderWidth = 3
                 
-                if( buskingZoneList[ indexPath.row ].sbz_type == 1 ) {
-                    reservationNowBtn.isHidden = false
-                    reservationNowImageBtn.isHidden = false
-                } else {
-                    reservationNowBtn.isHidden = true
-                    reservationNowImageBtn.isHidden = true
+                if( memberInfo?.member_type == "1" ) {
+                    
+                    if( buskingZoneList[ indexPath.row ].sbz_type == 1 ) {
+                        reservationNowBtn.isHidden = false
+                        reservationNowImageBtn.isHidden = false
+                    } else {
+                        reservationNowBtn.isHidden = true
+                        reservationNowImageBtn.isHidden = true
+                    }
                 }
+                
+                
                 
                 getReservationList()
                 
@@ -637,6 +642,10 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                 cell.buskingZoneNameLabel.font = UIFont(name:"NotoSansCJKkr-Regular", size: 12.0)
                 cell.buskingZoneImageView.layer.borderWidth = 0
             }
+            
+            cell.buskingZoneImageView.clipsToBounds = true
+            cell.buskingZoneImageView.layoutIfNeeded()
+            
             
             return cell
             
@@ -649,7 +658,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             cell.reservationUIView.layer.borderColor = borderColor.withAlphaComponent(borderOpacity).cgColor
             cell.reservationUIView.layer.borderWidth = 1
             
-            cell.reservationUIView.layer.cornerRadius = 6    //  둥근정도
+            cell.reservationUIView.layer.cornerRadius = 6 * self.view.frame.width / 375    //  둥근정도
             cell.reservationUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
             cell.reservationUIView.layer.shadowColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)             //  그림자 색
             cell.reservationUIView.layer.shadowOpacity = 0.5                          //  그림자 투명도
@@ -681,7 +690,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             if( reservationList[ indexPath.row ].member_profile != nil ) {
                 
                 cell.reservationProfileImage.kf.setImage( with: URL( string:gsno(reservationList[ indexPath.row ].member_profile ) ) )
-                cell.reservationProfileImage.layer.cornerRadius = cell.reservationProfileImage.layer.frame.width/2
+                cell.reservationProfileImage.layer.cornerRadius = ( cell.reservationProfileImage.layer.frame.width/2 ) * self.view.frame.width / 375
                 cell.reservationProfileImage.clipsToBounds = true
                 cell.reservationProfileImage.layoutIfNeeded()
                 
@@ -692,7 +701,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
             
             cell.reservationNickname.text = reservationList[ indexPath.row ].member_nickname
             
-            cell.reservationCategory.layer.cornerRadius = 10
+            cell.reservationCategory.layer.cornerRadius = 10 * self.view.frame.width / 375
             cell.reservationCategory.clipsToBounds = true
             cell.reservationCategory.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
             cell.reservationCategory.text = "# \(gsno( reservationList[ indexPath.row ].r_category))"

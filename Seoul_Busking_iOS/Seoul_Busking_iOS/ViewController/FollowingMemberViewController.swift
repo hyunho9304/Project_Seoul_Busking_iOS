@@ -60,7 +60,7 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
             self.filteredFollowingList.append(-1)
         }
         
-        searchUIView.layer.cornerRadius = 23    //  둥근정도
+        searchUIView.layer.cornerRadius = 23 * self.view.frame.width / 375    //  둥근정도
         searchUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         
         searchUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
@@ -421,7 +421,7 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
             if( filteredMemberList[ indexPath.row ].member_profile != nil ) {
                 
                 cell.memberImageView.kf.setImage(with: URL( string:gsno( filteredMemberList[ indexPath.row ].member_profile)) )
-                cell.memberImageView.layer.cornerRadius = cell.memberImageView.layer.frame.width/2
+                cell.memberImageView.layer.cornerRadius = ( cell.memberImageView.layer.frame.width/2 ) * self.view.frame.width / 375
                 cell.memberImageView.clipsToBounds = true
                 
             } else {
@@ -460,7 +460,7 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
             if( memberList[ indexPath.row ].member_profile != nil ) {
                 
                 cell.memberImageView.kf.setImage(with: URL( string:gsno( memberList[ indexPath.row ].member_profile)) )
-                cell.memberImageView.layer.cornerRadius = cell.memberImageView.layer.frame.width/2
+                cell.memberImageView.layer.cornerRadius = ( cell.memberImageView.layer.frame.width/2 ) * self.view.frame.width / 375
                 cell.memberImageView.clipsToBounds = true
                 
             } else {

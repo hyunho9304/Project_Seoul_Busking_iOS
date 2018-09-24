@@ -102,7 +102,7 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
         //  그림자의 블러는 5 정도 이다
         
         collectionViewUIView.isHidden = true
-        collectionViewUIView.layer.cornerRadius = 10    //  둥근정도
+        collectionViewUIView.layer.cornerRadius = 10 * self.view.frame.width / 375    //  둥근정도
         collectionViewUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         
         collectionViewUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
@@ -114,7 +114,7 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
         backUIView.isHidden = true
         backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
         alertUIView.isHidden = true
-        alertUIView.layer.cornerRadius = 5    //  둥근정도
+        alertUIView.layer.cornerRadius = 5 * self.view.frame.width / 375    //  둥근정도
         alertUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         
         alertUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
@@ -124,13 +124,13 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
         //  그림자의 블러는 5 정도 이다
         
         //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
-        alertCommitBtn.layer.cornerRadius = 5
+        alertCommitBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCommitBtn.layer.maskedCorners = [.layerMaxXMaxYCorner ]
         
-        alertCancelBtn.layer.cornerRadius = 5
+        alertCancelBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCancelBtn.layer.maskedCorners = [ .layerMinXMaxYCorner ]
         
-        self.modifyProfilePlusBtn.layer.cornerRadius = self.modifyProfilePlusBtn.layer.frame.width/2
+        self.modifyProfilePlusBtn.layer.cornerRadius = ( self.modifyProfilePlusBtn.layer.frame.width/2 ) * self.view.frame.width / 375
         self.modifyProfilePlusBtn.clipsToBounds = true
         
         if( self.memberInfoBasic?.member_profile != nil ) {
@@ -138,7 +138,7 @@ class ModifyProfileViewController: UIViewController , UICollectionViewDelegate ,
             let tmpProfile = self.getStoS( (self.memberInfoBasic?.member_profile)! )
             
             self.modifyProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
-            self.modifyProfileImageView.layer.cornerRadius = self.modifyProfileImageView.layer.frame.width/2
+            self.modifyProfileImageView.layer.cornerRadius = ( self.modifyProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
             self.modifyProfileImageView.clipsToBounds = true
             
         } else {
@@ -562,7 +562,7 @@ extension ModifyProfileViewController: UIImagePickerControllerDelegate,UINavigat
             modifyBackProfileImageView.image = image
         } else {
             modifyProfileImageView.image = image
-            modifyProfileImageView.layer.cornerRadius = self.modifyProfileImageView.layer.frame.width/2
+            modifyProfileImageView.layer.cornerRadius = ( self.modifyProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
             modifyProfileImageView.clipsToBounds = true
         }
     }

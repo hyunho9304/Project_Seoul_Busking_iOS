@@ -17,8 +17,6 @@ class SettingViewController: UIViewController {
     //  네비게이션 바
     @IBOutlet weak var settingBackBtn: UIButton!
     
-    @IBOutlet weak var logoutBtn: UIButton!
-    
     //  내용
     @IBOutlet weak var settingNicknameLabel: UILabel!
     @IBOutlet weak var settingIDLabel: UILabel!
@@ -80,7 +78,7 @@ class SettingViewController: UIViewController {
         backUIView.isHidden = true
         backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
         alertUIView.isHidden = true
-        alertUIView.layer.cornerRadius = 5    //  둥근정도
+        alertUIView.layer.cornerRadius = 5 * self.view.frame.width / 375    //  둥근정도
         alertUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         
         alertUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
@@ -90,10 +88,10 @@ class SettingViewController: UIViewController {
         //  그림자의 블러는 5 정도 이다
         
         //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
-        alertCommitBtn.layer.cornerRadius = 5
+        alertCommitBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCommitBtn.layer.maskedCorners = [.layerMaxXMaxYCorner ]
         
-        alertCancelBtn.layer.cornerRadius = 5
+        alertCancelBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCancelBtn.layer.maskedCorners = [ .layerMinXMaxYCorner ]
 
         

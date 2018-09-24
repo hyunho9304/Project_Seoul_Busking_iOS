@@ -155,9 +155,9 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
         let starPercentileUIView = [ starPercentileUIView5 , starPercentileUIView4 , starPercentileUIView3 , starPercentileUIView2 , starPercentileUIView1 ]
         
         for i in 0 ..< 5 {
-            starPercentileBackUIViewArr[i]?.layer.cornerRadius = 1    //  둥근정도
+            starPercentileBackUIViewArr[i]?.layer.cornerRadius = 1 * self.view.frame.width / 375    //  둥근정도
             starPercentileBackUIViewArr[i]?.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
-            starPercentileUIView[i]?.layer.cornerRadius = 1    //  둥근정도
+            starPercentileUIView[i]?.layer.cornerRadius = 1 * self.view.frame.width / 375    //  둥근정도
             starPercentileUIView[i]?.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ]
             
         }
@@ -165,6 +165,12 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
         //  초기화
         for _ in 0 ..< 5 {
             self.reviewScoreCnt.append(0)
+        }
+        
+        if( memberInfo?.member_nickname == self.selectMemberNickname ) {
+            
+            reviewCreateBtn.isHidden = true
+            reviewCreateImageBtn.isHidden = true
         }
     }
     
@@ -287,7 +293,7 @@ class ReviewDetailViewController: UIViewController , UICollectionViewDelegate , 
         if( memberReviewList[ indexPath.row ].member_profile != nil ) {
 
             cell.reviewDetailProfileImageView.kf.setImage( with: URL( string:gsno(memberReviewList[ indexPath.row ].member_profile ) ) )
-            cell.reviewDetailProfileImageView.layer.cornerRadius = cell.reviewDetailProfileImageView.layer.frame.width/2
+            cell.reviewDetailProfileImageView.layer.cornerRadius = ( cell.reviewDetailProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
             cell.reviewDetailProfileImageView.clipsToBounds = true
 
         } else {

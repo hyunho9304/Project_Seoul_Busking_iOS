@@ -69,26 +69,26 @@ class ReportViewController: UIViewController , UITextFieldDelegate , UITextViewD
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
         
-        reportTitleUIView.layer.cornerRadius = 8    //  둥근정도
+        reportTitleUIView.layer.cornerRadius = 8 * self.view.frame.width / 375    //  둥근정도
         reportTitleUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         reportTitleUIView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)             //  그림자 색
         reportTitleUIView.layer.shadowOpacity = 0.11                          //  그림자 투명도
         reportTitleUIView.layer.shadowOffset = CGSize(width: 0 , height: 1 )    //  그림자 x y
         reportTitleUIView.layer.shadowRadius = 15
         
-        reportContentUIView.layer.cornerRadius = 8    //  둥근정도
+        reportContentUIView.layer.cornerRadius = 8 * self.view.frame.width / 375    //  둥근정도
         reportContentUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         reportContentUIView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)             //  그림자 색
         reportContentUIView.layer.shadowOpacity = 0.11                          //  그림자 투명도
         reportContentUIView.layer.shadowOffset = CGSize(width: 0 , height: 1 )    //  그림자 x y
         reportContentUIView.layer.shadowRadius = 15
         
-        reportCommitBtn.layer.cornerRadius = 25
+        reportCommitBtn.layer.cornerRadius = 25 * self.view.frame.width / 375
         
         backUIView.isHidden = true
         backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
         alertUIView.isHidden = true
-        alertUIView.layer.cornerRadius = 5    //  둥근정도
+        alertUIView.layer.cornerRadius = 5 * self.view.frame.width / 375    //  둥근정도
         alertUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         
         alertUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
@@ -98,10 +98,10 @@ class ReportViewController: UIViewController , UITextFieldDelegate , UITextViewD
         //  그림자의 블러는 5 정도 이다
         
         //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
-        alertCommitBtn.layer.cornerRadius = 5
+        alertCommitBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCommitBtn.layer.maskedCorners = [.layerMaxXMaxYCorner ]
         
-        alertCancelBtn.layer.cornerRadius = 5
+        alertCancelBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCancelBtn.layer.maskedCorners = [ .layerMinXMaxYCorner ]
         
     }

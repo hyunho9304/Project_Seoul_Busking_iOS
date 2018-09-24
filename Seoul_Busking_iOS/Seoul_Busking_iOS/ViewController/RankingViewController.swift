@@ -455,7 +455,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             if( rankingList[ indexPath.row ].member_profile != nil ) {
                 
                 cell.memberProfileImage.kf.setImage(with: URL( string:gsno( rankingList[ indexPath.row ].member_profile)) )
-                cell.memberProfileImage.layer.cornerRadius = cell.memberProfileImage.layer.frame.width/2
+                cell.memberProfileImage.layer.cornerRadius = ( cell.memberProfileImage.layer.frame.width/2 ) * self.view.frame.width / 375
                 cell.memberProfileImage.clipsToBounds = true
                 
             } else {

@@ -124,7 +124,7 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
         UIApplication.shared.statusBarStyle = .lightContent
 
         self.view.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
-        calendarPopUpUIView.layer.cornerRadius = 15
+        calendarPopUpUIView.layer.cornerRadius = 15 * self.view.frame.width / 375
         calendarBackBtn.isHidden = true
         
         //  윤년
@@ -187,7 +187,7 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
 
         calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
         
-        calendarSelectCommitBtn.layer.cornerRadius = 20
+        calendarSelectCommitBtn.layer.cornerRadius = 20 * self.view.frame.width / 375
         
     }
     

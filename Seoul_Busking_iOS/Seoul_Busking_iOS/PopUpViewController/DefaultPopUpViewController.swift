@@ -59,7 +59,7 @@ class DefaultPopUpViewController: UIViewController {
         popUpContent.text = content
         self.view.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
         
-        popUpView.layer.cornerRadius = 5    //  둥근정도
+        popUpView.layer.cornerRadius = 5 * self.view.frame.width / 375   //  둥근정도
         popUpView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         
         popUpView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
@@ -69,7 +69,7 @@ class DefaultPopUpViewController: UIViewController {
                                                                         //  그림자의 블러는 5 정도 이다
         
         //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
-        okBtn.layer.cornerRadius = 5
+        okBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         okBtn.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner ]
         
     }

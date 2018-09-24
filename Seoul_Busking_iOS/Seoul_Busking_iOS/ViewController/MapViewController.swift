@@ -53,6 +53,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     @IBOutlet weak var zoneCurrentInfoUIView: UIView!
     @IBOutlet weak var zoneCurrentInfoNothingUIView: UIView!
     @IBOutlet weak var zoneCurrentInfoNothingNameLabel: UILabel!
+    @IBOutlet weak var zoneCurrentInfoNothingZoneImageView: UIImageView!
     @IBOutlet weak var zoneCurrentInfoNameLebel: UILabel!
     @IBOutlet weak var zoneCurrentInfoTimeLabel: UILabel!
     @IBOutlet weak var zoneCurrentInfoNickname: UILabel!
@@ -66,9 +67,9 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     
     var year = calendar.component(.year, from: date)
     var month = calendar.component(.month, from: date)
-    let day = calendar.component(.day, from: date)
-    let hour = calendar.component(.hour, from: date)
-    let min = calendar.component(.minute , from: date)
+    var day = calendar.component(.day, from: date)
+    var hour = calendar.component(.hour, from: date)
+    var min = calendar.component(.minute , from: date)
     var todayDateTime : Int?    //  선택한년월일 ex ) 2018815
     
     
@@ -117,8 +118,6 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         let tmpDate : String = yearString + monthString + dayString
         todayDateTime = Int( tmpDate )
         
-        print( todayDateTime )
-        
     }
     
     func setTarget() {
@@ -130,6 +129,14 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         let tapProfileImage = UITapGestureRecognizer(target: self , action: #selector( self.pressedZoneCurrentInfoProfileImageView(_:) ))
         zoneCurrentInfoProfileImageView.isUserInteractionEnabled = true
         zoneCurrentInfoProfileImageView.addGestureRecognizer(tapProfileImage)
+        
+        //  존 사진
+        let tapZoneImage = UITapGestureRecognizer(target: self , action: #selector( self.pressedZoneCurrentInfoNothingZoneImageView(_:) ))
+        zoneCurrentInfoNothingZoneImageView.isUserInteractionEnabled = true
+        zoneCurrentInfoNothingZoneImageView.addGestureRecognizer(tapZoneImage)
+        
+        
+        
     }
     
     func getItoI( _ sender : Int ) -> Int {
@@ -165,6 +172,15 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         self.present( memberInfoVC , animated: true , completion: nil )
     }
     
+    //  존 사진 버튼 액션
+    @objc func pressedZoneCurrentInfoNothingZoneImageView( _ sender : UIImageView ) {
+        
+        guard let profileDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileDetailViewController") as? ProfileDetailViewController else { return }
+        
+        profileDetailVC.detailImage = self.zoneCurrentInfoNothingZoneImageView.image
+        
+        self.present( profileDetailVC , animated: false , completion: nil )
+    }
     
     func getMemberRepresentativeBoroughData() {
         
@@ -193,152 +209,8 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                         
                         self.buskingZoneListAll = buskingZoneListAllData
                         
-                        Server.reqCurrentReservationListAll(r_date: self.todayDateTime! , r_time: self.hour , r_min: self.min , completion: { ( currentReservationAllData , rescode ) in
-                            
-                            if( rescode == 200 ) {
-                                
-                                self.currentReservationListAll = currentReservationAllData
-                                
-                                if let mapOverlayManager = self.navermapView?.mapOverlayManager {
-                                    
-                                    // create POI data overlay
-                                    if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
-                                        
-                                        poiDataOverlay.initPOIdata( Int32(self.buskingZoneListAll.count) )
-                                        
-                                        var index : Int = -1
-                                        
-                                        for i in 0 ..< self.buskingZoneListAll.count {
-                                            
-                                            let tmpX = self.buskingZoneListAll[i].sbz_longitude
-                                            let tmpY = self.buskingZoneListAll[i].sbz_latitude
-                                            let name = self.buskingZoneListAll[i].sbz_name
-                                            
-                                            poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: tmpX!, latitude: tmpY! ), title: name! , type: UserPOIflagTypeDefault, iconIndex: Int32(i) , with: nil)
-                                            
-                                            if( self.mapSelectedBoroughName == self.buskingZoneListAll[i].sb_name && index == -1 ) {
-                                                index = i
-                                            }
-                                            
-                                            if( self.findBuskingZoneIndex == self.buskingZoneListAll[i].sbz_id ) {
-                                                self.tmpFindIndex = i
-                                            }
-                                        }
-                                        
-                                        poiDataOverlay.endPOIdata()
-                                        
-                                        // show all POI data
-                                        poiDataOverlay.showAllPOIdata()
-                                        
-                                        self.zoneCurrentInfoNameLebel.text = self.buskingZoneListAll[ index ].sbz_name
-                                        self.zoneCurrentInfoNothingNameLabel.text = self.buskingZoneListAll[ index ].sbz_name
-                                        
-                                        if( self.buskingZoneListAll[ index ].sbz_id == self.currentReservationListAll[ index ].sbz_id ) {     //  예약 있음
-                                            
-                                            self.zoneCurrentInfoUIView.isHidden = false
-                                            self.zoneCurrentInfoNothingUIView.isHidden = true
-                                            
-                                            let tmpStartTime = self.getItoI( self.currentReservationListAll[ index ].r_startTime! )
-                                            let tmpEndTime = self.getItoI( self.currentReservationListAll[ index ].r_endTime! )
-                                            let tmpCategory = self.getStoS( self.currentReservationListAll[ index ].r_category! )
-                                            let IntScore = Int( self.currentReservationListAll[ index ].member_score! )
-                                            
-                                            
-                                            var starArr : [ UIImageView ] = [ self.zoneCurrentInfoStar1 , self.zoneCurrentInfoStar2 , self.zoneCurrentInfoStar3 , self.zoneCurrentInfoStar4 , self.zoneCurrentInfoStar5 ]
-                                            
-                                            var resultStartMin : String = "0"
-                                            var resultEndMin : String = "0"
-                                            let startmin : Int = self.getItoI( self.currentReservationListAll[ index ].r_startMin! )
-                                            let tmpStartMin = String( startmin )
-                                            let endMin : Int = self.getItoI( self.currentReservationListAll[ index ].r_endMin! )
-                                            let tmpEndMin = String( endMin )
-                                            if( tmpStartMin.count == 1 ) {
-                                                resultStartMin = resultStartMin + tmpStartMin
-                                            } else {
-                                                resultEndMin = tmpEndMin
-                                            }
-                                            if( tmpEndMin.count == 1 ) {
-                                                resultEndMin = resultEndMin + tmpEndMin
-                                            } else {
-                                                resultEndMin = tmpEndMin
-                                            }
-                                                
-                                            self.zoneCurrentInfoTimeLabel.text = "\(tmpStartTime) : \(resultStartMin) - \(tmpEndTime) : \(resultEndMin)"
-                                            
-                                            print("ho")
-                                            print( self.zoneCurrentInfoTimeLabel.text )
-                                            
-                                            
-                                            self.zoneCurrentInfoNickname.text = self.currentReservationListAll[ index ].member_nickname
-                                            self.zoneCurrentInfoCategory.text = "# \(tmpCategory)"
-                                            
-                                            for i in 0 ..< 5 {
-                                                
-                                                starArr[i].image = #imageLiteral(resourceName: "nonStar")
-                                            }
-                                            for i in 0 ..< IntScore {
-                                                
-                                                starArr[i].image = #imageLiteral(resourceName: "star")
-                                            }
-                                            
-                                            
-                                            if( self.currentReservationListAll[ index ].member_profile != nil ) {
-                                                
-                                                let tmpProfile = self.getStoS( self.currentReservationListAll[ index ].member_profile! )
-                                                
-                                                self.zoneCurrentInfoProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
-                                                self.zoneCurrentInfoProfileImageView.layer.cornerRadius = self.zoneCurrentInfoProfileImageView.layer.frame.width/2
-                                                self.zoneCurrentInfoProfileImageView.clipsToBounds = true
-                                                
-                                            } else {
-                                                
-                                                self.zoneCurrentInfoProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
-                                            }
-                                            
-                                        } else {    //  예약 없음
-                                            
-                                            self.zoneCurrentInfoUIView.isHidden = true
-                                            self.zoneCurrentInfoNothingUIView.isHidden = false
-                                        }
-                                        
-                                        if( self.findBuskingZoneIndex == -1 ){
-                                        
-                                            //  디폴트로 선택누르고 있는거
-                                            poiDataOverlay.selectPOIitem(at: Int32(index) , moveToCenter: false , focusedBySelectItem: false)
-                                        } else {
-                                            
-                                            //  고른거
-                                            poiDataOverlay.selectPOIitem(at: Int32(self.tmpFindIndex) , moveToCenter: false , focusedBySelectItem: false)
-                                        }
-                                        self.isFirst = false
-                                    }
-                                    
-                                }
-                                
-                                if( self.findBuskingZoneIndex == -1 ) {
-                                    
-                                    //  지도 중심위치 선택한 자치구 위치로 설정
-                                    if let mapView = self.navermapView {
-                                        mapView.setMapCenter(NGeoPoint(longitude: self.mapSelectedLongitude! , latitude: self.mapSelectedLatitude! ), atLevel: 10)
-                                    }
-                                } else {
-                                    
-                                    //  지도 중심위치 선택한 존 위치로 설정
-                                    if let mapView = self.navermapView {
-                                        mapView.setMapCenter(NGeoPoint(longitude: self.findBuskingZoneLongitude! , latitude: self.findBuskingZoneLatitude! ), atLevel: 12)
-                                    }
-                                }
-                                
-
-                            } else {
-                                
-                                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
-                                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
-                                alert.addAction( ok )
-                                self.present(alert , animated: true , completion: nil)
-                                
-                            }
-                        })
+                        self.getCurrentList()
+                        
                         
                     } else {
                         
@@ -360,6 +232,167 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         }
     }
     
+    func getCurrentList() {
+        
+        Server.reqCurrentReservationListAll(r_date: self.todayDateTime! , r_time: self.hour , r_min: self.min , completion: { ( currentReservationAllData , rescode ) in
+            
+            if( rescode == 200 ) {
+                
+                self.currentReservationListAll = currentReservationAllData
+                
+                if let mapOverlayManager = self.navermapView?.mapOverlayManager {
+                    
+                    // create POI data overlay
+                    if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
+                        
+                        poiDataOverlay.initPOIdata( Int32(self.buskingZoneListAll.count) )
+                        
+                        var index : Int = -1
+                        
+                        for i in 0 ..< self.buskingZoneListAll.count {
+                            
+                            let tmpX = self.buskingZoneListAll[i].sbz_longitude
+                            let tmpY = self.buskingZoneListAll[i].sbz_latitude
+                            let name = self.buskingZoneListAll[i].sbz_name
+                            
+                            poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: tmpX!, latitude: tmpY! ), title: name! , type: UserPOIflagTypeDefault, iconIndex: Int32(i) , with: nil)
+                            
+                            if( self.mapSelectedBoroughName == self.buskingZoneListAll[i].sb_name && index == -1 ) {
+                                index = i
+                                
+                            }
+                            
+                            if( self.findBuskingZoneIndex == self.buskingZoneListAll[i].sbz_id ) {
+                                self.tmpFindIndex = i
+                            }
+                        }
+                        
+                        poiDataOverlay.endPOIdata()
+                        
+                        // show all POI data
+                        poiDataOverlay.showAllPOIdata()
+                        
+                        self.zoneCurrentInfoNameLebel.text = self.buskingZoneListAll[ index ].sbz_name
+                        self.zoneCurrentInfoNothingNameLabel.text = self.buskingZoneListAll[ index ].sbz_name
+                        
+                        let tmpImage = self.getStoS( self.buskingZoneListAll[ index ].sbz_photo ?? "" )
+                        self.zoneCurrentInfoNothingZoneImageView.kf.setImage(with: URL( string: tmpImage ) )
+                        self.zoneCurrentInfoNothingZoneImageView.layer.cornerRadius = ( self.zoneCurrentInfoNothingZoneImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+                        self.zoneCurrentInfoNothingZoneImageView.clipsToBounds = true
+                        
+                        
+                        if( self.buskingZoneListAll[ index ].sbz_id == self.currentReservationListAll[ index ].sbz_id ) {     //  예약 있음
+                            
+                            
+                            self.zoneCurrentInfoUIView.isHidden = false
+                            self.zoneCurrentInfoNothingUIView.isHidden = true
+                            
+                            let tmpStartTime = self.getItoI( self.currentReservationListAll[ index ].r_startTime! )
+                            let tmpEndTime = self.getItoI( self.currentReservationListAll[ index ].r_endTime! )
+                            let tmpCategory = self.getStoS( self.currentReservationListAll[ index ].r_category! )
+                            let IntScore = Int( self.currentReservationListAll[ index ].member_score! )
+                            
+                            
+                            var starArr : [ UIImageView ] = [ self.zoneCurrentInfoStar1 , self.zoneCurrentInfoStar2 , self.zoneCurrentInfoStar3 , self.zoneCurrentInfoStar4 , self.zoneCurrentInfoStar5 ]
+                            
+                            var resultStartMin : String = "0"
+                            var resultEndMin : String = "0"
+                            let startmin : Int = self.getItoI( self.currentReservationListAll[ index ].r_startMin! )
+                            let tmpStartMin = String( startmin )
+                            let endMin : Int = self.getItoI( self.currentReservationListAll[ index ].r_endMin! )
+                            let tmpEndMin = String( endMin )
+                            if( tmpStartMin.count == 1 ) {
+                                resultStartMin = resultStartMin + tmpStartMin
+                            } else {
+                                resultEndMin = tmpEndMin
+                            }
+                            if( tmpEndMin.count == 1 ) {
+                                resultEndMin = resultEndMin + tmpEndMin
+                            } else {
+                                resultEndMin = tmpEndMin
+                            }
+                            
+                            self.zoneCurrentInfoTimeLabel.text = "\(tmpStartTime) : \(resultStartMin) - \(tmpEndTime) : \(resultEndMin)"
+                            
+                            
+                            
+                            self.zoneCurrentInfoNickname.text = self.currentReservationListAll[ index ].member_nickname
+                            self.zoneCurrentInfoCategory.text = "# \(tmpCategory)"
+                            
+                            for i in 0 ..< 5 {
+                                
+                                starArr[i].image = #imageLiteral(resourceName: "nonStar")
+                            }
+                            for i in 0 ..< IntScore {
+                                
+                                starArr[i].image = #imageLiteral(resourceName: "star")
+                            }
+                            
+                            
+                            if( self.currentReservationListAll[ index ].member_profile != nil ) {
+                                
+                                let tmpProfile = self.getStoS( self.currentReservationListAll[ index ].member_profile! )
+                                
+                                self.zoneCurrentInfoProfileImageView.kf.setImage(with: URL( string: tmpProfile ) )
+                                self.zoneCurrentInfoProfileImageView.layer.cornerRadius = ( self.zoneCurrentInfoProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+                                self.zoneCurrentInfoProfileImageView.clipsToBounds = true
+                                
+                            } else {
+                                
+                                self.zoneCurrentInfoProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
+                            }
+                            
+                        } else {    //  예약 없음
+                            
+                            self.zoneCurrentInfoUIView.isHidden = true
+                            self.zoneCurrentInfoNothingUIView.isHidden = false
+                        }
+                        
+                        if( self.findBuskingZoneIndex == -1 ){
+                            
+                            //  디폴트로 선택누르고 있는거
+                            poiDataOverlay.selectPOIitem(at: Int32(index) , moveToCenter: false , focusedBySelectItem: false)
+                        } else {
+                            
+                            //  고른거
+                            poiDataOverlay.selectPOIitem(at: Int32(self.tmpFindIndex) , moveToCenter: false , focusedBySelectItem: false)
+                        }
+                        self.isFirst = false
+                    }
+                    
+                }
+                
+                if( self.findBuskingZoneIndex == -1 ) {
+                    
+                    //  지도 중심위치 선택한 자치구 위치로 설정
+                    if let mapView = self.navermapView {
+                        mapView.setMapCenter(NGeoPoint(longitude: self.mapSelectedLongitude! , latitude: self.mapSelectedLatitude! ), atLevel: 10)
+                    }
+                } else {
+                    
+                    //  지도 중심위치 선택한 존 위치로 설정
+                    if let mapView = self.navermapView {
+                        mapView.setMapCenter(NGeoPoint(longitude: self.findBuskingZoneLongitude! , latitude: self.findBuskingZoneLatitude! ), atLevel: 12)
+                    }
+                }
+                
+                
+            } else {
+                
+                let alert = UIAlertController(title: "서버", message: "통신상태를 확인해주세요", preferredStyle: .alert )
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil )
+                alert.addAction( ok )
+                self.present(alert , animated: true , completion: nil)
+                
+            }
+        })
+    }
+
+    
+    @IBAction func test(_ sender: Any) {
+        
+        self.getCurrentList()
+    }
     
 // naver map ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     
@@ -702,6 +735,10 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         mapRepresentativeBoroughLabel.text = buskingZoneListAll[ index ].sb_name
         zoneCurrentInfoNameLebel.text = buskingZoneListAll[ index ].sbz_name
         zoneCurrentInfoNothingNameLabel.text = buskingZoneListAll[ index ].sbz_name
+        let tmpImage = self.getStoS( self.buskingZoneListAll[ index ].sbz_photo ?? "" )
+        self.zoneCurrentInfoNothingZoneImageView.kf.setImage(with: URL( string: tmpImage ) )
+        self.zoneCurrentInfoNothingZoneImageView.layer.cornerRadius = ( self.zoneCurrentInfoNothingZoneImageView.layer.frame.width/2 ) * self.view.frame.width / 375
+        self.zoneCurrentInfoNothingZoneImageView.clipsToBounds = true
         
         if( buskingZoneListAll[ index ].sbz_id == currentReservationListAll[ index ].sbz_id ) {     //  예약 있음
             
@@ -743,7 +780,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
             if( currentReservationListAll[ index ].member_profile != nil ) {
                 
                 zoneCurrentInfoProfileImageView.kf.setImage(with: URL( string:gsno( currentReservationListAll[ index ].member_profile)) )
-                zoneCurrentInfoProfileImageView.layer.cornerRadius = zoneCurrentInfoProfileImageView.layer.frame.width/2
+                zoneCurrentInfoProfileImageView.layer.cornerRadius = ( zoneCurrentInfoProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
                 zoneCurrentInfoProfileImageView.clipsToBounds = true
                 
             } else {
@@ -836,4 +873,5 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         setCompassHeadingValue(headingValue)
     }
     
+
 }

@@ -287,7 +287,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectBuskingZoneCollectionViewCell", for: indexPath ) as! SelectBuskingZoneCollectionViewCell
             
-            cell.buskingZoneUIView.layer.cornerRadius = 5       //  둥근정도
+            cell.buskingZoneUIView.layer.cornerRadius = 5 * self.view.frame.width / 375       //  둥근정도
             
             cell.buskingZoneUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
             cell.buskingZoneUIView.layer.shadowOpacity = 0.3                            //  그림자 투명도
@@ -296,7 +296,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             //  그림자의 블러는 5 정도 이다
             
             cell.buskingZoneImageView.kf.setImage( with: URL( string:gsno(buskingZoneList[indexPath.row].sbz_photo ) ) )
-            cell.buskingZoneImageView.layer.cornerRadius = 5
+            cell.buskingZoneImageView.layer.cornerRadius = 5 * self.view.frame.width / 375
             cell.buskingZoneImageView.layer.maskedCorners = [ .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
             
             cell.buskingZoneImageView.clipsToBounds = true
@@ -325,7 +325,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectBuskingZoneCntCollectionViewCell", for: indexPath ) as! SelectBuskingZoneCntCollectionViewCell
             
-            cell.buskingZoneCntUIView.layer.cornerRadius = cell.buskingZoneCntUIView.layer.frame.width/2
+            cell.buskingZoneCntUIView.layer.cornerRadius = ( cell.buskingZoneCntUIView.layer.frame.width/2 ) * self.view.frame.width / 375
             
             if( indexPath == buskingZoneCntShowIndexPath ) {
                 
@@ -451,7 +451,7 @@ class BuskingZoneListViewController: UIViewController , UICollectionViewDelegate
             
             return UIEdgeInsetsMake(0, 0, 0, 0)
         } else {
-         
+
             let totalCellWidth = 8 * buskingZoneList.count
             let totalSpacingWidth = 8 * ( buskingZoneList.count - 1)
             

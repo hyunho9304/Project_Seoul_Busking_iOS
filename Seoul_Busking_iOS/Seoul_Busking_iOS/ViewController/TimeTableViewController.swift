@@ -119,7 +119,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         tapbarMenuUIView.layer.shadowOffset = CGSize.zero    //  그림자 x y
         //  그림자의 블러는 5 정도 이다
         
-        selectTimeCommitBtn.layer.cornerRadius = 25
+        selectTimeCommitBtn.layer.cornerRadius = 25 * self.view.frame.width / 375
         timeTableCollectionView.allowsMultipleSelection = true
         
         let yearString : String = String(year)
@@ -387,7 +387,7 @@ class TimeTableViewController: UIViewController , UICollectionViewDelegate , UIC
         cell.timeTableUIView.layer.borderColor = borderColor.withAlphaComponent(borderOpacity).cgColor
         cell.timeTableUIView.layer.borderWidth = 1
         
-        cell.timeTableUIView.layer.cornerRadius = 6    //  둥근정도
+        cell.timeTableUIView.layer.cornerRadius = 6 * self.view.frame.width / 375   //  둥근정도
         cell.timeTableUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         cell.timeTableUIView.layer.shadowColor = #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 1)             //  그림자 색
         cell.timeTableUIView.layer.shadowOpacity = 0.5                            //  그림자 투명도

@@ -138,6 +138,7 @@ class ReservationViewController: UIViewController {
             UIView.animate(withDuration: 0.15 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
                 
                 self.reservationZoneUIView.isHidden = true
+                
                 self.reservationDateTimeView.frame.origin.y = 210 * self.view.frame.height / 667
                 
             }, completion: nil )
@@ -165,16 +166,16 @@ class ReservationViewController: UIViewController {
         
         
         
-        reservationCommitBtn.layer.cornerRadius = 25
+        reservationCommitBtn.layer.cornerRadius = 25 * self.view.frame.width / 375
         
         backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
         
-        alertNoticeUIView.layer.cornerRadius = 8    //  둥근정도
+        alertNoticeUIView.layer.cornerRadius = 8 * self.view.frame.width / 375    //  둥근정도
         alertNoticeUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         
         
         alertUIView.isHidden = true
-        alertUIView.layer.cornerRadius = 5    //  둥근정도
+        alertUIView.layer.cornerRadius = 5 * self.view.frame.width / 375    //  둥근정도
         alertUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         
         alertUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
@@ -184,7 +185,7 @@ class ReservationViewController: UIViewController {
         //  그림자의 블러는 5 정도 이다
         
         //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
-        alertCommitBtn.layer.cornerRadius = 5
+        alertCommitBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCommitBtn.layer.maskedCorners = [.layerMaxXMaxYCorner ]
         
     }
@@ -203,7 +204,7 @@ class ReservationViewController: UIViewController {
             
             reservationZoneLabel.text = self.selectedZoneName
             reservationZoneImageView.kf.setImage( with: URL( string:gsno( selectedZoneImage ) ) )
-            reservationZoneImageView.layer.cornerRadius = 5
+            reservationZoneImageView.layer.cornerRadius = 5 * self.view.frame.width / 375
             reservationZoneImageView.clipsToBounds = true
         }
         

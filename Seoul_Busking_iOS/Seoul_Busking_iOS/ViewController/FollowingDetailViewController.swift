@@ -220,7 +220,7 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
         cell.followingDetailUIView.layer.borderColor = borderColor.withAlphaComponent(borderOpacity).cgColor
         cell.followingDetailUIView.layer.borderWidth = 1
         
-        cell.followingDetailUIView.layer.cornerRadius = 6    //  둥근정도
+        cell.followingDetailUIView.layer.cornerRadius = 6 * self.view.frame.width / 375    //  둥근정도
         cell.followingDetailUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
         cell.followingDetailUIView.layer.shadowColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)             //  그림자 색
         cell.followingDetailUIView.layer.shadowOpacity = 0.5                          //  그림자 투명도
@@ -230,7 +230,7 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
         if( memberInfoFollowingReservation[ indexPath.row ].member_profile != nil ) {
             
             cell.followingDetailProfileImageView.kf.setImage( with: URL( string:gsno(memberInfoFollowingReservation[ indexPath.row ].member_profile ) ) )
-            cell.followingDetailProfileImageView.layer.cornerRadius = cell.followingDetailProfileImageView.layer.frame.width/2
+            cell.followingDetailProfileImageView.layer.cornerRadius = ( cell.followingDetailProfileImageView.layer.frame.width/2 ) * self.view.frame.width / 375
             cell.followingDetailProfileImageView.clipsToBounds = true
             
         } else {

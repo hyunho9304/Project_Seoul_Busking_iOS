@@ -105,12 +105,28 @@ class ZoneMapDetailViewController: UIViewController , NMapViewDelegate , NMapPOI
         //  디테일 존 지도 백 버튼
         mapDetailBackBtn.addTarget(self, action: #selector(self.pressedMapDetailBackBtn(_:)), for: UIControlEvents.touchUpInside)
         
+        //  존 사진
+        let tapZoneImage = UITapGestureRecognizer(target: self , action: #selector( self.pressedzoneCurrentInfoImageView(_:) ))
+        zoneCurrentInfoImageView.isUserInteractionEnabled = true
+        zoneCurrentInfoImageView.addGestureRecognizer(tapZoneImage)
+        
     }
     
     @objc func pressedMapDetailBackBtn( _ sender : UIButton ) {
         
         self.dismiss(animated: false , completion: nil)
     }
+    
+    //  존 사진 버튼 액션
+    @objc func pressedzoneCurrentInfoImageView( _ sender : UIImageView ) {
+        
+        guard let profileDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileDetailViewController") as? ProfileDetailViewController else { return }
+        
+        profileDetailVC.detailImage = self.zoneCurrentInfoImageView.image
+        
+        self.present( profileDetailVC , animated: false , completion: nil )
+    }
+    
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -407,7 +423,7 @@ class ZoneMapDetailViewController: UIViewController , NMapViewDelegate , NMapPOI
         
         zoneCurrentInfoNameLebel.text = self.selectedZoneName
         zoneCurrentInfoImageView.kf.setImage(with: URL( string:gsno( self.selectedZoneImage) ) )
-        zoneCurrentInfoImageView.layer.cornerRadius = zoneCurrentInfoImageView.layer.frame.width/2
+        zoneCurrentInfoImageView.layer.cornerRadius = ( zoneCurrentInfoImageView.layer.frame.width/2 ) * self.view.frame.width / 375
         zoneCurrentInfoImageView.clipsToBounds = true
         zoneCurrentInfoAddressTextField.text = self.selectedZoneAddress
         
