@@ -19,6 +19,11 @@ struct MemberFollowingReservation: Codable {
     let r_endTime : Int?
     let r_endMin : Int?
     let sbz_name : String?
+    let sb_name : String?
+    let sbz_photo : String?
+    let sbz_address : String?
+    let sbz_longitude : Double?
+    let sbz_latitude : Double?
 }
 
 struct MemberFollowingReservationData: Codable {

@@ -229,13 +229,13 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
         
         if( memberInfoFollowingReservation[ indexPath.row ].member_profile != nil ) {
             
-            cell.followingDetailProfileImageView.kf.setImage( with: URL( string:gsno(memberInfoFollowingReservation[ indexPath.row ].member_profile ) ) )
-            cell.followingDetailProfileImageView.layer.cornerRadius = cell.followingDetailProfileImageView.layer.frame.width/2
-            cell.followingDetailProfileImageView.clipsToBounds = true
+            cell.followingDetailProfileImageBtn.kf.setImage( with: URL( string:gsno(memberInfoFollowingReservation[ indexPath.row ].member_profile ) ), for: .normal )
+            cell.followingDetailProfileImageBtn.layer.cornerRadius = cell.followingDetailProfileImageBtn.layer.frame.width/2
+            cell.followingDetailProfileImageBtn.clipsToBounds = true
             
         } else {
             
-            cell.followingDetailProfileImageView.image = #imageLiteral(resourceName: "defaultProfile.png")
+            cell.followingDetailProfileImageBtn.setImage( #imageLiteral(resourceName: "defaultProfile.png") , for: .normal )
         }
         
         cell.followingDetailNicknameLabel.text = memberInfoFollowingReservation[ indexPath.row ].member_nickname
@@ -297,14 +297,17 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
 
         
         //  cell 안의 버튼 설정
+        cell.followingDetailProfileImageBtn.tag = indexPath.row
+        cell.followingDetailProfileImageBtn.addTarget(self , action: #selector(self.profileImageInCell(_:)) , for: UIControlEvents.touchUpInside )
+        
         cell.followingDetailSetBtn.tag = indexPath.row
-        cell.followingDetailSetBtn.addTarget(self , action: #selector(self.btnInCell(_:)) , for: UIControlEvents.touchUpInside )
+        cell.followingDetailSetBtn.addTarget(self , action: #selector(self.rightBtnInCell(_:)) , for: UIControlEvents.touchUpInside )
         
         return cell
     }
     
-    //  cell 안의 버튼 눌렀을 때
-    @objc func btnInCell( _ sender : UIButton ) {
+    //  cell 안의 프로필 이미지 버튼 눌렀을 때
+    @objc func profileImageInCell( _ sender : UIButton ) {
         
         guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
         
@@ -312,18 +315,30 @@ class FollowingDetailViewController: UIViewController , UICollectionViewDelegate
         memberInfoVC.selectMemberNickname = memberInfoFollowingReservation[ sender.tag ].member_nickname
         
         self.present( memberInfoVC , animated: true , completion: nil )
+    
+    }
+    
+    
+    //  cell 안의 오른쪽 버튼 눌렀을 때
+    @objc func rightBtnInCell( _ sender : UIButton ) {
         
+        guard let zoneMapDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ZoneMapDetailViewController") as? ZoneMapDetailViewController else { return }
+        
+        zoneMapDetailVC.memberInfo = self.memberInfo
+        zoneMapDetailVC.uiviewX = self.uiviewX
+        zoneMapDetailVC.selectedBoroughName = self.memberInfoFollowingReservation[ sender.tag ].sb_name
+        zoneMapDetailVC.selectedZoneName = self.memberInfoFollowingReservation[ sender.tag ].sbz_name
+        zoneMapDetailVC.selectedZoneImage = self.memberInfoFollowingReservation[ sender.tag ].sbz_photo
+        zoneMapDetailVC.selectedZoneAddress = self.memberInfoFollowingReservation[ sender.tag ].sbz_address
+        zoneMapDetailVC.selectedZoneLongitude = self.memberInfoFollowingReservation[ sender.tag ].sbz_longitude
+        zoneMapDetailVC.selectedZoneLatitude = self.memberInfoFollowingReservation[ sender.tag ].sbz_latitude
+        
+        self.present( zoneMapDetailVC , animated: false , completion: nil )
     }
     
     //  cell 선택 했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let memberInfoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberInfoViewController") as? MemberInfoViewController else { return }
-        
-        memberInfoVC.memberInfo = self.memberInfo
-        memberInfoVC.selectMemberNickname = memberInfoFollowingReservation[ indexPath.row ].member_nickname
-        
-        self.present( memberInfoVC , animated: true , completion: nil )
     }
     
     //  cell 크기 비율

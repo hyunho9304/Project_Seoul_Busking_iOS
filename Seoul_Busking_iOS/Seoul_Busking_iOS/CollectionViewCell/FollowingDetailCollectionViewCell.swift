@@ -11,7 +11,8 @@ import UIKit
 class FollowingDetailCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var followingDetailUIView: UIView!
-    @IBOutlet weak var followingDetailProfileImageView: UIImageView!
+    
+    @IBOutlet weak var followingDetailProfileImageBtn: UIButton!
     @IBOutlet weak var followingDetailNicknameLabel: UILabel!
     @IBOutlet weak var followingDetailSetBtn: UIButton!
     @IBOutlet weak var followingDetailCategoryUIView: UIImageView!
