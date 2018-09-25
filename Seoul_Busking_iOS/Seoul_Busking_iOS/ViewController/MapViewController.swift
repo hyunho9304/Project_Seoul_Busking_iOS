@@ -293,17 +293,6 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         }
     }
     
-    func getCurrentList() {
-        
-        
-    }
-
-    
-    @IBAction func test(_ sender: Any) {
-        
-        self.getCurrentList()
-    }
-    
 // naver map ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     
     func naverMapSetting() {
@@ -689,16 +678,16 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
                     resultStartMin = tmpStartMin
                 }
                 
+                if( tmpEndTime.count == 1 ) {
+                    resultEndTime = resultEndTime + tmpEndTime
+                } else {
+                    resultEndTime = tmpEndTime
+                }
+                
                 if( tmpEndMin.count == 1 ) {
                     resultEndMin = resultEndMin + tmpEndMin
                 } else {
                     resultEndMin = tmpEndMin
-                }
-                
-                if( resultEndTime.count == 1 ) {
-                    resultEndTime = resultEndTime + tmpEndTime
-                } else {
-                    resultEndTime = tmpStartMin
                 }
                 
                 self.zoneCurrentInfoTimeLabel.text = "\(resultStartTime) : \(resultStartMin) - \(resultEndTime) : \(resultEndMin)"

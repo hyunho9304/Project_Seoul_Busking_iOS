@@ -990,16 +990,16 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 resultStartMin = tmpStartMin
             }
             
+            if( tmpEndTime.count == 1 ) {
+                resultEndTime = resultEndTime + tmpEndTime
+            } else {
+                resultEndTime = tmpEndTime
+            }
+            
             if( tmpEndMin.count == 1 ) {
                 resultEndMin = resultEndMin + tmpEndMin
             } else {
                 resultEndMin = tmpEndMin
-            }
-            
-            if( resultEndTime.count == 1 ) {
-                resultEndTime = resultEndTime + tmpEndTime
-            } else {
-                resultEndTime = tmpStartMin
             }
             
             cell.myReservationTimeLabel.text = "\(resultStartTime) : \(resultStartMin) - \(resultEndTime) : \(resultEndMin)"
@@ -1049,16 +1049,16 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                 resultStartMin = tmpStartMin
             }
             
+            if( tmpEndTime.count == 1 ) {
+                resultEndTime = resultEndTime + tmpEndTime
+            } else {
+                resultEndTime = tmpEndTime
+            }
+            
             if( tmpEndMin.count == 1 ) {
                 resultEndMin = resultEndMin + tmpEndMin
             } else {
                 resultEndMin = tmpEndMin
-            }
-            
-            if( resultEndTime.count == 1 ) {
-                resultEndTime = resultEndTime + tmpEndTime
-            } else {
-                resultEndTime = tmpStartMin
             }
             
             cell.followingTimeLabel.text = "\(resultStartTime) : \(resultStartMin) - \(resultEndTime) : \(resultEndMin)"

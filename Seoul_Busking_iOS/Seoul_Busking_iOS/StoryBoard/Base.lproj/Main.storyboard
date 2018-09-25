@@ -178,13 +178,6 @@
                                         </constraints>
                                         <state key="normal" image="backWhite"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZg-mE-aDk">
-                                        <rect key="frame" x="306" y="24" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="test:" destination="hpK-h4-v5Z" eventType="touchUpInside" id="HR7-7V-4sU"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.44705882349999998" green="0.31372549020000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -192,8 +185,6 @@
                                     <constraint firstAttribute="width" secondItem="tvO-dm-h6Y" secondAttribute="height" multiplier="75:14" id="JpS-a8-rMY"/>
                                     <constraint firstItem="J8v-dc-gU8" firstAttribute="width" secondItem="tvO-dm-h6Y" secondAttribute="width" multiplier="40:375" id="QFl-ar-Dho"/>
                                     <constraint firstItem="J8v-dc-gU8" firstAttribute="top" secondItem="tvO-dm-h6Y" secondAttribute="top" constant="25" id="T8j-nx-n6H"/>
-                                    <constraint firstAttribute="trailing" secondItem="DZg-mE-aDk" secondAttribute="trailing" constant="23" id="Waf-9P-xA6"/>
-                                    <constraint firstItem="DZg-mE-aDk" firstAttribute="top" secondItem="tvO-dm-h6Y" secondAttribute="top" constant="24" id="hAo-Bg-96L"/>
                                     <constraint firstItem="J8v-dc-gU8" firstAttribute="leading" secondItem="tvO-dm-h6Y" secondAttribute="leading" constant="5" id="mZA-U2-FTB"/>
                                     <constraint firstItem="CUo-Td-rYV" firstAttribute="centerX" secondItem="tvO-dm-h6Y" secondAttribute="centerX" id="xcT-gX-2DU"/>
                                 </constraints>
