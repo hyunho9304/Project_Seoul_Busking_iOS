@@ -235,12 +235,4 @@ class SettingViewController: UIViewController {
         self.performSegue(withIdentifier: "logout", sender: self)
     }
 
-    //  로그아웃 버튼 액션
-    @objc func presseLogoutBtn( _ sender : UIButton ) {
-        
-        self.performSegue(withIdentifier: "logout", sender: self)
-    }
-
-
-
 }

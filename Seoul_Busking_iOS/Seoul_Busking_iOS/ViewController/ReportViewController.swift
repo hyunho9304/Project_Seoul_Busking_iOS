@@ -32,6 +32,9 @@ class ReportViewController: UIViewController , UITextFieldDelegate , UITextViewD
     @IBOutlet weak var alertUIView: UIView!
     @IBOutlet weak var alertCancelBtn: UIButton!
     @IBOutlet weak var alertCommitBtn: UIButton!
+    @IBOutlet weak var alertDefaultPopUpUIView: UIView!
+    @IBOutlet weak var alertDefaultPopUpCommitBtn: UIButton!
+    
     @IBOutlet weak var backUIView: UIView!
     
     //  텝바
@@ -87,6 +90,7 @@ class ReportViewController: UIViewController , UITextFieldDelegate , UITextViewD
         
         backUIView.isHidden = true
         backUIView.backgroundColor = UIColor.black.withAlphaComponent( 0.6 )
+        
         alertUIView.isHidden = true
         alertUIView.layer.cornerRadius = 5 * self.view.frame.width / 375    //  둥근정도
         alertUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
@@ -103,6 +107,20 @@ class ReportViewController: UIViewController , UITextFieldDelegate , UITextViewD
         
         alertCancelBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
         alertCancelBtn.layer.maskedCorners = [ .layerMinXMaxYCorner ]
+        
+        alertDefaultPopUpUIView.isHidden = true
+        alertDefaultPopUpUIView.layer.cornerRadius = 5 * self.view.frame.width / 375    //  둥근정도
+        alertDefaultPopUpUIView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner , .layerMinXMinYCorner , .layerMaxXMinYCorner ] //  radius 줄 곳
+        
+        alertDefaultPopUpUIView.layer.shadowColor = UIColor.black.cgColor             //  그림자 색
+        alertDefaultPopUpUIView.layer.shadowOpacity = 0.15                            //  그림자 투명도
+        alertDefaultPopUpUIView.layer.shadowOffset = CGSize(width: 0 , height: 3 )    //  그림자 x y
+        alertDefaultPopUpUIView.layer.shadowRadius = 5                                //  그림자 둥근정도
+        //  그림자의 블러는 5 정도 이다
+        
+        //        okBtn.clipsToBounds = true    안에 있는 글 잘린다
+        alertDefaultPopUpCommitBtn.layer.cornerRadius = 5 * self.view.frame.width / 375
+        alertDefaultPopUpCommitBtn.layer.maskedCorners = [.layerMaxXMaxYCorner ]
         
     }
     
@@ -128,6 +146,9 @@ class ReportViewController: UIViewController , UITextFieldDelegate , UITextViewD
         
         //  확인 버튼
         alertCommitBtn.addTarget(self, action: #selector(self.pressedAlertCommitBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        //  확인2 버튼
+        alertDefaultPopUpCommitBtn.addTarget(self, action: #selector(self.alertDefaultPopUpCommitBtn(_:)), for: UIControlEvents.touchUpInside)
     }
     
     func setDelegate() {
@@ -218,10 +239,8 @@ class ReportViewController: UIViewController , UITextFieldDelegate , UITextViewD
             
             if( rescode == 201 ) {
                 
-                self.backUIView.isHidden = true
                 self.alertUIView.isHidden = true
-                
-                self.dismiss(animated: false , completion: nil )
+                self.alertDefaultPopUpUIView.isHidden = false
                 
             } else {
                 
@@ -231,6 +250,13 @@ class ReportViewController: UIViewController , UITextFieldDelegate , UITextViewD
                 self.present(alert , animated: true , completion: nil)
             }
         }
+    }
+    
+    //  확인2 버튼 액션
+    @objc func alertDefaultPopUpCommitBtn( _ sender : UIButton ) {
+        
+        self.backUIView.isHidden = true
+        self.dismiss(animated: false , completion: nil )
     }
     
     //  Mark -> UITextField Delegate
