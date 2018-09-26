@@ -75,6 +75,17 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
             if rescode == 200 {
                 
                 self.buskingZoneList = buskingZoneListData
+                
+                if( self.buskingZoneList.count == 0 ) {
+                    
+                    self.mapSearchNothingLabel.text = "존이 없습니다"
+                    self.mapSearchNothingLabel.isHidden = false
+                
+                } else {
+                    
+                    self.mapSearchNothingLabel.isHidden = true
+                }
+                
                 self.mapSearchBuskingZoneCollectionView.reloadData()
                 
             } else {
@@ -185,6 +196,7 @@ class MapSearchViewController: UIViewController , UICollectionViewDelegate , UIC
         
         if( collectionView == mapSearchBoroughCollectionView ) {
             
+            mapSearchNothingLabel.text = "구를 선택해 주세요"
             mapSearchNothingLabel.isHidden = true
             
             boroughSelectedIndexPath = indexPath

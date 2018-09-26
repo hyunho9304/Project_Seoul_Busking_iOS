@@ -540,20 +540,30 @@ class ReservationViewController: UIViewController {
         backUIView.isHidden = true
         alertUIView.isHidden = true
         
-        if( alertTitleLabel.text == "날짜를 선택해 주세요" || alertTitleLabel.text == "시간을 선택해 주세요" ) {
-        
+        if( selectedZoneName != nil ) {
+            
             UIView.animate(withDuration: 0.15 , delay: 0 , usingSpringWithDamping: 1 , initialSpringVelocity: 1 , options: .curveEaseOut , animations: {
-            
-            self.reservationDateTimeView.frame.origin.y = 323 * self.view.frame.height / 667
-            
-            
+                
+                self.reservationDateTimeView.frame.origin.y = 323 * self.view.frame.height / 667
+                
+                
             }) { (finished ) in
-            
-            self.reservationZoneUIView.isHidden = false
+                
+                self.reservationZoneUIView.isHidden = false
             }
             
-            self.reservationDateTimeView.layoutIfNeeded()
+        } else {
+            
+            UIView.animate(withDuration: 0.15 , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut , animations: {
+                
+                self.reservationZoneUIView.isHidden = true
+                
+                self.reservationDateTimeView.frame.origin.y = 210 * self.view.frame.height / 667
+                
+            }, completion: nil )
         }
+        
+        self.reservationDateTimeView.layoutIfNeeded()
     }
     
     //  공지 숙지 확인 버튼 액션
