@@ -239,7 +239,7 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
             
             if( i == self.memberList.count - 1 ) {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 , execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
                     self.flag = true
                     self.memberCollectionView.reloadData()
                 })
@@ -280,7 +280,7 @@ class FollowingMemberViewController: UIViewController , UICollectionViewDelegate
             
             if( i == self.filteredMemberList.count - 1 ) {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 , execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
                     
                     self.flag = true
                     self.memberCollectionView.reloadData()

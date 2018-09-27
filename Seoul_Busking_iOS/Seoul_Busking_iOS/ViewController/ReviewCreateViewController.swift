@@ -234,7 +234,11 @@ class ReviewCreateViewController: UIViewController , UITextFieldDelegate , UITex
     //  작성하기 버튼 액션
     @objc func pressedReviewCommitBtn( _ sender : UIButton ) {
         
-        if( selectScore != nil && reviewTitleTextField.text != "제목" && reviewContentTextView.text != "내용" ) {
+        print( selectScore )
+        print(reviewTitleTextField.text )
+        print( reviewContentTextView.text )
+        
+        if( selectScore != nil && ( reviewTitleTextField.text != "제목" && reviewTitleTextField.text != "" ) && ( reviewContentTextView.text != "내용" && reviewContentTextView.text != "" ) ) {
             
             self.alertUIView.isHidden = false
             self.backUIView.isHidden = false

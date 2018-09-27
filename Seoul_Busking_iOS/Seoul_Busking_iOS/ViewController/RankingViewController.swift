@@ -310,7 +310,7 @@ class RankingViewController: UIViewController , UICollectionViewDelegate , UICol
             
             if( i == self.rankingList.count - 1 ) {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 , execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
                     // Put your code which should be executed with a delay here
                     self.flag = true
                     self.memberCollectionView.reloadData()

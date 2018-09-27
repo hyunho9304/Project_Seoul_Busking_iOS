@@ -126,7 +126,11 @@ class HomeViewController: UIViewController , UICollectionViewDelegate , UICollec
                     if rescode == 200 {
                         
                         self.buskingZoneList = buskingZoneListData
-                        self.homeBuskingZoneCollectionView.reloadData()
+                        
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 , execute: {
+                            self.homeBuskingZoneCollectionView.reloadData()
+                        })
                         
                         if( self.buskingZoneList.count != 0 ) {
                             
