@@ -181,10 +181,6 @@ class CalendarPopUpViewController: UIViewController , UICollectionViewDelegate ,
             PositionIndex = NumberOfEmptyBox
         }
       
-        print( PositionIndex )
-        print( NumberOfEmptyBox)
-
-
         calendarSelectedIndex = IndexPath(row: -1, section: -1)     //  없는것
         
         calendarSelectCommitBtn.layer.cornerRadius = 20 * self.view.frame.width / 375

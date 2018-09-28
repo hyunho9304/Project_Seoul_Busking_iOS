@@ -594,7 +594,7 @@ class ReservationViewController: UIViewController {
                     self.present(alert , animated: true , completion: nil)
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 , execute: {
                     
                     if( flag == 1 ) {
                         
@@ -632,7 +632,7 @@ class ReservationViewController: UIViewController {
                 }
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 , execute: {
               
                 if( flag == 2 ) {
                     

@@ -53,6 +53,7 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     @IBOutlet weak var zoneCurrentInfoUIView: UIView!
     @IBOutlet weak var zoneCurrentInfoNothingUIView: UIView!
     @IBOutlet weak var zoneCurrentInfoNothingNameLabel: UILabel!
+    @IBOutlet weak var zoneCurrentInfoNothingAddressTextView: UITextView!
     @IBOutlet weak var zoneCurrentInfoNothingZoneImageView: UIImageView!
     @IBOutlet weak var zoneCurrentInfoNameLebel: UILabel!
     @IBOutlet weak var zoneCurrentInfoTimeLabel: UILabel!
@@ -624,7 +625,6 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
     //    //  마커 선택시 나타나는 뷰 설정
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, viewForCalloutOverlayItem poiItem: NMapPOIitem!, calloutPosition: UnsafeMutablePointer<CGPoint>!) -> UIView! {
         
-        print("asdf")
         var ii : Int = 0
         ii = Int(poiItem.iconIndex )
         
@@ -634,6 +634,8 @@ class MapViewController: UIViewController , NMapViewDelegate , NMapPOIdataOverla
         mapRepresentativeBoroughLabel.text = buskingZoneListAll[ ii ].sb_name
         zoneCurrentInfoNameLebel.text = buskingZoneListAll[ ii ].sbz_name
         zoneCurrentInfoNothingNameLabel.text = buskingZoneListAll[ ii ].sbz_name
+        zoneCurrentInfoNothingAddressTextView.text = buskingZoneListAll[ ii].sbz_address
+        
         let tmpImage = self.getStoS( self.buskingZoneListAll[ ii ].sbz_photo ?? "" )
         self.zoneCurrentInfoNothingZoneImageView.kf.setImage(with: URL( string: tmpImage ) )
         self.zoneCurrentInfoNothingZoneImageView.layer.cornerRadius = self.zoneCurrentInfoNothingZoneImageView.layer.frame.width/2

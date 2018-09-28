@@ -343,7 +343,7 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
             modifyProfileVC.memberInfo = self.memberInfo
             modifyProfileVC.memberInfoBasic = self.memberInfoBasic
             modifyProfileVC.uiviewX = self.tapbarMemberInfoBtn.frame.origin.x
-            print(33)
+            
             self.present( modifyProfileVC , animated: false , completion: nil )
             
         } else {
@@ -723,8 +723,6 @@ class MemberInfoViewController: UIViewController , UICollectionViewDelegate , UI
                             
                         }, completion: nil )
                         self.animationUIView.layoutIfNeeded()
-                        
-                        //  배경사진 적용 서버에서 배경사진 가져오기 수정해야함
                         
                         self.followingScheduleBtn.setTitleColor( #colorLiteral(red: 0.5255666971, green: 0.4220638871, blue: 0.9160656333, alpha: 1) , for: .normal )
                         self.followingScheduleUIView.isHidden = false

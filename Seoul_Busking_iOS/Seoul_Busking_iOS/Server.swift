@@ -562,9 +562,6 @@ struct Server : APIService {
                     
                     do {
                         
-                        print( "what" )
-                        print( JSON( value ))
-                        
                         let currentReservationData = try decoder.decode(CurrentReservationData.self , from: value)
                         
                         if( res.response?.statusCode == 201 ){
@@ -1133,9 +1130,6 @@ struct Server : APIService {
                     let decoder = JSONDecoder()
                     
                     do {
-                        
-                        print("kakaka")
-                        print( JSON(value))
                         
                         let memberData = try decoder.decode(MemberData.self , from: value)
                         
