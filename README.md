@@ -1,5 +1,7 @@
 # 2018년 서울시 앱 공모전 출품작( 유랑예인 )
 
+https://youtu.be/Fba_vMVzUIo( UI 작동 영상 )
+
 ![](/Users/hyunho/Downloads/KakaoTalk_Photo_2018-10-19-18-15-26.png)
 
 
